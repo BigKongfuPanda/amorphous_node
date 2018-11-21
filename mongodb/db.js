@@ -1,10 +1,13 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const config = require('config-lite');
+const config = require('config-lite')(__dirname);
+// const config = require('../config/default');
 const chalk = require('chalk');
 
-mongoose.connect(config.url, {useMongoClient:true});
+console.log(typeof config);
+
+mongoose.connect(config.url);
 
 const db = mongoose.connection;
 

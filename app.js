@@ -10,7 +10,6 @@ const config = require('config-lite')(__dirname);
 const chalk = require('chalk');
 
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 
 const app = express();
 
@@ -48,10 +47,12 @@ app.use(session({
 	store: new MongoStore({
 		url: config.url
 	})
-}))
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+}));
 
+// 逻辑中间件
+app.use('/', indexRouter);
+
+// 错误中间件，放在所有中间件最后面
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
