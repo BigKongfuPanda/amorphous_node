@@ -1,17 +1,18 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var session = require('express-session');
-var connectMongo = require('connect-mongo');
-var config = require('config-lite')(__dirname);
-var chalk = require('chalk');
+const createError = require('http-errors');
+const express = require('express');
+const db = require('./mongodb/db.js');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const session = require('express-session');
+const connectMongo = require('connect-mongo');
+const config = require('config-lite')(__dirname);
+const chalk = require('chalk');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
 
-var app = express();
+const app = express();
 
 app.all('*', (req, res, next) => {
 	res.header("Access-Control-Allow-Origin", req.headers.origin || req.headers.referer || '*');
