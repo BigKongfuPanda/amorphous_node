@@ -1,23 +1,41 @@
 'use strict';
 
 const mongoose =  require('mongoose');
-
 const Schema = mongoose.Schema;
 
 const meltSchema = new Schema({
-	user_name: String,
-	password: String,
-	id: Number,
-	create_time: String,
-	admin: {type: String, default: '管理员'},
-	status: Number,  //1:普通管理、 2:超级管理员
-	avatar: {type: String, default: 'default.jpg'},
-	city: String,
-})
+	castId: Number,
+	furnace: String,
+	ribbonTypeId: Number,
+	ribbonTypeName: String,
+	bucket: Number,
+	melter: String,
+	meltFurnace: String,
+	newAlloyNumber: String,
+	newAlloyWeight: Number,
+	oldAlloyNumber: String,
+	oldAlloyWeight: Number,
+	mixAlloyNumber: String,
+	mixAlloyWeight: Number,
+	highNbNumber: String,
+	highNbWeight: Number,
+	Si: Number,
+	Ni: Number,
+	Cu: Number,
+	BFe: Number,
+	NbFe: Number,
+	alloyTotalWeight: Number,
+	alloyOutWeight: Number,
+	alloyFixWeight: Number,
+	remark: String,
+}, {
+	collection: 'Melt',
+	timestamps: true,
+	autoIndex: false
+});
 
-meltSchema.index({id: 1});
+meltSchema.index({furnace: 1});
 
 const Melt = mongoose.model('Melt', meltSchema);
-
 
 module.exports = Melt;
