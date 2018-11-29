@@ -44,3 +44,5 @@ class Melt {
     
   }
 }
+
+module.exports = new Melt();
