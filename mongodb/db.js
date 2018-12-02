@@ -2,12 +2,13 @@
 
 const mongoose = require('mongoose');
 const config = require('config-lite')(__dirname);
-// const config = require('../config/default');
 const chalk = require('chalk');
 
-console.log(typeof config);
+const option = {
+  useNewUrlParser: true
+};
 
-mongoose.connect(config.url);
+mongoose.connect(config.url, option);
 
 const db = mongoose.connection;
 
