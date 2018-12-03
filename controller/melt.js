@@ -1,7 +1,6 @@
 'use strict';
 
 const meltModel = require('../models/melt');
-const dtime = require('time-formater');
 
 class Melt {
   constructor() {
@@ -86,8 +85,7 @@ class Melt {
         hignNbNumber, hignNbWeight,
         Si, Ni, Cu, BFe, NbFe, 
         alloyTotalWeight, alloyOutWeight, alloyFixWeight,
-        remark,
-        createTime: dtime().format('YYYY-MM-DD HH:mm:ss')
+        remark
       };
       await meltModel.create(newData);
       res.send({
@@ -126,8 +124,7 @@ class Melt {
         hignNbNumber, hignNbWeight,
         Si, Ni, Cu, BFe, NbFe,
         alloyTotalWeight, alloyOutWeight, alloyFixWeight,
-        remark,
-        createTime: dtime().format('YYYY-MM-DD HH:mm:ss')
+        remark
       };
       await meltModel.updateOne({ furnace }, { $set: newData });
       res.send({

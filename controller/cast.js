@@ -1,7 +1,6 @@
 'use strict';
 
 const castModel = require('../models/cast');
-const dtime = require('time-formater');
 
 class Cast {
   constructor() {
@@ -49,8 +48,9 @@ class Cast {
 
   async createData(req, res, next) {
     const { castId, furnace, ribbonTypeId, ribbonTypeName, ribbonWidth, record } = req.body;
+    const _record = JSON.parse(record);
     try{
-      if (!castId || !furnace || !ribbonTypeId || !ribbonTypeName || !ribbonWidth) {
+      if (!castId || !furnace || !ribbonTypeId || !ribbonTypeName || !ribbonWidth || !_record) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -81,8 +81,7 @@ class Cast {
       const newData = {
         castId, furnace,
         ribbonTypeId, ribbonTypeName, ribbonWidth,
-        record,
-        createTime: dtime().format('YYYY-MM-DD HH:mm:ss')
+        record: _record
       };
       await castModel.create(newData);
       res.send({
@@ -100,8 +99,9 @@ class Cast {
 
   async updateData(req, res, next) {
     const { castId, furnace, ribbonTypeId, ribbonTypeName, ribbonWidth, record } = req.body;
+    const _record = JSON.parse(record);
     try{
-      if (!castId || !furnace || !ribbonTypeId || !ribbonTypeName || !ribbonWidth) {
+      if (!castId || !furnace || !ribbonTypeId || !ribbonTypeName || !ribbonWidth || !_record) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -112,13 +112,12 @@ class Cast {
       })
       return;
     }
-    
+
     try {
       const newData = {
         castId, furnace,
         ribbonTypeId, ribbonTypeName, ribbonWidth,
-        record,
-        createTime: dtime().format('YYYY-MM-DD HH:mm:ss')
+        record: _record
       };
       await castModel.updateOne({ furnace }, { $set: newData });
       res.send({
