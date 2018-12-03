@@ -37,8 +37,7 @@ const castSchema = new Schema({
 			isChangeTundish: Number,//是否换包 1-是 0-否
 			remark: String, //备注
 		}
-	],
-	createTime: String //创建/更新时间 2018-12-12 12:12:00
+	]
 }, {
 	collection: 'Cast',
 	timestamps: true,
