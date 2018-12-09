@@ -27,8 +27,7 @@ const meltSchema = new Schema({
 	alloyTotalWeight: Number,
 	alloyOutWeight: Number,
 	alloyFixWeight: Number,
-	remark: String,
-	createTime: String
+	remark: String
 }, {
 	collection: 'Melt',
 	timestamps: true,

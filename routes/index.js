@@ -2,6 +2,7 @@
 
 const melt = require('./melt');
 const cast = require('./cast');
+const plan = require('./plan');
 
 // 检验登录态的中间件
 function checkLogin(req, res, next) {
@@ -16,4 +17,5 @@ module.exports = app => {
   // app.use(checkLogin);
   app.use('/melt', melt);
   app.use('/cast', cast);
+  app.use('/plan', plan);
 };
