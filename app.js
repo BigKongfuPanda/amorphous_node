@@ -31,9 +31,9 @@ app.all('*', (req, res, next) => {
 app.use(express.static('./public'));
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(express.json());//用来解析 content-type: application/json, {name: 'tom', age: 1}
+app.use(express.urlencoded({ extended: true }));//用来解析 content-type: application/x-www-form-urlencoded, name=tom&age=1
+app.use(cookieParser());// cookieParser 中间件要用在 session 中间件之前
 app.use(express.static(path.join(__dirname, 'public')));
 
 const MongoStore = connectMongo(session);
@@ -41,6 +41,7 @@ app.use(session({
 	name: config.session.name,//生成session 的key名 默认为 connect.sid 可以不设置
 	secret: config.session.secret,//加密字符串 随便写
 	resave: true,//强制保存session 默认为 true
+	rolling: false,//在每次请求时强行设置cookie，这将重置cookie过期时间（默认：false）
 	saveUninitialized: false,//强制将未初始化的 session 存储 默认为 true。
 	cookie: config.session.cookie,
 	store: new MongoStore({
