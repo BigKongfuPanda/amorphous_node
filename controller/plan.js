@@ -97,6 +97,7 @@ class Plan {
       });
     }
   }
+  
   async updateData(req, res, next) {
     const { date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeId, ribbonTypeName, client = '', thickness, laminationFactor, furnace, alloyWeight = 0, castTime = '' } = req.body;
     try{
