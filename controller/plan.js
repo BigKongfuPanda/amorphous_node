@@ -26,10 +26,13 @@ class Plan {
     }
     try {
       const list = await planModel.find({date, castId}).sort({'furnace': 'desc'});
-      // 当前炉次的大盘毛重，从各个机组的喷带记录表中查询
-
-      // rawWeight
-
+      // const list = await planModel.find({date, castId})
+      // .populate({
+      //   path: 'rawWeight',
+      //   select: {rawWeight: 1, _id: 0}
+      // })
+      // .sort({'furnace': 'desc'});
+      
       res.send({
         status: 0,
         message: '操作成功',
