@@ -25,33 +25,21 @@ class Plan {
       return;
     }
     try {
-      // const list = await planModel
-      //   .find({date, castId})
-      //   .populate({
-      //     path: 'rawWeight',
-      //     select: {rawWeight: 1, _id: 0}
-      //   })
-      //   .sort({'furnace': 'desc'});
-      // 当前炉次的大盘毛重，从各个机组的喷带记录表中查询
-      planModel
-        .find({date, castId})
-        .populate({
-          path: 'rawWeight',
-          select: {rawWeight: 1, _id: 0},
-          options: {
-            sort: {'furnace': 'desc'}
-          }
-        }).exec(function(err, docs) {
-          console.log(docs);
-        })
-
-      // res.send({
-      //   status: 0,
-      //   message: '操作成功',
-      //   data: {
-      //     list
-      //   }
-      // });
+      const list = await planModel.find({date, castId}).sort({'furnace': 'desc'});
+      // const list = await planModel.find({date, castId})
+      // .populate({
+      //   path: 'rawWeight',
+      //   select: {rawWeight: 1, _id: 0}
+      // })
+      // .sort({'furnace': 'desc'});
+      
+      res.send({
+        status: 0,
+        message: '操作成功',
+        data: {
+          list
+        }
+      });
     } catch (err) {
       console.log('查询生产计划失败', err);
       res.send({

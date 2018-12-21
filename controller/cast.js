@@ -1,6 +1,7 @@
 'use strict';
 
 const castModel = require('../models/cast');
+const planModel = require('../models/plan');
 
 class Cast {
   constructor() {
@@ -47,10 +48,10 @@ class Cast {
   }
 
   async createData(req, res, next) {
-    const { castId, furnace, ribbonTypeId, ribbonTypeName, ribbonWidth, record, rawWeight, isChangeTundish, remark, meltOutWeight} = req.body;
+    const { castId, furnace, ribbonTypeId, ribbonTypeName, ribbonWidth, record, rawWeight, isChangeTundish, meltOutWeight, remark } = req.body;
     const _record = JSON.parse(record);
     try{
-      if (!castId || !furnace || !ribbonTypeId || !ribbonTypeName || !ribbonWidth || !_record || !meltOutWeight || !rawWeight || !isChangeTundish || !remark) {
+      if (!castId || !furnace || !ribbonTypeId || !ribbonTypeName || !ribbonWidth || !_record || !rawWeight || !isChangeTundish || !meltOutWeight) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -82,9 +83,12 @@ class Cast {
         castId, furnace,
         ribbonTypeId, ribbonTypeName, ribbonWidth,
         record: _record,
-        meltOutWeight, rawWeight, isChangeTundish, remark
+        rawWeight, isChangeTundish,
+        meltOutWeight, remark
       };
       await castModel.create(newData);
+      // 将喷带记录表中的 rawWeight 进行更新
+      await planModel.updateOne({furnace}, {$set: {rawWeight}});
       res.send({
         status: 0,
         message: '新增喷带记录成功'
@@ -99,13 +103,29 @@ class Cast {
   }
 
   async updateData(req, res, next) {
-    const { castId, furnace, ribbonTypeId, ribbonTypeName, ribbonWidth, record, rawWeight, isChangeTundish, remark, meltOutWeight} = req.body;
+    const { castId, furnace, ribbonTypeId, ribbonTypeName, ribbonWidth, record, rawWeight, isChangeTundish, meltOutWeight, remark } = req.body;
     const _record = JSON.parse(record);
     try{
-      if (!castId || !furnace || !ribbonTypeId || !ribbonTypeName || !ribbonWidth || !_record || !meltOutWeight || !rawWeight || !isChangeTundish || !remark) {
+      if (!castId || !furnace || !ribbonTypeId || !ribbonTypeName || !ribbonWidth || !_record || !rawWeight || !isChangeTundish || !meltOutWeight) {
         throw new Error('参数错误')
       }
     }catch(err){
+      console.log(err.message, err);
+      res.send({
+        status: -1,
+        message: err.message
+      })
+      return;
+    }
+
+    // 校验炉号是否存在，不存在则返回错误
+    try {
+      const data = await castModel.findOne({ furnace });
+      // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
+      if (!data) {
+        throw new Error('炉号不存在');
+      }
+    } catch (err) {
       console.log(err.message, err);
       res.send({
         status: -1,
@@ -119,9 +139,12 @@ class Cast {
         castId, furnace,
         ribbonTypeId, ribbonTypeName, ribbonWidth,
         record: _record,
-        meltOutWeight, rawWeight, isChangeTundish, remark
+        rawWeight, isChangeTundish,
+        meltOutWeight, remark
       };
       await castModel.updateOne({ furnace }, { $set: newData });
+      // 将喷带记录表中的 rawWeight 进行更新
+      await planModel.updateOne({furnace}, {$set: {rawWeight}});
       res.send({
         status: 0,
         message: '更新喷带记录成功'
