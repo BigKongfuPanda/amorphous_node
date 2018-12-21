@@ -32,12 +32,12 @@ const castSchema = new Schema({
 			coilTimes: Number,//抓取次数
 			castTimeEnd: String,//喷带结束时间 2018-12-12 12:12:00
 			describe: String,//喷带过程和结果描述
-			meltOutWeight: Number,//放钢重量,kg
-			rawWeight: Number,//大盘毛重，kg
-			isChangeTundish: Number,//是否换包 1-是 0-否
-			remark: String, //备注
 		}
-	]
+	],
+	meltOutWeight: Number,//放钢重量,kg
+	rawWeight: Number,//大盘毛重，kg
+	isChangeTundish: Number,//是否换包 1-是 0-否
+	remark: String, //备注
 }, {
 	collection: 'Cast',
 	timestamps: true,

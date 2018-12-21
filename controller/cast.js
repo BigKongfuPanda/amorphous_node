@@ -47,10 +47,10 @@ class Cast {
   }
 
   async createData(req, res, next) {
-    const { castId, furnace, ribbonTypeId, ribbonTypeName, ribbonWidth, record } = req.body;
+    const { castId, furnace, ribbonTypeId, ribbonTypeName, ribbonWidth, record, rawWeight, isChangeTundish, remark, meltOutWeight} = req.body;
     const _record = JSON.parse(record);
     try{
-      if (!castId || !furnace || !ribbonTypeId || !ribbonTypeName || !ribbonWidth || !_record) {
+      if (!castId || !furnace || !ribbonTypeId || !ribbonTypeName || !ribbonWidth || !_record || !meltOutWeight || !rawWeight || !isChangeTundish || !remark) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -81,7 +81,8 @@ class Cast {
       const newData = {
         castId, furnace,
         ribbonTypeId, ribbonTypeName, ribbonWidth,
-        record: _record
+        record: _record,
+        meltOutWeight, rawWeight, isChangeTundish, remark
       };
       await castModel.create(newData);
       res.send({
@@ -98,10 +99,10 @@ class Cast {
   }
 
   async updateData(req, res, next) {
-    const { castId, furnace, ribbonTypeId, ribbonTypeName, ribbonWidth, record } = req.body;
+    const { castId, furnace, ribbonTypeId, ribbonTypeName, ribbonWidth, record, rawWeight, isChangeTundish, remark, meltOutWeight} = req.body;
     const _record = JSON.parse(record);
     try{
-      if (!castId || !furnace || !ribbonTypeId || !ribbonTypeName || !ribbonWidth || !_record) {
+      if (!castId || !furnace || !ribbonTypeId || !ribbonTypeName || !ribbonWidth || !_record || !meltOutWeight || !rawWeight || !isChangeTundish || !remark) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -117,7 +118,8 @@ class Cast {
       const newData = {
         castId, furnace,
         ribbonTypeId, ribbonTypeName, ribbonWidth,
-        record: _record
+        record: _record,
+        meltOutWeight, rawWeight, isChangeTundish, remark
       };
       await castModel.updateOne({ furnace }, { $set: newData });
       res.send({

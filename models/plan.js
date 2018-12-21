@@ -18,7 +18,7 @@ const planSchema = new Schema({
   furnace: String, //制带炉号 06-20181120-01/01
   alloyWeight: Number, // 单炉投入重量 KG
   castTime: String, //计划喷带时间 8:00-10:00
-  rawWeight: Number // 实际产出的大盘毛重 KG
+  rawWeight: {type: Schema.Types.ObjectId, ref: 'Cast'} // 实际产出的大盘毛重 KG，与 喷带记录表关联
 }, {
 	collection: 'Plan',
 	timestamps: true,
