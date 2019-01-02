@@ -13,4 +13,7 @@ router.post('/', Plan.createData);
 // 更新生产计划
 router.put('/', Plan.updateData);
 
+// 删除生产计划
+router.delete('/', Plan.delData);
+
 module.exports = router;

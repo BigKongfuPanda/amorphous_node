@@ -25,7 +25,7 @@ class Plan {
       return;
     }
     try {
-      const list = await planModel.find({date, castId}).sort({'furnace': 'desc'});
+      const list = await planModel.find({date, castId}).sort({'furnace': 'asc'});
       // const list = await planModel.find({date, castId})
       // .populate({
       //   path: 'rawWeight',
@@ -50,9 +50,9 @@ class Plan {
   }
 
   async createData(req, res, next) {
-    const { date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeId, ribbonTypeName, client = '', thickness, laminationFactor, furnace, alloyWeight = 0, castTime = '' } = req.body;
+    const { date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeId, ribbonTypeName, ribbonWidth, client = '', thickness, laminationFactor, furnace, alloyWeight = 0, castTime = '' } = req.body;
     try{
-      if (!date || !castId || !team || !ribbonTypeId || !ribbonTypeName || !thickness || !furnace || !laminationFactor) {
+      if (!date || !castId || !team || !ribbonTypeId || !ribbonTypeName || !ribbonWidth || !thickness || !furnace || !laminationFactor) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -83,7 +83,7 @@ class Plan {
       const newData = {
         date, remark, fileNumber,
         castId, team, taskOrder,
-        ribbonTypeId, ribbonTypeName, client,
+        ribbonTypeId, ribbonTypeName, ribbonWidth, client,
         thickness, laminationFactor, furnace,
         alloyWeight, castTime
       };
@@ -102,9 +102,9 @@ class Plan {
   }
   
   async updateData(req, res, next) {
-    const { date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeId, ribbonTypeName, client = '', thickness, laminationFactor, furnace, alloyWeight = 0, castTime = '' } = req.body;
+    const { date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeId, ribbonTypeName, ribbonWidth, client = '', thickness, laminationFactor, furnace, alloyWeight = 0, castTime = '' } = req.body;
     try{
-      if (!date || !castId || !team || !ribbonTypeId || !ribbonTypeName || !thickness || !furnace || !laminationFactor) {
+      if (!date || !castId || !team || !ribbonTypeId || !ribbonTypeName || !ribbonWidth || !thickness || !furnace || !laminationFactor) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -119,7 +119,7 @@ class Plan {
       const newData = {
         date, remark, fileNumber,
         castId, team, taskOrder,
-        ribbonTypeId, ribbonTypeName, client,
+        ribbonTypeId, ribbonTypeName, ribbonWidth, client,
         thickness, laminationFactor, furnace,
         alloyWeight, castTime
       };
@@ -133,6 +133,35 @@ class Plan {
       res.send({
         status: -1,
         message: `更新生产计划失败, ${err.message}`
+      });
+    }
+  }
+
+  // 删除
+  async delData(req, res, next) {
+    const { furnace } = req.body;
+    try{
+      if (!furnace) {
+        throw new Error('参数错误')
+      }
+    }catch(err){
+      console.log(err.message, err);
+      res.send({
+        status: -1,
+        message: err.message
+      })
+      return;
+    }
+    try {
+      await planModel.deleteOne({ furnace } );
+      res.send({
+        status: 0,
+        message: '删除生产计划成功'
+      });
+    } catch (err) {
+      res.send({
+        status: -1,
+        message: `删除生产计划失败, ${err.message}`
       });
     }
   }
