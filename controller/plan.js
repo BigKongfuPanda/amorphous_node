@@ -102,7 +102,7 @@ class Plan {
   }
   
   async updateData(req, res, next) {
-    const { date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeId, ribbonTypeName, ribbonWidth, client = '', thickness, laminationFactor, furnace, alloyWeight = 0, castTime = '' } = req.body;
+    const { _id, date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeId, ribbonTypeName, ribbonWidth, client = '', thickness, laminationFactor, furnace, alloyWeight = 0, castTime = '' } = req.body;
     try{
       if (!date || !castId || !team || !ribbonTypeId || !ribbonTypeName || !ribbonWidth || !thickness || !furnace || !laminationFactor) {
         throw new Error('参数错误')
@@ -117,31 +117,35 @@ class Plan {
     }
     try {
       const newData = {
-        date, remark, fileNumber,
+        _id, date, remark, fileNumber,
         castId, team, taskOrder,
         ribbonTypeId, ribbonTypeName, ribbonWidth, client,
         thickness, laminationFactor, furnace,
         alloyWeight, castTime
       };
-      await planModel.updateOne({ furnace }, { $set: newData });
-      res.send({
-        status: 0,
-        message: '更新生产计划成功'
-      });
+      const { n } = await planModel.updateOne({ _id }, { $set: newData });
+      if (n !== 0) {
+        res.send({
+          status: 0,
+          message: '更新生产计划成功'
+        });
+      } else {
+        throw new Error('更新生产计划失败')
+      }
     } catch (err) {
-      console.log('更新生产计划失败', err);
+      console.log(err.message, err);
       res.send({
         status: -1,
-        message: `更新生产计划失败, ${err.message}`
+        message: err.message
       });
     }
   }
 
   // 删除
   async delData(req, res, next) {
-    const { furnace } = req.body;
+    const { _id } = req.body;
     try{
-      if (!furnace) {
+      if (!_id) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -153,15 +157,19 @@ class Plan {
       return;
     }
     try {
-      await planModel.deleteOne({ furnace } );
-      res.send({
-        status: 0,
-        message: '删除生产计划成功'
-      });
+      const { n } = await planModel.deleteOne({ _id } );
+      if (n !== 0) {
+        res.send({
+          status: 0,
+          message: '删除生产计划成功'
+        });
+      } else {
+        throw new Error('删除生产计划失败');
+      }
     } catch (err) {
       res.send({
         status: -1,
-        message: `删除生产计划失败, ${err.message}`
+        message: err.message
       });
     }
   }
