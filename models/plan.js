@@ -10,7 +10,7 @@ const planSchema = new Schema({
   castId: Number, // 机组编号
   team: String,// 班组 早
   taskOrder: String, //任务单号
-  ribbonTypeId: Number, // 材质id
+  ribbonTypeId: Schema.Types.ObjectId, // 材质id
   ribbonTypeName: String,//材质名称 1k107B
   ribbonWidth: Number, // 带宽
   client: String, //客户 
