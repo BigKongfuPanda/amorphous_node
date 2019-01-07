@@ -91,10 +91,9 @@ class RibbonType {
     }
     try {
       const newData = {
-        ribbonTypeId, ribbonTypeName
+        ribbonTypeName
       };
       const { n } = await ribbonTypeModel.updateOne({ _id: ribbonTypeId }, { $set: newData });
-      console.log(n);
       if (n !== 0) {
         res.send({
           status: 0,
@@ -128,7 +127,7 @@ class RibbonType {
       return;
     }
     try {
-      const { n } = await ribbonTypeModel.deleteOne({ ribbonTypeId } );
+      const { n } = await ribbonTypeModel.deleteOne({ _id: ribbonTypeId } );
       if (n !== 0) {
         res.send({
           status: 0,
