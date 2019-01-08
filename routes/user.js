@@ -7,6 +7,9 @@ const User = require('../controller/user');
 // 新增用户
 router.post('/', User.createUser);
 
+// 删除用户
+router.delete('/', User.delUser);
+
 // 修改密码
 router.put('/', User.updatePassword);
 
