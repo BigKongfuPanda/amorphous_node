@@ -59,6 +59,39 @@ class User {
     }
   }
 
+  // 删除
+  async delUser(req, res, next) {
+    const { username } = req.body;
+    try{
+      if (!username) {
+        throw new Error('参数错误')
+      }
+    }catch(err){
+      console.log(err.message, err);
+      res.send({
+        status: -1,
+        message: err.message
+      })
+      return;
+    }
+    try {
+      const { n } = await ribbonTypeModel.deleteOne({ username } );
+      if (n !== 0) {
+        res.send({
+          status: 0,
+          message: '删除材质成功'
+        });
+      } else {
+        throw new Error('删除材质失败');
+      }
+    } catch (err) {
+      res.send({
+        status: -1,
+        message: err.message
+      });
+    }
+  }
+
   // 修改密码
   async updatePassword(req, res, next) {
     const { username, password, newPassword } = req.body;
@@ -160,7 +193,7 @@ class User {
 			delete req.session.userId;
 			res.send({
 				status: 0,
-				success: '退出成功'
+				message: '退出成功'
 			})
 		}catch(err){
 			console.log('退出失败', err)
