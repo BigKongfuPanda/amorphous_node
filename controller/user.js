@@ -1,10 +1,44 @@
 'use strict';
 
 const userModel = require('../models/user');
+const moment = require('moment')
 
 class User {
   constructor() {
 
+  }
+
+  async queryUser(req, res, next) {
+    const { roleId } = req.query;
+    try{
+      if (!roleId && roleId != 1) {
+        throw new Error('参数错误')
+      }
+    }catch(err){
+      console.log(err.message, err);
+      res.send({
+        status: -1,
+        message: err.message
+      })
+      return;
+    }
+
+    try {
+      const list = await userModel.find({});
+      res.send({
+        status: 0,
+        message: '查询成功',
+        data: {
+          list
+        }
+      });
+    } catch (err) {
+      console.log('查询用户列表失败', err);
+      res.send({
+        status: -1,
+        message: '查询用户列表失败'
+      });
+    }
   }
 
   // 创建账户
@@ -41,9 +75,11 @@ class User {
     }
 
     try {
+      
       const newData = {
         username,
-        roleId
+        roleId,
+        createTime: moment().format('YYYY-MM-DD HH:mm:ss')
       };
       await userModel.create(newData);
       res.send({
@@ -75,14 +111,14 @@ class User {
       return;
     }
     try {
-      const { n } = await ribbonTypeModel.deleteOne({ username } );
+      const { n } = await userModel.deleteOne({ username } );
       if (n !== 0) {
         res.send({
           status: 0,
-          message: '删除材质成功'
+          message: '删除账号成功'
         });
       } else {
-        throw new Error('删除材质失败');
+        throw new Error('删除账号失败');
       }
     } catch (err) {
       res.send({
@@ -172,6 +208,9 @@ class User {
       } else {
         // 将当前用户的 _id 作为 存入 session 中，作为登录态
         req.session.userId = data._id;
+        // 登陆时间
+        const time = moment().format('YYYY-MM-DD HH:mm:ss');
+        await userModel.updateOne({username}, { $set: {loginTime: time}});
         res.send({
           status: 0,
           message: '登录成功',
