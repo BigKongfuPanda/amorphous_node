@@ -1,3 +1,4 @@
+.git-credentials
 .DS_Store
 node_modules/
 /dist/
