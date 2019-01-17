@@ -87,8 +87,9 @@ class Cast {
         meltOutWeight, remark
       };
       await castModel.create(newData);
-      // 将喷带记录表中的 rawWeight 进行更新
-      await planModel.updateOne({furnace}, {$set: {rawWeight}});
+      // 将喷带记录表中的 rawWeight 进行更新。 生产计划中的 furname 为 06-20190111-02，而制带过程中的炉号是带有桶号: 06-20190111-02/08
+      const planFurnace = furnace.substr(0, 14);
+      await planModel.updateOne({furnace: planFurnace}, {$set: {rawWeight}});
       res.send({
         status: 0,
         message: '新增喷带记录成功'
