@@ -12,13 +12,13 @@ const castSchema = new Schema({
 	record: [
 		{
 			nozzleSize: String, //喷嘴规格 30*0.25
-			caster: String, //喷带手姓名
+			caster: String, //喷带手姓名, 不变
 			heatCupNum: Number, //加热杯数量
 			nozzleNum: Number, //喷嘴数量
 			treatCoolRoller: String,//冷却辊处理方式 车、修
-			meltFurnace: String,//冶炼炉炉号
-			tundish: Number,//在线包号
-			tundishCar: Number,//在线包车号
+			meltFurnace: String,//冶炼炉炉号，不变
+			tundish: Number,//在线包号，不变
+			tundishCar: Number,//在线包车号，不变
 			ReceiveMeltTime: String,//接钢时间
 			tundishTemperatureWithoutMelt: Number,//接钢前包温
 			tundishTemperatureWithMelt: Number,//接钢后包温
