@@ -8,7 +8,7 @@ class Melt {
   }
 
   async queryData(req, res, next) {
-    const { castId, current = 1, limit = 20 } = req.query;
+    const { castId, startTime, endTime, melter, current = 1, limit = 20 } = req.query;
     try{
       if (!castId) {
         throw new Error('参数错误')
@@ -22,9 +22,16 @@ class Melt {
       return;
     }
     try {
+      let queryCondition = {castId};
+      if (melter) {
+        queryCondition.melter = melter;
+      }
+      if (startTime && endTime) {
+        queryCondition.createdAt = { $gt: startTime, $lt: endTime };
+      }
       const count = await meltModel.estimatedDocumentCount({castId});
       const totalPage = Math.ceil(count / limit);
-      const list = await meltModel.find({castId}).skip((current - 1) * limit).limit(limit).sort({'furnace': 'desc'});
+      const list = await meltModel.find(queryCondition).skip((current - 1) * limit).limit(limit).sort({'furnace': 'desc'});
       // 要考虑分页
       res.send({
         status: 0,

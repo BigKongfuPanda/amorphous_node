@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 const castSchema = new Schema({
 	castId: Number,//机组编号
 	furnace: String,//炉号
-	ribbonTypeId: Number,//材质id
+	ribbonTypeId: Schema.Types.ObjectId, // 材质id
 	ribbonTypeName: String,//材质名称
 	ribbonWidth: Number,//带宽 mm
 	record: [
