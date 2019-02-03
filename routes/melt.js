@@ -13,4 +13,7 @@ router.post('/', Melt.createData);
 // 更新化钢记录表
 router.put('/', Melt.updateData);
 
+// 删除化钢记录表
+router.delete('/', Melt.delData);
+
 module.exports = router;

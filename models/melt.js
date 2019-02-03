@@ -8,7 +8,7 @@ const meltSchema = new Schema({
 	furnace: String,// 制带炉号 06-20181120-01/01
 	ribbonTypeId: Schema.Types.ObjectId, // 材质id
 	ribbonTypeName: String,//材质名称
-	bucket: Number,// 配料桶号
+	bucket: String,// 配料桶号
 	melter: String,// 熔炼人
 	meltFurnace: String,// 冶炼炉炉号 A 或 B
 	newAlloyNumber: String,// 新料炉号 新B-2018-12-12

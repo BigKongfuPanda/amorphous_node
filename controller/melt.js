@@ -68,7 +68,7 @@ class Melt {
     }
 
     try {
-      const data = await castModel.findOne({ furnace });
+      const data = await meltModel.findOne({ furnace });
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (data) {
         throw new Error('炉号重复');
@@ -143,6 +143,39 @@ class Melt {
       res.send({
         status: -1,
         message: `更新化钢记录失败, ${err.message}`
+      });
+    }
+  }
+
+  async delData(req, res, next) {
+    const { _id } = req.body;
+    try {
+      if (!_id) {
+        throw new Error('参数错误');
+      }
+    } catch (error) {
+      console.log(err.message, err);
+      res.send({
+        status: -1,
+        message: error.message
+      });
+      return;
+    }
+
+    try {
+      const { n } = await meltModel.deleteOne({ _id });
+      if (n != 0) {
+        res.send({
+          status: 0,
+          message: '删除化钢记录成功'
+        });
+      } else {
+        throw new Error('删除化钢记录失败');
+      }
+    } catch (error) {
+      res.send({
+        status: -1,
+        message: '删除化钢记录失败'
       });
     }
   }
