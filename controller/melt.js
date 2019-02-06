@@ -55,7 +55,7 @@ class Melt {
   async createData(req, res, next) {
     const { castId, furnace, ribbonTypeId, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, hignNbNumber = '', hignNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '' } = req.body;
     try{
-      if (!castId || !furnace || !ribbonTypeId || !ribbonTypeName || !bucket || !melter || !meltFurnace) {
+      if (!castId && !furnace && !ribbonTypeId && !ribbonTypeName && !bucket && !melter && !meltFurnace) {
         throw new Error('参数错误')
       }
     }catch(err){

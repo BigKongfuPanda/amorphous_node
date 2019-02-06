@@ -6,19 +6,22 @@ const Schema = mongoose.Schema;
 const castSchema = new Schema({
 	castId: Number,//机组编号
 	furnace: String,//炉号
+	caster: String, //喷带手姓名, 不变
+	ribbonWidth: Number,//带宽 mm
 	ribbonTypeId: Schema.Types.ObjectId, // 材质id
 	ribbonTypeName: String,//材质名称
-	ribbonWidth: Number,//带宽 mm
+	tundishCar: Number,//在线包车号，不变
+	tundish: Number,//在线包号，不变
+	isChangeTundish: Number,//是否换包 1-是 0-否
+	meltOutWeight: Number,//放钢重量,kg
+	rawWeight: Number,//大盘毛重，kg
+	remark: String, //备注
 	record: [
 		{
 			nozzleSize: String, //喷嘴规格 30*0.25
-			caster: String, //喷带手姓名, 不变
-			heatCupNum: Number, //加热杯数量
 			nozzleNum: Number, //喷嘴数量
+			heatCupNum: Number, //加热杯数量
 			treatCoolRoller: String,//冷却辊处理方式 车、修
-			meltFurnace: String,//冶炼炉炉号，不变
-			tundish: Number,//在线包号，不变
-			tundishCar: Number,//在线包车号，不变
 			ReceiveMeltTime: String,//接钢时间
 			tundishTemperatureWithoutMelt: Number,//接钢前包温
 			tundishTemperatureWithMelt: Number,//接钢后包温
@@ -33,11 +36,7 @@ const castSchema = new Schema({
 			castTimeEnd: String,//喷带结束时间 2018-12-12 12:12:00
 			describe: String//喷带过程和结果描述
 		}
-	],
-	rawWeight: Number,//大盘毛重，kg
-	isChangeTundish: Number,//是否换包 1-是 0-否
-	meltOutWeight: Number,//放钢重量,kg
-	remark: String, //备注
+	]
 }, {
 	collection: 'Cast',
 	timestamps: true,
