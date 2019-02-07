@@ -13,4 +13,7 @@ router.post('/', Cast.createData);
 // 更新喷带记录表
 router.put('/', Cast.updateData);
 
+// 删除喷带记录
+router.delete('/', Cast.delData);
+
 module.exports = router;
