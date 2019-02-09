@@ -10,6 +10,8 @@ const castSchema = new Schema({
 	ribbonWidth: Number,//带宽 mm
 	ribbonTypeId: Schema.Types.ObjectId, // 材质id
 	ribbonTypeName: String,//材质名称
+	nozzleNum: Number, //喷嘴数量
+	heatCupNum: Number, //加热杯数量
 	tundishCar: Number,//在线包车号，不变
 	tundish: Number,//在线包号，不变
 	isChangeTundish: Number,//是否换包 1-是 0-否
@@ -19,9 +21,8 @@ const castSchema = new Schema({
 	record: [
 		{
 			nozzleSize: String, //喷嘴规格 30*0.25
-			nozzleNum: Number, //喷嘴数量
-			heatCupNum: Number, //加热杯数量
 			treatCoolRoller: String,//冷却辊处理方式 车、修
+			coolRollerThickness: Number, //冷却辊厚度 mm
 			ReceiveMeltTime: String,//接钢时间
 			tundishTemperatureWithoutMelt: Number,//接钢前包温
 			tundishTemperatureWithMelt: Number,//接钢后包温
