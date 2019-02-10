@@ -12,7 +12,7 @@ const castSchema = new Schema({
 	ribbonTypeName: String,//材质名称
 	nozzleNum: Number, //喷嘴数量
 	heatCupNum: Number, //加热杯数量
-	tundishCar: Number,//在线包车号，不变
+	tundishCar: Number,//包车，不变
 	tundish: Number,//在线包号，不变
 	isChangeTundish: Number,//是否换包 1-是 0-否
 	meltOutWeight: Number,//放钢重量,kg
