@@ -37,7 +37,6 @@ const measureSchema = new Schema({
   ribbenTotalLevel: String, //带材综合级别
   storageRule: String, //入库规则
   isStored: Number, // 是否入库，1-是，0-否
-  operation: String, //操作
   clients: String //去向 德国，法国
 }, {
 	collection: 'Measure',

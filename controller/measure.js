@@ -19,7 +19,7 @@ class Measure {
       res.send({
         status: -1,
         message: err.message
-      })
+      });
       return;
     }
     try {
@@ -64,7 +64,7 @@ class Measure {
       res.send({
         status: -1,
         message: err.message
-      })
+      });
       return;
     }
 
@@ -79,7 +79,7 @@ class Measure {
       res.send({
         status: -1,
         message: err.message
-      })
+      });
       return;
     }
 
@@ -106,9 +106,9 @@ class Measure {
     }
   }
   async updateData(req, res, next) {
-    const { castId, furnace, ribbonTypeId, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, hignNbNumber = '', hignNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '' } = req.body;
+    const { _id, realRibbonWidth, ribbenThickness1, ribbenThickness2, ribbenThickness3, ribbenThickness4, ribbenThickness5, ribbenThickness6, ribbenThickness7, ribbenThickness8, ribbenThickness9, ribbenThicknessDeviation, ribbenThickness, ribbenThicknessLevel, ribbenToughness, ribbenToughnessLevel, appearence, appearenceLevel, ribbenTotalLevel, storageRule, isStored, clients } = req.body;
     try{
-      if (!castId || !furnace || !ribbonTypeId || !ribbonTypeName || !bucket || !melter || !meltFurnace) {
+      if (!_id && !realRibbonWidth && !ribbenThickness1 && !ribbenThickness2 && !ribbenThickness3 && !ribbenThickness4 && !ribbenThickness5 && !ribbenThickness6 && !ribbenThickness7 && !ribbenThickness8 && !ribbenThickness9 && !ribbenThicknessDeviation && !ribbenThickness && !ribbenThicknessLevel && !ribbenToughness && !ribbenToughnessLevel && !appearence && !appearenceLevel && !ribbenTotalLevel && !storageRule && !isStored && !clients) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -116,31 +116,23 @@ class Measure {
       res.send({
         status: -1,
         message: err.message
-      })
+      });
       return;
     }
     try {
       const newData = {
-        castId, furnace,
-        ribbonTypeId, ribbonTypeName, bucket, melter, meltFurnace,
-        newAlloyNumber, newAlloyWeight,
-        oldAlloyNumber, oldAlloyWeight,
-        mixAlloyNumber, mixAlloyWeight,
-        hignNbNumber, hignNbWeight,
-        Si, Ni, Cu, BFe, NbFe,
-        alloyTotalWeight, alloyOutWeight, alloyFixWeight,
-        remark
+        realRibbonWidth, ribbenThickness1, ribbenThickness2, ribbenThickness3, ribbenThickness4, ribbenThickness5, ribbenThickness6, ribbenThickness7, ribbenThickness8, ribbenThickness9, ribbenThicknessDeviation, ribbenThickness, ribbenThicknessLevel, ribbenToughness, ribbenToughnessLevel, appearence, appearenceLevel, ribbenTotalLevel, storageRule, isStored, clients
       };
-      await measureModel.updateOne({ furnace }, { $set: newData });
+      await measureModel.updateOne({ _id }, { $set: newData });
       res.send({
         status: 0,
-        message: '更新化钢记录成功'
+        message: '更新检测记录成功'
       });
     } catch (err) {
-      console.log('更新化钢记录失败', err);
+      console.log('更新检测记录失败', err);
       res.send({
         status: -1,
-        message: `更新化钢记录失败, ${err.message}`
+        message: `更新检测记录失败, ${err.message}`
       });
     }
   }
