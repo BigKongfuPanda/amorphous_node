@@ -55,8 +55,8 @@ class Cast {
   }
 
   async createData(req, res, next) {
-    const { castId, furnace, caster, ribbonWidth, ribbonTypeId, ribbonTypeName, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, remark, record } = req.body;
-    const _record = JSON.parse(record);
+    const { castId, furnace, caster, ribbonWidth, ribbonTypeId, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, remark, recordJson } = req.body;
+    const _record = JSON.parse(recordJson);
     try{
       if (!castId && !furnace && !caster && !ribbonWidth && !ribbonTypeId && !ribbonTypeName   && !tundishCar && !tundish && !isChangeTundish && !rawWeight && !_record) {
         throw new Error('参数错误');
@@ -89,6 +89,7 @@ class Cast {
       const newData = {
         castId, furnace, caster, ribbonWidth,
         ribbonTypeId, ribbonTypeName,
+        nozzleNum, heatCupNum,
         tundishCar, tundish, isChangeTundish, 
         meltOutWeight, rawWeight,
         remark,
@@ -112,10 +113,10 @@ class Cast {
   }
 
   async updateData(req, res, next) {
-    const { castId, furnace, caster, ribbonWidth, ribbonTypeId, ribbonTypeName, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, remark, record } = req.body;
-    const _record = JSON.parse(record);
+    const { castId, furnace, caster, ribbonWidth, ribbonTypeId, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, remark, recordJson } = req.body;
+    const _record = JSON.parse(recordJson);
     try{
-      if (!castId && !furnace && !caster && !ribbonWidth && !ribbonTypeId && !ribbonTypeName   && !tundishCar && !tundish && !isChangeTundish && !rawWeight && !_record) {
+      if (!castId && !furnace && !caster && !ribbonWidth && !ribbonTypeId && !ribbonTypeName && !tundishCar && !tundish && !isChangeTundish && !rawWeight && !_record) {
         throw new Error('参数错误');
       }
     }catch(err){
@@ -147,6 +148,7 @@ class Cast {
       const newData = {
         castId, furnace, caster, ribbonWidth,
         ribbonTypeId, ribbonTypeName,
+        nozzleNum, heatCupNum,
         tundishCar, tundish, isChangeTundish, 
         meltOutWeight, rawWeight,
         remark,
@@ -184,7 +186,7 @@ class Cast {
     }
 
     try {
-      const { n } = await meltModel.deleteOne({ _id });
+      const { n } = await castModel.deleteOne({ _id });
       if (n != 0) {
         res.send({
           status: 0,
