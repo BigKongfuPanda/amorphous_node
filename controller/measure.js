@@ -9,7 +9,7 @@ class Measure {
   }
 
   async queryData(req, res, next) {
-    const { castId, startTime, endTime, caster, current = 1, limit = 10 } = req.query;
+    const { castId, furnace, startTime, endTime, caster, current = 1, limit = 10 } = req.query;
     try{
       if (!castId) {
         throw new Error('参数错误')
@@ -26,6 +26,9 @@ class Measure {
       let queryCondition = {castId};
       if (caster) {
         queryCondition.caster = caster;
+      }
+      if(furnace) {
+        queryCondition.furnace = furnace;        
       }
       if (startTime && endTime) {
         queryCondition.createdAt = { $gt: startTime, $lt: endTime };
@@ -54,7 +57,7 @@ class Measure {
     }
   }
   async createData(req, res, next) {
-    const { castId, furnace, coilNumber, diameter, coilWeight, laminationFactor, laminationLevel } = req.body;
+    const { castId, furnace, coilNumber, diameter, coilWeight, ribbonTypeName, ribbonWidth, castDate, caster } = req.body;
     try{
       if (!castId && !furnace && !coilNumber && !diameter && !coilWeight) {
         throw new Error('参数错误')
@@ -84,13 +87,10 @@ class Measure {
     }
 
     try {
-      // 根据炉号获取其他信息。但是如果furnace相同的话，可以只执行第一次查询，后面都使用缓存结果，此处需优化
-      const { ribbonTypeName, ribbonWidth, createdAt, caster } = castModel.findOne({ furnace });
       const newData = {
-        castId, furnace, ribbonTypeName, ribbonWidth, caster,
-        castDate: createdAt,
-        coilNumber, diameter, coilWeight,
-        laminationFactor, laminationLevel
+        castId, furnace,
+        ribbonTypeName, ribbonWidth, caster, castDate,
+        coilNumber, diameter, coilWeight
       };
       await measureModel.create(newData);
       res.send({
@@ -106,9 +106,9 @@ class Measure {
     }
   }
   async updateData(req, res, next) {
-    const { _id, realRibbonWidth, ribbenThickness1, ribbenThickness2, ribbenThickness3, ribbenThickness4, ribbenThickness5, ribbenThickness6, ribbenThickness7, ribbenThickness8, ribbenThickness9, ribbenThicknessDeviation, ribbenThickness, ribbenThicknessLevel, ribbenToughness, ribbenToughnessLevel, appearence, appearenceLevel, ribbenTotalLevel, storageRule, isStored, clients } = req.body;
+    const { _id, castId, furnace, coilNumber, diameter, coilWeight, ribbonTypeName, ribbonWidth, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbenThickness1, ribbenThickness2, ribbenThickness3, ribbenThickness4, ribbenThickness5, ribbenThickness6, ribbenThickness7, ribbenThickness8, ribbenThickness9, ribbenThicknessDeviation, ribbenThickness, ribbenThicknessLevel, ribbenToughness, ribbenToughnessLevel, appearence, appearenceLevel, ribbenTotalLevel, storageRule, isStored, clients } = req.body;
     try{
-      if (!_id && !realRibbonWidth && !ribbenThickness1 && !ribbenThickness2 && !ribbenThickness3 && !ribbenThickness4 && !ribbenThickness5 && !ribbenThickness6 && !ribbenThickness7 && !ribbenThickness8 && !ribbenThickness9 && !ribbenThicknessDeviation && !ribbenThickness && !ribbenThicknessLevel && !ribbenToughness && !ribbenToughnessLevel && !appearence && !appearenceLevel && !ribbenTotalLevel && !storageRule && !isStored && !clients) {
+      if (!_id) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -121,6 +121,9 @@ class Measure {
     }
     try {
       const newData = {
+        castId, furnace, coilNumber, diameter, coilWeight,
+        ribbonTypeName, ribbonWidth, castDate, caster,
+        laminationFactor, laminationLevel,
         realRibbonWidth, ribbenThickness1, ribbenThickness2, ribbenThickness3, ribbenThickness4, ribbenThickness5, ribbenThickness6, ribbenThickness7, ribbenThickness8, ribbenThickness9, ribbenThicknessDeviation, ribbenThickness, ribbenThicknessLevel, ribbenToughness, ribbenToughnessLevel, appearence, appearenceLevel, ribbenTotalLevel, storageRule, isStored, clients
       };
       await measureModel.updateOne({ _id }, { $set: newData });
