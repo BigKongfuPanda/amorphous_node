@@ -36,8 +36,16 @@ const measureSchema = new Schema({
   appearenceLevel: String, //带材外观等级
   ribbenTotalLevel: String, //带材综合级别
   storageRule: String, //入库规则
-  isStored: String, // 是否入库 是/否
-  clients: String //去向 德国，法国
+  isStored: { type: String, default: '否' }, // 是否入库 是/否
+  unStoreReason: '', //不入库原因
+  clients: String, //去向 德国，法国
+  // 库房信息
+  inStoreDate: Date, //入库日期
+  outStoreDate: Date, //出库日期
+  remain: Number, //结余
+  takeBy: String, //领走的部门 辊剪，顺义，固安，回炉/置换，粉末厂
+  place: String, //储存的仓位 1-15-2
+  shipRemark: String //发货备注
 }, {
 	collection: 'Measure',
 	timestamps: true,
