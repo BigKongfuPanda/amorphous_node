@@ -1,7 +1,6 @@
 'use strict';
 
 const measureModel = require('../models/measure');
-const castModel = require('../models/cast');
 
 class Measure {
   constructor() {

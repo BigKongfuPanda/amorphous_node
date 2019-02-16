@@ -15,7 +15,7 @@ const measureSchema = new Schema({
   diameter: Number, // 外径
   coilWeight: Number, // 单盘重量
   laminationFactor: Number, //叠片系数 0.80
-  laminationLevel: Number, //叠片等级 1, 2, 3, 4
+  laminationLevel: String, //叠片等级 不合格, 0, 1, 2, 3, 4
   // 检测录入信息
   realRibbonWidth: Number,//实际带宽
   ribbenThickness1: Number, //带材厚度点1, μm
@@ -36,7 +36,7 @@ const measureSchema = new Schema({
   appearenceLevel: String, //带材外观等级
   ribbenTotalLevel: String, //带材综合级别
   storageRule: String, //入库规则
-  isStored: Number, // 是否入库，1-是，0-否
+  isStored: String, // 是否入库 是/否
   clients: String //去向 德国，法国
 }, {
 	collection: 'Measure',
