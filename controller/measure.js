@@ -35,7 +35,7 @@ class Measure {
       }
       const count = await measureModel.countDocuments(queryCondition);
       const totalPage = Math.ceil(count / limit);
-      const list = await measureModel.find(queryCondition).skip((current - 1) * limit).limit(limit).sort({'furnace': 'desc', 'coilNumber': 'desc'});
+      const list = await measureModel.find(queryCondition).skip((current - 1) * limit).limit(limit).sort({'furnace': 'desc', 'coilNumber': 'asc'});
       // 要考虑分页
       res.send({
         status: 0,
