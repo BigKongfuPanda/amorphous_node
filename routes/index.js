@@ -5,6 +5,7 @@ const cast = require('./cast');
 const plan = require('./plan');
 const user = require('./user');
 const measure = require('./measure');
+const storage = require('./storage');
 const ribbonType = require('./ribbonType');
 
 // 检验登录态的中间件
@@ -29,5 +30,6 @@ module.exports = app => {
   app.use('/cast', cast);
   app.use('/plan', plan);
   app.use('/measure', measure);
+  app.use('/storage', storage);
   app.use('/ribbonType', ribbonType);
 };
