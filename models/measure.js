@@ -13,7 +13,8 @@ const measureSchema = new Schema({
   caster: String, //喷带手
   coilNumber: Number, // 盘号 1, 2, 3
   diameter: Number, // 外径
-  coilWeight: Number, // 单盘重量
+  coilWeight: Number, // 单盘重量,kg
+  coilNetWeight: Number, //单盘净重,kg
   laminationFactor: Number, //叠片系数 0.80
   laminationLevel: String, //叠片等级 不合格, 0, 1, 2, 3, 4
   // 检测录入信息
@@ -40,9 +41,9 @@ const measureSchema = new Schema({
   unStoreReason: '', //不入库原因
   clients: String, //去向 德国，法国
   // 库房信息
-  inStoreDate: Date, //入库日期
-  outStoreDate: Date, //出库日期
-  remain: Number, //结余
+  inStoreDate: {type: Date, default: null}, //入库日期
+  outStoreDate: {type: Date, default: null}, //出库日期
+  remainWeight: Number, //结余
   takeBy: String, //领走的部门 辊剪，顺义，固安，回炉/置换，粉末厂
   place: String, //储存的仓位 1-15-2
   shipRemark: String //发货备注
