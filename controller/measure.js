@@ -8,7 +8,7 @@ class Measure {
   }
 
   async queryData(req, res, next) {
-    const { castId, furnace, startTime, endTime, caster, ribbonTypeNameJson, current = 1, limit = 10 } = req.query;
+    const { castId, furnace, startTime, endTime, caster, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels, current = 1, limit = 10 } = req.query;
     try{
       if (!castId) {
         throw new Error('参数错误')
@@ -37,6 +37,31 @@ class Measure {
         if(ribbonTypeNameList.length > 0) {
           queryCondition.ribbonTypeName = { $in: ribbonTypeNameList };
         }
+      }
+      if (ribbonWidthJson) {
+        const ribbonWidthList = JSON.parse(ribbonWidthJson);
+        if (ribbonWidthList.length > 0) {
+          queryCondition.ribbonWidth = { $in: ribbonWidthList };
+        }
+      }
+      if (ribbonThicknessLevelJson) {
+        const ribbonThicknessLevelList = JSON.parse(ribbonThicknessLevelJson);
+        if (ribbonThicknessLevelList.length > 0) {
+          queryCondition.ribbonThicknessLevel = { $in: ribbonThicknessLevelList };
+        }
+      }
+      if (laminationLevelJson) {
+        const laminationLevelList = JSON.parse(laminationLevelJson);
+        if (laminationLevelList.length > 0) {
+          queryCondition.laminationLevel = { $in: laminationLevelList };
+        }
+      }
+      if(place) {
+        queryCondition.place = place;        
+      }
+      if (ribbonTotalLevels) {
+        const ribbonTotalLevelList = ribbonTotalLevels.split(',');
+        queryCondition.ribbonTotalLevel = { $in: ribbonTotalLevelList };
       }
       
       const count = await measureModel.countDocuments(queryCondition);
@@ -124,7 +149,7 @@ class Measure {
 
   // 更新操作，由检测人员和库房人员使用
   async updateData(req, res, next) {
-    const { _id, castId, furnace, coilNumber, diameter, coilWeight, ribbonTypeName, ribbonWidth, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbenThickness1, ribbenThickness2, ribbenThickness3, ribbenThickness4, ribbenThickness5, ribbenThickness6, ribbenThickness7, ribbenThickness8, ribbenThickness9, ribbenThicknessDeviation, ribbenThickness, ribbenThicknessLevel, ribbenToughness, ribbenToughnessLevel, appearence, appearenceLevel, ribbenTotalLevel, storageRule, isStored, unStoreReason, clients, remainWeight, takeBy, shipRemark, place } = req.body;
+    const { _id, castId, furnace, coilNumber, diameter, coilWeight, ribbonTypeName, ribbonWidth, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, storageRule, isStored, unStoreReason, clients, remainWeight, takeBy, shipRemark, place } = req.body;
     try{
       if (!_id) {
         throw new Error('参数错误')
@@ -153,7 +178,7 @@ class Measure {
         castId, furnace, coilNumber, diameter, coilWeight,
         ribbonTypeName, ribbonWidth, castDate, caster,
         laminationFactor, laminationLevel,
-        realRibbonWidth, ribbenThickness1, ribbenThickness2, ribbenThickness3, ribbenThickness4, ribbenThickness5, ribbenThickness6, ribbenThickness7, ribbenThickness8, ribbenThickness9, ribbenThicknessDeviation, ribbenThickness, ribbenThicknessLevel, ribbenToughness, ribbenToughnessLevel, appearence, appearenceLevel, ribbenTotalLevel, storageRule, isStored, unStoreReason, clients,
+        realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, storageRule, isStored, unStoreReason, clients,
         inStoreDate, remainWeight, takeBy, shipRemark, place, outStoreDate
       };
       await measureModel.updateOne({ _id }, { $set: newData });
