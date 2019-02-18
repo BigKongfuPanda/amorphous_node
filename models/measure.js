@@ -19,23 +19,23 @@ const measureSchema = new Schema({
   laminationLevel: String, //叠片等级 不合格, 0, 1, 2, 3, 4
   // 检测录入信息
   realRibbonWidth: Number,//实际带宽
-  ribbenThickness1: Number, //带材厚度点1, μm
-  ribbenThickness2: Number, //带材厚度点2, μm
-  ribbenThickness3: Number, //带材厚度点3, μm
-  ribbenThickness4: Number, //带材厚度点4, μm
-  ribbenThickness5: Number, //带材厚度点5, μm
-  ribbenThickness6: Number, //带材厚度点6, μm
-  ribbenThickness7: Number, //带材厚度点7, μm
-  ribbenThickness8: Number, //带材厚度点8, μm
-  ribbenThickness9: Number, //带材厚度点9, μm
-  ribbenThicknessDeviation: Number, // 带材横向偏差, μm
-  ribbenThickness: Number, // 带材平均厚度, μm
-  ribbenThicknessLevel: Number, // 带材厚度级别
-  ribbenToughness: String, //带材韧性
-  ribbenToughnessLevel: String, //带材韧性等级
+  ribbonThickness1: Number, //带材厚度点1, μm
+  ribbonThickness2: Number, //带材厚度点2, μm
+  ribbonThickness3: Number, //带材厚度点3, μm
+  ribbonThickness4: Number, //带材厚度点4, μm
+  ribbonThickness5: Number, //带材厚度点5, μm
+  ribbonThickness6: Number, //带材厚度点6, μm
+  ribbonThickness7: Number, //带材厚度点7, μm
+  ribbonThickness8: Number, //带材厚度点8, μm
+  ribbonThickness9: Number, //带材厚度点9, μm
+  ribbonThicknessDeviation: Number, // 带材横向偏差, μm
+  ribbonThickness: Number, // 带材平均厚度, μm
+  ribbonThicknessLevel: Number, // 带材厚度级别
+  ribbonToughness: String, //带材韧性
+  ribbonToughnessLevel: String, //带材韧性等级
   appearence: String, //带材外观
   appearenceLevel: String, //带材外观等级
-  ribbenTotalLevel: String, //带材综合级别
+  ribbonTotalLevel: String, //带材综合级别
   storageRule: String, //入库规则
   isStored: { type: String, default: '否' }, // 是否入库 是/否
   unStoreReason: '', //不入库原因
