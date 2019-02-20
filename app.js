@@ -30,7 +30,7 @@ app.all('*', (req, res, next) => {
 // app.set('view engine', 'jade');
 app.use(express.static('./public'));
 
-app.use(logger('dev'));
+app.use(logger('dev'));// morgan 用来在命令行输出请求的信息，使用的是 'dev' 模式，还有 combined, common, short, tiny 模式。
 app.use(express.json());//用来解析 content-type: application/json, {name: 'tom', age: 1}
 app.use(express.urlencoded({ extended: true }));//用来解析 content-type: application/x-www-form-urlencoded, name=tom&age=1
 app.use(cookieParser());// cookieParser 中间件要用在 session 中间件之前

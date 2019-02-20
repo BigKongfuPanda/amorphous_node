@@ -9,7 +9,7 @@ class Cast {
   }
 
   async queryData(req, res, next) {
-    const { castId, startTime, endTime, caster, current = 1, limit = 10 } = req.query;
+    const { castId, furnace, startTime, endTime, caster, current = 1, limit = 10 } = req.query;
     try{
       if (!castId) {
         throw new Error('参数错误')
@@ -26,6 +26,9 @@ class Cast {
       let queryCondition = {castId};
       if (caster) {
         queryCondition.caster = caster;
+      }
+      if (furnace) {
+        queryCondition.furnace = furnace;
       }
       if (startTime && endTime) {
         queryCondition.createdAt = { $gt: startTime, $lt: endTime };
