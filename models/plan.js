@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 
 const planSchema = new Schema({
   date: String,//排产日期 2018-12-01
+  isApproved: {type: Number, default: 0}, // 是否审批，1-是，0-否
   remark: String,//备注
   fileNumber: String,//文件编号 QEHAT-FJ/D-C03-036-C/0
   castId: Number, // 机组编号

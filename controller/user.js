@@ -43,12 +43,14 @@ class User {
 
   // 创建账户
   async createUser(req, res, next) {
-    const { username, roleId } = req.body;
+    const { username, roleId, adminname } = req.body;
     try{
       if (!username) {
-        throw new Error('用户名不能为空');
+        throw new Error('账号不能为空');
       } else if(!roleId) {
         throw new Error('用户类别不能为空');
+      } else if(!adminname) {
+        throw new Error('姓名不能为空');
       }
     }catch(err){
       console.log(err.message, err);
@@ -60,10 +62,10 @@ class User {
     }
     
     try {
-      const data = await userModel.findOne({ username });
+      const data = await userModel.findOne({$or: [{ username }, { adminname }]});
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (data) {
-        throw new Error('用户名重复');
+        throw new Error('账号或者姓名重复');
       }
     } catch (err) {
       console.log(err.message, err);
@@ -78,6 +80,7 @@ class User {
       
       const newData = {
         username,
+        adminname,
         roleId,
         createTime: moment().format('YYYY-MM-DD HH:mm:ss')
       };
@@ -152,7 +155,7 @@ class User {
       const data = await userModel.findOne({ username });
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (!data) {
-        throw new Error('用户名不存在');
+        throw new Error('用户不存在');
       } else if (data.password !== Number(password)) {
         throw new Error('密码错误');
       }
@@ -202,7 +205,7 @@ class User {
       const data = await userModel.findOne({ username });
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (!data) {
-        throw new Error('用户名不存在');
+        throw new Error('用户不存在');
       } else if (data.password !== Number(password)) {
         throw new Error('密码错误');
       } else {
@@ -215,7 +218,8 @@ class User {
           status: 0,
           message: '登录成功',
           data: {
-            roleId: data.roleId
+            roleId: data.roleId,
+            adminname: data.adminname
           }
         });
       }

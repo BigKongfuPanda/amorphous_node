@@ -102,7 +102,7 @@ class Plan {
   }
   
   async updateData(req, res, next) {
-    const { _id, date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeId, ribbonTypeName, ribbonWidth, client = '', thickness, laminationFactor, furnace, alloyWeight = 0, castTime = '' } = req.body;
+    const { _id, date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeId, ribbonTypeName, ribbonWidth, client = '', thickness, laminationFactor, furnace, alloyWeight = 0, castTime = '', isApproved } = req.body;
     try{
       if (!date || !castId || !team || !ribbonTypeId || !ribbonTypeName || !ribbonWidth || !thickness || !furnace || !laminationFactor) {
         throw new Error('参数错误')
@@ -123,7 +123,9 @@ class Plan {
         thickness, laminationFactor, furnace,
         alloyWeight, castTime
       };
+      
       const { n } = await planModel.updateOne({ _id }, { $set: newData });
+
       if (n !== 0) {
         res.send({
           status: 0,
