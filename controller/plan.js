@@ -102,9 +102,9 @@ class Plan {
   }
   
   async updateData(req, res, next) {
-    const { _id, date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeId, ribbonTypeName, ribbonWidth, client = '', thickness, laminationFactor, furnace, alloyWeight = 0, castTime = '', isApproved } = req.body;
+    const { _id, date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeId, ribbonTypeName, ribbonWidth, client = '', thickness, laminationFactor, furnace, alloyWeight = 0, castTime = '', roleId } = req.body;
     try{
-      if (!date || !castId || !team || !ribbonTypeId || !ribbonTypeName || !ribbonWidth || !thickness || !furnace || !laminationFactor) {
+      if (!date || !castId) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -116,24 +116,38 @@ class Plan {
       return;
     }
     try {
-      const newData = {
-        _id, date, remark, fileNumber,
-        castId, team, taskOrder,
-        ribbonTypeId, ribbonTypeName, ribbonWidth, client,
-        thickness, laminationFactor, furnace,
-        alloyWeight, castTime
-      };
-      
-      const { n } = await planModel.updateOne({ _id }, { $set: newData });
-
-      if (n !== 0) {
-        res.send({
-          status: 0,
-          message: '更新生产计划成功'
-        });
-      } else {
-        throw new Error('更新生产计划失败')
+      if (Number(roleId) === 1) { // 角色：厂长，操作：审批，将 isApproved 设置为 1  
+        const { m } = await planModel.updateMany({ date, castId }, { $set: {approved: 1} });
+  
+        if (m !== 0) {
+          res.send({
+            status: 0,
+            message: '审批生产计划成功'
+          });
+        } else {
+          throw new Error('审批生产计划失败')
+        }
+      } else { // 角色：生产计划，操作：更新数据
+        const newData = {
+          _id, date, remark, fileNumber,
+          castId, team, taskOrder,
+          ribbonTypeId, ribbonTypeName, ribbonWidth, client,
+          thickness, laminationFactor, furnace,
+          alloyWeight, castTime
+        };
+        
+        const { n } = await planModel.updateOne({ _id }, { $set: newData });
+  
+        if (n !== 0) {
+          res.send({
+            status: 0,
+            message: '更新生产计划成功'
+          });
+        } else {
+          throw new Error('更新生产计划失败')
+        }
       }
+      
     } catch (err) {
       console.log(err.message, err);
       res.send({

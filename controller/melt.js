@@ -8,7 +8,7 @@ class Melt {
   }
 
   async queryData(req, res, next) {
-    const { castId, startTime, endTime, melter, current = 1, limit = 10 } = req.query;
+    const { castId, startTime, endTime, melter, ribbonTypeName, bucket,  current = 1, limit = 10 } = req.query;
     try{
       if (!castId) {
         throw new Error('参数错误')
@@ -25,6 +25,12 @@ class Melt {
       let queryCondition = {castId};
       if (melter) {
         queryCondition.melter = melter;
+      }
+      if (ribbonTypeName) {
+        queryCondition.ribbonTypeName = ribbonTypeName;
+      }
+      if (bucket) {
+        queryCondition.bucket = bucket;
       }
       if (startTime && endTime) {
         queryCondition.createdAt = { $gt: startTime, $lt: endTime };
@@ -53,9 +59,9 @@ class Melt {
     }
   }
   async createData(req, res, next) {
-    const { castId, furnace, ribbonTypeId, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, hignNbNumber = '', hignNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '' } = req.body;
+    const { castId, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, hignNbNumber = '', hignNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '' } = req.body;
     try{
-      if (!castId && !furnace && !ribbonTypeId && !ribbonTypeName && !bucket && !melter && !meltFurnace) {
+      if (!castId || !furnace || !ribbonTypeName || !bucket || !melter || !meltFurnace) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -85,7 +91,7 @@ class Melt {
     try {
       const newData = {
         castId, furnace,
-        ribbonTypeId, ribbonTypeName, bucket, melter, meltFurnace,
+        ribbonTypeName, bucket, melter, meltFurnace,
         newAlloyNumber, newAlloyWeight,
         oldAlloyNumber, oldAlloyWeight,
         mixAlloyNumber, mixAlloyWeight,
@@ -108,9 +114,9 @@ class Melt {
     }
   }
   async updateData(req, res, next) {
-    const { castId, furnace, ribbonTypeId, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, hignNbNumber = '', hignNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '' } = req.body;
+    const { castId, _id, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, hignNbNumber = '', hignNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '' } = req.body;
     try{
-      if (!castId || !furnace || !ribbonTypeId || !ribbonTypeName || !bucket || !melter || !meltFurnace) {
+      if (!castId || !_id || !furnace || !ribbonTypeName || !bucket || !melter || !meltFurnace) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -123,8 +129,8 @@ class Melt {
     }
     try {
       const newData = {
-        castId, furnace,
-        ribbonTypeId, ribbonTypeName, bucket, melter, meltFurnace,
+        castId, _id, furnace,
+        ribbonTypeName, bucket, melter, meltFurnace,
         newAlloyNumber, newAlloyWeight,
         oldAlloyNumber, oldAlloyWeight,
         mixAlloyNumber, mixAlloyWeight,
@@ -133,7 +139,7 @@ class Melt {
         alloyTotalWeight, alloyOutWeight, alloyFixWeight,
         remark
       };
-      await meltModel.updateOne({ furnace }, { $set: newData });
+      await meltModel.updateOne({ _id }, { $set: newData });
       res.send({
         status: 0,
         message: '更新化钢记录成功'
