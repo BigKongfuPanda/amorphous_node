@@ -71,6 +71,6 @@ app.use(function(err, req, res, next) {
 
 app.listen(config.port, () => {
 	console.log(
-		chalk.green(`成功监听端口：${config.port}`)
+		chalk.green(`成功监听：${config.host}:${config.port}`)
 	)
 });
