@@ -1,6 +1,7 @@
 'use strict';
 
 const measureModel = require('../models/measure');
+const castModel = require('../models/cast');
 
 class Measure {
   constructor() {
@@ -90,12 +91,27 @@ class Measure {
 
   // 更新操作，由重卷人员使用
   async createData(req, res, next) {
-    const { castId, furnace, coilNumber, diameter, coilWeight, ribbonTypeName, ribbonWidth, castDate, caster } = req.body;
+    const { castId, furnace, coilNumber, diameter, coilWeight, ribbonTypeName, ribbonWidth, castDate, caster, roller, rollMachine } = req.body;
     try{
-      if (!castId && !furnace && !coilNumber && !diameter && !coilWeight) {
+      if (!castId || !furnace || !coilNumber || !diameter || !coilWeight || !roller || !rollMachine) {
         throw new Error('参数错误')
       }
     }catch(err){
+      console.log(err.message, err);
+      res.send({
+        status: -1,
+        message: err.message
+      });
+      return;
+    }
+
+    // 判断该炉号是否存在
+    try {
+      const data = await castModel.findOne({furnace});
+      if (!data) {
+        throw new Error('该炉号不存在')
+      }
+    } catch (error) {
       console.log(err.message, err);
       res.send({
         status: -1,
@@ -131,7 +147,8 @@ class Measure {
       const newData = {
         castId, furnace,
         ribbonTypeName, ribbonWidth, caster, castDate,
-        coilNumber, diameter, coilWeight, coilNetWeight, remainWeight
+        coilNumber, diameter, coilWeight, coilNetWeight, remainWeight,
+        roller, rollMachine
       };
       await measureModel.create(newData);
       res.send({
@@ -149,7 +166,7 @@ class Measure {
 
   // 更新操作，由检测人员和库房人员使用
   async updateData(req, res, next) {
-    const { _id, castId, furnace, coilNumber, diameter, coilWeight, ribbonTypeName, ribbonWidth, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, storageRule, isStored, unStoreReason, clients, remainWeight, takeBy, shipRemark, place } = req.body;
+    const { _id, castId, furnace, coilNumber, diameter, coilWeight, ribbonTypeName, ribbonWidth, roller, rollMachine, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, storageRule, isStored, unStoreReason, clients, remainWeight, takeBy, shipRemark, place } = req.body;
     try{
       if (!_id) {
         throw new Error('参数错误')
@@ -176,7 +193,7 @@ class Measure {
       }
       const newData = {
         castId, furnace, coilNumber, diameter, coilWeight,
-        ribbonTypeName, ribbonWidth, castDate, caster,
+        ribbonTypeName, ribbonWidth, castDate, caster, roller, rollMachine,
         laminationFactor, laminationLevel,
         realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, storageRule, isStored, unStoreReason, clients,
         inStoreDate, remainWeight, takeBy, shipRemark, place, outStoreDate

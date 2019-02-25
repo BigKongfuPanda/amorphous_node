@@ -195,7 +195,7 @@ class User {
     }catch(err){
       console.log(err.message, err);
       res.send({
-        status: -1,
+        status: 302,
         message: err.message
       })
       return;
@@ -226,7 +226,7 @@ class User {
     } catch (err) {
       console.log(err.message, err);
       res.send({
-        status: -1,
+        status: 302,
         message: err.message
       })
     }
