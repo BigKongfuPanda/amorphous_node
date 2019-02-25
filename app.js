@@ -69,8 +69,8 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(config.port, () => {
+app.listen(config.port, config.hostname, () => {
 	console.log(
-		chalk.green(`成功监听：${config.host}:${config.port}`)
+		chalk.green(`成功监听：${config.hostname}:${config.port}`)
 	)
 });
