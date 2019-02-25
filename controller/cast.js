@@ -67,10 +67,10 @@ class Cast {
   }
 
   async createData(req, res, next) {
-    const { castId, furnace, caster, ribbonWidth, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, remark, recordJson } = req.body;
+    const { castId, furnace, caster, ribbonWidth, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, remark, castTimes = 1, recordJson, createdAt, adminname } = req.body;
     const _record = JSON.parse(recordJson);
     try{
-      if (!castId || !furnace || !caster || !ribbonWidth || !ribbonTypeName   || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !_record) {
+      if (!castId || !furnace || !caster || !ribbonWidth || !ribbonTypeName   || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !_record || !castTimes) {
         throw new Error('参数错误');
       }
     }catch(err){
@@ -96,7 +96,7 @@ class Cast {
       })
       return;
     }
-
+    
     try {
       const newData = {
         castId, furnace, caster, ribbonWidth,
@@ -104,7 +104,8 @@ class Cast {
         nozzleNum, heatCupNum,
         tundishCar, tundish, isChangeTundish, 
         meltOutWeight, rawWeight,
-        remark,
+        remark, castTimes,
+        createPerson: adminname,
         record: _record
       };
       await castModel.create(newData);
@@ -125,10 +126,10 @@ class Cast {
   }
 
   async updateData(req, res, next) {
-    const { castId, _id, furnace, caster, ribbonWidth, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, remark, recordJson } = req.body;
+    const { castId, _id, furnace, caster, ribbonWidth, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, remark, castTimes, recordJson, createdAt, roleId, adminname } = req.body;
     const _record = JSON.parse(recordJson);
     try{
-      if (!castId || !_id || !furnace || !caster || !ribbonWidth || !ribbonTypeName || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !_record) {
+      if (!castId || !_id || !furnace || !caster || !ribbonWidth || !ribbonTypeName || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !_record || !castTimes || !roleId) {
         throw new Error('参数错误');
       }
     }catch(err){
@@ -156,6 +157,24 @@ class Cast {
     //   return;
     // }
 
+    // 如果修改时间相比创建时间，已经过了24小时，则除了超级管理员以外不能修改。
+    if (roleId != 1 && roleId != 3) {
+      try {
+        const createTime = new Date(createdAt);
+        const period = Date.now() - createTime;
+        if (period > 24*60*60*1000) {
+          throw new Error('已过24小时，您无操作权限！');
+        }
+      } catch (error) {
+        console.log(error.message, error);
+        res.send({
+          status: -1,
+          message: error.message
+        });
+        return;
+      }
+    }
+
     try {
       const newData = {
         furnace, caster, ribbonWidth,
@@ -163,7 +182,8 @@ class Cast {
         nozzleNum, heatCupNum,
         tundishCar, tundish, isChangeTundish, 
         meltOutWeight, rawWeight,
-        remark,
+        remark, castTimes,
+        updatePerson: adminname,
         record: _record
       };
       await castModel.updateOne({ _id }, { $set: newData });

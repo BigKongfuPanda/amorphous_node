@@ -59,7 +59,7 @@ class Melt {
     }
   }
   async createData(req, res, next) {
-    const { castId, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, hignNbNumber = '', hignNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '' } = req.body;
+    const { castId, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, hignNbNumber = '', hignNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '', adminname } = req.body;
     try{
       if (!castId || !furnace || !ribbonTypeName || !bucket || !melter || !meltFurnace) {
         throw new Error('参数错误')
@@ -98,6 +98,7 @@ class Melt {
         hignNbNumber, hignNbWeight,
         Si, Ni, Cu, BFe, NbFe, 
         alloyTotalWeight, alloyOutWeight, alloyFixWeight,
+        createPerson: adminname,
         remark
       };
       await meltModel.create(newData);
@@ -114,7 +115,7 @@ class Melt {
     }
   }
   async updateData(req, res, next) {
-    const { castId, _id, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, hignNbNumber = '', hignNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '' } = req.body;
+    const { castId, _id, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, hignNbNumber = '', hignNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '', createdAt, roleId, adminname } = req.body;
     try{
       if (!castId || !_id || !furnace || !ribbonTypeName || !bucket || !melter || !meltFurnace) {
         throw new Error('参数错误')
@@ -127,6 +128,25 @@ class Melt {
       })
       return;
     }
+
+    // 如果修改时间相比创建时间，已经过了24小时，则除了超级管理员以外不能修改。
+    if (roleId != 1 && roleId != 3) {
+      try {
+        const createTime = new Date(createdAt);
+        const period = Date.now() - createTime;
+        if (period > 24*60*60*1000) {
+          throw new Error('已过24小时，您无操作权限！');
+        }
+      } catch (error) {
+        console.log(error.message, error);
+        res.send({
+          status: -1,
+          message: error.message
+        });
+        return;
+      }
+    }
+
     try {
       const newData = {
         castId, _id, furnace,
@@ -137,7 +157,8 @@ class Melt {
         hignNbNumber, hignNbWeight,
         Si, Ni, Cu, BFe, NbFe,
         alloyTotalWeight, alloyOutWeight, alloyFixWeight,
-        remark
+        remark, 
+        updatePerson: adminname
       };
       await meltModel.updateOne({ _id }, { $set: newData });
       res.send({

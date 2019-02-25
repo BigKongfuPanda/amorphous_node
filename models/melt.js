@@ -27,6 +27,8 @@ const meltSchema = new Schema({
 	alloyTotalWeight: Number,//总重量
 	alloyOutWeight: Number,// 放钢重量
 	alloyFixWeight: Number,// 总重量修正
+	updatePerson: String, // 更新者
+	createPerson: String, // 创建者
 	remark: String // 备注
 }, {
 	collection: 'Melt',

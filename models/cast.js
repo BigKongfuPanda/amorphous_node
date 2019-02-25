@@ -18,6 +18,9 @@ const castSchema = new Schema({
 	meltOutWeight: Number,//放钢重量,kg
 	rawWeight: Number,//大盘毛重，kg
 	remark: String, //备注
+	castTimes: Number, //开包次数
+	updatePerson: String, // 更新者
+	createPerson: String, // 创建者
 	record: [
 		{
 			nozzleSize: String, //喷嘴规格 30*0.25
@@ -33,7 +36,7 @@ const castSchema = new Schema({
 			coolRollerTemperatureBeforeCast : String,//喷带开始时冷却辊进出水水温 32-32
 			coolRollerTemperatureAfterCast : String,//喷带结束时冷却辊进出水水温 32-35
 			castLocation: String,//喷带位置
-			coilTimes: Number,//抓取次数
+			coilTimes: String,//抓取次数, 1, 2, 3, >3
 			castTimeEnd: String,//喷带结束时间 2018-12-12 12:12:00
 			describe: String//喷带过程和结果描述
 		}
