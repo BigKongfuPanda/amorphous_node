@@ -9,7 +9,7 @@ class Cast {
   }
 
   async queryData(req, res, next) {
-    const { castId, furnace, startTime, endTime, caster, current = 1, limit = 10 } = req.query;
+    const { castId, furnace, startTime, endTime, caster, ribbonTypeName, ribbonWidthJson,  current = 1, limit = 10 } = req.query;
     try{
       if (!castId) {
         throw new Error('参数错误')
@@ -32,6 +32,15 @@ class Cast {
       }
       if (startTime && endTime) {
         queryCondition.createdAt = { $gt: startTime, $lt: endTime };
+      }
+      if (ribbonTypeName) {
+        queryCondition.ribbonTypeName = ribbonTypeName;
+      }
+      if (ribbonWidthJson) {
+        const ribbonWidthList = JSON.parse(ribbonWidthJson);
+        if (ribbonWidthList.length > 0) {
+          queryCondition.ribbonWidth = { $in: ribbonWidthList };
+        }
       }
       const count = await castModel.countDocuments(queryCondition);
       const totalPage = Math.ceil(count / limit);
@@ -58,10 +67,10 @@ class Cast {
   }
 
   async createData(req, res, next) {
-    const { castId, furnace, caster, ribbonWidth, ribbonTypeId, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, remark, recordJson } = req.body;
+    const { castId, furnace, caster, ribbonWidth, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, remark, recordJson } = req.body;
     const _record = JSON.parse(recordJson);
     try{
-      if (!castId && !furnace && !caster && !ribbonWidth && !ribbonTypeId && !ribbonTypeName   && !tundishCar && !tundish && !isChangeTundish && !rawWeight && !_record) {
+      if (!castId || !furnace || !caster || !ribbonWidth || !ribbonTypeName   || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !_record) {
         throw new Error('参数错误');
       }
     }catch(err){
@@ -91,7 +100,7 @@ class Cast {
     try {
       const newData = {
         castId, furnace, caster, ribbonWidth,
-        ribbonTypeId, ribbonTypeName,
+        ribbonTypeName,
         nozzleNum, heatCupNum,
         tundishCar, tundish, isChangeTundish, 
         meltOutWeight, rawWeight,
@@ -116,10 +125,10 @@ class Cast {
   }
 
   async updateData(req, res, next) {
-    const { castId, furnace, caster, ribbonWidth, ribbonTypeId, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, remark, recordJson } = req.body;
+    const { castId, _id, furnace, caster, ribbonWidth, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, remark, recordJson } = req.body;
     const _record = JSON.parse(recordJson);
     try{
-      if (!castId && !furnace && !caster && !ribbonWidth && !ribbonTypeId && !ribbonTypeName && !tundishCar && !tundish && !isChangeTundish && !rawWeight && !_record) {
+      if (!castId || !_id || !furnace || !caster || !ribbonWidth || !ribbonTypeName || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !_record) {
         throw new Error('参数错误');
       }
     }catch(err){
@@ -132,34 +141,35 @@ class Cast {
     }
 
     // 校验炉号是否存在，不存在则返回错误
-    try {
-      const data = await castModel.findOne({ furnace });
-      // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
-      if (!data) {
-        throw new Error('炉号不存在');
-      }
-    } catch (err) {
-      console.log(err.message, err);
-      res.send({
-        status: -1,
-        message: err.message
-      })
-      return;
-    }
+    // try {
+    //   const data = await castModel.findOne({ furnace });
+    //   // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
+    //   if (!data) {
+    //     throw new Error('炉号不存在');
+    //   }
+    // } catch (err) {
+    //   console.log(err.message, err);
+    //   res.send({
+    //     status: -1,
+    //     message: err.message
+    //   })
+    //   return;
+    // }
 
     try {
       const newData = {
-        castId, furnace, caster, ribbonWidth,
-        ribbonTypeId, ribbonTypeName,
+        furnace, caster, ribbonWidth,
+        ribbonTypeName,
         nozzleNum, heatCupNum,
         tundishCar, tundish, isChangeTundish, 
         meltOutWeight, rawWeight,
         remark,
         record: _record
       };
-      await castModel.updateOne({ furnace }, { $set: newData });
-      // 将喷带记录表中的 rawWeight 进行更新
-      await planModel.updateOne({furnace}, {$set: {rawWeight}});
+      await castModel.updateOne({ _id }, { $set: newData });
+      // 将喷带记录表中的 rawWeight 进行更新。 生产计划中的 furname 为 06-20190111-02，而制带过程中的炉号是带有桶号: 06-20190111-02/08
+      const planFurnace = furnace.substr(0, 14);
+      await planModel.updateOne({furnace: planFurnace}, {$set: {rawWeight}});
       res.send({
         status: 0,
         message: '更新喷带记录成功'
