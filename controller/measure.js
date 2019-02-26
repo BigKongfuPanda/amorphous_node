@@ -9,7 +9,7 @@ class Measure {
   }
 
   async queryData(req, res, next) {
-    const { castId, furnace, startTime, endTime, caster, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels, current = 1, limit = 10 } = req.query;
+    const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels, current = 1, limit = 10 } = req.query;
     try{
       if (!castId) {
         throw new Error('参数错误')
@@ -26,6 +26,9 @@ class Measure {
       let queryCondition = { castId };
       if(caster) {
         queryCondition.caster = caster;
+      }
+      if (roller) {
+        queryCondition.roller = roller;
       }
       if(furnace) {
         queryCondition.furnace = furnace;        
@@ -105,7 +108,7 @@ class Measure {
       return;
     }
 
-    // 判断该炉号是否存在
+    // 判断该炉号是否在喷带记录中存在
     try {
       const data = await castModel.findOne({furnace});
       if (!data) {

@@ -41,7 +41,7 @@ const measureSchema = new Schema({
   storageRule: String, //入库规则
   isStored: { type: String, default: '否' }, // 是否入库 是/否
   unStoreReason: '', //不入库原因
-  clients: String, //去向 德国，法国
+  clients: Array, //去向 德国，法国
   // 库房信息
   inStoreDate: {type: Date, default: null}, //入库日期
   outStoreDate: {type: Date, default: null}, //出库日期
