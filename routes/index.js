@@ -14,11 +14,8 @@ const laminationLevel = require('./laminationLevel');
 function checkLogin(req, res, next) {
   if (req.path.indexOf('/user/login') < 0 && !req.session.userId) {
     return res.send({
-      status: 0,
-      message: '无访问权限',
-      data: {
-        access: 302
-      }
+      status: 302,
+      message: '无访问权限'
     });
   } else {
     next();//继续往下走
