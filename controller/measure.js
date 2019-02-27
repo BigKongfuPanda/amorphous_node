@@ -94,7 +94,7 @@ class Measure {
 
   // 更新操作，由重卷人员使用
   async createData(req, res, next) {
-    const { castId, furnace, coilNumber, diameter, coilWeight, ribbonTypeName, ribbonWidth, castDate, caster, roller, rollMachine } = req.body;
+    let { castId, furnace, coilNumber, diameter, coilWeight, ribbonTypeName, ribbonWidth, castDate, caster, roller, rollMachine } = req.body;
     try{
       if (!castId || !furnace || !coilNumber || !diameter || !coilWeight || !roller || !rollMachine) {
         throw new Error('参数错误')
@@ -139,12 +139,31 @@ class Measure {
     }
 
     try {
-      // 计算单盘净重，不同规格的内衬重量不同
-      const linerWeight = {
+      /** 
+       * 计算单盘净重，不同规格的内衬重量不同
+       * 内衬的规格和重量对应表
+       * 20.5: 0.05,
+        25.5: 0.06,
         30: 0.08,
+        40: 0.12,
         50: 0.12
-      };
-      const coilNetWeight = coilWeight - linerWeight[ribbonWidth];
+       */
+      let linerWeight = 0;
+      if (ribbonWidth < 25) {
+        linerWeight = 0.05;
+      } else if (ribbonWidth >= 25 && ribbonWidth < 30) {
+        linerWeight = 0.06;
+      } else if (ribbonWidth >= 30 && ribbonWidth < 40) {
+        linerWeight = 0.08;
+      } else if (ribbonWidth >= 40 && ribbonWidth < 50) {
+        linerWeight = 0.12;
+      } else if (ribbonWidth >= 50 && ribbonWidth < 58) {
+        linerWeight = 0.12;
+      } else if (ribbonWidth >= 58) { // 58mm 以上的使用两个 30 的内衬拼接起来
+        linerWeight = 0.08 * 2;
+      } 
+
+      const coilNetWeight = coilWeight - linerWeight;
       const remainWeight = coilNetWeight;
 
       const newData = {
@@ -169,7 +188,7 @@ class Measure {
 
   // 更新操作，由检测人员和库房人员使用
   async updateData(req, res, next) {
-    const { _id, castId, furnace, coilNumber, diameter, coilWeight, ribbonTypeName, ribbonWidth, roller, rollMachine, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, storageRule, isStored, unStoreReason, clients, remainWeight, takeBy, shipRemark, place } = req.body;
+    let { _id, roleId, adminname, castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, ribbonTypeName, ribbonWidth, roller, rollMachine, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, storageRule, isStored, unStoreReason, clients, remainWeight, takeBy, shipRemark, place, createdAt } = req.body;
     try{
       if (!_id) {
         throw new Error('参数错误')
@@ -182,7 +201,55 @@ class Measure {
       });
       return;
     }
+
+    // 如果修改时间相比创建时间，已经过了24小时，则除了超级管理员，检测，库房以外不能修改。
+    if (roleId == 4) {
+      try {
+        const createTime = new Date(createdAt);
+        const period = Date.now() - createTime;
+        if (period > 24*60*60*1000) {
+          throw new Error('已过24小时，您无操作权限，请联系车间主任或厂长！');
+        }
+      } catch (error) {
+        console.log(error.message, error);
+        res.send({
+          status: -1,
+          message: error.message
+        });
+        return;
+      }
+    }
+
     try {
+      // 没有入库的情况下，才能重新机选净重和结存
+      if (isStored !== '是') {
+        /** 
+         * 计算单盘净重，不同规格的内衬重量不同
+         * 内衬的规格和重量对应表
+         * 20.5: 0.05,
+          25.5: 0.06,
+          30: 0.08,
+          40: 0.12,
+          50: 0.12
+        */
+        let linerWeight = 0;
+        if (ribbonWidth < 25) {
+          linerWeight = 0.05;
+        } else if (ribbonWidth >= 25 && ribbonWidth < 30) {
+          linerWeight = 0.06;
+        } else if (ribbonWidth >= 30 && ribbonWidth < 40) {
+          linerWeight = 0.08;
+        } else if (ribbonWidth >= 40 && ribbonWidth < 50) {
+          linerWeight = 0.12;
+        } else if (ribbonWidth >= 50 && ribbonWidth < 58) {
+          linerWeight = 0.12;
+        } else if (ribbonWidth >= 58) { // 58mm 以上的使用两个 30 的内衬拼接起来
+          linerWeight = 0.08 * 2;
+        } 
+        coilNetWeight = coilWeight - linerWeight;
+        remainWeight = coilNetWeight;
+      }
+
       let inStoreDate = null;
       // 当带材检测后入库的时候，设置入库日期，检测人员操作
       if (isStored === '是') {
@@ -195,7 +262,7 @@ class Measure {
         outStoreDate = Date.now();
       }
       const newData = {
-        castId, furnace, coilNumber, diameter, coilWeight,
+        castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight,
         ribbonTypeName, ribbonWidth, castDate, caster, roller, rollMachine,
         laminationFactor, laminationLevel,
         realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, storageRule, isStored, unStoreReason, clients,

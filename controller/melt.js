@@ -135,7 +135,7 @@ class Melt {
         const createTime = new Date(createdAt);
         const period = Date.now() - createTime;
         if (period > 24*60*60*1000) {
-          throw new Error('已过24小时，您无操作权限！');
+          throw new Error('已过24小时，您无操作权限，请联系车间主任或厂长！');
         }
       } catch (error) {
         console.log(error.message, error);
