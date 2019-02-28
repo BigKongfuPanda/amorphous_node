@@ -15,12 +15,18 @@ const planSchema = new Schema({
   ribbonTypeName: String,//材质名称 1k107B
   ribbonWidth: Number, // 带宽
   client: String, //客户 
-  thickness: String, //带材厚度要求  23-24
-  laminationFactor: String, // 叠片系数的要求 > 0.80
   furnace: String, //制带炉号 06-20181120-01/01
   alloyWeight: Number, // 单炉投入重量 KG
   castTime: String, //计划喷带时间 8:00-10:00
-  rawWeight: Number // 实际产出的大盘毛重 KG，与 喷带记录表关联
+  rawWeight: Number, // 实际产出的大盘毛重 KG，与 喷带记录表关联
+  orderThickness: String, // 订单要求：厚度 20-23, ≤23
+  orderLaminationFactor: String, // 订单要求：叠片系数 ≥0.78
+  orderRibbonToughnessLevels: Array, // 订单要求：韧性 [A,B,C]
+  orderAppearenceLevels: Array, // 订单要求：外观 [A,B,C]
+  qualifiedThickness: String, // 入库要求：厚度 20-23, ≤23
+  qualifiedLaminationFactor: String, // 入库要求：叠片系数 ≥0.78
+  qualifiedRibbonToughnessLevels: Array, // 入库要求：韧性 [A,B,C]
+  qualifiedAppearenceLevels: Array, // 入库要求：外观 [A,B,C]
 }, {
 	collection: 'Plan',
 	timestamps: true,
