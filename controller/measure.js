@@ -2,6 +2,7 @@
 
 const measureModel = require('../models/measure');
 const castModel = require('../models/cast');
+const planModel = require('../models/plan');
 
 class Measure {
   constructor() {
@@ -166,11 +167,16 @@ class Measure {
       const coilNetWeight = coilWeight - linerWeight;
       const remainWeight = coilNetWeight;
 
+      // 查询生产计划集合中，当前炉次的订单要求和入库要求
+      const planFurnace = furnace.substr(0, 14);
+      const { orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedThickness, qualifiedLaminationFactor, qualifiedRibbonToughnessLevels, qualifiedAppearenceLevels } = await planModel.findOne({ furnace: planFurnace });
+
       const newData = {
         castId, furnace,
         ribbonTypeName, ribbonWidth, caster, castDate,
         coilNumber, diameter, coilWeight, coilNetWeight, remainWeight,
-        roller, rollMachine
+        roller, rollMachine,
+        orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedThickness, qualifiedLaminationFactor, qualifiedRibbonToughnessLevels, qualifiedAppearenceLevels
       };
       await measureModel.create(newData);
       res.send({

@@ -19,6 +19,14 @@ const measureSchema = new Schema({
   laminationLevel: String, //叠片等级 不合格, 0, 1, 2, 3, 4
   roller: String, // 重卷人
   rollMachine: Number, // 重卷机器编号
+  orderThickness: String, // 订单要求：厚度 20-23, ≤23
+  orderLaminationFactor: String, // 订单要求：叠片系数 ≥0.78
+  orderRibbonToughnessLevels: Array, // 订单要求：韧性 [A,B,C]
+  orderAppearenceLevels: Array, // 订单要求：外观 [A,B,C]
+  qualifiedThickness: String, // 入库要求：厚度 20-23, ≤23
+  qualifiedLaminationFactor: String, // 入库要求：叠片系数 ≥0.78
+  qualifiedRibbonToughnessLevels: Array, // 入库要求：韧性 [A,B,C]
+  qualifiedAppearenceLevels: Array, // 入库要求：外观 [A,B,C]
   // 检测录入信息
   realRibbonWidth: Number,//实际带宽
   ribbonThickness1: Number, //带材厚度点1, μm
