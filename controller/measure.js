@@ -194,7 +194,7 @@ class Measure {
 
   // 更新操作，由检测人员和库房人员使用
   async updateData(req, res, next) {
-    let { _id, roleId, adminname, castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, ribbonTypeName, ribbonWidth, roller, rollMachine, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, storageRule, isStored, unStoreReason, clients, remainWeight, takeBy, shipRemark, place, createdAt } = req.body;
+    let { _id, roleId, adminname, castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, ribbonTypeName, ribbonWidth, roller, rollMachine, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isStored, unStoreReason, clients, remainWeight, takeBy, shipRemark, place, createdAt } = req.body;
     try{
       if (!_id) {
         throw new Error('参数错误')
@@ -258,7 +258,7 @@ class Measure {
 
       let inStoreDate = null;
       // 当带材检测后入库的时候，设置入库日期，检测人员操作
-      if (isStored === '是') {
+      if (isStored === 1 || isStored === 2) {
         inStoreDate = Date.now();
       }
 
@@ -271,7 +271,7 @@ class Measure {
         castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight,
         ribbonTypeName, ribbonWidth, castDate, caster, roller, rollMachine,
         laminationFactor, laminationLevel,
-        realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, storageRule, isStored, unStoreReason, clients,
+        realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isStored, unStoreReason, clients,
         inStoreDate, remainWeight, takeBy, shipRemark, place, outStoreDate
       };
       await measureModel.updateOne({ _id }, { $set: newData });

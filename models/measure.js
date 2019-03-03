@@ -46,8 +46,8 @@ const measureSchema = new Schema({
   appearence: String, //带材外观
   appearenceLevel: String, //带材外观等级
   ribbonTotalLevel: String, //带材综合级别
-  storageRule: String, //入库规则
-  isStored: { type: String, default: '否' }, // 是否入库 是/否
+  // storageRule: Object, //入库规则
+  isStored: { type: Number, default: 3 }, // 是否入库：1-计划内入库，2-计划外入库，3-否
   unStoreReason: '', //不入库原因
   clients: Array, //去向 德国，法国
   // 库房信息
