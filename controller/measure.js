@@ -194,7 +194,7 @@ class Measure {
 
   // 更新操作，由检测人员和库房人员使用
   async updateData(req, res, next) {
-    let { _id, roleId, adminname, castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, ribbonTypeName, ribbonWidth, roller, rollMachine, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isStored, unStoreReason, clients, remainWeight, takeBy, shipRemark, place, createdAt } = req.body;
+    let { _id, roleId, adminname, castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, ribbonTypeName, ribbonWidth, roller, rollMachine, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isStored, unStoreReason, clients = [], remainWeight, takeBy, shipRemark, place, createdAt } = req.body;
     try{
       if (!_id) {
         throw new Error('参数错误')
@@ -227,8 +227,8 @@ class Measure {
     }
 
     try {
-      // 没有入库的情况下，才能重新机选净重和结存
-      if (isStored !== '是') {
+      // 没有入库的情况下，才能重新计算净重和结存，由重卷人员来操作
+      if (isStored !== 1 || isStored !== 2) {
         /** 
          * 计算单盘净重，不同规格的内衬重量不同
          * 内衬的规格和重量对应表
@@ -252,19 +252,19 @@ class Measure {
         } else if (ribbonWidth >= 58) { // 58mm 以上的使用两个 30 的内衬拼接起来
           linerWeight = 0.08 * 2;
         } 
-        coilNetWeight = coilWeight - linerWeight;
+        coilNetWeight = (coilWeight - linerWeight).toFixed(2);
         remainWeight = coilNetWeight;
       }
 
       let inStoreDate = null;
       // 当带材检测后入库的时候，设置入库日期，检测人员操作
-      if (isStored === 1 || isStored === 2) {
+      if (isStored == 1 || isStored == 2) {
         inStoreDate = Date.now();
       }
 
       let outStoreDate = null;
       // 当带材被领用的时候，设置出库日期，库房操作
-      if (takeBy) { 
+      if (takeBy) {
         outStoreDate = Date.now();
       }
       const newData = {
