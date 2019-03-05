@@ -11,20 +11,11 @@ class Measure {
 
   async queryData(req, res, next) {
     const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels, current = 1, limit = 10 } = req.query;
-    try{
-      if (!castId) {
-        throw new Error('参数错误')
-      }
-    }catch(err){
-      console.log(err.message, err);
-      res.send({
-        status: -1,
-        message: err.message
-      });
-      return;
-    }
     try {
-      let queryCondition = { castId };
+      let queryCondition = {};
+      if(castId) {
+        queryCondition.castId = castId;
+      }
       if(caster) {
         queryCondition.caster = caster;
       }
