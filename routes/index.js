@@ -9,6 +9,7 @@ const ribbonType = require('./ribbonType');
 const ribbonWidth = require('./ribbonWidth');
 const ribbonThicknessLevel = require('./ribbonThicknessLevel');
 const laminationLevel = require('./laminationLevel');
+const statisticsQuality = require('./statisticsQuality');
 
 // 检验登录态的中间件
 function checkLogin(req, res, next) {
@@ -33,4 +34,5 @@ module.exports = app => {
   app.use('/ribbonWidth', ribbonWidth);
   app.use('/ribbonThicknessLevel', ribbonThicknessLevel);
   app.use('/laminationLevel', laminationLevel);
+  app.use('/statisticsQuality', statisticsQuality);
 };

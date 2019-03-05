@@ -10,7 +10,7 @@ class Measure {
   }
 
   async queryData(req, res, next) {
-    const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels, current = 1, limit = 10 } = req.query;
+    const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels, current = 1, limit = 10, filterBy } = req.query;
     try {
       let queryCondition = {};
       if(castId) {
@@ -58,6 +58,11 @@ class Measure {
       if (ribbonTotalLevels) {
         const ribbonTotalLevelList = ribbonTotalLevels.split(',');
         queryCondition.ribbonTotalLevel = { $in: ribbonTotalLevelList };
+      }
+      // 筛选库房的数据：入库且结余大于0
+      if (filterBy == 'storage') {
+        queryCondition.remainWeight = {$gt: 0};
+        queryCondition.isStored = {$in: [1, 2]};
       }
       
       const count = await measureModel.countDocuments(queryCondition);
