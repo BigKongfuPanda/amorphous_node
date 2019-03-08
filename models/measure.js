@@ -56,7 +56,22 @@ const measureSchema = new Schema({
   remainWeight: Number, //结余
   takeBy: String, //领走的部门 辊剪，顺义，固安，回炉/置换，粉末厂
   place: String, //储存的仓位 1-15-2
-  shipRemark: String //发货备注
+  shipRemark: String, //发货备注
+  // 质量信息
+  totalStoredWeight: { type: Number, default: 0 }, //总入库重量
+  inPlanStoredWeight: { type: Number, default: 0 }, //计划内入库重量
+  outPlanStoredWeight: { type: Number, default: 0 }, //计划外入库重量
+  qualityOfA: { type: Number, default: 0 }, // 质量等级为A的重量
+  qualityOfB: { type: Number, default: 0 }, // 质量等级为B的重量
+  qualityOfC: { type: Number, default: 0 }, // 质量等级为C的重量
+  qualityOfD: { type: Number, default: 0 }, // 质量等级为D的重量
+  qualityOfE: { type: Number, default: 0 }, // 质量等级为E的重量
+  thinRibbonWeight: { type: Number, default: 0 }, // 薄带重量 ≤23, >=0.75
+  highFactorThinRibbonWeight: { type: Number, default: 0 }, // 高叠片薄带重量 ≤23, >=0.78
+  inPlanThickRibbonWeight: { type: Number, default: 0 }, // 符合订单非薄带：满足订单要求，且厚度为2级别的带材重量
+  qualityOfGood: { type: Number, default: 0 }, // 质量等级为好的带材质量：A + 符合订单非薄带
+  qualityOfFine: { type: Number, default: 0 }, // 质量等级为良的带材质量：B
+  qualityOfNormal: { type: Number, default: 0 }, // 质量等级为中的带材质量：30**、40**+ 计划外入库
 }, {
 	collection: 'Measure',
 	timestamps: true,
