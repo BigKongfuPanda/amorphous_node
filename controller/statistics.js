@@ -131,14 +131,26 @@ class Statistics {
           $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$fromMelt", 0 ] }, "$$ROOT" ] } }
         },
         {
-          $project: { 
-            record: 0,
-            fromMelt: 0
+          $project: {
+            fromMelt: 0,
+            record: 0
+          }
+        },
+        {
+          $group: {
+            _id: '$caster',
+            nozzleNum: { $sum: '$nozzleNum' },
+            totalHeatNum: { $sum: 1 },
+            alloyTotalWeight: { $sum: '$alloyTotalWeight' },
+            rawWeight: { $sum: '$rawWeight' },
+            uselessRibbonWeight: { $sum: '$uselessRibbonWeight' },
+            furnaceList: {
+              $push: '$$ROOT'
+            }
           }
         }
       ]);
 
-      // 要考虑分页
       res.send({
         status: 0,
         message: '操作成功',
