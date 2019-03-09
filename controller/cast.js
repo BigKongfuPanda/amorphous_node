@@ -67,10 +67,10 @@ class Cast {
   }
 
   async createData(req, res, next) {
-    const { castId, furnace, caster, ribbonWidth, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, remark, castTimes = 1, recordJson, createdAt, adminname } = req.body;
+    const { castId, furnace, caster, ribbonWidth, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, uselessRibbonWeight, remark, castTimes = 1, recordJson, createdAt, adminname } = req.body;
     const _record = JSON.parse(recordJson);
     try{
-      if (!castId || !furnace || !caster || !ribbonWidth || !ribbonTypeName   || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !_record || !castTimes) {
+      if (!castId || !furnace || !caster || !ribbonWidth || !ribbonTypeName   || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !uselessRibbonWeight || !_record || !castTimes) {
         throw new Error('参数错误');
       }
     }catch(err){
@@ -103,7 +103,7 @@ class Cast {
         ribbonTypeName,
         nozzleNum, heatCupNum,
         tundishCar, tundish, isChangeTundish, 
-        meltOutWeight, rawWeight,
+        meltOutWeight, rawWeight, uselessRibbonWeight,
         remark, castTimes,
         createPerson: adminname,
         record: _record
@@ -126,10 +126,10 @@ class Cast {
   }
 
   async updateData(req, res, next) {
-    const { castId, _id, furnace, caster, ribbonWidth, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, remark, castTimes, recordJson, createdAt, roleId, adminname } = req.body;
+    const { castId, _id, furnace, caster, ribbonWidth, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, uselessRibbonWeight, remark, castTimes, recordJson, createdAt, roleId, adminname } = req.body;
     const _record = JSON.parse(recordJson);
     try{
-      if (!castId || !_id || !furnace || !caster || !ribbonWidth || !ribbonTypeName || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !_record || !castTimes || !roleId) {
+      if (!castId || !_id || !furnace || !caster || !ribbonWidth || !ribbonTypeName || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !uselessRibbonWeight || !_record || !castTimes || !roleId) {
         throw new Error('参数错误');
       }
     }catch(err){
@@ -181,7 +181,7 @@ class Cast {
         ribbonTypeName,
         nozzleNum, heatCupNum,
         tundishCar, tundish, isChangeTundish, 
-        meltOutWeight, rawWeight,
+        meltOutWeight, rawWeight, uselessRibbonWeight,
         remark, castTimes,
         updatePerson: adminname,
         record: _record
