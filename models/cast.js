@@ -21,6 +21,7 @@ const castSchema = new Schema({
 	castTimes: Number, //开包次数
 	updatePerson: String, // 更新者
 	createPerson: String, // 创建者
+	uselessRibbonWeight: {type: Number, default: 0 }, //废带重量
 	record: [
 		{
 			nozzleSize: String, //喷嘴规格 30*0.25

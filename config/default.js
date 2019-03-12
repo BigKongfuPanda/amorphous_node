@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	hostname: '127.0.0.1',
+	hostname: 'localhost',
 	port: parseInt(process.env.PORT, 10) || 8001,
 	url: 'mongodb://localhost:27017/amorphous',
 	session: {

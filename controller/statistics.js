@@ -1,0 +1,171 @@
+'use strict';
+
+const castModel = require('../models/cast');
+const planModel = require('../models/plan');
+const mesasureModel = require('../models/measure');
+
+class Statistics {
+  constructor() {
+
+  }
+
+  async queryDataOfQuality(req, res, next) {
+    const { castId, furnace, caster, ribbonTypeName, ribbonWidthJson,  current = 1, limit = 10 } = req.query;
+
+    try {
+      let queryCondition = {};
+      if (castId) {
+        queryCondition.castId = Number(castId);
+      }
+      if (caster) {
+        queryCondition.caster = caster;
+      }
+      if (furnace) {
+        queryCondition.furnace = furnace;
+      }
+      if (ribbonTypeName) {
+        queryCondition.ribbonTypeName = ribbonTypeName;
+      }
+      if (ribbonWidthJson) {
+        let ribbonWidthList = JSON.parse(ribbonWidthJson);
+        if (ribbonWidthList.length > 0) {
+          ribbonWidthList = ribbonWidthList.map(item => {
+            return Number(item);
+          });
+          queryCondition.ribbonWidth = { $in: ribbonWidthList };
+        }
+      }
+      const count = await castModel.countDocuments(queryCondition);
+      const totalPage = Math.ceil(count / limit);
+      console.log(queryCondition);
+      const list = await castModel.aggregate([
+        {
+          $match: queryCondition
+        },
+        {
+          $lookup: {
+            from: 'Measure',
+            localField: 'furnace',
+            foreignField: 'furnace',
+            as: 'fromMeasure'
+          }
+        },
+        {
+          $lookup: {
+            from: 'Melt',
+            localField: 'furnace',
+            foreignField: 'furnace',
+            as: 'fromMelt'
+          }
+        },
+        {
+          $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$fromMelt", 0 ] }, "$$ROOT" ] } }
+        },
+        {
+          $project: { 
+            record: 0,
+            fromMelt: 0
+          }
+        },
+        {
+          $skip: (current - 1) * limit
+        },
+        {
+          $limit: limit
+        },
+        {
+          $sort: { furnace: -1 }
+        }
+      ]);
+
+      // 要考虑分页
+      res.send({
+        status: 0,
+        message: '操作成功',
+        data: {
+          count,
+          current,
+          totalPage,
+          limit,
+          list
+        }
+      });
+    } catch (err) {
+      console.log('查询带材质量统计失败', err);
+      res.send({
+        status: -1,
+        message: '查询带材质量统计失败'
+      });
+    }
+  }
+
+  async queryDataOfRatio(req, res, next) {
+    const { startTime, endTime } = req.query;
+
+    try {
+      let queryCondition = {};
+      if(startTime && endTime) {
+        queryCondition.createdAt = { $gt: startTime, $lt: endTime };
+      }
+      const list = await castModel.aggregate([
+        {
+          $match: queryCondition
+        },
+        {
+          $lookup: {
+            from: 'Measure',
+            localField: 'furnace',
+            foreignField: 'furnace',
+            as: 'fromMeasure'
+          }
+        },
+        {
+          $lookup: {
+            from: 'Melt',
+            localField: 'furnace',
+            foreignField: 'furnace',
+            as: 'fromMelt'
+          }
+        },
+        {
+          $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$fromMelt", 0 ] }, "$$ROOT" ] } }
+        },
+        {
+          $project: {
+            fromMelt: 0,
+            record: 0
+          }
+        },
+        {
+          $group: {
+            _id: '$caster',
+            nozzleNum: { $sum: '$nozzleNum' },
+            totalHeatNum: { $sum: 1 },
+            alloyTotalWeight: { $sum: '$alloyTotalWeight' },
+            rawWeight: { $sum: '$rawWeight' },
+            uselessRibbonWeight: { $sum: '$uselessRibbonWeight' },
+            furnaceList: {
+              $push: '$$ROOT'
+            }
+          }
+        }
+      ]);
+
+      res.send({
+        status: 0,
+        message: '操作成功',
+        data: {
+          list
+        }
+      });
+    } catch (err) {
+      console.log('查询直通率统计失败', err);
+      res.send({
+        status: -1,
+        message: '查询直通率统计失败'
+      });
+    }
+  }
+}
+
+module.exports = new Statistics();

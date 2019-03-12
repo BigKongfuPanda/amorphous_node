@@ -19,6 +19,14 @@ const measureSchema = new Schema({
   laminationLevel: String, //叠片等级 不合格, 0, 1, 2, 3, 4
   roller: String, // 重卷人
   rollMachine: Number, // 重卷机器编号
+  orderThickness: String, // 订单要求：厚度 20-23, ≤23
+  orderLaminationFactor: String, // 订单要求：叠片系数 ≥0.78
+  orderRibbonToughnessLevels: Array, // 订单要求：韧性 [A,B,C]
+  orderAppearenceLevels: Array, // 订单要求：外观 [A,B,C]
+  qualifiedThickness: String, // 入库要求：厚度 20-23, ≤23
+  qualifiedLaminationFactor: String, // 入库要求：叠片系数 ≥0.78
+  qualifiedRibbonToughnessLevels: Array, // 入库要求：韧性 [A,B,C]
+  qualifiedAppearenceLevels: Array, // 入库要求：外观 [A,B,C]
   // 检测录入信息
   realRibbonWidth: Number,//实际带宽
   ribbonThickness1: Number, //带材厚度点1, μm
@@ -38,8 +46,8 @@ const measureSchema = new Schema({
   appearence: String, //带材外观
   appearenceLevel: String, //带材外观等级
   ribbonTotalLevel: String, //带材综合级别
-  storageRule: String, //入库规则
-  isStored: { type: String, default: '否' }, // 是否入库 是/否
+  // storageRule: Object, //入库规则
+  isStored: { type: Number, default: 3 }, // 是否入库：1-计划内入库，2-计划外入库，3-否
   unStoreReason: '', //不入库原因
   clients: Array, //去向 德国，法国
   // 库房信息
@@ -48,7 +56,22 @@ const measureSchema = new Schema({
   remainWeight: Number, //结余
   takeBy: String, //领走的部门 辊剪，顺义，固安，回炉/置换，粉末厂
   place: String, //储存的仓位 1-15-2
-  shipRemark: String //发货备注
+  shipRemark: String, //发货备注
+  // 质量信息
+  totalStoredWeight: { type: Number, default: 0 }, //总入库重量
+  inPlanStoredWeight: { type: Number, default: 0 }, //计划内入库重量
+  outPlanStoredWeight: { type: Number, default: 0 }, //计划外入库重量
+  qualityOfA: { type: Number, default: 0 }, // 质量等级为A的重量
+  qualityOfB: { type: Number, default: 0 }, // 质量等级为B的重量
+  qualityOfC: { type: Number, default: 0 }, // 质量等级为C的重量
+  qualityOfD: { type: Number, default: 0 }, // 质量等级为D的重量
+  qualityOfE: { type: Number, default: 0 }, // 质量等级为E的重量
+  thinRibbonWeight: { type: Number, default: 0 }, // 薄带重量 ≤23, >=0.75
+  highFactorThinRibbonWeight: { type: Number, default: 0 }, // 高叠片薄带重量 ≤23, >=0.78
+  inPlanThickRibbonWeight: { type: Number, default: 0 }, // 符合订单非薄带：满足订单要求，且厚度为2级别的带材重量
+  qualityOfGood: { type: Number, default: 0 }, // 质量等级为好的带材质量：A + 符合订单非薄带
+  qualityOfFine: { type: Number, default: 0 }, // 质量等级为良的带材质量：B
+  qualityOfNormal: { type: Number, default: 0 }, // 质量等级为中的带材质量：30**、40**+ 计划外入库
 }, {
 	collection: 'Measure',
 	timestamps: true,

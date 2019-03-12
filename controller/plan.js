@@ -26,13 +26,6 @@ class Plan {
     }
     try {
       const list = await planModel.find({date, castId}).sort({'furnace': 'asc'});
-      // const list = await planModel.find({date, castId})
-      // .populate({
-      //   path: 'rawWeight',
-      //   select: {rawWeight: 1, _id: 0}
-      // })
-      // .sort({'furnace': 'desc'});
-      
       res.send({
         status: 0,
         message: '操作成功',
@@ -50,9 +43,14 @@ class Plan {
   }
 
   async createData(req, res, next) {
-    const { date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeId, ribbonTypeName, ribbonWidth, client = '', thickness, laminationFactor, furnace, alloyWeight = 0, castTime = '' } = req.body;
+    const { date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeName, ribbonWidth, client = '', furnace, alloyWeight = 0, castTime = '', orderThickness, orderLaminationFactor, orderRibbonToughnessLevelsJson, orderAppearenceLevelsJson, qualifiedThickness, qualifiedLaminationFactor, qualifiedRibbonToughnessLevelsJson, qualifiedAppearenceLevelsJson } = req.body;
+    const orderRibbonToughnessLevels = JSON.parse(orderRibbonToughnessLevelsJson);
+    const orderAppearenceLevels = JSON.parse(orderAppearenceLevelsJson);
+    const qualifiedRibbonToughnessLevels = JSON.parse(qualifiedRibbonToughnessLevelsJson);
+    const qualifiedAppearenceLevels = JSON.parse(qualifiedAppearenceLevelsJson);
+
     try{
-      if (!date || !castId || !team || !ribbonTypeId || !ribbonTypeName || !ribbonWidth || !thickness || !furnace || !laminationFactor) {
+      if (!date || !castId || !team || !ribbonTypeName || !ribbonWidth || !furnace || !orderThickness || !orderLaminationFactor || !orderRibbonToughnessLevels || !orderAppearenceLevels) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -83,9 +81,10 @@ class Plan {
       const newData = {
         date, remark, fileNumber,
         castId, team, taskOrder,
-        ribbonTypeId, ribbonTypeName, ribbonWidth, client,
-        thickness, laminationFactor, furnace,
-        alloyWeight, castTime
+        ribbonTypeName, ribbonWidth, client,
+        furnace, alloyWeight, castTime,
+        orderThickness, orderLaminationFactor, 
+        orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedThickness, qualifiedLaminationFactor, qualifiedRibbonToughnessLevels, qualifiedAppearenceLevels
       };
       await planModel.create(newData);
       res.send({
@@ -102,9 +101,15 @@ class Plan {
   }
   
   async updateData(req, res, next) {
-    const { _id, date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeId, ribbonTypeName, ribbonWidth, client = '', thickness, laminationFactor, furnace, alloyWeight = 0, castTime = '', roleId } = req.body;
+    const { _id, roleId, date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeName, ribbonWidth, client = '', furnace, alloyWeight = 0, castTime = '', orderThickness = '', orderLaminationFactor = '', orderRibbonToughnessLevelsJson = '[]', orderAppearenceLevelsJson = '[]', qualifiedThickness = '', qualifiedLaminationFactor = '', qualifiedRibbonToughnessLevelsJson = '[]', qualifiedAppearenceLevelsJson = '[]' } = req.body;
+
+    const orderRibbonToughnessLevels = JSON.parse(orderRibbonToughnessLevelsJson);
+    const orderAppearenceLevels = JSON.parse(orderAppearenceLevelsJson);
+    const qualifiedRibbonToughnessLevels = JSON.parse(qualifiedRibbonToughnessLevelsJson);
+    const qualifiedAppearenceLevels = JSON.parse(qualifiedAppearenceLevelsJson);
+
     try{
-      if (!date || !castId) {
+      if (!date || !castId || !roleId) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -127,18 +132,20 @@ class Plan {
         } else {
           throw new Error('审批生产计划失败')
         }
-      } else { // 角色：生产计划，操作：更新数据
+      } else if (Number(roleId) === 2) { // 角色：生产计划，操作：更新数据
         const newData = {
           _id, date, remark, fileNumber,
           castId, team, taskOrder,
-          ribbonTypeId, ribbonTypeName, ribbonWidth, client,
-          thickness, laminationFactor, furnace,
-          alloyWeight, castTime
+          ribbonTypeName, ribbonWidth, client, furnace, alloyWeight, castTime,
+          orderThickness, orderLaminationFactor, 
+          orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedThickness, qualifiedLaminationFactor, qualifiedRibbonToughnessLevels, qualifiedAppearenceLevels
         };
         
         const { n } = await planModel.updateOne({ _id }, { $set: newData });
+        // 一旦更改生产计划，则需要重新审批，状态变为“待审批”
+        const { l } = await planModel.updateMany({ date, castId }, { $set: {approved: 0} });
   
-        if (n !== 0) {
+        if (n !== 0 && l !== 0) {
           res.send({
             status: 0,
             message: '更新生产计划成功'
@@ -146,8 +153,9 @@ class Plan {
         } else {
           throw new Error('更新生产计划失败')
         }
+      } else {
+        throw new Error('当前用户更新生产计划的权限')
       }
-      
     } catch (err) {
       console.log(err.message, err);
       res.send({
