@@ -1,6 +1,7 @@
 'use strict';
 
 const ribbonTypeModel = require('../models/ribbonType');
+const log = require('log4js').getLogger("ribbonType");
 
 class RibbonType {
   constructor() {
@@ -20,6 +21,7 @@ class RibbonType {
       });
     } catch (err) {
       console.log('查询材质列表失败', err);
+      log.error('查询材质列表失败', err);
       res.send({
         status: -1,
         message: '查询材质列表失败'
@@ -35,6 +37,7 @@ class RibbonType {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -50,6 +53,7 @@ class RibbonType {
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -68,6 +72,7 @@ class RibbonType {
       });
     } catch (err) {
       console.log('新增带材材质失败', err);
+      log.error('新增带材材质失败', err);
       res.send({
         status: -1,
         message: `新增带材材质失败, ${err.message}`
@@ -83,6 +88,7 @@ class RibbonType {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -104,6 +110,7 @@ class RibbonType {
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -120,6 +127,7 @@ class RibbonType {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -137,6 +145,7 @@ class RibbonType {
         throw new Error('删除材质失败');
       }
     } catch (err) {
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message

@@ -3,6 +3,7 @@
 const measureModel = require('../models/measure');
 const castModel = require('../models/cast');
 const planModel = require('../models/plan');
+const log = require('log4js').getLogger("measure");
 
 class Measure {
   constructor() {
@@ -82,6 +83,7 @@ class Measure {
       });
     } catch (err) {
       console.log('查询检测记录失败', err);
+      log.error('查询检测记录失败', err);
       res.send({
         status: -1,
         message: '查询检测记录失败'
@@ -98,6 +100,7 @@ class Measure {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -113,6 +116,7 @@ class Measure {
       }
     } catch (error) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -128,6 +132,7 @@ class Measure {
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -181,6 +186,7 @@ class Measure {
       });
     } catch (err) {
       console.log('新增重卷记录失败', err);
+      log.error('新增重卷记录失败', err);
       res.send({
         status: -1,
         message: `新增重卷记录失败, ${err.message}`
@@ -197,6 +203,7 @@ class Measure {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -212,11 +219,11 @@ class Measure {
         if (period > 24*60*60*1000) {
           throw new Error('已过24小时，您无操作权限，请联系车间主任或厂长！');
         }
-      } catch (error) {
-        console.log(error.message, error);
+      } catch (err) {
+        console.log(err.message, err);
         res.send({
           status: -1,
-          message: error.message
+          message: err.message
         });
         return;
       }
@@ -282,6 +289,7 @@ class Measure {
       });
     } catch (err) {
       console.log('更新数据失败', err);
+      log.error('更新数据失败', err);
       res.send({
         status: -1,
         message: `更新数据失败, ${err.message}`
@@ -295,11 +303,12 @@ class Measure {
       if (!_id) {
         throw new Error('参数错误');
       }
-    } catch (error) {
+    } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
-        message: error.message
+        message: err.message
       });
       return;
     }
@@ -314,7 +323,8 @@ class Measure {
       } else {
         throw new Error('删除检测记录失败');
       }
-    } catch (error) {
+    } catch (err) {
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: '删除检测记录失败'

@@ -1,0 +1,4 @@
+[2019-03-13T18:49:07.508] [ERROR] user - 账号或者姓名重复 Error: 账号或者姓名重复
+    at createUser (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/user.js:70:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)

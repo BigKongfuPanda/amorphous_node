@@ -2,6 +2,7 @@
 
 const userModel = require('../models/user');
 const moment = require('moment')
+const log = require('log4js').getLogger("user");
 
 class User {
   constructor() {
@@ -16,6 +17,7 @@ class User {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -34,6 +36,7 @@ class User {
       });
     } catch (err) {
       console.log('查询用户列表失败', err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: '查询用户列表失败'
@@ -54,6 +57,7 @@ class User {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -69,6 +73,7 @@ class User {
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -91,6 +96,7 @@ class User {
       });
     } catch (err) {
       console.log('创建账号失败', err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: `创建账号失败, ${err.message}`
@@ -107,6 +113,7 @@ class User {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -124,6 +131,7 @@ class User {
         throw new Error('删除账号失败');
       }
     } catch (err) {
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -144,6 +152,7 @@ class User {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -161,6 +170,7 @@ class User {
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -176,6 +186,7 @@ class User {
       });
     } catch (err) {
       console.log('密码修改失败', err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: `密码修改失败, ${err.message}`
@@ -194,6 +205,7 @@ class User {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: 302,
         message: err.message
@@ -225,6 +237,7 @@ class User {
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: 302,
         message: err.message
@@ -239,7 +252,8 @@ class User {
 				message: '退出成功'
 			})
 		}catch(err){
-			console.log('退出失败', err)
+      console.log('退出失败', err)
+      log.error(err.message, err);
 			res.send({
 				status: -1,
 				message: '退出失败'

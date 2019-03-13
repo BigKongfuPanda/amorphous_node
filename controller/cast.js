@@ -2,6 +2,7 @@
 
 const castModel = require('../models/cast');
 const planModel = require('../models/plan');
+const log = require('log4js').getLogger("cast");
 
 class Cast {
   constructor() {
@@ -16,6 +17,7 @@ class Cast {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -59,6 +61,7 @@ class Cast {
       });
     } catch (err) {
       console.log('查询喷带记录失败', err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: '查询喷带记录失败'
@@ -75,6 +78,7 @@ class Cast {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -90,6 +94,7 @@ class Cast {
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -118,6 +123,7 @@ class Cast {
       });
     } catch (err) {
       console.log('新增喷带记录失败', err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: `新增喷带记录失败, ${err.message}`
@@ -134,6 +140,7 @@ class Cast {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -165,11 +172,12 @@ class Cast {
         if (period > 24*60*60*1000) {
           throw new Error('已过24小时，您无操作权限！');
         }
-      } catch (error) {
-        console.log(error.message, error);
+      } catch (err) {
+        console.log(err.message, err);
+        log.error(err.message, err);
         res.send({
           status: -1,
-          message: error.message
+          message: err.message
         });
         return;
       }
@@ -196,6 +204,7 @@ class Cast {
       });
     } catch (err) {
       console.log('更新喷带记录失败', err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: `更新喷带记录失败, ${err.message}`
@@ -209,11 +218,12 @@ class Cast {
       if (!_id) {
         throw new Error('参数错误');
       }
-    } catch (error) {
+    } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
-        message: error.message
+        message: err.message
       });
       return;
     }
@@ -229,6 +239,7 @@ class Cast {
         throw new Error('删除喷带记录失败');
       }
     } catch (error) {
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: '删除喷带记录失败'

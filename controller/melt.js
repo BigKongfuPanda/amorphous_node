@@ -1,6 +1,7 @@
 'use strict';
 
 const meltModel = require('../models/melt');
+const log = require('log4js').getLogger("melt");
 
 class Melt {
   constructor() {
@@ -15,6 +16,7 @@ class Melt {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -52,6 +54,7 @@ class Melt {
       });
     } catch (err) {
       console.log('查询化钢记录失败', err);
+      log.error('查询化钢记录失败', err);
       res.send({
         status: -1,
         message: '查询化钢记录失败'
@@ -66,6 +69,7 @@ class Melt {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -81,6 +85,7 @@ class Melt {
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -108,6 +113,7 @@ class Melt {
       });
     } catch (err) {
       console.log('新增化钢记录失败', err);
+      log.error('新增化钢记录失败', err);
       res.send({
         status: -1,
         message: `新增化钢记录失败, ${err.message}`
@@ -122,6 +128,7 @@ class Melt {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -137,11 +144,11 @@ class Melt {
         if (period > 24*60*60*1000) {
           throw new Error('已过24小时，您无操作权限，请联系车间主任或厂长！');
         }
-      } catch (error) {
-        console.log(error.message, error);
+      } catch (err) {
+        console.log(err.message, err);
         res.send({
           status: -1,
-          message: error.message
+          message: err.message
         });
         return;
       }
@@ -167,6 +174,7 @@ class Melt {
       });
     } catch (err) {
       console.log('更新化钢记录失败', err);
+      log.error('更新化钢记录失败', err);
       res.send({
         status: -1,
         message: `更新化钢记录失败, ${err.message}`
@@ -182,6 +190,7 @@ class Melt {
       }
     } catch (error) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: error.message
@@ -199,7 +208,8 @@ class Melt {
       } else {
         throw new Error('删除化钢记录失败');
       }
-    } catch (error) {
+    } catch (err) {
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: '删除化钢记录失败'

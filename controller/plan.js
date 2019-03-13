@@ -1,6 +1,7 @@
 'use strict';
 
 const planModel = require('../models/plan');
+const log = require('log4js').getLogger("plan");
 
 class Plan {
   constructor() {
@@ -35,6 +36,7 @@ class Plan {
       });
     } catch (err) {
       console.log('查询生产计划失败', err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: '查询生产计划失败'
@@ -70,6 +72,7 @@ class Plan {
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -93,6 +96,7 @@ class Plan {
       });
     } catch (err) {
       console.log('新增生产记录失败', err);
+      log.error('新增生产记录失败', err);
       res.send({
         status: -1,
         message: `新增生产记录失败, ${err.message}`
@@ -114,6 +118,7 @@ class Plan {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -158,6 +163,7 @@ class Plan {
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -174,6 +180,7 @@ class Plan {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -191,6 +198,7 @@ class Plan {
         throw new Error('删除生产计划失败');
       }
     } catch (err) {
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message

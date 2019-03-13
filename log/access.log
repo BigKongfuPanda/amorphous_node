@@ -1,0 +1,2 @@
+[2019-03-13T18:49:07.604] [INFO] http - 127.0.0.1 - - "POST /user HTTP/1.1" 200 50 "http://localhost:8080/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+[2019-03-13T18:49:07.713] [INFO] http - 127.0.0.1 - - "GET /user?roleId=1 HTTP/1.1" 200 4380 "http://localhost:8080/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
