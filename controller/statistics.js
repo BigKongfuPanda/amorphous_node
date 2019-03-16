@@ -100,60 +100,139 @@ class Statistics {
   }
 
   async queryDataOfRatio(req, res, next) {
-    const { startTime, endTime } = req.query;
+    const { startTime, endTime, ratioType } = req.query;
 
     try {
       let queryCondition = {};
       if(startTime && endTime) {
         queryCondition.createdAt = { $gt: startTime, $lt: endTime };
       }
-      const list = await castModel.aggregate([
-        {
-          $match: queryCondition
-        },
-        {
-          $lookup: {
-            from: 'Measure',
-            localField: 'furnace',
-            foreignField: 'furnace',
-            as: 'fromMeasure'
-          }
-        },
-        {
-          $lookup: {
-            from: 'Melt',
-            localField: 'furnace',
-            foreignField: 'furnace',
-            as: 'fromMelt'
-          }
-        },
-        // {
-        //   $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$fromMelt", 0 ] }, "$$ROOT" ] } }
-        // },
-        // {
-        //   $project: {
-        //     fromMelt: 0,
-        //     record: 0
-        //   }
-        // },
-        {
-          $unwind: '$fromMelt'
-        },  
-        {
-          $group: {
-            _id: '$caster',
-            nozzleNum: { $sum: '$nozzleNum' },
-            totalHeatNum: { $sum: 1 },
-            alloyTotalWeight: { $sum: '$fromMelt.alloyTotalWeight' },
-            rawWeight: { $sum: '$rawWeight' },
-            uselessRibbonWeight: { $sum: '$uselessRibbonWeight' },
-            furnaceList: {
-              $push: '$$ROOT'
+      let list = [];
+      if (ratioType === 'byCaster') {
+        list = await castModel.aggregate([
+          {
+            $match: queryCondition
+          },
+          {
+            $lookup: {
+              from: 'Measure',
+              localField: 'furnace',
+              foreignField: 'furnace',
+              as: 'fromMeasure'
+            }
+          },
+          {
+            $lookup: {
+              from: 'Melt',
+              localField: 'furnace',
+              foreignField: 'furnace',
+              as: 'fromMelt'
+            }
+          },
+          // {
+          //   $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$fromMelt", 0 ] }, "$$ROOT" ] } }
+          // },
+          // {
+          //   $project: {
+          //     fromMelt: 0,
+          //     record: 0
+          //   }
+          // },
+          {
+            $unwind: '$fromMelt'
+          },  
+          {
+            $group: {
+              _id: '$caster',
+              nozzleNum: { $sum: '$nozzleNum' },
+              totalHeatNum: { $sum: 1 },
+              alloyTotalWeight: { $sum: '$fromMelt.alloyTotalWeight' },
+              rawWeight: { $sum: '$rawWeight' },
+              uselessRibbonWeight: { $sum: '$uselessRibbonWeight' },
+              furnaceList: {
+                $push: '$$ROOT'
+              }
             }
           }
-        }
-      ]);
-
+        ]);  
+      } else if (ratioType === 'byTeam') {
+        list = await castModel.aggregate([
+          {
+            $match: queryCondition
+          },
+          {
+            $lookup: {
+              from: 'Measure',
+              localField: 'furnace',
+              foreignField: 'furnace',
+              as: 'fromMeasure'
+            }
+          },
+          {
+            $lookup: {
+              from: 'Melt',
+              localField: 'furnace',
+              foreignField: 'furnace',
+              as: 'fromMelt'
+            }
+          },
+          {
+            $unwind: '$fromMelt'
+          },
+          {
+            $group: {
+              _id: '$team',
+              nozzleNum: { $sum: '$nozzleNum' },
+              totalHeatNum: { $sum: 1 },
+              alloyTotalWeight: { $sum: '$fromMelt.alloyTotalWeight' },
+              rawWeight: { $sum: '$rawWeight' },
+              uselessRibbonWeight: { $sum: '$uselessRibbonWeight' },
+              furnaceList: {
+                $push: '$$ROOT'
+              }
+            }
+          }
+        ]);
+      } else if (ratioType === 'byCastId') {
+        list = await castModel.aggregate([
+          {
+            $match: queryCondition
+          },
+          {
+            $lookup: {
+              from: 'Measure',
+              localField: 'furnace',
+              foreignField: 'furnace',
+              as: 'fromMeasure'
+            }
+          },
+          {
+            $lookup: {
+              from: 'Melt',
+              localField: 'furnace',
+              foreignField: 'furnace',
+              as: 'fromMelt'
+            }
+          },
+          {
+            $unwind: '$fromMelt'
+          },
+          {
+            $group: {
+              _id: '$castId',
+              nozzleNum: { $sum: '$nozzleNum' },
+              totalHeatNum: { $sum: 1 },
+              alloyTotalWeight: { $sum: '$fromMelt.alloyTotalWeight' },
+              rawWeight: { $sum: '$rawWeight' },
+              uselessRibbonWeight: { $sum: '$uselessRibbonWeight' },
+              furnaceList: {
+                $push: '$$ROOT'
+              }
+            }
+          }
+        ]);
+      }
+      
       res.send({
         status: 0,
         message: '操作成功',

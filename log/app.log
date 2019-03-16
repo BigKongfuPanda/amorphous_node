@@ -2,3 +2,58 @@
     at createUser (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/user.js:70:15)
     at <anonymous>
     at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-14T20:23:16.201] [ERROR] user - 账号或者姓名重复 Error: 账号或者姓名重复
+    at createUser (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/user.js:72:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-15T16:21:27.265] [ERROR] cast - 已过24小时，您无操作权限！ Error: 已过24小时，您无操作权限！
+    at updateData (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/cast.js:173:17)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/routes/index.js:22:5)
+[2019-03-15T18:22:29.054] [ERROR] statistics - 查询直通率统计失败 TypeError: Assignment to constant variable.
+    at queryDataOfRatio (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/statistics.js:159:14)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/routes/index.js:22:5)
+[2019-03-15T18:22:29.599] [ERROR] statistics - 查询直通率统计失败 TypeError: Assignment to constant variable.
+    at queryDataOfRatio (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/statistics.js:161:14)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/routes/index.js:22:5)

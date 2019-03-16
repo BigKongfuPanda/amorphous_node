@@ -7,6 +7,7 @@ const castSchema = new Schema({
 	castId: Number,//机组编号
 	furnace: String,//炉号
 	caster: String, //喷带手姓名, 不变
+	team: String, // 班组，甲乙丙丁
 	ribbonWidth: Number,//带宽 mm
 	ribbonTypeId: Schema.Types.ObjectId, // 材质id
 	ribbonTypeName: String,//材质名称
