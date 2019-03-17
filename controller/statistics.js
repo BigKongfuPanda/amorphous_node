@@ -1,8 +1,6 @@
 'use strict';
 
 const castModel = require('../models/cast');
-const planModel = require('../models/plan');
-const mesasureModel = require('../models/measure');
 const log = require('log4js').getLogger("statistics");
 
 class Statistics {
