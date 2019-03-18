@@ -1,8 +1,7 @@
 'use strict';
 
 const castModel = require('../models/cast');
-const planModel = require('../models/plan');
-const mesasureModel = require('../models/measure');
+const log = require('log4js').getLogger("statistics");
 
 class Statistics {
   constructor() {
@@ -37,7 +36,6 @@ class Statistics {
       }
       const count = await castModel.countDocuments(queryCondition);
       const totalPage = Math.ceil(count / limit);
-      console.log(queryCondition);
       const list = await castModel.aggregate([
         {
           $match: queryCondition
@@ -58,13 +56,12 @@ class Statistics {
             as: 'fromMelt'
           }
         },
-        {
-          $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$fromMelt", 0 ] }, "$$ROOT" ] } }
-        },
+        // {
+        //   $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$fromMelt", 0 ] }, "$$ROOT" ] } }
+        // },
         {
           $project: { 
-            record: 0,
-            fromMelt: 0
+            record: 0
           }
         },
         {
@@ -92,6 +89,7 @@ class Statistics {
       });
     } catch (err) {
       console.log('查询带材质量统计失败', err);
+      log.error('查询带材质量统计失败', err);
       res.send({
         status: -1,
         message: '查询带材质量统计失败'
@@ -100,57 +98,139 @@ class Statistics {
   }
 
   async queryDataOfRatio(req, res, next) {
-    const { startTime, endTime } = req.query;
+    const { startTime, endTime, ratioType } = req.query;
 
     try {
       let queryCondition = {};
       if(startTime && endTime) {
         queryCondition.createdAt = { $gt: startTime, $lt: endTime };
       }
-      const list = await castModel.aggregate([
-        {
-          $match: queryCondition
-        },
-        {
-          $lookup: {
-            from: 'Measure',
-            localField: 'furnace',
-            foreignField: 'furnace',
-            as: 'fromMeasure'
-          }
-        },
-        {
-          $lookup: {
-            from: 'Melt',
-            localField: 'furnace',
-            foreignField: 'furnace',
-            as: 'fromMelt'
-          }
-        },
-        {
-          $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$fromMelt", 0 ] }, "$$ROOT" ] } }
-        },
-        {
-          $project: {
-            fromMelt: 0,
-            record: 0
-          }
-        },
-        {
-          $group: {
-            _id: '$caster',
-            nozzleNum: { $sum: '$nozzleNum' },
-            totalHeatNum: { $sum: 1 },
-            alloyTotalWeight: { $sum: '$alloyTotalWeight' },
-            rawWeight: { $sum: '$rawWeight' },
-            uselessRibbonWeight: { $sum: '$uselessRibbonWeight' },
-            furnaceList: {
-              $push: '$$ROOT'
+      let list = [];
+      if (ratioType === 'byCaster') {
+        list = await castModel.aggregate([
+          {
+            $match: queryCondition
+          },
+          {
+            $lookup: {
+              from: 'Measure',
+              localField: 'furnace',
+              foreignField: 'furnace',
+              as: 'fromMeasure'
+            }
+          },
+          {
+            $lookup: {
+              from: 'Melt',
+              localField: 'furnace',
+              foreignField: 'furnace',
+              as: 'fromMelt'
+            }
+          },
+          // {
+          //   $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$fromMelt", 0 ] }, "$$ROOT" ] } }
+          // },
+          // {
+          //   $project: {
+          //     fromMelt: 0,
+          //     record: 0
+          //   }
+          // },
+          {
+            $unwind: '$fromMelt'
+          },  
+          {
+            $group: {
+              _id: '$caster',
+              nozzleNum: { $sum: '$nozzleNum' },
+              totalHeatNum: { $sum: 1 },
+              alloyTotalWeight: { $sum: '$fromMelt.alloyTotalWeight' },
+              rawWeight: { $sum: '$rawWeight' },
+              uselessRibbonWeight: { $sum: '$uselessRibbonWeight' },
+              furnaceList: {
+                $push: '$$ROOT'
+              }
             }
           }
-        }
-      ]);
-
+        ]);  
+      } else if (ratioType === 'byTeam') {
+        list = await castModel.aggregate([
+          {
+            $match: queryCondition
+          },
+          {
+            $lookup: {
+              from: 'Measure',
+              localField: 'furnace',
+              foreignField: 'furnace',
+              as: 'fromMeasure'
+            }
+          },
+          {
+            $lookup: {
+              from: 'Melt',
+              localField: 'furnace',
+              foreignField: 'furnace',
+              as: 'fromMelt'
+            }
+          },
+          {
+            $unwind: '$fromMelt'
+          },
+          {
+            $group: {
+              _id: '$team',
+              nozzleNum: { $sum: '$nozzleNum' },
+              totalHeatNum: { $sum: 1 },
+              alloyTotalWeight: { $sum: '$fromMelt.alloyTotalWeight' },
+              rawWeight: { $sum: '$rawWeight' },
+              uselessRibbonWeight: { $sum: '$uselessRibbonWeight' },
+              furnaceList: {
+                $push: '$$ROOT'
+              }
+            }
+          }
+        ]);
+      } else if (ratioType === 'byCastId') {
+        list = await castModel.aggregate([
+          {
+            $match: queryCondition
+          },
+          {
+            $lookup: {
+              from: 'Measure',
+              localField: 'furnace',
+              foreignField: 'furnace',
+              as: 'fromMeasure'
+            }
+          },
+          {
+            $lookup: {
+              from: 'Melt',
+              localField: 'furnace',
+              foreignField: 'furnace',
+              as: 'fromMelt'
+            }
+          },
+          {
+            $unwind: '$fromMelt'
+          },
+          {
+            $group: {
+              _id: '$castId',
+              nozzleNum: { $sum: '$nozzleNum' },
+              totalHeatNum: { $sum: 1 },
+              alloyTotalWeight: { $sum: '$fromMelt.alloyTotalWeight' },
+              rawWeight: { $sum: '$rawWeight' },
+              uselessRibbonWeight: { $sum: '$uselessRibbonWeight' },
+              furnaceList: {
+                $push: '$$ROOT'
+              }
+            }
+          }
+        ]);
+      }
+      
       res.send({
         status: 0,
         message: '操作成功',
@@ -160,6 +240,7 @@ class Statistics {
       });
     } catch (err) {
       console.log('查询直通率统计失败', err);
+      log.error('查询直通率统计失败', err);
       res.send({
         status: -1,
         message: '查询直通率统计失败'

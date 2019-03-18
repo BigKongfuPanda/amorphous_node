@@ -2,6 +2,7 @@
 
 const castModel = require('../models/cast');
 const planModel = require('../models/plan');
+const log = require('log4js').getLogger("cast");
 
 class Cast {
   constructor() {
@@ -9,13 +10,14 @@ class Cast {
   }
 
   async queryData(req, res, next) {
-    const { castId, furnace, startTime, endTime, caster, ribbonTypeName, ribbonWidthJson,  current = 1, limit = 10 } = req.query;
+    const { castId, team, furnace, startTime, endTime, caster, ribbonTypeName, ribbonWidthJson,  current = 1, limit = 10 } = req.query;
     try{
       if (!castId) {
         throw new Error('参数错误')
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -26,6 +28,9 @@ class Cast {
       let queryCondition = {castId};
       if (caster) {
         queryCondition.caster = caster;
+      }
+      if (team) {
+        queryCondition.team = team;
       }
       if (furnace) {
         queryCondition.furnace = furnace;
@@ -59,6 +64,7 @@ class Cast {
       });
     } catch (err) {
       console.log('查询喷带记录失败', err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: '查询喷带记录失败'
@@ -67,14 +73,15 @@ class Cast {
   }
 
   async createData(req, res, next) {
-    const { castId, furnace, caster, ribbonWidth, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, uselessRibbonWeight, remark, castTimes = 1, recordJson, createdAt, adminname } = req.body;
+    const { castId, furnace, team, caster, ribbonWidth, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, uselessRibbonWeight, remark, castTimes = 1, recordJson, createdAt, adminname } = req.body;
     const _record = JSON.parse(recordJson);
     try{
-      if (!castId || !furnace || !caster || !ribbonWidth || !ribbonTypeName   || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !uselessRibbonWeight || !_record || !castTimes) {
+      if (!castId || !furnace || !team || !caster || !ribbonWidth || !ribbonTypeName   || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !uselessRibbonWeight || !_record || !castTimes) {
         throw new Error('参数错误');
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -90,6 +97,7 @@ class Cast {
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -99,8 +107,8 @@ class Cast {
     
     try {
       const newData = {
-        castId, furnace, caster, ribbonWidth,
-        ribbonTypeName,
+        castId, furnace, caster, team,
+        ribbonWidth, ribbonTypeName,
         nozzleNum, heatCupNum,
         tundishCar, tundish, isChangeTundish, 
         meltOutWeight, rawWeight, uselessRibbonWeight,
@@ -118,6 +126,7 @@ class Cast {
       });
     } catch (err) {
       console.log('新增喷带记录失败', err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: `新增喷带记录失败, ${err.message}`
@@ -126,14 +135,15 @@ class Cast {
   }
 
   async updateData(req, res, next) {
-    const { castId, _id, furnace, caster, ribbonWidth, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, uselessRibbonWeight, remark, castTimes, recordJson, createdAt, roleId, adminname } = req.body;
+    const { castId, _id, furnace, team, caster, ribbonWidth, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, uselessRibbonWeight, remark, castTimes, recordJson, createdAt, roleId, adminname } = req.body;
     const _record = JSON.parse(recordJson);
     try{
-      if (!castId || !_id || !furnace || !caster || !ribbonWidth || !ribbonTypeName || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !uselessRibbonWeight || !_record || !castTimes || !roleId) {
+      if (!castId || !_id || !furnace || !team || !caster || !ribbonWidth || !ribbonTypeName || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !uselessRibbonWeight || !_record || !castTimes || !roleId) {
         throw new Error('参数错误');
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -165,11 +175,12 @@ class Cast {
         if (period > 24*60*60*1000) {
           throw new Error('已过24小时，您无操作权限！');
         }
-      } catch (error) {
-        console.log(error.message, error);
+      } catch (err) {
+        console.log(err.message, err);
+        log.error(err.message, err);
         res.send({
           status: -1,
-          message: error.message
+          message: err.message
         });
         return;
       }
@@ -177,8 +188,8 @@ class Cast {
 
     try {
       const newData = {
-        furnace, caster, ribbonWidth,
-        ribbonTypeName,
+        furnace, caster, team,
+        ribbonWidth, ribbonTypeName,
         nozzleNum, heatCupNum,
         tundishCar, tundish, isChangeTundish, 
         meltOutWeight, rawWeight, uselessRibbonWeight,
@@ -196,6 +207,7 @@ class Cast {
       });
     } catch (err) {
       console.log('更新喷带记录失败', err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: `更新喷带记录失败, ${err.message}`
@@ -209,11 +221,12 @@ class Cast {
       if (!_id) {
         throw new Error('参数错误');
       }
-    } catch (error) {
+    } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
-        message: error.message
+        message: err.message
       });
       return;
     }
@@ -229,6 +242,7 @@ class Cast {
         throw new Error('删除喷带记录失败');
       }
     } catch (error) {
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: '删除喷带记录失败'

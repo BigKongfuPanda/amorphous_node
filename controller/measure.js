@@ -3,6 +3,8 @@
 const measureModel = require('../models/measure');
 const castModel = require('../models/cast');
 const planModel = require('../models/plan');
+const log = require('log4js').getLogger("measure");
+const nodeExcel = require('excel-export');
 
 class Measure {
   constructor() {
@@ -82,6 +84,7 @@ class Measure {
       });
     } catch (err) {
       console.log('查询检测记录失败', err);
+      log.error('查询检测记录失败', err);
       res.send({
         status: -1,
         message: '查询检测记录失败'
@@ -98,6 +101,7 @@ class Measure {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -113,6 +117,7 @@ class Measure {
       }
     } catch (error) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -128,6 +133,7 @@ class Measure {
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -181,6 +187,7 @@ class Measure {
       });
     } catch (err) {
       console.log('新增重卷记录失败', err);
+      log.error('新增重卷记录失败', err);
       res.send({
         status: -1,
         message: `新增重卷记录失败, ${err.message}`
@@ -197,6 +204,7 @@ class Measure {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -212,11 +220,11 @@ class Measure {
         if (period > 24*60*60*1000) {
           throw new Error('已过24小时，您无操作权限，请联系车间主任或厂长！');
         }
-      } catch (error) {
-        console.log(error.message, error);
+      } catch (err) {
+        console.log(err.message, err);
         res.send({
           status: -1,
-          message: error.message
+          message: err.message
         });
         return;
       }
@@ -282,6 +290,7 @@ class Measure {
       });
     } catch (err) {
       console.log('更新数据失败', err);
+      log.error('更新数据失败', err);
       res.send({
         status: -1,
         message: `更新数据失败, ${err.message}`
@@ -295,11 +304,12 @@ class Measure {
       if (!_id) {
         throw new Error('参数错误');
       }
-    } catch (error) {
+    } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
-        message: error.message
+        message: err.message
       });
       return;
     }
@@ -314,10 +324,97 @@ class Measure {
       } else {
         throw new Error('删除检测记录失败');
       }
-    } catch (error) {
+    } catch (err) {
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: '删除检测记录失败'
+      });
+    }
+  }
+
+  async exportExcel(req, res, next) {
+    const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels} = req.query;
+    try {
+      let queryCondition = {};
+      if(castId) {
+        queryCondition.castId = castId;
+      }
+      if(caster) {
+        queryCondition.caster = caster;
+      }
+      if (roller) {
+        queryCondition.roller = roller;
+      }
+      if(furnace) {
+        queryCondition.furnace = furnace;        
+      }
+      if(startTime && endTime) {
+        queryCondition.inStoreDate = { $gt: startTime, $lt: endTime };
+      }
+      if (ribbonTypeNameJson) {
+        const ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
+        if(ribbonTypeNameList.length > 0) {
+          queryCondition.ribbonTypeName = { $in: ribbonTypeNameList };
+        }
+      }
+      if (ribbonWidthJson) {
+        const ribbonWidthList = JSON.parse(ribbonWidthJson);
+        if (ribbonWidthList.length > 0) {
+          queryCondition.ribbonWidth = { $in: ribbonWidthList };
+        }
+      }
+      if (ribbonThicknessLevelJson) {
+        const ribbonThicknessLevelList = JSON.parse(ribbonThicknessLevelJson);
+        if (ribbonThicknessLevelList.length > 0) {
+          queryCondition.ribbonThicknessLevel = { $in: ribbonThicknessLevelList };
+        }
+      }
+      if (laminationLevelJson) {
+        const laminationLevelList = JSON.parse(laminationLevelJson);
+        if (laminationLevelList.length > 0) {
+          queryCondition.laminationLevel = { $in: laminationLevelList };
+        }
+      }
+      if(place) {
+        queryCondition.place = place;        
+      }
+      if (ribbonTotalLevels) {
+        const ribbonTotalLevelList = ribbonTotalLevels.split(',');
+        queryCondition.ribbonTotalLevel = { $in: ribbonTotalLevelList };
+      }
+
+      const conf = {};
+      conf.name = "mysheet";
+      conf.cols = [
+        { caption: '炉号', type: 'string' },
+        { caption: '盘号', type: 'number' },
+        { caption: '材质', type: 'string' },
+        { caption: '规格', type: 'number' },
+        { caption: '生产日期', type: 'date' },
+        { caption: '喷带手', type: 'string' },
+        { caption: '外径', type: 'number' },
+        { caption: '重量', type: 'number' },
+        { caption: '叠片系数', type: 'number' },
+        { caption: '叠片等级', type: 'string' },
+        { caption: '实际带宽', type: 'number' }
+      ];
+      conf.rows = [];
+      const list = await measureModel.find(queryCondition).sort({'furnace': 'desc', 'coilNumber': 'asc'});
+      
+      conf.rows = list.map(item => {
+        return [ item.furnace, item.coilNumber, item.ribbonTypeName, item.ribbonWidth, item.castDate, item.caster, item.diameter, item.coilWeight, item.laminationFactor, item.laminationLevel, item.realRibbonWidth ];
+      });
+      const result = nodeExcel.execute(conf);
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats');
+      res.setHeader("Content-Disposition", "attachment; filename=" + "Report.xlsx");
+  	  res.end(result, 'binary'); 
+    } catch (err) {
+      console.log('导出检测记录失败', err);
+      log.error('导出检测记录失败', err);
+      res.send({
+        status: -1,
+        message: '导出检测记录失败'
       });
     }
   }

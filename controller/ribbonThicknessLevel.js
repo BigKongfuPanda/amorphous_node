@@ -1,6 +1,7 @@
 'use strict';
 
 const ribbonThicknessLevelModel = require('../models/ribbonThicknessLevel');
+const log = require('log4js').getLogger("ribbonThicknessLevel");
 
 class RibbonThicknessLevel {
   constructor() {
@@ -20,6 +21,7 @@ class RibbonThicknessLevel {
       });
     } catch (err) {
       console.log('查询带材厚度级别列表失败', err);
+      log.error('查询带材厚度级别列表失败', err);
       res.send({
         status: -1,
         message: '查询带材厚度级别列表失败'
@@ -35,6 +37,7 @@ class RibbonThicknessLevel {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -68,6 +71,7 @@ class RibbonThicknessLevel {
       });
     } catch (err) {
       console.log('新增带材厚度级别失败', err);
+      log.error('新增带材厚度级别失败', err);
       res.send({
         status: -1,
         message: `新增带材厚度级别失败, ${err.message}`
@@ -83,6 +87,7 @@ class RibbonThicknessLevel {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -104,6 +109,7 @@ class RibbonThicknessLevel {
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -120,6 +126,7 @@ class RibbonThicknessLevel {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -137,6 +144,7 @@ class RibbonThicknessLevel {
         throw new Error('删除带材厚度级别失败');
       }
     } catch (err) {
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message

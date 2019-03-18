@@ -1,6 +1,7 @@
 'use strict';
 
 const laminationLevelModel = require('../models/laminationLevel');
+const log = require('log4js').getLogger("laminationLevel");
 
 class LaminationLevel {
   constructor() {
@@ -20,6 +21,7 @@ class LaminationLevel {
       });
     } catch (err) {
       console.log('查询带材叠片级别列表失败', err);
+      log.error('查询带材叠片级别列表失败', err);
       res.send({
         status: -1,
         message: '查询带材叠片级别列表失败'
@@ -36,6 +38,7 @@ class LaminationLevel {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -51,6 +54,7 @@ class LaminationLevel {
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -69,6 +73,7 @@ class LaminationLevel {
       });
     } catch (err) {
       console.log('新增带材叠片级别失败', err);
+      log.error('新增带材叠片级别失败', err);
       res.send({
         status: -1,
         message: `新增带材叠片级别失败, ${err.message}`
@@ -84,6 +89,7 @@ class LaminationLevel {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -105,6 +111,7 @@ class LaminationLevel {
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -121,6 +128,7 @@ class LaminationLevel {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -138,6 +146,7 @@ class LaminationLevel {
         throw new Error('删除带材叠片级别失败');
       }
     } catch (err) {
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message

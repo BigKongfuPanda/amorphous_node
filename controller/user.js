@@ -2,6 +2,7 @@
 
 const userModel = require('../models/user');
 const moment = require('moment')
+const log = require('log4js').getLogger("user");
 
 class User {
   constructor() {
@@ -16,6 +17,7 @@ class User {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -34,6 +36,7 @@ class User {
       });
     } catch (err) {
       console.log('查询用户列表失败', err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: '查询用户列表失败'
@@ -54,6 +57,7 @@ class User {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -69,6 +73,7 @@ class User {
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -91,6 +96,7 @@ class User {
       });
     } catch (err) {
       console.log('创建账号失败', err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: `创建账号失败, ${err.message}`
@@ -107,6 +113,7 @@ class User {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -124,6 +131,7 @@ class User {
         throw new Error('删除账号失败');
       }
     } catch (err) {
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -144,6 +152,7 @@ class User {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -156,11 +165,12 @@ class User {
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (!data) {
         throw new Error('用户不存在');
-      } else if (data.password !== Number(password)) {
+      } else if (data.password !== password) {
         throw new Error('密码错误');
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: err.message
@@ -169,13 +179,14 @@ class User {
     }
 
     try {
-      await userModel.updateOne({ username }, { $set: { password: Number(newPassword) } });
+      await userModel.updateOne({ username }, { $set: { password: newPassword } });
       res.send({
         status: 0,
         message: '密码修改成功'
       });
     } catch (err) {
       console.log('密码修改失败', err);
+      log.error(err.message, err);
       res.send({
         status: -1,
         message: `密码修改失败, ${err.message}`
@@ -194,6 +205,7 @@ class User {
       }
     }catch(err){
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: 302,
         message: err.message
@@ -206,7 +218,7 @@ class User {
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (!data) {
         throw new Error('用户不存在');
-      } else if (data.password !== Number(password)) {
+      } else if (data.password !== password) {
         throw new Error('密码错误');
       } else {
         // 将当前用户的 _id 作为 存入 session 中，作为登录态
@@ -225,6 +237,7 @@ class User {
       }
     } catch (err) {
       console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: 302,
         message: err.message
@@ -239,7 +252,8 @@ class User {
 				message: '退出成功'
 			})
 		}catch(err){
-			console.log('退出失败', err)
+      console.log('退出失败', err)
+      log.error(err.message, err);
 			res.send({
 				status: -1,
 				message: '退出失败'

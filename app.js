@@ -1,9 +1,11 @@
 const createError = require('http-errors');
 const express = require('express');
+const fs = require('fs');
 const db = require('./mongodb/db.js');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const log4js = require('log4js');
 const session = require('express-session');
 const connectMongo = require('connect-mongo');
 const config = require('config-lite')(__dirname);
@@ -11,6 +13,9 @@ const chalk = require('chalk');
 const router = require('./routes/index');
 
 const app = express();
+
+// 配置log4js
+log4js.configure('./config/log4js.json');
 
 app.all('*', (req, res, next) => {
 	res.header("Access-Control-Allow-Origin", req.headers.origin || req.headers.referer || '*');
@@ -29,7 +34,7 @@ app.all('*', (req, res, next) => {
 // app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'jade');
 app.use(express.static('./public'));
-
+// const logStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a'});
 app.use(logger('dev'));// morgan 用来在命令行输出请求的信息，使用的是 'dev' 模式，还有 combined, common, short, tiny 模式。
 app.use(express.json());//用来解析 content-type: application/json, {name: 'tom', age: 1}
 app.use(express.urlencoded({ extended: true }));//用来解析 content-type: application/x-www-form-urlencoded, name=tom&age=1

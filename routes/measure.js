@@ -16,4 +16,7 @@ router.put('/', Measure.updateData);
 // 删除检测记录
 router.delete('/', Measure.delData);
 
+// 导出excel
+router.get('/export', Measure.exportExcel);
+
 module.exports = router;
