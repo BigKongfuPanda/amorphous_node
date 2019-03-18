@@ -5,6 +5,7 @@ const castModel = require('../models/cast');
 const planModel = require('../models/plan');
 const log = require('log4js').getLogger("measure");
 const nodeExcel = require('excel-export');
+const moment = require('moment');
 
 class Measure {
   constructor() {
@@ -403,11 +404,11 @@ class Measure {
       const list = await measureModel.find(queryCondition).sort({'furnace': 'desc', 'coilNumber': 'asc'});
       
       conf.rows = list.map(item => {
-        return [ item.furnace, item.coilNumber, item.ribbonTypeName, item.ribbonWidth, item.castDate, item.caster, item.diameter, item.coilWeight, item.laminationFactor, item.laminationLevel, item.realRibbonWidth ];
+        return [ item.furnace, item.coilNumber, item.ribbonTypeName, item.ribbonWidth, moment(item.castDate).format('YYYY-MM-DD'), item.caster, item.diameter, item.coilWeight, item.laminationFactor, item.laminationLevel, item.realRibbonWidth ].map(val => val == undefined ? null : val);
       });
       const result = nodeExcel.execute(conf);
       res.setHeader('Content-Type', 'application/vnd.openxmlformats');
-      res.setHeader("Content-Disposition", "attachment; filename=" + "Report.xlsx");
+      res.setHeader("Content-Disposition", "attachment; filename=" + "jiance.xlsx");
   	  res.end(result, 'binary'); 
     } catch (err) {
       console.log('导出检测记录失败', err);

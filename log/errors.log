@@ -84,3 +84,36 @@
     at exportExcel (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/measure.js:411:32)
     at <anonymous>
     at process._tickCallback (internal/process/next_tick.js:188:7) errno: -2, code: 'ENOENT', syscall: 'open', path: 'styles.xml' }
+[2019-03-18T22:54:12.451] [ERROR] user - 密码错误 Error: 密码错误
+    at login (E:\学习资料\前端开发 学习资料\amorphous_node\controller\user.js:222:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-18T22:54:20.580] [ERROR] user - 用户不存在 Error: 用户不存在
+    at login (E:\学习资料\前端开发 学习资料\amorphous_node\controller\user.js:220:15)
+    at <anonymous>
+[2019-03-18T22:55:13.771] [ERROR] user - 密码错误 Error: 密码错误
+    at login (E:\学习资料\前端开发 学习资料\amorphous_node\controller\user.js:222:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-18T22:55:35.271] [ERROR] user - 密码错误 Error: 密码错误
+    at login (E:\学习资料\前端开发 学习资料\amorphous_node\controller\user.js:222:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-18T22:56:42.600] [ERROR] user - 密码错误 Error: 密码错误
+    at login (E:\学习资料\前端开发 学习资料\amorphous_node\controller\user.js:222:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-18T23:16:00.702] [ERROR] user - 密码错误 Error: 密码错误
+    at login (E:\学习资料\前端开发 学习资料\amorphous_node\controller\user.js:222:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-18T23:19:48.708] [ERROR] user - 密码错误 Error: 密码错误
+    at login (E:\学习资料\前端开发 学习资料\amorphous_node\controller\user.js:222:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-18T23:25:22.044] [ERROR] measure - 导出检测记录失败 TypeError: The header content contains invalid characters
+    at validateHeader (_http_outgoing.js:494:11)
+    at ServerResponse.setHeader (_http_outgoing.js:498:3)
+    at exportExcel (E:\学习资料\前端开发 学习资料\amorphous_node\controller\measure.js:410:11)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
