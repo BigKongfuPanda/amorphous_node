@@ -53,3 +53,34 @@
     at Function.process_params (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:335:12)
     at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:275:10)
     at checkLogin (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/routes/index.js:22:5)
+[2019-03-18T17:01:03.306] [ERROR] user - 密码错误 Error: 密码错误
+    at login (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/user.js:222:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-18T17:01:13.182] [ERROR] user - 密码错误 Error: 密码错误
+    at login (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/user.js:222:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-18T17:01:20.259] [ERROR] user - 密码错误 Error: 密码错误
+    at login (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/user.js:222:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-18T17:05:27.478] [ERROR] user - 密码错误 Error: 密码错误
+    at login (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/user.js:222:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-18T17:05:50.961] [ERROR] user - 密码错误 Error: 密码错误
+    at login (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/user.js:222:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-18T20:56:00.247] [ERROR] measure - 导出检测记录失败 { Error: ENOENT: no such file or directory, open 'styles.xml'
+    at Object.fs.openSync (fs.js:646:18)
+    at Object.fs.readFileSync (fs.js:551:33)
+    at Sheet.generate (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/excel-export/sheet.js:31:15)
+    at /Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/excel-export/index.js:41:9
+    at Array.forEach (<anonymous>)
+    at generateMultiSheets (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/excel-export/index.js:37:10)
+    at Object.exports.execute (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/excel-export/index.js:110:2)
+    at exportExcel (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/measure.js:411:32)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7) errno: -2, code: 'ENOENT', syscall: 'open', path: 'styles.xml' }

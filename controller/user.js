@@ -165,7 +165,7 @@ class User {
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (!data) {
         throw new Error('用户不存在');
-      } else if (data.password !== Number(password)) {
+      } else if (data.password !== password) {
         throw new Error('密码错误');
       }
     } catch (err) {
@@ -179,7 +179,7 @@ class User {
     }
 
     try {
-      await userModel.updateOne({ username }, { $set: { password: Number(newPassword) } });
+      await userModel.updateOne({ username }, { $set: { password: newPassword } });
       res.send({
         status: 0,
         message: '密码修改成功'
@@ -218,7 +218,7 @@ class User {
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (!data) {
         throw new Error('用户不存在');
-      } else if (data.password !== Number(password)) {
+      } else if (data.password !== password) {
         throw new Error('密码错误');
       } else {
         // 将当前用户的 _id 作为 存入 session 中，作为登录态

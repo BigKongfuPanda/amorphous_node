@@ -17,6 +17,7 @@
     "cookie-parser": "^1.4.3",
     "cross-env": "^5.2.0",
     "debug": "~2.6.9",
+    "excel-export": "^0.5.1",
     "express": "~4.16.0",
     "express-session": "^1.15.6",
     "http-errors": "~1.6.2",
