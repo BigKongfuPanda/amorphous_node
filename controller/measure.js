@@ -334,7 +334,7 @@ class Measure {
     }
   }
 
-  async exportExcel(req, res, next) {
+  async exportMeasure(req, res, next) {
     const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels} = req.query;
     try {
       let queryCondition = {};
@@ -398,14 +398,50 @@ class Measure {
         { caption: '重量', type: 'number' },
         { caption: '叠片系数', type: 'number' },
         { caption: '叠片等级', type: 'string' },
-        { caption: '实际带宽', type: 'number' }
+        { caption: '实际带宽', type: 'number' },
+        { caption: '厚度偏差', type: 'number' },
+        { caption: '平均厚度', type: 'number' },
+        { caption: '厚度级别', type: 'number' },
+        { caption: '韧性', type: 'string' },
+        { caption: '韧性等级', type: 'string' },
+        { caption: '外观', type: 'string' },
+        { caption: '外观等级', type: 'string' },
+        { caption: '综合级别', type: 'string' },
+        { caption: '是否入库', type: 'string' },
+        { caption: '不入库原因', type: 'string' },
+        { caption: '判定去向', type: 'string' },
       ];
       conf.rows = [];
       const list = await measureModel.find(queryCondition).sort({'furnace': 'desc', 'coilNumber': 'asc'});
       
       conf.rows = list.map(item => {
-        return [ item.furnace, item.coilNumber, item.ribbonTypeName, item.ribbonWidth, moment(item.castDate).format('YYYY-MM-DD'), item.caster, item.diameter, item.coilWeight, item.laminationFactor, item.laminationLevel, item.realRibbonWidth ].map(val => val == undefined ? null : val);
+        return [ 
+          item.furnace, item.coilNumber, item.ribbonTypeName, item.ribbonWidth, 
+          moment(item.castDate).format('YYYY-MM-DD'), item.caster, item.diameter,
+          item.coilWeight, item.laminationFactor, item.laminationLevel, item.realRibbonWidth,
+          item.ribbonThicknessDeviation, item.ribbonThickness, item.ribbonThicknessLevel,
+          item.ribbonToughness, item.ribbonToughnessLevel, item.appearence, item.appearenceLevel, item.ribbonTotalLevel, isStoredDesc(item.isStored),
+          item.unStoreReason, item.clients.join()
+        ].map(val => val == undefined ? null : val);
       });
+
+      function isStoredDesc (status) {
+        switch (status) {
+          case 1:
+            return '计划内入库';
+            break;
+          case 2:
+            return '计划外入库';
+            break;
+          case 3:
+            return '不合格';
+            break;
+          default:
+            return '';
+            break;
+        }
+      }
+      
       const result = nodeExcel.execute(conf);
       res.setHeader('Content-Type', 'application/vnd.openxmlformats');
       res.setHeader("Content-Disposition", "attachment; filename=" + "jiance.xlsx");
@@ -416,6 +452,129 @@ class Measure {
       res.send({
         status: -1,
         message: '导出检测记录失败'
+      });
+    }
+  }
+
+  async exportStorage(req, res, next) {
+    const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels, filterBy } = req.query;
+    try {
+      let queryCondition = {};
+      if(castId) {
+        queryCondition.castId = castId;
+      }
+      if(caster) {
+        queryCondition.caster = caster;
+      }
+      if (roller) {
+        queryCondition.roller = roller;
+      }
+      if(furnace) {
+        queryCondition.furnace = furnace;        
+      }
+      if(startTime && endTime) {
+        queryCondition.inStoreDate = { $gt: startTime, $lt: endTime };
+      }
+      if (ribbonTypeNameJson) {
+        const ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
+        if(ribbonTypeNameList.length > 0) {
+          queryCondition.ribbonTypeName = { $in: ribbonTypeNameList };
+        }
+      }
+      if (ribbonWidthJson) {
+        const ribbonWidthList = JSON.parse(ribbonWidthJson);
+        if (ribbonWidthList.length > 0) {
+          queryCondition.ribbonWidth = { $in: ribbonWidthList };
+        }
+      }
+      if (ribbonThicknessLevelJson) {
+        const ribbonThicknessLevelList = JSON.parse(ribbonThicknessLevelJson);
+        if (ribbonThicknessLevelList.length > 0) {
+          queryCondition.ribbonThicknessLevel = { $in: ribbonThicknessLevelList };
+        }
+      }
+      if (laminationLevelJson) {
+        const laminationLevelList = JSON.parse(laminationLevelJson);
+        if (laminationLevelList.length > 0) {
+          queryCondition.laminationLevel = { $in: laminationLevelList };
+        }
+      }
+      if(place) {
+        queryCondition.place = place;        
+      }
+      if (ribbonTotalLevels) {
+        const ribbonTotalLevelList = ribbonTotalLevels.split(',');
+        queryCondition.ribbonTotalLevel = { $in: ribbonTotalLevelList };
+      }
+      // 筛选库房的数据：入库且结余大于0
+      if (filterBy == 'storage') {
+        queryCondition.remainWeight = {$gt: 0};
+        queryCondition.isStored = {$in: [1, 2]};
+      }
+
+      const conf = {};
+      conf.name = "mysheet";
+      conf.cols = [
+        { caption: '炉号', type: 'string' },
+        { caption: '盘号', type: 'number' },
+        { caption: '材质', type: 'string' },
+        { caption: '规格', type: 'number' },
+        { caption: '综合级别', type: 'string' },
+        { caption: '厚度级别', type: 'number' },
+        { caption: '毛重', type: 'number' },
+        { caption: '净重', type: 'number' },
+        { caption: '入库情况', type: 'string' },
+        { caption: '入库日期', type: 'date' },
+        { caption: '出库日期', type: 'date' },
+        { caption: '判定去向', type: 'string' },
+        { caption: '实际去向', type: 'string' },
+        { caption: '结存', type: 'number' },
+        { caption: '仓位', type: 'string' },
+        { caption: '发货备注', type: 'string' }
+      ];
+      conf.rows = [];
+      const list = await measureModel.find(queryCondition).sort({'furnace': 'desc', 'coilNumber': 'asc'});
+      
+      conf.rows = list.map(item => {
+        return [ 
+          item.furnace, item.coilNumber, item.ribbonTypeName, item.ribbonWidth, 
+          item.ribbonTotalLevel, item.ribbonThicknessLevel,
+          item.coilWeight, item.coilNetWeight, isStoredDesc(item.isStored),
+          moment(item.inStoreDate).format('YYYY-MM-DD'), 
+          item.outStoreDate ? moment(item.outStoreDate).format('YYYY-MM-DD') : '', 
+          item.clients.join(), item.takeBy,
+          item.takeBy ? 0 : item.coilNetWeight,
+          item.place, item.shipRemark 
+        ].map(val => val == undefined ? null : val);
+      });
+
+      function isStoredDesc (status) {
+        switch (status) {
+          case 1:
+            return '计划内入库';
+            break;
+          case 2:
+            return '计划外入库';
+            break;
+          case 3:
+            return '不合格';
+            break;
+          default:
+            return '';
+            break;
+        }
+      }
+      
+      const result = nodeExcel.execute(conf);
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats');
+      res.setHeader("Content-Disposition", "attachment; filename=" + "kufang.xlsx");
+  	  res.end(result, 'binary'); 
+    } catch (err) {
+      console.log('导出库房主表失败', err);
+      log.error('导出库房主表失败', err);
+      res.send({
+        status: -1,
+        message: '导出库房主表失败'
       });
     }
   }
