@@ -5,7 +5,8 @@ const Schema = mongoose.Schema;
 
 const ribbonTypeSchema = new Schema({
   ribbonTypeId: { type: Schema.Types.ObjectId },
-  ribbonTypeName: String
+  ribbonTypeName: String,
+  NCode: String // NC编码
 }, {
 	collection: 'RibbonType',
 	timestamps: true,

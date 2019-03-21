@@ -30,9 +30,9 @@ class RibbonType {
   }
 
   async createData(req, res, next) {
-    const { ribbonTypeName } = req.body;
+    const { ribbonTypeName, NCode } = req.body;
     try{
-      if (!ribbonTypeName) {
+      if (!ribbonTypeName || !NCode) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -46,10 +46,10 @@ class RibbonType {
     }
 
     try {
-      const data = await ribbonTypeModel.findOne({ ribbonTypeName });
+      const data = await ribbonTypeModel.findOne({ $or: [ { ribbonTypeName }, { NCode } ] });
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (data) {
-        throw new Error('材质名称重复');
+        throw new Error('材质名称或NC编码重复');
       }
     } catch (err) {
       console.log(err.message, err);
@@ -63,7 +63,7 @@ class RibbonType {
 
     try {
       const newData = {
-        ribbonTypeName
+        ribbonTypeName, NCode
       };
       await ribbonTypeModel.create(newData);
       res.send({
@@ -81,9 +81,9 @@ class RibbonType {
   }
   
   async updateData(req, res, next) {
-    const { ribbonTypeId, ribbonTypeName } = req.body;
+    const { ribbonTypeId, ribbonTypeName, NCode } = req.body;
     try{
-      if (!ribbonTypeId || !ribbonTypeName) {
+      if (!ribbonTypeId || !ribbonTypeName || !NCode) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -97,7 +97,7 @@ class RibbonType {
     }
     try {
       const newData = {
-        ribbonTypeName
+        ribbonTypeName, NCode
       };
       const { n } = await ribbonTypeModel.updateOne({ _id: ribbonTypeId }, { $set: newData });
       if (n !== 0) {
