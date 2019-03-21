@@ -29,7 +29,8 @@ const meltSchema = new Schema({
 	alloyFixWeight: Number,// 总重量修正
 	updatePerson: String, // 更新者
 	createPerson: String, // 创建者
-	remark: String // 备注
+	remark: String, // 备注
+	createTime: Date // 冶炼时间，00:00:00 - 08:00:00 之间的算上一天，不能算当天
 }, {
 	collection: 'Melt',
 	timestamps: true,

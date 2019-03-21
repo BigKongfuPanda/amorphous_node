@@ -105,6 +105,10 @@ class Cast {
       return;
     }
     
+    // 夜班12点后填入的数据不能自动生成第二天的日期，还得是第一天的。早上八点之前生产的数据都算是昨天的，需要把当前时间减去8小时
+    const timestamp = new Date().getTime() - 8 * 60 * 60 * 1000;
+    const createTime = new Date(timestamp).toISOString();
+
     try {
       const newData = {
         castId, furnace, caster, team,
@@ -114,7 +118,8 @@ class Cast {
         meltOutWeight, rawWeight, uselessRibbonWeight,
         remark, castTimes,
         createPerson: adminname,
-        record: _record
+        record: _record,
+        createTime
       };
       await castModel.create(newData);
       // 将喷带记录表中的 rawWeight 进行更新。 生产计划中的 furname 为 06-20190111-02，而制带过程中的炉号是带有桶号: 06-20190111-02/08
