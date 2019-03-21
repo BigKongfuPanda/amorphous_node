@@ -9,7 +9,7 @@ class Melt {
   }
 
   async queryData(req, res, next) {
-    const { castId, startTime, endTime, melter, ribbonTypeName, bucket,  current = 1, limit = 10 } = req.query;
+    const { castId, startTime, endTime, melter, ribbonTypeName, bucket, newAlloyNumber, oldAlloyNumber,  current = 1, limit = 10 } = req.query;
     try{
       if (!castId) {
         throw new Error('参数错误')
@@ -33,6 +33,12 @@ class Melt {
       }
       if (bucket) {
         queryCondition.bucket = bucket;
+      }
+      if (newAlloyNumber) {
+        queryCondition.newAlloyNumber = newAlloyNumber;
+      }
+      if (oldAlloyNumber) {
+        queryCondition.oldAlloyNumber = oldAlloyNumber;
       }
       if (startTime && endTime) {
         queryCondition.createdAt = { $gt: startTime, $lt: endTime };
