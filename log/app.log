@@ -189,3 +189,12 @@
     at Function.process_params (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:335:12)
     at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:275:10)
     at checkLogin (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/routes/index.js:22:5)
+[2019-03-21T22:43:38.597] [ERROR] user - 用户不存在 Error: 用户不存在
+    at login (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/user.js:220:15)
+    at <anonymous>
+[2019-03-21T22:43:42.662] [ERROR] user - 用户不存在 Error: 用户不存在
+    at login (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/user.js:220:15)
+    at <anonymous>
+[2019-03-21T22:47:55.697] [ERROR] measure - 新增重卷记录失败 TypeError: Cannot destructure property `orderThickness` of 'undefined' or 'null'.
+    at createData (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/measure.js:197:3)
+    at <anonymous>

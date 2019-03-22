@@ -2,6 +2,7 @@
 
 const meltModel = require('../models/melt');
 const log = require('log4js').getLogger("melt");
+const moment = require('moment');
 
 class Melt {
   constructor() {
@@ -41,7 +42,7 @@ class Melt {
         queryCondition.oldAlloyNumber = oldAlloyNumber;
       }
       if (startTime && endTime) {
-        queryCondition.createdAt = { $gt: startTime, $lt: endTime };
+        queryCondition.createTime = { $gt: startTime, $lt: endTime };
       }
       const count = await meltModel.countDocuments(queryCondition);
       const totalPage = Math.ceil(count / limit);
@@ -99,6 +100,10 @@ class Melt {
       return;
     }
 
+    // 夜班12点后填入的数据不能自动生成第二天的日期，还得是第一天的。早上八点之前生产的数据都算是昨天的，需要把当前时间减去8小时
+    const timestamp = new Date().getTime() - 8 * 60 * 60 * 1000;
+    const createTime = new Date(timestamp).toISOString();
+
     try {
       const newData = {
         castId, furnace,
@@ -110,7 +115,8 @@ class Melt {
         Si, Ni, Cu, BFe, NbFe, 
         alloyTotalWeight, alloyOutWeight, alloyFixWeight,
         createPerson: adminname,
-        remark
+        remark, 
+        createTime
       };
       await meltModel.create(newData);
       res.send({

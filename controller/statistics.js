@@ -9,21 +9,30 @@ class Statistics {
   }
 
   async queryDataOfQuality(req, res, next) {
-    const { castId, furnace, caster, ribbonTypeName, ribbonWidthJson,  current = 1, limit = 10 } = req.query;
+    const { castIdJson, furnace, caster, ribbonTypeNameJson, ribbonWidthJson,  current = 1, limit = 10 } = req.query;
 
     try {
       let queryCondition = {};
-      if (castId) {
-        queryCondition.castId = Number(castId);
-      }
       if (caster) {
         queryCondition.caster = caster;
       }
       if (furnace) {
         queryCondition.furnace = furnace;
       }
-      if (ribbonTypeName) {
-        queryCondition.ribbonTypeName = ribbonTypeName;
+      if (castIdJson) {
+        let castIdList = JSON.parse(castIdJson);
+        if (castIdList.length > 0) {
+          castIdList = castIdList.map(item => {
+            return Number(item);
+          });
+          queryCondition.castId = { $in: castIdList };
+        }
+      }
+      if (ribbonTypeNameJson) {
+        let ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
+        if (ribbonTypeNameList.length > 0) {
+          queryCondition.ribbonTypeName = { $in: ribbonTypeNameList };
+        }
       }
       if (ribbonWidthJson) {
         let ribbonWidthList = JSON.parse(ribbonWidthJson);

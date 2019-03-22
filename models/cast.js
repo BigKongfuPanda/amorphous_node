@@ -23,6 +23,7 @@ const castSchema = new Schema({
 	updatePerson: String, // 更新者
 	createPerson: String, // 创建者
 	uselessRibbonWeight: {type: Number, default: 0 }, //废带重量
+	createTime: Date, // 冶炼时间，00:00:00 - 08:00:00 之间的算上一天，不能算当天
 	record: [
 		{
 			nozzleSize: String, //喷嘴规格 30*0.25
