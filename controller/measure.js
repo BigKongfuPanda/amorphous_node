@@ -6,6 +6,7 @@ const planModel = require('../models/plan');
 const log = require('log4js').getLogger("measure");
 const nodeExcel = require('excel-export');
 const moment = require('moment');
+const measureService = require('../service/measure');
 
 class Measure {
   constructor() {
@@ -198,7 +199,13 @@ class Measure {
 
   // 更新操作，由检测人员和库房人员使用
   async updateData(req, res, next) {
-    let { _id, roleId, adminname, castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, ribbonTypeName, ribbonWidth, roller, rollMachine, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isStored, unStoreReason, clients = [], remainWeight, takeBy, shipRemark, place, createdAt, totalStoredWeight = 0, inPlanStoredWeight = 0, outPlanStoredWeight = 0, qualityOfA = 0, qualityOfB = 0, qualityOfC = 0, qualityOfD = 0, qualityOfE = 0, highFactorThinRibbonWeight = 0, thinRibbonWeight = 0, inPlanThickRibbonWeight = 0, qualityOfGood = 0, qualityOfFine = 0, qualityOfNormal = 0 } = req.body;
+    // 检测确认入库操作，传参为dataJson
+    if (req.body.dataJson) {
+      console.log(1);
+      return measureService.measureConfirm(req, res, next);
+    }
+
+    let { _id, roleId, adminname, castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, ribbonTypeName, ribbonWidth, roller, rollMachine, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients = [], remainWeight, takeBy, shipRemark, place, createdAt, totalStoredWeight = 0, inPlanStoredWeight = 0, outPlanStoredWeight = 0, qualityOfA = 0, qualityOfB = 0, qualityOfC = 0, qualityOfD = 0, qualityOfE = 0, highFactorThinRibbonWeight = 0, thinRibbonWeight = 0, inPlanThickRibbonWeight = 0, qualityOfGood = 0, qualityOfFine = 0, qualityOfNormal = 0 } = req.body;
     try{
       if (!_id) {
         throw new Error('参数错误')
@@ -214,7 +221,7 @@ class Measure {
     }
 
     // 如果修改时间相比创建时间，已经过了24小时，则除了超级管理员，检测，库房以外不能修改。
-    if (roleId == 4) {
+    if (roleId == 4) { // roleId: 4 重卷人员
       try {
         const createTime = new Date(createdAt);
         const period = Date.now() - createTime;
@@ -276,7 +283,7 @@ class Measure {
         castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight,
         ribbonTypeName, ribbonWidth, castDate, caster, roller, rollMachine,
         laminationFactor, laminationLevel,
-        realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isStored, unStoreReason, clients,
+        realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients,
         inStoreDate, remainWeight, takeBy, shipRemark, place, outStoreDate, 
         totalStoredWeight, inPlanStoredWeight, outPlanStoredWeight,
         qualityOfA, qualityOfB, qualityOfC, qualityOfD, qualityOfE,

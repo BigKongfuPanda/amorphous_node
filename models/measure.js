@@ -46,6 +46,7 @@ const measureSchema = new Schema({
   appearence: String, //带材外观
   appearenceLevel: String, //带材外观等级
   ribbonTotalLevel: String, //带材综合级别
+  isMeasureConfirmed: { type: Number, default: 0 }, // 检测是否确认可入库：1-是，0-否
   // storageRule: Object, //入库规则
   isStored: { type: Number, default: 3 }, // 是否入库：1-计划内入库，2-计划外入库，3-否
   unStoreReason: '', //不入库原因
