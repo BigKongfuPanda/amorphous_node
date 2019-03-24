@@ -8,6 +8,7 @@ const measure = require('./measure');
 const ribbonType = require('./ribbonType');
 const ribbonWidth = require('./ribbonWidth');
 const ribbonThicknessLevel = require('./ribbonThicknessLevel');
+const ribbonToughnessLevel = require('./ribbonToughnessLevel');
 const laminationLevel = require('./laminationLevel');
 const statistics = require('./statistics');
 
@@ -33,6 +34,7 @@ module.exports = app => {
   app.use('/ribbonType', ribbonType);
   app.use('/ribbonWidth', ribbonWidth);
   app.use('/ribbonThicknessLevel', ribbonThicknessLevel);
+  app.use('/ribbonToughnessLevel', ribbonToughnessLevel);
   app.use('/laminationLevel', laminationLevel);
   app.use('/statistics', statistics);
 };

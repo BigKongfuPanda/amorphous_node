@@ -26,7 +26,7 @@ class User {
     }
 
     try {
-      const list = await userModel.find({});
+      const list = await userModel.find({}).sort({'roleId': 'asc'});
       res.send({
         status: 0,
         message: '查询成功',
