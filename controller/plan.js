@@ -45,16 +45,20 @@ class Plan {
   }
 
   async createData(req, res, next) {
-    const { date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeName, ribbonWidth, client = '', furnace, alloyWeight = 0, castTime = '', orderThickness, orderLaminationFactor, orderRibbonToughnessLevelsJson, orderAppearenceLevelsJson, qualifiedThickness, qualifiedLaminationFactor, qualifiedRibbonToughnessLevelsJson, qualifiedAppearenceLevelsJson } = req.body;
-    const orderRibbonToughnessLevels = JSON.parse(orderRibbonToughnessLevelsJson);
-    const orderAppearenceLevels = JSON.parse(orderAppearenceLevelsJson);
-    const qualifiedRibbonToughnessLevels = JSON.parse(qualifiedRibbonToughnessLevelsJson);
-    const qualifiedAppearenceLevels = JSON.parse(qualifiedAppearenceLevelsJson);
-
+    const { formDataJson } = req.body;
+    let formData = [];
+    let furnaceList = [];
     try{
-      if (!date || !castId || !team || !ribbonTypeName || !ribbonWidth || !furnace || !orderThickness || !orderLaminationFactor || !orderRibbonToughnessLevels || !orderAppearenceLevels) {
+      if (!formDataJson) {
         throw new Error('参数错误')
       }
+      formData = JSON.parse(formDataJson);
+      furnaceList = [];
+      formData.forEach(item => {
+        furnaceList.push(item.furnace);
+        delete item.theBeginfurnace;
+        delete item.heatNum;
+      });
     }catch(err){
       console.log(err.message, err);
       res.send({
@@ -65,11 +69,13 @@ class Plan {
     }
 
     try {
-      const data = await planModel.findOne({ furnace });
-      // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
-      if (data) {
-        throw new Error('炉号重复');
-      }
+      furnaceList.forEach(async (furnace) => {
+        const data = await planModel.findOne({ furnace });
+        // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
+        if (data) {
+          throw new Error(`炉号 ${furnace} 重复`);
+        }
+      });
     } catch (err) {
       console.log(err.message, err);
       log.error(err.message, err);
@@ -81,15 +87,7 @@ class Plan {
     }
 
     try {
-      const newData = {
-        date, remark, fileNumber,
-        castId, team, taskOrder,
-        ribbonTypeName, ribbonWidth, client,
-        furnace, alloyWeight, castTime,
-        orderThickness, orderLaminationFactor, 
-        orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedThickness, qualifiedLaminationFactor, qualifiedRibbonToughnessLevels, qualifiedAppearenceLevels
-      };
-      await planModel.create(newData);
+      await planModel.insertMany(formData);
       res.send({
         status: 0,
         message: '新增生产记录成功'
