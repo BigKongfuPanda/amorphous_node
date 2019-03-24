@@ -268,11 +268,11 @@ class Measure {
         remainWeight = coilNetWeight;
       }
 
-      let inStoreDate = null;
-      // 当带材检测后入库的时候，设置入库日期，检测人员操作
-      if (isStored == 1 || isStored == 2) {
-        inStoreDate = Date.now();
-      }
+      // let inStoreDate = null;
+      // // 当带材检测后入库的时候，设置入库日期，检测人员操作
+      // if (isStored == 1 || isStored == 2) {
+      //   inStoreDate = Date.now();
+      // }
 
       let outStoreDate = null;
       // 当带材被领用的时候，设置出库日期，库房操作
@@ -283,8 +283,7 @@ class Measure {
         castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight,
         ribbonTypeName, ribbonWidth, castDate, caster, roller, rollMachine,
         laminationFactor, laminationLevel,
-        realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients,
-        inStoreDate, remainWeight, takeBy, shipRemark, place, outStoreDate, 
+        realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients, remainWeight, takeBy, shipRemark, place, outStoreDate, 
         totalStoredWeight, inPlanStoredWeight, outPlanStoredWeight,
         qualityOfA, qualityOfB, qualityOfC, qualityOfD, qualityOfE,
         highFactorThinRibbonWeight, thinRibbonWeight,
