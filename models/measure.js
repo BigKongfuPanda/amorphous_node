@@ -51,6 +51,7 @@ const measureSchema = new Schema({
   isStored: { type: Number, default: 3 }, // 是否入库：1-计划内入库，2-计划外入库，3-否
   unStoreReason: '', //不入库原因
   clients: Array, //去向 德国，法国
+  measureDate: {type: Date, default: null}, //检测日期
   // 库房信息
   inStoreDate: {type: Date, default: null}, //入库日期
   outStoreDate: {type: Date, default: null}, //出库日期

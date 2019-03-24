@@ -201,7 +201,6 @@ class Measure {
   async updateData(req, res, next) {
     // 检测确认入库操作，传参为dataJson
     if (req.body.dataJson) {
-      console.log(1);
       return measureService.measureConfirm(req, res, next);
     }
 
