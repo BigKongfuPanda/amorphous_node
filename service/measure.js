@@ -26,8 +26,9 @@ class MeasureService {
 
     try {
       data.forEach(async (item) => {
-      // 当带材检测后入库的时候，设置入库日期，检测人员操作
+      // 当带材检测后入库的时候，设置入库日期和检测日期，检测人员操作
         item.inStoreDate = Date.now();
+        item.measureDate = Date.now();
         await measureModel.updateOne({ _id: item._id }, { $set: item });
       });
       res.send({
