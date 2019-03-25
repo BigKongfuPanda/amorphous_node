@@ -67,6 +67,7 @@ class Measure {
       if (filterBy == 'storage') {
         queryCondition.remainWeight = {$gt: 0};
         queryCondition.isStored = {$in: [1, 2]};
+        queryCondition.isMeasureConfirmed= 1;
       }
       
       const count = await measureModel.countDocuments(queryCondition);
