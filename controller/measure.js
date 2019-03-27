@@ -205,6 +205,16 @@ class Measure {
       return measureService.measureConfirm(req, res, next);
     }
 
+    // 整个托盘出库: 参数: type: all, place: '', takeBy: ''
+    if (req.body.type === 'all') {
+      return measureService.allOutStore(req, res, next);
+    }
+
+    // 批量出库: 参数: type: batch, dataJson: '', takeBy: ''
+    if (req.body.type === 'batch') {
+      return measureService.batchOutStore(req, res, next);
+    }
+
     let { _id, roleId, adminname, castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, ribbonTypeName, ribbonWidth, roller, rollMachine, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients = [], remainWeight, takeBy, shipRemark, place, createdAt, totalStoredWeight = 0, inPlanStoredWeight = 0, outPlanStoredWeight = 0, qualityOfA = 0, qualityOfB = 0, qualityOfC = 0, qualityOfD = 0, qualityOfE = 0, highFactorThinRibbonWeight = 0, thinRibbonWeight = 0, inPlanThickRibbonWeight = 0, qualityOfGood = 0, qualityOfFine = 0, qualityOfNormal = 0 } = req.body;
     try{
       if (!_id) {

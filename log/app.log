@@ -303,3 +303,99 @@
     at Function.process_params (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:335:12)
     at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:275:10)
     at checkLogin (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/routes/index.js:23:5)
+[2019-03-27T22:22:40.642] [ERROR] measure - 参数错误 Error: 参数错误
+    at updateData (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/measure.js:211:15)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/routes/index.js:23:5)
+[2019-03-27T22:24:14.336] [ERROR] measure - 参数错误 Error: 参数错误
+    at updateData (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/measure.js:211:15)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/routes/index.js:23:5)
+[2019-03-27T22:28:48.638] [ERROR] measure - 参数错误 Error: 参数错误
+    at updateData (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/measure.js:211:15)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/routes/index.js:23:5)
+[2019-03-27T22:30:37.246] [ERROR] measure - 参数错误 Error: 参数错误
+    at updateData (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/measure.js:211:15)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/routes/index.js:23:5)
+[2019-03-27T22:35:26.726] [ERROR] measure - 更新数据失败 Error: 更新数据失败
+    at MeasureService.allOutStore (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/service/measure.js:85:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-27T22:37:48.878] [ERROR] measure - 更新数据失败 Error: 更新数据失败
+    at MeasureService.allOutStore (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/service/measure.js:85:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-27T22:38:49.825] [ERROR] measure - 更新数据失败 Error: 更新数据失败
+    at MeasureService.allOutStore (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/service/measure.js:85:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-27T22:39:56.182] [ERROR] measure - 更新数据失败 Error: 更新数据失败
+    at MeasureService.allOutStore (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/service/measure.js:85:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-27T22:40:27.461] [ERROR] measure - 更新数据失败 Error: 更新数据失败
+    at MeasureService.allOutStore (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/service/measure.js:85:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-27T22:45:00.720] [ERROR] measure - 更新数据失败 Error: 更新数据失败
+    at MeasureService.allOutStore (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/service/measure.js:85:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-27T22:46:33.090] [ERROR] measure - 更新数据失败 Error: 更新数据失败
+    at MeasureService.allOutStore (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/service/measure.js:85:15)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
