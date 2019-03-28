@@ -613,15 +613,8 @@ class Measure {
           throw new Error('文件上传出错');
         }
         let filePath = files.file.path;
-        
-        let fileData = fs.readFileSync(filePath, 'utf8');
-        res.send({
-          status: 0,
-          message: '',
-          data: fileData
-        })
-
         let data = xlsx.parse(filePath);
+        fs.unlinkSync(filePath);
         list = data[0].data.filter(item => item.length > 0).map(item => {
           return {
             furnace: item[0],
