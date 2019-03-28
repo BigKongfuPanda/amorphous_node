@@ -7,6 +7,10 @@ const log = require('log4js').getLogger("measure");
 const nodeExcel = require('excel-export');
 const moment = require('moment');
 const measureService = require('../service/measure');
+const formidable = require('formidable');
+const xlsx = require('node-xlsx');
+const path = require('path');
+const fs = require('fs');
 
 class Measure {
   constructor() {
@@ -593,6 +597,69 @@ class Measure {
         message: '导出库房主表失败'
       });
     }
+  }
+
+  async uploadStorage(req, res, next) {
+    let list = [];
+    const form = new formidable.IncomingForm();
+    form.encoding = 'utf-8';
+		form.uploadDir = path.join(__dirname,'../public/upload/');
+		form.keepExtensions = true;//保留后缀
+    form.maxFieldsSize = 2*1024*1024;
+    
+    form.parse(req, async (error, fields, files) => {
+      try {
+        if (error) {
+          throw new Error('文件上传出错');
+        }
+        let filePath = files.file.path;
+        
+        let fileData = fs.readFileSync(filePath, 'utf8');
+        res.send({
+          status: 0,
+          message: '',
+          data: fileData
+        })
+
+        let data = xlsx.parse(filePath);
+        list = data[0].data.filter(item => item.length > 0).map(item => {
+          return {
+            furnace: item[0],
+            coilNumber: Number(item[1]),
+            place: item[2],
+          };
+        });
+      } catch (err) {
+        log.error(err.message);
+        console.log(err.message);
+        res.send({
+          status: -1,
+          message: err.message
+        });
+      }
+      
+      try {
+        for (let i = 0, len = list.length; i < len; i++) {
+          const item = list[i];
+          const { n } = await measureModel.updateOne({ furnace: item.furnace, coilNumber: item.coilNumber, isStored: { $in : [1, 2]}, isMeasureConfirmed: 1 }, { place: item.place });
+          if (n == 0) {
+            throw new Error('添加仓位失败：某些炉号或盘号不存在');
+          }
+        }
+      } catch (err) {
+        log.error(err.message);
+        console.log(err.message);
+        res.send({
+          status: -1,
+          message: err.message
+        });
+      }
+
+      res.send({
+        status: 0,
+        message: '添加仓位成功'
+      });
+    });
   }
 }
 

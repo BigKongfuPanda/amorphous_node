@@ -399,3 +399,10 @@
     at MeasureService.allOutStore (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/service/measure.js:85:15)
     at <anonymous>
     at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-28T23:13:24.454] [ERROR] measure - 添加仓位失败：某些炉号或盘号不存在
+[2019-03-28T23:14:20.370] [ERROR] measure - 添加仓位失败：某些炉号或盘号不存在
+[2019-03-28T23:14:40.241] [ERROR] measure - 添加仓位失败：某些炉号或盘号不存在
+[2019-03-28T23:15:44.814] [ERROR] measure - 添加仓位失败：某些炉号或盘号不存在
+[2019-03-28T23:21:31.389] [ERROR] measure - Cast to number failed for value "NaN" at path "coilNumber" for model "Measure"
+[2019-03-28T23:24:33.046] [ERROR] measure - Cast to number failed for value "NaN" at path "coilNumber" for model "Measure"
+[2019-03-28T23:25:48.805] [ERROR] measure - Cast to number failed for value "NaN" at path "coilNumber" for model "Measure"
