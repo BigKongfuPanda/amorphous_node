@@ -18,7 +18,7 @@ class Measure {
   }
 
   async queryData(req, res, next) {
-    const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels, current = 1, limit = 10, filterBy } = req.query;
+    const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels, current = 1, limit = 20, filterBy } = req.query;
     try {
       let queryCondition = {};
       if(castId) {
@@ -530,6 +530,7 @@ class Measure {
       if (filterBy == 'storage') {
         queryCondition.remainWeight = {$gt: 0};
         queryCondition.isStored = {$in: [1, 2]};
+        queryCondition.isMeasureConfirmed = 1;
       }
 
       const conf = {};
@@ -615,7 +616,8 @@ class Measure {
         let filePath = files.file.path;
         let data = xlsx.parse(filePath);
         fs.unlinkSync(filePath);
-        list = data[0].data.filter(item => item.length > 0).map(item => {
+        // 过滤掉标题和空行的数据
+        list = data[0].data.filter((item, i) => i > 0 && item.length > 0).map(item => {
           return {
             furnace: item[0],
             coilNumber: Number(item[1]),

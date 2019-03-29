@@ -9,7 +9,7 @@ class Statistics {
   }
 
   async queryDataOfQuality(req, res, next) {
-    const { castIdJson, furnace, caster, ribbonTypeNameJson, ribbonWidthJson,  current = 1, limit = 10 } = req.query;
+    const { castIdJson, furnace, caster, ribbonTypeNameJson, ribbonWidthJson,  current = 1, limit = 20 } = req.query;
 
     try {
       let queryCondition = {};

@@ -10,7 +10,7 @@ class Melt {
   }
 
   async queryData(req, res, next) {
-    const { castId, startTime, endTime, melter, ribbonTypeName, bucket, newAlloyNumber, oldAlloyNumber,  current = 1, limit = 10 } = req.query;
+    const { castId, startTime, endTime, melter, ribbonTypeName, bucket, newAlloyNumber, oldAlloyNumber,  current = 1, limit = 20 } = req.query;
     try{
       if (!castId) {
         throw new Error('参数错误')

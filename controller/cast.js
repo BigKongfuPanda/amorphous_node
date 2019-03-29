@@ -10,7 +10,7 @@ class Cast {
   }
 
   async queryData(req, res, next) {
-    const { castId, team, furnace, startTime, endTime, caster, ribbonTypeName, ribbonWidthJson,  current = 1, limit = 10 } = req.query;
+    const { castId, team, furnace, startTime, endTime, caster, ribbonTypeName, ribbonWidthJson,  current = 1, limit = 20 } = req.query;
     try{
       if (!castId) {
         throw new Error('参数错误')

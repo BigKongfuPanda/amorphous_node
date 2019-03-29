@@ -101,3 +101,8 @@
 [2019-03-28T23:21:31.389] [ERROR] measure - Cast to number failed for value "NaN" at path "coilNumber" for model "Measure"
 [2019-03-28T23:24:33.046] [ERROR] measure - Cast to number failed for value "NaN" at path "coilNumber" for model "Measure"
 [2019-03-28T23:25:48.805] [ERROR] measure - Cast to number failed for value "NaN" at path "coilNumber" for model "Measure"
+[2019-03-29T11:10:28.908] [ERROR] measure - Cannot read property 'data' of undefined
+[2019-03-29T11:10:48.034] [ERROR] measure - Cannot read property 'data' of undefined
+[2019-03-29T11:25:27.452] [ERROR] measure - item is not defined
+[2019-03-29T11:26:35.645] [ERROR] measure - Cannot read property 'furnace' of undefined
+[2019-03-29T11:29:36.113] [ERROR] measure - Cannot read property 'furnace' of undefined
