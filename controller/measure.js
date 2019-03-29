@@ -604,7 +604,7 @@ class Measure {
     let list = [];
     const form = new formidable.IncomingForm();
     form.encoding = 'utf-8';
-		form.uploadDir = path.join(__dirname,'../public/upload/');
+		form.uploadDir = path.join(__dirname,'../upload/');
 		form.keepExtensions = true;//保留后缀
     form.maxFieldsSize = 2*1024*1024;
     
@@ -633,20 +633,29 @@ class Measure {
         });
       }
       
+      let errList = [];
       try {
         for (let i = 0, len = list.length; i < len; i++) {
           const item = list[i];
           const { n } = await measureModel.updateOne({ furnace: item.furnace, coilNumber: item.coilNumber, isStored: { $in : [1, 2]}, isMeasureConfirmed: 1 }, { place: item.place });
           if (n == 0) {
-            throw new Error('添加仓位失败：某些炉号或盘号不存在');
+            // throw new Error(`添加仓位失败：炉号${item.furnace}，盘号${item.coilNumber}不存在`);
+            errList.push({
+              furnace: item.furnace,
+              coilNumber: item.coilNumber
+            });
           }
+        }
+        if (errList.length > 0) {
+          throw new Error('添加仓位失败');
         }
       } catch (err) {
         log.error(err.message);
         console.log(err.message);
         res.send({
           status: -1,
-          message: err.message
+          message: err.message,
+          data: errList
         });
       }
 

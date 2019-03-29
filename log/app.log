@@ -411,3 +411,18 @@
 [2019-03-29T11:25:27.452] [ERROR] measure - item is not defined
 [2019-03-29T11:26:35.645] [ERROR] measure - Cannot read property 'furnace' of undefined
 [2019-03-29T11:29:36.113] [ERROR] measure - Cannot read property 'furnace' of undefined
+[2019-03-29T15:14:13.877] [ERROR] measure - 添加仓位失败：某些炉号或盘号不存在
+[2019-03-29T15:24:35.037] [ERROR] measure - furnace is not defined
+[2019-03-29T15:24:58.153] [ERROR] measure - 添加仓位失败：炉号06-20190214-02/01，盘号4不存在
+[2019-03-29T15:25:53.805] [ERROR] measure - 添加仓位失败：炉号06-20190214-02/01，盘号4不存在
+[2019-03-29T15:47:41.156] [ERROR] measure - 添加仓位失败
+[2019-03-29T15:48:04.149] [ERROR] measure - 添加仓位失败
+[2019-03-29T15:48:42.945] [ERROR] measure - 添加仓位失败
+[2019-03-29T15:50:32.958] [ERROR] measure - 添加仓位失败
+[2019-03-29T15:50:51.721] [ERROR] measure - 添加仓位失败
+[2019-03-29T15:51:09.612] [ERROR] measure - 添加仓位失败
+[2019-03-29T15:51:46.446] [ERROR] measure - 添加仓位失败
+[2019-03-29T15:52:19.372] [ERROR] measure - 添加仓位失败
+[2019-03-29T15:52:52.251] [ERROR] measure - 添加仓位失败
+[2019-03-29T15:53:20.507] [ERROR] measure - 添加仓位失败
+[2019-03-29T15:54:34.864] [ERROR] measure - 添加仓位失败
