@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bailicangdu/node-elm"
+    "url": "https://github.com/BigKongfuPanda/amorphous_node.git"
   },
   "dependencies": {
     "chalk": "^2.4.1",
@@ -23,6 +23,7 @@
     "formidable": "^1.2.1",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
+    "lodash": "^4.17.11",
     "log4js": "^4.0.2",
     "moment": "^2.23.0",
     "mongoose": "^5.3.12",

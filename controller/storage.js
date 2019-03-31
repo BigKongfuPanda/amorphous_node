@@ -17,7 +17,7 @@ class Storage {
   }
 
   async queryData(req, res, next) {
-    const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels, current = 1, limit = 20 } = req.query;
+    const { castId, furnace, startTime, endTime, outStartTime, outEndTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels, isRemain = 1, current = 1, limit = 20 } = req.query;
     try {
       let queryCondition = {};
       if(castId) {
@@ -34,6 +34,9 @@ class Storage {
       }
       if(startTime && endTime) {
         queryCondition.inStoreDate = { $gt: startTime, $lt: endTime };
+      }
+      if(outStartTime && outEndTime) {
+        queryCondition.outStoreDate = { $gt: outStartTime, $lt: outEndTime };
       }
       if (ribbonTypeNameJson) {
         const ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
@@ -62,12 +65,15 @@ class Storage {
       if(place) {
         queryCondition.place = place;        
       }
+      if(isRemain == 0) {
+        queryCondition.remainWeight = 0;        
+      } else {
+        queryCondition.remainWeight = {$gt: 0};
+      }
       if (ribbonTotalLevels) {
         const ribbonTotalLevelList = ribbonTotalLevels.split(',');
         queryCondition.ribbonTotalLevel = { $in: ribbonTotalLevelList };
       }
-      // 结余大于0
-      queryCondition.remainWeight = {$gt: 0};
       
       const count = await storageModel.countDocuments(queryCondition);
       const totalPage = Math.ceil(count / limit);
@@ -103,7 +109,6 @@ class Storage {
   }
 
   async updateData(req, res, next) {
-
     // 整个托盘出库: 参数: type: all, place: '', takeBy: ''
     if (req.body.type === 'all') {
       return storageService.allOutStore(req, res, next);
@@ -187,7 +192,7 @@ class Storage {
     try {
       // 此处应该使用事务，二者要么都成功，要么都失败 
       const { n } = await storageModel.deleteOne({ _id });
-      const { m } = await measureModel.updateOne({ furnace, coilNumber }, { $set: { isStored: 3, isMeasureConfirmed: 0 } });
+      const { m } = await measureModel.updateOne({ furnace, coilNumber: coilNumber }, { $set: { isStored: 3, isMeasureConfirmed: 0 } });
       if (n != 0 && m != 0) {
         res.send({
           status: 0,
@@ -197,6 +202,7 @@ class Storage {
         throw new Error('退库失败');
       }
     } catch (err) {
+      console.log(err.message, err);
       log.error(err.message, err);
       res.send({
         status: -1,
@@ -206,7 +212,7 @@ class Storage {
   }
 
   async exportStorage(req, res, next) {
-    const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels,  } = req.query;
+    const { castId, furnace, startTime, endTime, outStartTime, outEndTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels, isRemain = 1 } = req.query;
     try {
       let queryCondition = {};
       if(castId) {
@@ -223,6 +229,9 @@ class Storage {
       }
       if(startTime && endTime) {
         queryCondition.inStoreDate = { $gt: startTime, $lt: endTime };
+      }
+      if(outStartTime && outEndTime) {
+        queryCondition.outStoreDate = { $gt: outStartTime, $lt: outEndTime };
       }
       if (ribbonTypeNameJson) {
         const ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
@@ -251,12 +260,15 @@ class Storage {
       if(place) {
         queryCondition.place = place;        
       }
+      if(isRemain === 0) {
+        queryCondition.remainWeight = 0;        
+      } else {
+        queryCondition.remainWeight = {$gt: 0};
+      }
       if (ribbonTotalLevels) {
         const ribbonTotalLevelList = ribbonTotalLevels.split(',');
         queryCondition.ribbonTotalLevel = { $in: ribbonTotalLevelList };
       }
-      // 筛选库房的数据：入库且结余大于0
-      queryCondition.remainWeight = {$gt: 0};
 
       const conf = {};
       conf.name = "mysheet";
@@ -362,9 +374,8 @@ class Storage {
       try {
         for (let i = 0, len = list.length; i < len; i++) {
           const item = list[i];
-          const { n } = await storageModel.updateOne({ furnace: item.furnace, coilNumber: item.coilNumber, isStored: { $in : [1, 2]}, isMeasureConfirmed: 1 }, { place: item.place });
+          const { n } = await storageModel.updateOne({ furnace: item.furnace, coilNumber: item.coilNumber }, { place: item.place });
           if (n == 0) {
-            // throw new Error(`添加仓位失败：炉号${item.furnace}，盘号${item.coilNumber}不存在`);
             errList.push({
               furnace: item.furnace,
               coilNumber: item.coilNumber

@@ -1,6 +1,7 @@
 const measureModel = require('../models/measure');
 const storageModel = require('../models/storage');
 const log = require('log4js').getLogger("measure");
+const { cloneDeep } = require('lodash');
 
 class MeasureService {
   constructor() {
@@ -33,7 +34,12 @@ class MeasureService {
         item.isMeasureConfirmed = 1; // 1-检测确认入库，0-没有入库
         await measureModel.updateOne({ _id: item._id }, { $set: { inStoreDate: item.inStoreDate, measureDate: item.measureDate, isMeasureConfirmed: 1 } });
         // 将入库数据
-        await storageModel.create(item);
+        let clone = cloneDeep(item);
+        delete clone._id;
+        delete clone.createdAt;
+        delete clone.updatedAt;
+        delete clone._v;
+        await storageModel.create(clone);
       });
       res.send({
         status: 0,

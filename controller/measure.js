@@ -14,7 +14,7 @@ class Measure {
   }
 
   async queryData(req, res, next) {
-    const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels, current = 1, limit = 20 } = req.query;
+    const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, ribbonToughnessLevelJson,  appearenceLevelJson, place, ribbonTotalLevels, current = 1, limit = 20 } = req.query;
     try {
       let queryCondition = {};
       if(castId) {
@@ -54,6 +54,18 @@ class Measure {
         const laminationLevelList = JSON.parse(laminationLevelJson);
         if (laminationLevelList.length > 0) {
           queryCondition.laminationLevel = { $in: laminationLevelList };
+        }
+      }
+      if (ribbonToughnessLevelJson) {
+        const ribbonToughnessLevelList = JSON.parse(ribbonToughnessLevelJson);
+        if (ribbonToughnessLevelList.length > 0) {
+          queryCondition.ribbonToughnessLevel = { $in: ribbonToughnessLevelList };
+        }
+      }
+      if (appearenceLevelJson) {
+        const appearenceLevelList = JSON.parse(appearenceLevelJson);
+        if (appearenceLevelList.length > 0) {
+          queryCondition.appearenceLevel = { $in: appearenceLevelList };
         }
       }
       if(place) {
@@ -324,7 +336,7 @@ class Measure {
   }
 
   async exportMeasure(req, res, next) {
-    const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels} = req.query;
+    const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, ribbonToughnessLevelJson, appearenceLevelJson, place, ribbonTotalLevels} = req.query;
     try {
       let queryCondition = {};
       if(castId) {
@@ -364,6 +376,18 @@ class Measure {
         const laminationLevelList = JSON.parse(laminationLevelJson);
         if (laminationLevelList.length > 0) {
           queryCondition.laminationLevel = { $in: laminationLevelList };
+        }
+      }
+      if (ribbonToughnessLevelJson) {
+        const ribbonToughnessLevelList = JSON.parse(ribbonToughnessLevelJson);
+        if (ribbonToughnessLevelList.length > 0) {
+          queryCondition.ribbonToughnessLevel = { $in: ribbonToughnessLevelList };
+        }
+      }
+      if (appearenceLevelJson) {
+        const appearenceLevelList = JSON.parse(appearenceLevelJson);
+        if (appearenceLevelList.length > 0) {
+          queryCondition.appearenceLevel = { $in: appearenceLevelList };
         }
       }
       if(place) {

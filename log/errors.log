@@ -122,3 +122,16 @@
 [2019-03-29T15:53:20.507] [ERROR] measure - 添加仓位失败
 [2019-03-29T15:54:34.864] [ERROR] measure - 添加仓位失败
 [2019-03-29T18:34:16.551] [ERROR] storage - 添加仓位失败
+[2019-03-30T16:10:10.111] [ERROR] storage - f is not defined ReferenceError: f is not defined
+    at delData (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/storage.js:194:17)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-30T16:11:25.281] [ERROR] storage - f is not defined ReferenceError: f is not defined
+    at delData (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/storage.js:194:17)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-30T16:15:43.666] [ERROR] storage - f is not defined ReferenceError: f is not defined
+    at delData (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/controller/storage.js:194:17)
+    at <anonymous>
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+[2019-03-30T16:20:07.055] [ERROR] storage - 添加仓位失败
