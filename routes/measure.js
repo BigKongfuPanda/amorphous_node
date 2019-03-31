@@ -19,9 +19,4 @@ router.delete('/', Measure.delData);
 // 导出excel
 router.get('/exportmeasure', Measure.exportMeasure);
 
-// router.get('/exportstorage', Measure.exportStorage);
-
-// 导入excel，批量添加仓位
-// router.post('/uploadstorage', Measure.uploadStorage);
-
 module.exports = router;

@@ -440,3 +440,108 @@
     at <anonymous>
     at process._tickCallback (internal/process/next_tick.js:188:7)
 [2019-03-30T16:20:07.055] [ERROR] storage - 添加仓位失败
+[2019-03-31T15:03:15.978] [ERROR] storage - 查询库房记录失败 { CastError: Cast to number failed for value "returnRecord" at path "castId" for model "Storage"
+    at new CastError (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/mongoose/lib/error/cast.js:29:11)
+    at castNumber (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/mongoose/lib/cast/number.js:18:11)
+    at SchemaNumber.cast (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/mongoose/lib/schema/number.js:214:10)
+    at SchemaNumber.SchemaType.applySetters (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/mongoose/lib/schematype.js:763:12)
+    at SchemaNumber.SchemaType._castForQuery (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/mongoose/lib/schematype.js:1166:15)
+    at SchemaNumber.castForQuery (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/mongoose/lib/schema/number.js:265:14)
+    at SchemaNumber.SchemaType.castForQueryWrapper (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/mongoose/lib/schematype.js:1135:15)
+    at cast (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/mongoose/lib/cast.js:306:32)
+    at model.Query.Query.cast (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/mongoose/lib/query.js:4024:12)
+    at model.Query.Query._countDocuments (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/mongoose/lib/query.js:2062:10)
+    at process.nextTick (/Users/yp-tc-m2504/Documents/f2e/amorphous_node/node_modules/kareem/index.js:369:33)
+    at _combinedTickCallback (internal/process/next_tick.js:131:7)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+  message: 'Cast to number failed for value "returnRecord" at path "castId" for model "Storage"',
+  name: 'CastError',
+  stringValue: '"returnRecord"',
+  kind: 'number',
+  value: 'returnRecord',
+  path: 'castId',
+  reason: undefined,
+  model: 
+   { [Function: model]
+     hooks: Kareem { _pres: [Object], _posts: [Object] },
+     base: 
+      Mongoose {
+        connections: [Array],
+        models: [Object],
+        modelSchemas: [Object],
+        options: [Object],
+        _pluralize: [Function: pluralize],
+        plugins: [Array] },
+     modelName: 'Storage',
+     model: [Function: model],
+     db: 
+      NativeConnection {
+        base: [Object],
+        collections: [Object],
+        models: [Object],
+        config: [Object],
+        replica: false,
+        options: null,
+        otherDbs: [],
+        relatedDbs: {},
+        states: [Object],
+        _readyState: 1,
+        _closeCalled: false,
+        _hasOpened: true,
+        '$internalEmitter': [Object],
+        _listening: false,
+        _connectionOptions: [Object],
+        name: 'amorphous',
+        host: 'localhost',
+        port: 27017,
+        user: null,
+        pass: null,
+        client: [Object],
+        '$initialConnection': [Object],
+        _events: [Object],
+        _eventsCount: 2,
+        db: [Object] },
+     discriminators: undefined,
+     '$appliedMethods': true,
+     '$appliedHooks': true,
+     schema: 
+      Schema {
+        obj: [Object],
+        paths: [Object],
+        aliases: {},
+        subpaths: {},
+        virtuals: [Object],
+        singleNestedPaths: {},
+        nested: {},
+        inherits: {},
+        callQueue: [],
+        _indexes: [Array],
+        methods: [Object],
+        methodOptions: {},
+        statics: {},
+        tree: [Object],
+        query: {},
+        childSchemas: [],
+        plugins: [Array],
+        '$id': 7,
+        s: [Object],
+        _userProvidedOptions: [Object],
+        options: [Object],
+        '$timestamps': [Object],
+        '$globalPluginsApplied': true,
+        _requiredpaths: [],
+        _indexedpaths: [Array] },
+     collection: 
+      NativeCollection {
+        collection: [Object],
+        opts: [Object],
+        name: 'Storage',
+        collectionName: 'Storage',
+        conn: [Object],
+        queue: [],
+        buffer: false,
+        emitter: [Object] },
+     Query: { [Function] base: [Object] },
+     '$__insertMany': [Function],
+     '$init': Promise { [Circular] },
+     '$caught': true } }

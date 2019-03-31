@@ -94,7 +94,7 @@ class Storage {
           totalPage,
           limit,
           totalCoilNum,
-          totalWeight,
+          totalWeight: totalWeight.toFixed(2),
           list
         }
       });

@@ -19,6 +19,7 @@ const measureSchema = new Schema({
   laminationLevel: String, //叠片等级 不合格, 0, 1, 2, 3, 4
   roller: String, // 重卷人
   rollMachine: Number, // 重卷机器编号
+  isFlat: String, // 端面是否平整, 是-平整，否-不平整
   orderThickness: String, // 订单要求：厚度 20-23, ≤23
   orderLaminationFactor: String, // 订单要求：叠片系数 ≥0.78
   orderRibbonToughnessLevels: Array, // 订单要求：韧性 [A,B,C]

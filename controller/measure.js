@@ -103,9 +103,9 @@ class Measure {
 
   // 更新操作，由重卷人员使用
   async createData(req, res, next) {
-    let { castId, furnace, coilNumber, diameter, coilWeight, ribbonTypeName, ribbonWidth, castDate, caster, roller, rollMachine } = req.body;
+    let { castId, furnace, coilNumber, diameter, coilWeight, ribbonTypeName, ribbonWidth, castDate, caster, roller, rollMachine, isFlat } = req.body;
     try{
-      if (!castId || !furnace || !coilNumber || !diameter || !coilWeight || !roller || !rollMachine) {
+      if (!castId || !furnace || !coilNumber || !diameter || !coilWeight || !roller || !rollMachine || !isFlat) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -186,7 +186,7 @@ class Measure {
         castId, furnace,
         ribbonTypeName, ribbonWidth, caster, castDate,
         coilNumber, diameter, coilWeight, coilNetWeight, remainWeight,
-        roller, rollMachine,
+        roller, rollMachine, isFlat,
         orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedThickness, qualifiedLaminationFactor, qualifiedRibbonToughnessLevels, qualifiedAppearenceLevels
       };
       await measureModel.create(newData);
@@ -211,7 +211,7 @@ class Measure {
       return measureService.measureConfirm(req, res, next);
     }
 
-    let { _id, roleId, adminname, castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, ribbonTypeName, ribbonWidth, roller, rollMachine, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients = [], remainWeight, takeBy, shipRemark, place, createdAt, totalStoredWeight = 0, inPlanStoredWeight = 0, outPlanStoredWeight = 0, qualityOfA = 0, qualityOfB = 0, qualityOfC = 0, qualityOfD = 0, qualityOfE = 0, highFactorThinRibbonWeight = 0, thinRibbonWeight = 0, inPlanThickRibbonWeight = 0, qualityOfGood = 0, qualityOfFine = 0, qualityOfNormal = 0 } = req.body;
+    let { _id, roleId, adminname, castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, ribbonTypeName, ribbonWidth, roller, rollMachine, isFlat, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients = [], remainWeight, takeBy, shipRemark, place, createdAt, totalStoredWeight = 0, inPlanStoredWeight = 0, outPlanStoredWeight = 0, qualityOfA = 0, qualityOfB = 0, qualityOfC = 0, qualityOfD = 0, qualityOfE = 0, highFactorThinRibbonWeight = 0, thinRibbonWeight = 0, inPlanThickRibbonWeight = 0, qualityOfGood = 0, qualityOfFine = 0, qualityOfNormal = 0 } = req.body;
     try{
       if (!_id) {
         throw new Error('参数错误')
@@ -276,7 +276,7 @@ class Measure {
 
       const newData = {
         castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight,
-        ribbonTypeName, ribbonWidth, castDate, caster, roller, rollMachine,
+        ribbonTypeName, ribbonWidth, castDate, caster, roller, rollMachine, isFlat,
         laminationFactor, laminationLevel,
         realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients, remainWeight, takeBy, shipRemark, place, 
         totalStoredWeight, inPlanStoredWeight, outPlanStoredWeight,
