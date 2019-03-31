@@ -240,3 +240,4 @@
      '$__insertMany': [Function],
      '$init': Promise { [Circular] },
      '$caught': true } }
+[2019-03-31T16:37:32.937] [ERROR] storage - 添加仓位失败
