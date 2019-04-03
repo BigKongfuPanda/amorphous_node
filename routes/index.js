@@ -1,27 +1,19 @@
 'use strict';
 
+const checkLogin = require('../middleware/checkLogin');
 const melt = require('./melt');
 const cast = require('./cast');
 const plan = require('./plan');
 const user = require('./user');
 const measure = require('./measure');
+const storage = require('./storage');
 const ribbonType = require('./ribbonType');
 const ribbonWidth = require('./ribbonWidth');
 const ribbonThicknessLevel = require('./ribbonThicknessLevel');
+const ribbonToughnessLevel = require('./ribbonToughnessLevel');
 const laminationLevel = require('./laminationLevel');
 const statistics = require('./statistics');
-
-// 检验登录态的中间件
-function checkLogin(req, res, next) {
-  if (req.path.indexOf('/user/login') < 0 && !req.session.userId) {
-    return res.send({
-      status: 302,
-      message: '无访问权限'
-    });
-  } else {
-    next();//继续往下走
-  }
-}
+const _returnGoods = require('./returnGoods');
 
 module.exports = app => {
   app.use(checkLogin);
@@ -30,9 +22,12 @@ module.exports = app => {
   app.use('/cast', cast);
   app.use('/plan', plan);
   app.use('/measure', measure);
+  app.use('/storage', storage);
   app.use('/ribbonType', ribbonType);
   app.use('/ribbonWidth', ribbonWidth);
   app.use('/ribbonThicknessLevel', ribbonThicknessLevel);
+  app.use('/ribbonToughnessLevel', ribbonToughnessLevel);
   app.use('/laminationLevel', laminationLevel);
   app.use('/statistics', statistics);
+  app.use('/returnGoods', _returnGoods);
 };

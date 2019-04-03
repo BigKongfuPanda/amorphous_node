@@ -3,7 +3,7 @@
 const mongoose =  require('mongoose');
 const Schema = mongoose.Schema;
 
-const measureSchema = new Schema({
+const storageSchema = new Schema({
   castId: Number,// 机组编号
   // 重卷录入信息
   furnace: String,// 制带炉号 06-20181120-01/01
@@ -19,7 +19,6 @@ const measureSchema = new Schema({
   laminationLevel: String, //叠片等级 不合格, 0, 1, 2, 3, 4
   roller: String, // 重卷人
   rollMachine: Number, // 重卷机器编号
-  isFlat: String, // 端面是否平整, 是-平整，否-不平整
   orderThickness: String, // 订单要求：厚度 20-23, ≤23
   orderLaminationFactor: String, // 订单要求：叠片系数 ≥0.78
   orderRibbonToughnessLevels: Array, // 订单要求：韧性 [A,B,C]
@@ -47,7 +46,7 @@ const measureSchema = new Schema({
   appearence: String, //带材外观
   appearenceLevel: String, //带材外观等级
   ribbonTotalLevel: String, //带材综合级别
-  isMeasureConfirmed: { type: Number, default: 0 }, // 检测是否确认可入库：1-是，0-否
+  // isMeasureConfirmed: { type: Number, default: 0 }, // 检测是否确认可入库：1-是，0-否
   // storageRule: Object, //入库规则
   isStored: { type: Number, default: 3 }, // 是否入库：1-计划内入库，2-计划外入库，3-否
   unStoreReason: '', //不入库原因
@@ -76,13 +75,13 @@ const measureSchema = new Schema({
   qualityOfFine: { type: Number, default: 0 }, // 质量等级为良的带材质量：B
   qualityOfNormal: { type: Number, default: 0 }, // 质量等级为中的带材质量：30**、40**+ 计划外入库
 }, {
-	collection: 'Measure',
+	collection: 'Storage',
 	timestamps: true,
 	autoIndex: false
 });
 
-measureSchema.index({furnace: 1});
+storageSchema.index({furnace: 1});
 
-const Measure = mongoose.model('Measure', measureSchema);
+const Storage = mongoose.model('Storage', storageSchema);
 
-module.exports = Measure;
+module.exports = Storage;

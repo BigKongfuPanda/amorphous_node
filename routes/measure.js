@@ -19,6 +19,4 @@ router.delete('/', Measure.delData);
 // 导出excel
 router.get('/exportmeasure', Measure.exportMeasure);
 
-router.get('/exportstorage', Measure.exportStorage);
-
 module.exports = router;
