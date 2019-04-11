@@ -109,4 +109,26 @@ nodejs + express + mongodb + mongoose + es6/7 + log4js + node-xlsx + pm2
 |----views 视图（express 自动生成，本项目没有使用）    
 ```
 
+# 启动项目
+
+```
+项目运行之前，请确保系统已经安装以下应用
+1、node (6.0 及以上版本)
+2、mongodb (开启状态)
+```
+
+```
+git clone https://github.com/BigKongfuPanda/amorphous_node.git  
+
+cd amorphous_node
+
+npm install
+
+npm run dev
+
+访问: http://localhost:8001
+```
+
+# 下一步
+
 由于时间比较紧张，暂时只是实现了功能，代码和项目结构还不是特别满意，还需要再进一步进行优化。
