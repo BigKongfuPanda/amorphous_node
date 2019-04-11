@@ -9,9 +9,12 @@ nodejs + express + mongodb + mongoose + es6/7 + log4js + node-xlsx + pm2
 
 具体：
 
+- express：本项目使用的node框架
 - mongodb：使用的是 3.4 版本，由于服务器的系统为 window server 2008 R2，最高支持到mongodb 3.4，同时将服务器上面的 mongodb 设置为 windows service，实现开机自启动
 
 - mongoose：最大的特点是可以定义数据的 schema，并且封装了一套 CRUD 的API
+
+- ES6/7：大量使用了JS语言的新特性，尤其是在操作数据库的时候，使用 `async/await` 实现异步操作
 
 - log4js：用来记录生产环境下的错误日志，方便追踪bug
 
