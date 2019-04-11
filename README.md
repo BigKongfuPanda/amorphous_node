@@ -9,10 +9,13 @@ nodejs + express + mongodb + mongoose + es6/7 + log4js + node-xlsx + pm2
 
 具体：
 
-- express：本项目使用的node框架
+- express：本项目使用的node框架，集成了大量实用的中间件
+
 - mongodb：使用的是 3.4 版本，由于服务器的系统为 window server 2008 R2，最高支持到mongodb 3.4，同时将服务器上面的 mongodb 设置为 windows service，实现开机自启动
 
 - mongoose：最大的特点是可以定义数据的 schema，并且封装了一套 CRUD 的API
+
+- express-session 和 connect-mongo：本项目使用的是 session-cookie 来实现登录态的记录的，使用 connect-mongo 来做 session 的持久化
 
 - ES6/7：大量使用了JS语言的新特性，尤其是在操作数据库的时候，使用 `async/await` 实现异步操作
 
@@ -21,6 +24,8 @@ nodejs + express + mongodb + mongoose + es6/7 + log4js + node-xlsx + pm2
 - node-xlsx： 用来解析上传的excel文件中的数据，存入数据库
 
 - pm2：用来启动和守护 node 服务进程
+
+- 角色权限：共有14种角色，每个角色对数据的访问和操作权限通过其 roleId 来区分和控制的
 
 # 项目布局
 
