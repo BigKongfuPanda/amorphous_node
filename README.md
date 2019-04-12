@@ -40,7 +40,7 @@ nodejs + express + mongodb + mongoose + es6/7 + log4js + node-xlsx + pm2
 |    |----node-windows.j node服务开启自启动配置
 |
 |----log 日志存储文件夹
-|    |----access.log 请求日志
+|    |----access.log http请求日志
 |    |----errors.log 错误日志
 |    
 |----mongodb 数据库配置    
