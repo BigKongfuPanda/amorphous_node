@@ -49,7 +49,7 @@ class Cast {
       }
       const count = await castModel.countDocuments(queryCondition);
       const totalPage = Math.ceil(count / limit);
-      const list = await castModel.find(queryCondition).skip((current - 1) * limit).limit(limit).sort({'furnace': 'desc'});
+      const list = await castModel.find(queryCondition).skip((current - 1) * limit).limit(limit).sort({'furnace': 'asc'});
       // 要考虑分页
       res.send({
         status: 0,

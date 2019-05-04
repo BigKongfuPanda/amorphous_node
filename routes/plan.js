@@ -16,4 +16,7 @@ router.put('/', Plan.updateData);
 // 删除生产计划
 router.delete('/', Plan.delData);
 
+// 导出生产计划
+router.get('/export', Plan.export);
+
 module.exports = router;

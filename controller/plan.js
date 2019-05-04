@@ -203,6 +203,94 @@ class Plan {
       });
     }
   }
+
+  async export(req, res, next) {
+    const { castId, startTime, endTime } = req.query;
+    try {
+      let queryCondition = {};
+      if(castId) {
+        queryCondition.castId = castId;
+      }
+      if(startTime) {
+        queryCondition.startTime = startTime;        
+      }
+      if(endTime) {
+        queryCondition.endTime = endTime;        
+      }
+
+      const conf = {};
+      conf.name = "mysheet";
+      conf.cols = [
+        { caption: '炉号', type: 'string' },
+        { caption: '盘号', type: 'number' },
+        { caption: '材质', type: 'string' },
+        { caption: '规格', type: 'number' },
+        { caption: '生产日期', type: 'date' },
+        { caption: '喷带手', type: 'string' },
+        { caption: '外径', type: 'number' },
+        { caption: '重量', type: 'number' },
+        { caption: '叠片系数', type: 'number' },
+        { caption: '叠片等级', type: 'string' },
+        { caption: '实际带宽', type: 'number' },
+        { caption: '厚度偏差', type: 'number' },
+        { caption: '平均厚度', type: 'number' },
+        { caption: '厚度级别', type: 'number' },
+        { caption: '韧性', type: 'string' },
+        { caption: '韧性等级', type: 'string' },
+        { caption: '外观', type: 'string' },
+        { caption: '外观等级', type: 'string' },
+        { caption: '综合级别', type: 'string' },
+        { caption: '是否入库', type: 'string' },
+        { caption: '不入库原因', type: 'string' },
+        { caption: '判定去向', type: 'string' },
+      ];
+      conf.rows = [];
+      const list = await returnGoodsModel.find(queryCondition).sort({'furnace': 'desc', 'coilNumber': 'asc'});
+      
+      conf.rows = list.map(item => {
+        return [ 
+          item.furnace, item.coilNumber, item.ribbonTypeName, item.ribbonWidth, 
+          moment(item.castDate).format('YYYY-MM-DD'), item.caster, item.diameter,
+          item.coilWeight, item.laminationFactor, item.laminationLevel, item.realRibbonWidth,
+          item.ribbonThicknessDeviation, item.ribbonThickness, item.ribbonThicknessLevel,
+          item.ribbonToughness, item.ribbonToughnessLevel, item.appearence, item.appearenceLevel, item.ribbonTotalLevel, isStoredDesc(item.isStored),
+          item.unStoreReason, item.clients.join()
+        ].map(val => val == undefined ? null : val);
+      });
+
+      function isStoredDesc (status) {
+        switch (status) {
+          case 1:
+            return '计划内入库';
+            break;
+          case 2:
+            return '计划外入库';
+            break;
+          case 3:
+            return '不合格';
+            break;
+          case 4:
+            return '退货入库';
+            break;
+          default:
+            return '';
+            break;
+        }
+      }
+      
+      const result = nodeExcel.execute(conf);
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats');
+      res.setHeader("Content-Disposition", "attachment; filename=" + "shengchanjihua.xlsx");
+  	  res.end(result, 'binary'); 
+    } catch (err) {
+      console.log('导出退货记录失败', err);
+      log.error('导出退货记录失败', err);
+      res.send({
+        status: -1,
+        message: '导出退货记录失败'
+      });
+    }
+  }
 }
 
 module.exports = new Plan();
