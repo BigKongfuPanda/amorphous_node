@@ -179,7 +179,7 @@ class ReturnGoods {
         { caption: '盘号', type: 'number' },
         { caption: '材质', type: 'string' },
         { caption: '规格', type: 'number' },
-        { caption: '生产日期', type: 'date' },
+        { caption: '生产日期', type: 'string' },
         { caption: '喷带手', type: 'string' },
         { caption: '外径', type: 'number' },
         { caption: '重量', type: 'number' },

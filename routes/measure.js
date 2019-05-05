@@ -16,7 +16,10 @@ router.put('/', Measure.updateData);
 // 删除检测记录
 router.delete('/', Measure.delData);
 
-// 导出excel
+// 导出检测excel
 router.get('/exportmeasure', Measure.exportMeasure);
+
+// 导出重卷excel
+router.get('/exportroll', Measure.exportRoll);
 
 module.exports = router;

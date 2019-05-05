@@ -335,6 +335,7 @@ class Measure {
     }
   }
 
+  // 导出检测记录的excel
   async exportMeasure(req, res, next) {
     const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, ribbonToughnessLevelJson, appearenceLevelJson, place, ribbonTotalLevels} = req.query;
     try {
@@ -405,7 +406,7 @@ class Measure {
         { caption: '盘号', type: 'number' },
         { caption: '材质', type: 'string' },
         { caption: '规格', type: 'number' },
-        { caption: '生产日期', type: 'date' },
+        { caption: '生产日期', type: 'string' },
         { caption: '喷带手', type: 'string' },
         { caption: '外径', type: 'number' },
         { caption: '重量', type: 'number' },
@@ -465,6 +466,69 @@ class Measure {
       res.send({
         status: -1,
         message: '导出检测记录失败'
+      });
+    }
+  }
+
+  // 导出重卷记录的excel
+  async exportRoll(req, res, next) {
+    const { castId, furnace, startTime, endTime, caster, roller } = req.query;
+    try {
+      let queryCondition = {};
+      if(castId) {
+        queryCondition.castId = castId;
+      }
+      if(caster) {
+        queryCondition.caster = caster;
+      }
+      if (roller) {
+        queryCondition.roller = roller;
+      }
+      if(furnace) {
+        queryCondition.furnace = furnace;        
+      }
+      if(startTime && endTime) {
+        queryCondition.inStoreDate = { $gt: startTime, $lt: endTime };
+      }
+
+      const conf = {};
+      conf.name = "mysheet";
+      conf.cols = [
+        { caption: '炉号', type: 'string' },
+        { caption: '材质', type: 'string' },
+        { caption: '规格', type: 'number' },
+        { caption: '生产日期', type: 'string' },
+        { caption: '喷带手', type: 'string' },
+        { caption: '盘号', type: 'number' },
+        { caption: '外径(mm)', type: 'number' },
+        { caption: '重量(kg)', type: 'number' },
+        { caption: '机器编号', type: 'number' },
+        { caption: '重卷人员', type: 'string' },
+        { caption: '重卷日期', type: 'string' },
+        { caption: '是否平整', type: 'string' }
+      ];
+      conf.rows = [];
+      const list = await measureModel.find(queryCondition).sort({'furnace': 'asc', 'coilNumber': 'asc'});
+      
+      conf.rows = list.map(item => {
+        return [
+          item.furnace, item.ribbonTypeName, item.ribbonWidth, 
+          moment(item.castDate).format('YYYY-MM-DD'), item.caster, item.coilNumber, 
+          item.diameter, item.coilWeight, item.rollMachine, item.roller,
+          moment(item.createdAt).format('YYYY-MM-DD HH:mm:ss'), item.isFlat
+        ].map(val => val == undefined ? null : val);
+      });
+      
+      const result = nodeExcel.execute(conf);
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats');
+      res.setHeader("Content-Disposition", "attachment; filename=" + "chongjuan.xlsx");
+  	  res.end(result, 'binary'); 
+    } catch (err) {
+      console.log('导出重卷记录失败', err);
+      log.error('导出重卷记录失败', err);
+      res.send({
+        status: -1,
+        message: '导出重卷记录失败'
       });
     }
   }
