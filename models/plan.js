@@ -27,6 +27,7 @@ const planSchema = new Schema({
   qualifiedLaminationFactor: String, // 入库要求：叠片系数 ≥0.78
   qualifiedRibbonToughnessLevels: Array, // 入库要求：韧性 [A,B,C]
   qualifiedAppearenceLevels: Array, // 入库要求：外观 [A,B,C]
+  realRibbonWidth: Number // 实际带宽
 }, {
 	collection: 'Plan',
 	timestamps: true,

@@ -413,6 +413,15 @@ class Measure {
         { caption: '叠片系数', type: 'number' },
         { caption: '叠片等级', type: 'string' },
         { caption: '实际带宽', type: 'number' },
+        { caption: '厚度1', type: 'number' },
+        { caption: '厚度2', type: 'number' },
+        { caption: '厚度3', type: 'number' },
+        { caption: '厚度4', type: 'number' },
+        { caption: '厚度5', type: 'number' },
+        { caption: '厚度6', type: 'number' },
+        { caption: '厚度7', type: 'number' },
+        { caption: '厚度8', type: 'number' },
+        { caption: '厚度9', type: 'number' },
         { caption: '厚度偏差', type: 'number' },
         { caption: '平均厚度', type: 'number' },
         { caption: '厚度级别', type: 'number' },
@@ -426,13 +435,16 @@ class Measure {
         { caption: '判定去向', type: 'string' },
       ];
       conf.rows = [];
-      const list = await measureModel.find(queryCondition).sort({'furnace': 'desc', 'coilNumber': 'asc'});
+      const list = await measureModel.find(queryCondition).sort({'furnace': 'asc', 'coilNumber': 'asc'});
       
       conf.rows = list.map(item => {
         return [ 
           item.furnace, item.coilNumber, item.ribbonTypeName, item.ribbonWidth, 
           moment(item.castDate).format('YYYY-MM-DD'), item.caster, item.diameter,
           item.coilWeight, item.laminationFactor, item.laminationLevel, item.realRibbonWidth,
+          item.ribbonThickness1, item.ribbonThickness2, item.ribbonThickness3, item.ribbonThickness4,
+          item.ribbonThickness5, item.ribbonThickness6, item.ribbonThickness7, item.ribbonThickness8,
+          item.ribbonThickness9, 
           item.ribbonThicknessDeviation, item.ribbonThickness, item.ribbonThicknessLevel,
           item.ribbonToughness, item.ribbonToughnessLevel, item.appearence, item.appearenceLevel, item.ribbonTotalLevel, isStoredDesc(item.isStored),
           item.unStoreReason, item.clients.join()
