@@ -3,6 +3,7 @@
 const meltModel = require('../models/melt');
 const log = require('log4js').getLogger("melt");
 const moment = require('moment');
+const nodeExcel = require('excel-export');
 
 class Melt {
   constructor() {
@@ -225,6 +226,93 @@ class Melt {
       res.send({
         status: -1,
         message: '删除化钢记录失败'
+      });
+    }
+  }
+
+  async export(req, res, next) {
+    const { castId, startTime, endTime, melter, ribbonTypeName, bucket, newAlloyNumber, oldAlloyNumber } = req.query;
+    try {
+      let queryCondition = {};
+      if(castId) {
+        queryCondition.castId = castId;
+      }
+      if (melter) {
+        queryCondition.melter = melter;
+      }
+      if (ribbonTypeName) {
+        queryCondition.ribbonTypeName = ribbonTypeName;
+      }
+      if (bucket) {
+        queryCondition.bucket = bucket;
+      }
+      if (newAlloyNumber) {
+        queryCondition.newAlloyNumber = newAlloyNumber;
+      }
+      if (oldAlloyNumber) {
+        queryCondition.oldAlloyNumber = oldAlloyNumber;
+      }
+      if (startTime && endTime) {
+        queryCondition.createTime = { $gt: startTime, $lt: endTime };
+      }
+
+      const conf = {};
+      conf.name = "mysheet";
+      conf.cols = [
+        { caption: '冶炼日期', type: 'string' },
+        { caption: '材质', type: 'string' },
+        { caption: '炉号', type: 'string' },
+        { caption: '桶号', type: 'string' },
+        { caption: '冶炼人', type: 'string' },
+        { caption: '冶炼炉', type: 'string' },
+        { caption: '新料炉号', type: 'string' },
+        { caption: '新料重量(kg)', type: 'number' },
+        { caption: '加工料炉号', type: 'string' },
+        { caption: '加工料重量(kg)', type: 'number' },
+        { caption: '回炉锭炉号', type: 'string' },
+        { caption: '回炉锭重量(kg)', type: 'number' },
+        { caption: '高铌料炉号', type: 'string' },
+        { caption: '高铌料重量(kg)', type: 'number' },
+        { caption: '硅(g)', type: 'number' },
+        { caption: '镍(g)', type: 'number' },
+        { caption: '铜(g)', type: 'number' },
+        { caption: '硼铁(g)', type: 'number' },
+        { caption: '铌铁(g)', type: 'number' },
+        { caption: '总重量(kg)', type: 'number' },
+        { caption: '放钢重量(kg)', type: 'number' },
+        { caption: '修正重量(kg)', type: 'number' },
+        { caption: '更新时间', type: 'string' },
+        { caption: '更新者', type: 'string' },
+        { caption: '备注', type: 'string' }
+      ];
+      conf.rows = [];
+      const list = await meltModel.find(queryCondition).sort({'furnace': 'asc'});
+      
+      conf.rows = list.map(item => {
+        console.log(moment(item.updatedAt).format('YYYY-MM-DD HH:mm:ss'));
+        return [
+          moment(item.createTime).format('YYYY-MM-DD'), item.ribbonTypeName, item.furnace,
+          item.bucket, item.melter, item.meltFurnace, 
+          item.newAlloyNumber, item.newAlloyWeight, 
+          item.oldAlloyNumber, item.oldAlloyWeight, 
+          item.mixAlloyNumber, item.mixAlloyWeight, 
+          item.highNbNumber, item.highNbWeight, 
+          item.Si, item.Ni, item.Cu, item.BFe, item.NbFe, 
+          item.alloyTotalWeight, item.alloyOutWeight, item.alloyFixWeight,
+          moment(item.updatedAt).format('YYYY-MM-DD HH:mm:ss'), item.updatePerson, item.remark
+        ].map(val => val == undefined ? null : val);
+      });
+      
+      const result = nodeExcel.execute(conf);
+      res.setHeader('Content-Type', 'application/vnd.openxmlformats');
+      res.setHeader("Content-Disposition", "attachment; filename=" + "yelian.xlsx");
+  	  res.end(result, 'binary'); 
+    } catch (err) {
+      console.log('导出化钢记录失败', err);
+      log.error('导出化钢记录失败', err);
+      res.send({
+        status: -1,
+        message: '导出化钢记录失败'
       });
     }
   }
