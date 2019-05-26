@@ -1,88 +1,85 @@
 'use strict';
 
-const mongoose =  require('mongoose');
-const Schema = mongoose.Schema;
+const Sequelize =  require('sequelize');
+const sequelize = require('../mysql/db');
 
-const measureSchema = new Schema({
-  castId: Number,// 机组编号
+const Measure = sequelize.define('measure',{
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  castId: Sequelize.INTEGER,// 机组编号
   // 重卷录入信息
-  furnace: String,// 制带炉号 06-20181120-01/01
-  ribbonTypeName: String,//材质名称
-  ribbonWidth: Number,//带宽
-  castDate: Date, //生产日期
-  caster: String, //喷带手
-  coilNumber: Number, // 盘号 1, 2, 3
-  diameter: Number, // 外径
-  coilWeight: Number, // 单盘重量,kg
-  coilNetWeight: Number, //单盘净重,kg
-  laminationFactor: Number, //叠片系数 0.80
-  laminationLevel: String, //叠片等级 不合格, 0, 1, 2, 3, 4
-  roller: String, // 重卷人
-  rollMachine: Number, // 重卷机器编号
-  isFlat: String, // 端面是否平整, 是-平整，否-不平整
-  orderThickness: String, // 订单要求：厚度 20-23, ≤23
-  orderLaminationFactor: String, // 订单要求：叠片系数 ≥0.78
+  furnace: Sequelize.STRING,// 制带炉号 06-20181120-01/01
+  ribbonTypeName: Sequelize.STRING,//材质名称
+  ribbonWidth: Sequelize.INTEGER,//带宽
+  castDate: Sequelize.DATE, //生产日期
+  caster: Sequelize.STRING, //喷带手
+  coilNumber: Sequelize.INTEGER, // 盘号 1, 2, 3
+  diameter: Sequelize.FLOAT, // 外径
+  coilWeight: Sequelize.FLOAT, // 单盘重量,kg
+  coilNetWeight: Sequelize.FLOAT, //单盘净重,kg
+  laminationFactor: Sequelize.FLOAT, //叠片系数 0.80
+  laminationLevel: Sequelize.STRING, //叠片等级 不合格, 0, 1, 2, 3, 4
+  roller: Sequelize.STRING, // 重卷人
+  rollMachine: Sequelize.INTEGER, // 重卷机器编号
+  isFlat: Sequelize.STRING, // 端面是否平整, 是-平整，否-不平整
+  orderThickness: Sequelize.STRING, // 订单要求：厚度 20-23, ≤23
+  orderLaminationFactor: Sequelize.STRING, // 订单要求：叠片系数 ≥0.78
   orderRibbonToughnessLevels: Array, // 订单要求：韧性 [A,B,C]
   orderAppearenceLevels: Array, // 订单要求：外观 [A,B,C]
-  qualifiedThickness: String, // 入库要求：厚度 20-23, ≤23
-  qualifiedLaminationFactor: String, // 入库要求：叠片系数 ≥0.78
+  qualifiedThickness: Sequelize.STRING, // 入库要求：厚度 20-23, ≤23
+  qualifiedLaminationFactor: Sequelize.STRING, // 入库要求：叠片系数 ≥0.78
   qualifiedRibbonToughnessLevels: Array, // 入库要求：韧性 [A,B,C]
   qualifiedAppearenceLevels: Array, // 入库要求：外观 [A,B,C]
   // 检测录入信息
-  realRibbonWidth: Number,//实际带宽
-  ribbonThickness1: Number, //带材厚度点1, μm
-  ribbonThickness2: Number, //带材厚度点2, μm
-  ribbonThickness3: Number, //带材厚度点3, μm
-  ribbonThickness4: Number, //带材厚度点4, μm
-  ribbonThickness5: Number, //带材厚度点5, μm
-  ribbonThickness6: Number, //带材厚度点6, μm
-  ribbonThickness7: Number, //带材厚度点7, μm
-  ribbonThickness8: Number, //带材厚度点8, μm
-  ribbonThickness9: Number, //带材厚度点9, μm
-  ribbonThicknessDeviation: Number, // 带材横向偏差, μm
-  ribbonThickness: Number, // 带材平均厚度, μm
-  ribbonThicknessLevel: Number, // 带材厚度级别
-  ribbonToughness: String, //带材韧性
-  ribbonToughnessLevel: String, //带材韧性等级
-  appearence: String, //带材外观
-  appearenceLevel: String, //带材外观等级
-  ribbonTotalLevel: String, //带材综合级别
-  isMeasureConfirmed: { type: Number, default: 0 }, // 检测是否确认可入库：1-是，0-否
+  realRibbonWidth: Sequelize.FLOAT,//实际带宽
+  ribbonThickness1: Sequelize.FLOAT, //带材厚度点1, μm
+  ribbonThickness2: Sequelize.FLOAT, //带材厚度点2, μm
+  ribbonThickness3: Sequelize.FLOAT, //带材厚度点3, μm
+  ribbonThickness4: Sequelize.FLOAT, //带材厚度点4, μm
+  ribbonThickness5: Sequelize.FLOAT, //带材厚度点5, μm
+  ribbonThickness6: Sequelize.FLOAT, //带材厚度点6, μm
+  ribbonThickness7: Sequelize.FLOAT, //带材厚度点7, μm
+  ribbonThickness8: Sequelize.FLOAT, //带材厚度点8, μm
+  ribbonThickness9: Sequelize.FLOAT, //带材厚度点9, μm
+  ribbonThicknessDeviation: Sequelize.FLOAT, // 带材横向偏差, μm
+  ribbonThickness: Sequelize.FLOAT, // 带材平均厚度, μm
+  ribbonThicknessLevel: Sequelize.FLOAT, // 带材厚度级别
+  ribbonToughness: Sequelize.STRING, //带材韧性
+  ribbonToughnessLevel: Sequelize.STRING, //带材韧性等级
+  appearence: Sequelize.STRING, //带材外观
+  appearenceLevel: Sequelize.STRING, //带材外观等级
+  ribbonTotalLevel: Sequelize.STRING, //带材综合级别
+  isMeasureConfirmed: { type: Sequelize.INTEGER, default: 0 }, // 检测是否确认可入库：1-是，0-否
   // storageRule: Object, //入库规则
-  isStored: { type: Number, default: 3 }, // 是否入库：1-计划内入库，2-计划外入库，3-否
-  unStoreReason: '', //不入库原因
+  isStored: { type: Sequelize.INTEGER, default: 3 }, // 是否入库：1-计划内入库，2-计划外入库，3-否
+  unStoreReason: Sequelize.STRING, //不入库原因
   clients: Array, //去向 德国，法国
-  measureDate: {type: Date, default: null}, //检测日期
+  measureDate: {type: Sequelize.DATE, defaultValue: null}, //检测日期
   // 库房信息
-  inStoreDate: {type: Date, default: null}, //入库日期
-  outStoreDate: {type: Date, default: null}, //出库日期
-  remainWeight: Number, //结余
-  takeBy: String, //领走的部门 辊剪，顺义，固安，回炉/置换，粉末厂
-  place: String, //储存的仓位 1-15-2
-  shipRemark: String, //发货备注
+  inStoreDate: {type: Sequelize.DATE, defaultValue: null}, //入库日期
+  outStoreDate: {type: Sequelize.DATE, defaultValue: null}, //出库日期
+  remainWeight: Sequelize.FLOAT, //结余
+  takeBy: Sequelize.STRING, //领走的部门 辊剪，顺义，固安，回炉/置换，粉末厂
+  place: Sequelize.STRING, //储存的仓位 1-15-2
+  shipRemark: Sequelize.STRING, //发货备注
   // 质量信息
-  totalStoredWeight: { type: Number, default: 0 }, //总入库重量
-  inPlanStoredWeight: { type: Number, default: 0 }, //计划内入库重量
-  outPlanStoredWeight: { type: Number, default: 0 }, //计划外入库重量
-  qualityOfA: { type: Number, default: 0 }, // 质量等级为A的重量
-  qualityOfB: { type: Number, default: 0 }, // 质量等级为B的重量
-  qualityOfC: { type: Number, default: 0 }, // 质量等级为C的重量
-  qualityOfD: { type: Number, default: 0 }, // 质量等级为D的重量
-  qualityOfE: { type: Number, default: 0 }, // 质量等级为E的重量
-  thinRibbonWeight: { type: Number, default: 0 }, // 薄带重量 ≤23, >=0.75
-  highFactorThinRibbonWeight: { type: Number, default: 0 }, // 高叠片薄带重量 ≤23, >=0.78
-  inPlanThickRibbonWeight: { type: Number, default: 0 }, // 符合订单非薄带：满足订单要求，且厚度为2级别的带材重量
-  qualityOfGood: { type: Number, default: 0 }, // 质量等级为好的带材质量：A + 符合订单非薄带
-  qualityOfFine: { type: Number, default: 0 }, // 质量等级为良的带材质量：B
-  qualityOfNormal: { type: Number, default: 0 }, // 质量等级为中的带材质量：30**、40**+ 计划外入库
-}, {
-	collection: 'Measure',
-	timestamps: true,
-	autoIndex: false
+  totalStoredWeight: { type: Sequelize.FLOAT, defaultValue: 0 }, //总入库重量
+  inPlanStoredWeight: { type: Sequelize.FLOAT, defaultValue: 0 }, //计划内入库重量
+  outPlanStoredWeight: { type: Sequelize.FLOAT, defaultValue: 0 }, //计划外入库重量
+  qualityOfA: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为A的重量
+  qualityOfB: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为B的重量
+  qualityOfC: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为C的重量
+  qualityOfD: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为D的重量
+  qualityOfE: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为E的重量
+  thinRibbonWeight: { type: Sequelize.FLOAT, defaultValue: 0 }, // 薄带重量 ≤23, >=0.75
+  highFactorThinRibbonWeight: { type: Sequelize.FLOAT, defaultValue: 0 }, // 高叠片薄带重量 ≤23, >=0.78
+  inPlanThickRibbonWeight: { type: Sequelize.FLOAT, defaultValue: 0 }, // 符合订单非薄带：满足订单要求，且厚度为2级别的带材重量
+  qualityOfGood: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为好的带材质量：A + 符合订单非薄带
+  qualityOfFine: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为良的带材质量：B
+  qualityOfNormal: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为中的带材质量：30**、40**+ 计划外入库
 });
-
-measureSchema.index({furnace: 1});
-
-const Measure = mongoose.model('Measure', measureSchema);
 
 module.exports = Measure;

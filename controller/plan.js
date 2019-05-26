@@ -106,10 +106,10 @@ class Plan {
   async updateData(req, res, next) {
     const { _id, roleId, date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeName, ribbonWidth, client = '', furnace, alloyWeight = 0, castTime = '', orderThickness = '', orderLaminationFactor = '', orderRibbonToughnessLevelsJson = '[]', orderAppearenceLevelsJson = '[]', qualifiedThickness = '', qualifiedLaminationFactor = '', qualifiedRibbonToughnessLevelsJson = '[]', qualifiedAppearenceLevelsJson = '[]' } = req.body;
 
-    const orderRibbonToughnessLevels = JSON.parse(orderRibbonToughnessLevelsJson);
-    const orderAppearenceLevels = JSON.parse(orderAppearenceLevelsJson);
-    const qualifiedRibbonToughnessLevels = JSON.parse(qualifiedRibbonToughnessLevelsJson);
-    const qualifiedAppearenceLevels = JSON.parse(qualifiedAppearenceLevelsJson);
+    // const orderRibbonToughnessLevels = JSON.parse(orderRibbonToughnessLevelsJson);
+    // const orderAppearenceLevels = JSON.parse(orderAppearenceLevelsJson);
+    // const qualifiedRibbonToughnessLevels = JSON.parse(qualifiedRibbonToughnessLevelsJson);
+    // const qualifiedAppearenceLevels = JSON.parse(qualifiedAppearenceLevelsJson);
 
     try{
       if (!date || !castId || !roleId) {
@@ -142,7 +142,11 @@ class Plan {
           castId, team, taskOrder,
           ribbonTypeName, ribbonWidth, client, furnace, alloyWeight, castTime,
           orderThickness, orderLaminationFactor, 
-          orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedThickness, qualifiedLaminationFactor, qualifiedRibbonToughnessLevels, qualifiedAppearenceLevels
+          orderRibbonToughnessLevels: orderRibbonToughnessLevelsJson, 
+          orderAppearenceLevels: orderAppearenceLevelsJson, 
+          qualifiedThickness, qualifiedLaminationFactor, 
+          qualifiedRibbonToughnessLevels: qualifiedRibbonToughnessLevelsJson, 
+          qualifiedAppearenceLevels: qualifiedAppearenceLevelsJson
         };
         
         const { n } = await planModel.updateOne({ _id }, { $set: newData });
