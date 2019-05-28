@@ -9,7 +9,7 @@ module.exports = {
 		port: '3306',
 		user: 'root',
 		password: 'root',
-		database: 'amorphous'
+		database: 'daicai'
 	},
 	session: {
 		name: 'SID',//这里的name值得是cookie的name，默认cookie的name是：connect.sid
