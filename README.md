@@ -1,3 +1,9 @@
+# 注意：
+
+近期在把数据库从 mongodb 改成 mysql，正在进行中。
+
+master分支为改造中的 mysql 版本分支，mongodb 为 mongodb 版本的分支。
+
 # About
 使用 express + mongodb + mongoose 搭建的生产数据采集管理后台。
 
