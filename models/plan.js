@@ -5,16 +5,13 @@ const sequelize = require('../mysql/db');
 
 const Plan = sequelize.define('plan',{
   date: Sequelize.Sequelize.STRING,//排产日期 2018-12-01
-  approved: {type: Sequelize.INTEGER, defaultValue: 0}, // 是否审批，1-是，0-否
+  approved: { type: Sequelize.INTEGER, defaultValue: 0 }, // 是否审批，1-是，0-否
   remark: Sequelize.STRING,//备注
   fileNumber: Sequelize.STRING,//文件编号 QEHAT-FJ/D-C03-036-C/0
   castId: Sequelize.INTEGER, // 机组编号
   team: Sequelize.STRING,// 班组 早
   taskOrder: Sequelize.STRING, //任务单号
-  ribbonTypeId: {
-    type: Sequelize.INTEGER,
-    
-  }, // 材质id
+  ribbonTypeId: { type: Sequelize.INTEGER, autoIncrement: true }, // 材质id
   ribbonTypeName: Sequelize.STRING,//材质名称 1k107B
   ribbonWidth: Sequelize.Number, // 带宽
   client: Sequelize.STRING, //客户 
