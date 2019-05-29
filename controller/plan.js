@@ -27,7 +27,14 @@ class Plan {
       return;
     }
     try {
-      const list = await planModel.find({date, castId}).sort({'furnace': 'asc'});
+      const list = await planModel.findAll({
+        where: {
+          date, castId
+        },
+        order: [
+          ['furnace', 'ASC']
+        ]
+      });
       res.send({
         status: 0,
         message: '操作成功',
@@ -71,7 +78,9 @@ class Plan {
 
     try {
       furnaceList.forEach(async (furnace) => {
-        const data = await planModel.findOne({ furnace });
+        const data = await planModel.findOne({ 
+          where: { furnace } 
+        });
         // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
         if (data) {
           throw new Error(`炉号 ${furnace} 重复`);
@@ -88,7 +97,7 @@ class Plan {
     }
 
     try {
-      await planModel.insertMany(formData);
+      await planModel.bulkCreate(formData);
       res.send({
         status: 0,
         message: '新增生产记录成功'
