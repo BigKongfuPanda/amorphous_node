@@ -4,6 +4,10 @@ const Sequelize =  require('sequelize');
 const sequelize = require('../mysql/db');
 
 const Plan = sequelize.define('plan',{
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true
+  },
   date: Sequelize.Sequelize.STRING,//排产日期 2018-12-01
   approved: { type: Sequelize.INTEGER, defaultValue: 0 }, // 是否审批，1-是，0-否
   remark: Sequelize.STRING,//备注

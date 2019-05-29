@@ -113,7 +113,7 @@ class Plan {
   }
   
   async updateData(req, res, next) {
-    const { _id, roleId, date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeName, ribbonWidth, client = '', furnace, alloyWeight = 0, castTime = '', orderThickness = '', orderLaminationFactor = '', orderRibbonToughnessLevelsJson = '[]', orderAppearenceLevelsJson = '[]', qualifiedThickness = '', qualifiedLaminationFactor = '', qualifiedRibbonToughnessLevelsJson = '[]', qualifiedAppearenceLevelsJson = '[]' } = req.body;
+    const { id, roleId, date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeName, ribbonWidth, client = '', furnace, alloyWeight = 0, castTime = '', orderThickness = '', orderLaminationFactor = '', orderRibbonToughnessLevels = '', orderAppearenceLevels = '', qualifiedThickness = '', qualifiedLaminationFactor = '', qualifiedRibbonToughnessLevels = '', qualifiedAppearenceLevels = '' } = req.body;
 
     // const orderRibbonToughnessLevels = JSON.parse(orderRibbonToughnessLevelsJson);
     // const orderAppearenceLevels = JSON.parse(orderAppearenceLevelsJson);
@@ -135,7 +135,8 @@ class Plan {
     }
     try {
       if (Number(roleId) === 1) { // 角色：厂长，操作：审批，将 isApproved 设置为 1  
-        const { m } = await planModel.updateMany({ date, castId }, { $set: {approved: 1} });
+        // const { m } = await planModel.updateMany({ date, castId }, { $set: {approved: 1} });
+      const { m } = await planModel.update({ approved: 1}, { where: { date, castId } });
   
         if (m !== 0) {
           res.send({
@@ -147,20 +148,20 @@ class Plan {
         }
       } else if (Number(roleId) === 2) { // 角色：生产计划，操作：更新数据
         const newData = {
-          _id, date, remark, fileNumber,
+          id, date, remark, fileNumber,
           castId, team, taskOrder,
           ribbonTypeName, ribbonWidth, client, furnace, alloyWeight, castTime,
           orderThickness, orderLaminationFactor, 
-          orderRibbonToughnessLevels: orderRibbonToughnessLevelsJson, 
-          orderAppearenceLevels: orderAppearenceLevelsJson, 
+          orderRibbonToughnessLevels, 
+          orderAppearenceLevels, 
           qualifiedThickness, qualifiedLaminationFactor, 
-          qualifiedRibbonToughnessLevels: qualifiedRibbonToughnessLevelsJson, 
-          qualifiedAppearenceLevels: qualifiedAppearenceLevelsJson
+          qualifiedRibbonToughnessLevels, 
+          qualifiedAppearenceLevels
         };
         
-        const { n } = await planModel.updateOne({ _id }, { $set: newData });
+        const { n } = await planModel.update( newData, { where: { id } });
         // 一旦更改生产计划，则需要重新审批，状态变为“待审批”
-        const { l } = await planModel.updateMany({ date, castId }, { $set: {approved: 0} });
+        const { l } = await planModel.updateMany( { approved: 0 }, {where: { date, castId }});
   
         if (n !== 0 && l !== 0) {
           res.send({
@@ -185,9 +186,9 @@ class Plan {
 
   // 删除
   async delData(req, res, next) {
-    const { _id } = req.body;
+    const { id } = req.body;
     try{
-      if (!_id) {
+      if (!id) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -200,7 +201,8 @@ class Plan {
       return;
     }
     try {
-      const { n } = await planModel.deleteOne({ _id } );
+      // const { n } = await planModel.deleteOne({ id } );
+      const { n } = await planModel.destroy({ where: {id} } );
       if (n !== 0) {
         res.send({
           status: 0,
@@ -267,12 +269,17 @@ class Plan {
         { caption: '大盘毛重', type: 'number' }
       ];
       conf.rows = [];
-      const list = await planModel.find(queryCondition).sort({'furnace': 'asc'});
+      const list = await planModel.findAll({
+        where: queryCondition,
+        order: [
+          ['furnace', 'ASC']
+        ]
+      });
       
       conf.rows = list.map(item => {
         return [
-          item.date, item.castId, item.team, item.ribbonTypeName, item.ribbonWidth, item.furnace, item.orderThickness, item.orderLaminationFactor, item.orderRibbonToughnessLevels.join(), item.orderAppearenceLevels.join(), 
-          item.qualifiedThickness, item.qualifiedLaminationFactor, item.qualifiedRibbonToughnessLevels.join(), item.qualifiedAppearenceLevels.join(), 
+          item.date, item.castId, item.team, item.ribbonTypeName, item.ribbonWidth, item.furnace, item.orderThickness, item.orderLaminationFactor, item.orderRibbonToughnessLevels, item.orderAppearenceLevels, 
+          item.qualifiedThickness, item.qualifiedLaminationFactor, item.qualifiedRibbonToughnessLevels, item.qualifiedAppearenceLevels, 
           item.taskOrder, item.client, item.alloyWeight, item.castTime, item.rawWeight
         ].map(val => val == undefined ? null : val);
       });
