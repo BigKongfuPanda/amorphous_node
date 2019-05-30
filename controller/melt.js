@@ -45,9 +45,20 @@ class Melt {
       if (startTime && endTime) {
         queryCondition.createTime = { $gt: startTime, $lt: endTime };
       }
-      const count = await meltModel.countDocuments(queryCondition);
+      // const count = await meltModel.countDocuments(queryCondition);
+      // const totalPage = Math.ceil(count / limit);
+      // const list = await meltModel.find(queryCondition).skip((current - 1) * limit).limit(limit).sort({'furnace': 'asc'});
+      const pageData = await meltModel.findAndCountAll({
+        where: queryCondition,
+        offset: (current - 1) * limit,
+        limit: limit,
+        order: [
+          ['furnace', 'ASC']
+        ]
+      });
+      const list = pageData.rows;
+      const count = pageData.count;
       const totalPage = Math.ceil(count / limit);
-      const list = await meltModel.find(queryCondition).skip((current - 1) * limit).limit(limit).sort({'furnace': 'asc'});
       // 要考虑分页
       res.send({
         status: 0,
@@ -86,7 +97,8 @@ class Melt {
     }
 
     try {
-      const data = await meltModel.findOne({ furnace });
+      const data = await meltModel.findOne({ where:{furnace} });
+
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (data) {
         throw new Error('炉号重复');
@@ -134,9 +146,9 @@ class Melt {
     }
   }
   async updateData(req, res, next) {
-    const { castId, _id, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, hignNbNumber = '', hignNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '', createdAt, roleId, adminname } = req.body;
+    const { castId, id, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, hignNbNumber = '', hignNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '', createdAt, roleId, adminname } = req.body;
     try{
-      if (!castId || !_id || !furnace || !ribbonTypeName || !bucket || !melter || !meltFurnace) {
+      if (!castId || !id || !furnace || !ribbonTypeName || !bucket || !melter || !meltFurnace) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -169,7 +181,7 @@ class Melt {
 
     try {
       const newData = {
-        castId, _id, furnace,
+        castId, id, furnace,
         ribbonTypeName, bucket, melter, meltFurnace,
         newAlloyNumber, newAlloyWeight,
         oldAlloyNumber, oldAlloyWeight,
@@ -180,7 +192,10 @@ class Melt {
         remark, 
         updatePerson: adminname
       };
-      await meltModel.updateOne({ _id }, { $set: newData });
+      // await meltModel.updateOne({ id }, { $set: newData });
+      await meltModel.update(newData, {
+        where: { id }
+      });
       res.send({
         status: 0,
         message: '更新化钢记录成功'
@@ -196,9 +211,9 @@ class Melt {
   }
 
   async delData(req, res, next) {
-    const { _id } = req.body;
+    const { id } = req.body;
     try {
-      if (!_id) {
+      if (!id) {
         throw new Error('参数错误');
       }
     } catch (error) {
@@ -212,7 +227,7 @@ class Melt {
     }
 
     try {
-      const { n } = await meltModel.deleteOne({ _id });
+      const { n } = await meltModel.destroy({ where: {id} });
       if (n != 0) {
         res.send({
           status: 0,
@@ -286,7 +301,13 @@ class Melt {
         { caption: '备注', type: 'string' }
       ];
       conf.rows = [];
-      const list = await meltModel.find(queryCondition).sort({'furnace': 'asc'});
+      // const list = await meltModel.find(queryCondition).sort({'furnace': 'asc'});
+      const list = await meltModel.findAll({
+        where: queryCondition,
+        order: [
+          ['furnace', 'ASC']
+        ]
+      });
       
       conf.rows = list.map(item => {
         console.log(moment(item.updatedAt).format('YYYY-MM-DD HH:mm:ss'));

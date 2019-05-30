@@ -6,17 +6,12 @@ const sequelize = require('../mysql/db');
 const Melt = sequelize.define('melt', {
 	id: {
 		type: Sequelize.INTEGER,
-		autoIncrement: true
+		autoIncrement: true,
+		primaryKey: true
 	},
 	castId: Sequelize.INTEGER,// 机组编号
-	furnace: {
-		type: Sequelize.Sequelize.STRING,
-		primaryKey: true
-	},// 制带炉号 06-20181120-01/01
-	ribbonTypeId: {
-		type: Sequelize.INTEGER,
-		autoIncrement: true
-	}, // 材质id
+	furnace: Sequelize.STRING,// 制带炉号 06-20181120-01/01
+	ribbonTypeId: Sequelize.INTEGER, // 材质id
 	ribbonTypeName: Sequelize.STRING,//材质名称
 	bucket: Sequelize.STRING,// 配料桶号
 	melter: Sequelize.STRING,// 熔炼人

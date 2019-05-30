@@ -6,7 +6,8 @@ const sequelize = require('../mysql/db');
 const Plan = sequelize.define('plan',{
   id: {
     type: Sequelize.INTEGER,
-    autoIncrement: true
+    autoIncrement: true,
+    primaryKey: true
   },
   date: Sequelize.Sequelize.STRING,//排产日期 2018-12-01
   approved: { type: Sequelize.INTEGER, defaultValue: 0 }, // 是否审批，1-是，0-否
@@ -15,9 +16,9 @@ const Plan = sequelize.define('plan',{
   castId: Sequelize.INTEGER, // 机组编号
   team: Sequelize.STRING,// 班组 早
   taskOrder: Sequelize.STRING, //任务单号
-  ribbonTypeId: { type: Sequelize.INTEGER, autoIncrement: true }, // 材质id
+  ribbonTypeId: { type: Sequelize.INTEGER}, // 材质id
   ribbonTypeName: Sequelize.STRING,//材质名称 1k107B
-  ribbonWidth: Sequelize.Number, // 带宽
+  ribbonWidth: Sequelize.FLOAT, // 带宽
   client: Sequelize.STRING, //客户 
   furnace: Sequelize.STRING, //制带炉号 06-20181120-01/01
   alloyWeight: Sequelize.FLOAT, // 单炉投入重量 KG
