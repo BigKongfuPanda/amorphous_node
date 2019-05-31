@@ -26,7 +26,12 @@ class User {
     }
 
     try {
-      const list = await userModel.find({}).sort({'roleId': 'asc'});
+      // const list = await userModel.find({}).sort({'roleId': 'asc'});
+      const list = await userModel.find({
+        oder: [
+          'roleId', 'asc'
+        ]
+      });
       res.send({
         status: 0,
         message: '查询成功',
@@ -66,7 +71,12 @@ class User {
     }
     
     try {
-      const data = await userModel.findOne({$or: [{ username }, { adminname }]});
+      // const data = await userModel.findOne({$or: [{ username }, { adminname }]});
+      const data = await userModel.findOne({
+        where: {
+          $or: [{ username }, { adminname }]
+        }
+      });
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (data) {
         throw new Error('账号或者姓名重复');
@@ -121,7 +131,11 @@ class User {
       return;
     }
     try {
-      const { n } = await userModel.deleteOne({ username } );
+      const { n } = await userModel.destroy({ 
+        where: {
+          username
+        } 
+      });
       if (n !== 0) {
         res.send({
           status: 0,
@@ -161,7 +175,9 @@ class User {
     }
     
     try {
-      const data = await userModel.findOne({ username });
+      const data = await userModel.findOne({ 
+        where: { username }
+      });
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (!data) {
         throw new Error('用户不存在');
@@ -179,7 +195,13 @@ class User {
     }
 
     try {
-      await userModel.updateOne({ username }, { $set: { password: newPassword } });
+      // await userModel.updateOne({ username }, { $set: { password: newPassword } });
+      await userModel.update({
+          password: newPassword
+        },
+        {
+          where: { username }
+        });
       res.send({
         status: 0,
         message: '密码修改成功'
@@ -214,7 +236,10 @@ class User {
     }
     
     try {
-      const data = await userModel.findOne({ username });
+      // const data = await userModel.findOne({ username });
+      const data = await userModel.findOne({ 
+        where: { username }
+      });
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (!data) {
         throw new Error('用户不存在');
@@ -225,7 +250,12 @@ class User {
         req.session.userId = data._id;
         // 登陆时间
         const time = moment().format('YYYY-MM-DD HH:mm:ss');
-        await userModel.updateOne({username}, { $set: {loginTime: time}});
+        // await userModel.updateOne({username}, { $set: {loginTime: time}});
+        await userModel.update(
+          { loginTime: time },
+          {
+            where: {username}
+          });
         res.send({
           status: 0,
           message: '登录成功',
