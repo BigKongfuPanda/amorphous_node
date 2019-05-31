@@ -1,18 +1,16 @@
 'use strict';
 
-const mongoose =  require('mongoose');
-const Schema = mongoose.Schema;
+const Sequelize =  require('sequelize');
+const sequelize = require('../mysql/db');
 
-const laminationLevelSchema = new Schema({
-  laminationLevelId: { type: Schema.Types.ObjectId },
-  laminationLevel: Number,
-  laminationFactorRange: String
-}, {
-	collection: 'LaminationLevel',
-	timestamps: true,
-  autoIndex: false
+const LaminationLevel = sequelize.define('laminationLevel', {
+  laminationLevelId: { 
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  laminationLevel: Sequelize.INTEGER,
+  laminationFactorRange: Sequelize.STRING
 });
-
-const LaminationLevel = mongoose.model('LaminationLevel', laminationLevelSchema);
 
 module.exports = LaminationLevel;

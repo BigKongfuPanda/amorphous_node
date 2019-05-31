@@ -10,7 +10,7 @@ class LaminationLevel {
 
   async queryData(req, res, next) {
     try {
-      const list = await laminationLevelModel.find({});
+      const list = await laminationLevelModel.findAll();
       
       res.send({
         status: 0,
@@ -47,7 +47,12 @@ class LaminationLevel {
     }
 
     try {
-      const data = await laminationLevelModel.findOne({$or: [{ laminationLevel }, { laminationFactorRange }]});
+      // const data = await laminationLevelModel.findOne({$or: [{ laminationLevel }, { laminationFactorRange }]});
+      const data = await laminationLevelModel.findOne({
+        where: {
+          $or: [{ laminationLevel }, { laminationFactorRange }]
+        }
+      });
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (data) {
         throw new Error('带材叠片值重复');
@@ -100,7 +105,12 @@ class LaminationLevel {
       const newData = {
         laminationLevel, laminationFactorRange
       };
-      const { n } = await laminationLevelModel.updateOne({ _id: laminationLevelId }, { $set: newData });
+      // const { n } = await laminationLevelModel.updateOne({ _id: laminationLevelId }, { $set: newData });
+      const { n } = await laminationLevelModel.update(
+        newData,
+      {
+        where: { laminationLevelId } 
+      });
       if (n !== 0) {
         res.send({
           status: 0,
@@ -136,7 +146,10 @@ class LaminationLevel {
       return;
     }
     try {
-      const { n } = await laminationLevelModel.deleteOne({ _id: laminationLevelId } );
+      // const { n } = await laminationLevelModel.deleteOne({ _id: laminationLevelId } );
+      const { n } = await laminationLevelModel.destroy({
+         where: { laminationLevelId } 
+        });
       if (n !== 0) {
         res.send({
           status: 0,

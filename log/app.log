@@ -1,3 +1,211 @@
 [2019-04-06T15:19:05.156] [ERROR] user - 用户不存在 Error: 用户不存在
     at login (E:\学习资料\前端开发 学习资料\amorphous_node\controller\user.js:220:15)
     at <anonymous>
+[2019-05-31T00:17:38.936] [ERROR] plan - Table 'daicai.plan' doesn't exist { SequelizeDatabaseError: Table 'daicai.plan' doesn't exist
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Query.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at QueryInterface.select (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\query-interface.js:1120:27)
+    at Promise.try.then.then.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:1749:34)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Function.findAll (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:1746:8)
+    at queryData (E:\学习资料\前端开发\amorphous_node\controller\plan.js:30:36)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+    at E:\学习资料\前端开发\amorphous_node\node_modules\connect-mysql\lib\connect-mysql.js:306:49
+    at Query.<anonymous> (E:\学习资料\前端开发\amorphous_node\node_modules\connect-mysql\lib\connect-mysql.js:371:13)
+    at Query.<anonymous> (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\Connection.js:525:10)
+    at Query._callback (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\Connection.js:491:16)
+    at Query.Sequence.end (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Query._handleFinalResultPacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\protocol\sequences\Query.js:139:8)
+    at Query.EofPacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\protocol\sequences\Query.js:123:8)
+    at Protocol._parsePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\Connection.js:91:28)
+    at Socket.<anonymous> (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\Connection.js:525:10)
+    at Socket.emit (events.js:189:13)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Table 'daicai.plan' doesn't exist
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_NO_SUCH_TABLE',
+     errno: 1146,
+     sqlState: '42S02',
+     sqlMessage: 'Table \'daicai.plan\' doesn\'t exist',
+     sql:
+      'SELECT `id`, `date`, `approved`, `remark`, `fileNumber`, `castId`, `team`, `taskOrder`, `ribbonTypeId`, `ribbonTypeName`, `ribbonWidth`, `client`, `furnace`, `alloyWeight`, `castTime`, `rawWeight`, `orderThickness`, `orderLaminationFactor`, `orderRibbonToughnessLevels`, `orderAppearenceLevels`, `qualifiedThickness`, `qualifiedLaminationFactor`, `qualifiedRibbonToughnessLevels`, `qualifiedAppearenceLevels`, `realRibbonWidth`, `createdAt`, `updatedAt` FROM `plan` AS `plan` WHERE `plan`.`date` = \'2019-05-31\' AND `plan`.`castId` = \'6\' ORDER BY `plan`.`furnace` ASC;' },
+  original:
+   { Error: Table 'daicai.plan' doesn't exist
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_NO_SUCH_TABLE',
+     errno: 1146,
+     sqlState: '42S02',
+     sqlMessage: 'Table \'daicai.plan\' doesn\'t exist',
+     sql:
+      'SELECT `id`, `date`, `approved`, `remark`, `fileNumber`, `castId`, `team`, `taskOrder`, `ribbonTypeId`, `ribbonTypeName`, `ribbonWidth`, `client`, `furnace`, `alloyWeight`, `castTime`, `rawWeight`, `orderThickness`, `orderLaminationFactor`, `orderRibbonToughnessLevels`, `orderAppearenceLevels`, `qualifiedThickness`, `qualifiedLaminationFactor`, `qualifiedRibbonToughnessLevels`, `qualifiedAppearenceLevels`, `realRibbonWidth`, `createdAt`, `updatedAt` FROM `plan` AS `plan` WHERE `plan`.`date` = \'2019-05-31\' AND `plan`.`castId` = \'6\' ORDER BY `plan`.`furnace` ASC;' },
+  sql:
+   'SELECT `id`, `date`, `approved`, `remark`, `fileNumber`, `castId`, `team`, `taskOrder`, `ribbonTypeId`, `ribbonTypeName`, `ribbonWidth`, `client`, `furnace`, `alloyWeight`, `castTime`, `rawWeight`, `orderThickness`, `orderLaminationFactor`, `orderRibbonToughnessLevels`, `orderAppearenceLevels`, `qualifiedThickness`, `qualifiedLaminationFactor`, `qualifiedRibbonToughnessLevels`, `qualifiedAppearenceLevels`, `realRibbonWidth`, `createdAt`, `updatedAt` FROM `plan` AS `plan` WHERE `plan`.`date` = \'2019-05-31\' AND `plan`.`castId` = \'6\' ORDER BY `plan`.`furnace` ASC;' }
+[2019-05-31T00:17:49.947] [ERROR] plan - Table 'daicai.plan' doesn't exist { SequelizeDatabaseError: Table 'daicai.plan' doesn't exist
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Query.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at QueryInterface.select (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\query-interface.js:1120:27)
+    at Promise.try.then.then.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:1749:34)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Function.findAll (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:1746:8)
+    at queryData (E:\学习资料\前端开发\amorphous_node\controller\plan.js:30:36)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+    at E:\学习资料\前端开发\amorphous_node\node_modules\connect-mysql\lib\connect-mysql.js:306:49
+    at Query.<anonymous> (E:\学习资料\前端开发\amorphous_node\node_modules\connect-mysql\lib\connect-mysql.js:371:13)
+    at Query.<anonymous> (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\Connection.js:525:10)
+    at Query._callback (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\Connection.js:491:16)
+    at Query.Sequence.end (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\protocol\sequences\Sequence.js:83:24)
+    at Query._handleFinalResultPacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\protocol\sequences\Query.js:139:8)
+    at Query.EofPacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\protocol\sequences\Query.js:123:8)
+    at Protocol._parsePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\protocol\Protocol.js:291:23)
+    at Parser._parsePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\protocol\Parser.js:433:10)
+    at Parser.write (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\protocol\Parser.js:43:10)
+    at Protocol.write (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\protocol\Protocol.js:38:16)
+    at Socket.<anonymous> (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\Connection.js:91:28)
+    at Socket.<anonymous> (E:\学习资料\前端开发\amorphous_node\node_modules\mysql\lib\Connection.js:525:10)
+    at Socket.emit (events.js:189:13)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Table 'daicai.plan' doesn't exist
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_NO_SUCH_TABLE',
+     errno: 1146,
+     sqlState: '42S02',
+     sqlMessage: 'Table \'daicai.plan\' doesn\'t exist',
+     sql:
+      'SELECT `id`, `date`, `approved`, `remark`, `fileNumber`, `castId`, `team`, `taskOrder`, `ribbonTypeId`, `ribbonTypeName`, `ribbonWidth`, `client`, `furnace`, `alloyWeight`, `castTime`, `rawWeight`, `orderThickness`, `orderLaminationFactor`, `orderRibbonToughnessLevels`, `orderAppearenceLevels`, `qualifiedThickness`, `qualifiedLaminationFactor`, `qualifiedRibbonToughnessLevels`, `qualifiedAppearenceLevels`, `realRibbonWidth`, `createdAt`, `updatedAt` FROM `plan` AS `plan` WHERE `plan`.`date` = \'2019-05-31\' AND `plan`.`castId` = \'6\' ORDER BY `plan`.`furnace` ASC;' },
+  original:
+   { Error: Table 'daicai.plan' doesn't exist
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_NO_SUCH_TABLE',
+     errno: 1146,
+     sqlState: '42S02',
+     sqlMessage: 'Table \'daicai.plan\' doesn\'t exist',
+     sql:
+      'SELECT `id`, `date`, `approved`, `remark`, `fileNumber`, `castId`, `team`, `taskOrder`, `ribbonTypeId`, `ribbonTypeName`, `ribbonWidth`, `client`, `furnace`, `alloyWeight`, `castTime`, `rawWeight`, `orderThickness`, `orderLaminationFactor`, `orderRibbonToughnessLevels`, `orderAppearenceLevels`, `qualifiedThickness`, `qualifiedLaminationFactor`, `qualifiedRibbonToughnessLevels`, `qualifiedAppearenceLevels`, `realRibbonWidth`, `createdAt`, `updatedAt` FROM `plan` AS `plan` WHERE `plan`.`date` = \'2019-05-31\' AND `plan`.`castId` = \'6\' ORDER BY `plan`.`furnace` ASC;' },
+  sql:
+   'SELECT `id`, `date`, `approved`, `remark`, `fileNumber`, `castId`, `team`, `taskOrder`, `ribbonTypeId`, `ribbonTypeName`, `ribbonWidth`, `client`, `furnace`, `alloyWeight`, `castTime`, `rawWeight`, `orderThickness`, `orderLaminationFactor`, `orderRibbonToughnessLevels`, `orderAppearenceLevels`, `qualifiedThickness`, `qualifiedLaminationFactor`, `qualifiedRibbonToughnessLevels`, `qualifiedAppearenceLevels`, `realRibbonWidth`, `createdAt`, `updatedAt` FROM `plan` AS `plan` WHERE `plan`.`date` = \'2019-05-31\' AND `plan`.`castId` = \'6\' ORDER BY `plan`.`furnace` ASC;' }

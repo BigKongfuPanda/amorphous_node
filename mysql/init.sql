@@ -42,4 +42,11 @@ CREATE TABLE IF NOT EXISTS `measure`(
   PRIMARY KEY (`coilId`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- 叠片系数
+CREATE TABLE IF NOT EXISTS `laminationLevel`(
+  `laminationLevelId` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增id，做主键',
+  `laminationLevel` INT UNSIGNED COMMENT '叠片系数等级',
+  `laminationFactorRange` VARCHAR(100) COMMENT '叠片系数范围',
+  PRIMARY KEY (`laminationLevelId`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
