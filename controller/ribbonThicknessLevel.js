@@ -10,7 +10,8 @@ class RibbonThicknessLevel {
 
   async queryData(req, res, next) {
     try {
-      const list = await ribbonThicknessLevelModel.find({});
+      // const list = await ribbonThicknessLevelModel.find({});
+      const list = await ribbonThicknessLevelModel.findAll();
       
       res.send({
         status: 0,
@@ -46,7 +47,11 @@ class RibbonThicknessLevel {
     }
 
     try {
-      const data = await ribbonThicknessLevelModel.findOne({ ribbonThicknessLevel });
+      const data = await ribbonThicknessLevelModel.findOne({
+        where: {
+          ribbonThicknessLevel
+        }
+      });
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (data) {
         throw new Error('带材厚度值重复');
@@ -98,7 +103,15 @@ class RibbonThicknessLevel {
       const newData = {
         ribbonThicknessLevel, ribbonThicknessRange
       };
-      const { n } = await ribbonThicknessLevelModel.updateOne({ _id: ribbonThicknessLevelId }, { $set: newData });
+      // const { n } = await ribbonThicknessLevelModel.updateOne({ _id: ribbonThicknessLevelId }, { $set: newData });
+      const { n } = await ribbonThicknessLevelModel.update({
+        ribbonThicknessLevel, ribbonThicknessRange
+      }, 
+      { 
+        where: {
+          ribbonThicknessLevelId 
+        }
+      });
       if (n !== 0) {
         res.send({
           status: 0,
@@ -134,7 +147,12 @@ class RibbonThicknessLevel {
       return;
     }
     try {
-      const { n } = await ribbonThicknessLevelModel.deleteOne({ _id: ribbonThicknessLevelId } );
+      // const { n } = await ribbonThicknessLevelModel.deleteOne({ _id: ribbonThicknessLevelId } );
+      const { n } = await ribbonThicknessLevelModel.destroy({
+        where: {
+          ribbonThicknessLevelId
+        }
+      });
       if (n !== 0) {
         res.send({
           status: 0,

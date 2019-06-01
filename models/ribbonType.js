@@ -1,18 +1,16 @@
 'use strict';
 
-const mongoose =  require('mongoose');
-const Schema = mongoose.Schema;
+const Sequelize =  require('sequelize');
+const sequelize = require('../mysql/db');
 
-const ribbonTypeSchema = new Schema({
-  ribbonTypeId: { type: Schema.Types.ObjectId },
-  ribbonTypeName: String,
-  NCode: String // NC编码
-}, {
-	collection: 'RibbonType',
-	timestamps: true,
-  autoIndex: false
+const RibbonType = sequelize.define('ribbonType', {
+  ribbonTypeId: { 
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  ribbonTypeName: Sequelize.STRING,
+  NCode: Sequelize.STRING // NC编码
 });
-
-const RibbonType = mongoose.model('RibbonType', ribbonTypeSchema);
 
 module.exports = RibbonType;

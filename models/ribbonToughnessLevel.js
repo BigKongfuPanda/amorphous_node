@@ -1,18 +1,16 @@
 'use strict';
 
-const mongoose =  require('mongoose');
-const Schema = mongoose.Schema;
+const Sequelize =  require('sequelize');
+const sequelize = require('../mysql/db');
 
-const ribbonToughnessLevelSchema = new Schema({
-  ribbonToughnessLevelId: { type: Schema.Types.ObjectId },
-  ribbonToughnessLevel: String,
-  ribbonToughness: String
-}, {
-	collection: 'RibbonToughnessLevel',
-	timestamps: true,
-  autoIndex: false
+const RibbonToughnessLevel = sequelize.define('ribbonToughnessLevel', {
+  ribbonToughnessLevelId: { 
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  ribbonToughnessLevel: Sequelize.STRING,
+  ribbonToughness: Sequelize.STRING
 });
-
-const RibbonToughnessLevel = mongoose.model('RibbonToughnessLevel', ribbonToughnessLevelSchema);
 
 module.exports = RibbonToughnessLevel;

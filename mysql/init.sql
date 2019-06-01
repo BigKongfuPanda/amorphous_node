@@ -50,3 +50,26 @@ CREATE TABLE IF NOT EXISTS `laminationLevel`(
   PRIMARY KEY (`laminationLevelId`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- 带厚等级
+CREATE TABLE IF NOT EXISTS `ribbonThicknessLevel`(
+  `ribbonThicknessLevelId` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增id，做主键',
+  `ribbonThicknessLevel` INT UNSIGNED COMMENT '厚度等级',
+  `ribbonThicknessRange` VARCHAR(100) COMMENT '厚度等级对应的范围',
+  PRIMARY KEY (`ribbonThicknessLevelId`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 韧性等级
+CREATE TABLE IF NOT EXISTS `ribbonToughnessLevel`(
+  `ribbonToughnessLevelId` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增id，做主键',
+  `ribbonToughnessLevel` VARCHAR(100) COMMENT '韧性等级',
+  `ribbonToughness` VARCHAR(100) COMMENT '韧性等级对应的范围',
+  PRIMARY KEY (`ribbonToughnessLevelId`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 带材牌号
+CREATE TABLE IF NOT EXISTS `ribbonType`(
+  `ribbonTypeId` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增id，做主键',
+  `ribbonTypeName` VARCHAR(100) COMMENT '带材牌号名称',
+  `NCode` VARCHAR(100) COMMENT 'NC编码',
+  PRIMARY KEY (`ribbonTypeId`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

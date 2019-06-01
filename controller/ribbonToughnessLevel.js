@@ -10,7 +10,12 @@ class RibbonToughnessLevel {
 
   async queryData(req, res, next) {
     try {
-      const list = await ribbonToughnessLevelModel.find({}).sort({'ribbonToughnessLevel': 'asc'});
+      // const list = await ribbonToughnessLevelModel.find({}).sort({'ribbonToughnessLevel': 'asc'});
+      const list = await ribbonToughnessLevelModel.findAll({
+        order: [
+          ['ribbonToughnessLevel', 'asc']
+        ]
+      });
       
       res.send({
         status: 0,
@@ -46,7 +51,12 @@ class RibbonToughnessLevel {
     }
 
     try {
-      const data = await ribbonToughnessLevelModel.findOne({ $or: [{ ribbonToughness }, { ribbonToughnessLevel }] });
+      // const data = await ribbonToughnessLevelModel.findOne({ $or: [{ ribbonToughness }, { ribbonToughnessLevel }] });
+      const data = await ribbonToughnessLevelModel.findOne({
+        where: {
+          $or: [{ ribbonToughness }, { ribbonToughnessLevel }] 
+        }
+      });
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (data) {
         throw new Error('韧性描述或等级重复');
@@ -81,9 +91,9 @@ class RibbonToughnessLevel {
   }
   
   async updateData(req, res, next) {
-    const { _id, ribbonToughnessLevel, ribbonToughness } = req.body;
+    const { ribbonToughnessLevelId, ribbonToughnessLevel, ribbonToughness } = req.body;
     try{
-      if (!_id || !ribbonToughnessLevel || !ribbonToughness) {
+      if (!ribbonToughnessLevelId || !ribbonToughnessLevel || !ribbonToughness) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -99,7 +109,10 @@ class RibbonToughnessLevel {
       const newData = {
         ribbonToughnessLevel, ribbonToughness
       };
-      const { n } = await ribbonToughnessLevelModel.updateOne({ _id }, { $set: newData });
+      const { n } = await ribbonToughnessLevelModel.update(newData,
+      { 
+        where: { ribbonToughnessLevelId } 
+      });
       if (n !== 0) {
         res.send({
           status: 0,
@@ -120,9 +133,9 @@ class RibbonToughnessLevel {
 
   // 删除
   async delData(req, res, next) {
-    const { _id } = req.body;
+    const { ribbonToughnessLevelId } = req.body;
     try{
-      if (!_id) {
+      if (!ribbonToughnessLevelId) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -135,7 +148,11 @@ class RibbonToughnessLevel {
       return;
     }
     try {
-      const { n } = await ribbonToughnessLevelModel.deleteOne({ _id } );
+      const { n } = await ribbonToughnessLevelModel.destroy({ 
+        where: {
+          ribbonToughnessLevelId
+        }
+      });
       if (n !== 0) {
         res.send({
           status: 0,
