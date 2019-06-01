@@ -104,9 +104,10 @@ class RibbonType {
         ribbonTypeName, NCode
       };
       // const { n } = await ribbonTypeModel.updateOne({ _id: ribbonTypeId }, { $set: newData });
-      const { n } = await ribbonTypeModel.update(newData, {
+      const [ n ] = await ribbonTypeModel.update(newData, {
         where: { ribbonTypeId } 
       });
+      // 当更新失败的时候，返回 [0]，更新成功 n 条数据的时候，返回[n]
       if (n !== 0) {
         res.send({
           status: 0,
@@ -143,9 +144,10 @@ class RibbonType {
     }
     try {
       // const { n } = await ribbonTypeModel.deleteOne({ _id: ribbonTypeId } );
-      const { n } = await ribbonTypeModel.destroy({ 
-        where: { ribbonTypeId } 
+      const n = await ribbonTypeModel.destroy({ 
+        where: { ribbonTypeId: 313432 } 
       });
+      // destroy 返回值：删除失败的时候，返回数字0，删除 n 条成功的时候，返回数字 n
       if (n !== 0) {
         res.send({
           status: 0,

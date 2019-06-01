@@ -342,3 +342,25 @@ From previous event:
     at Promise._settlePromise0 (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
     at Promise._settlePromises (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
     at Async._drainQueue (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
+[2019-06-01T23:55:20.892] [ERROR] ribbonType - 材质名称或NC编码重复 Error: 材质名称或NC编码重复
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\ribbonType.js:58:15)
+[2019-06-02T00:04:52.931] [ERROR] ribbonType - n is not defined ReferenceError: n is not defined
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\ribbonType.js:112:7)
+[2019-06-02T00:05:26.383] [ERROR] ribbonType - n is not defined ReferenceError: n is not defined
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\ribbonType.js:112:7)
+[2019-06-02T00:06:39.121] [ERROR] ribbonType - n is not defined ReferenceError: n is not defined
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\ribbonType.js:112:7)
+[2019-06-02T00:07:22.424] [ERROR] ribbonType - n is not defined ReferenceError: n is not defined
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\ribbonType.js:112:7)
+[2019-06-02T00:10:10.058] [ERROR] ribbonType - n is not defined ReferenceError: n is not defined
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\ribbonType.js:112:7)
+[2019-06-02T00:11:06.477] [ERROR] ribbonType - 更新材质名称失败 Error: 更新材质名称失败
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\ribbonType.js:118:15)
+[2019-06-02T00:15:01.538] [ERROR] ribbonType - (intermediate value) is not iterable TypeError: (intermediate value) is not iterable
+    at delData (E:\学习资料\前端开发\amorphous_node\controller\ribbonType.js:147:21)
+[2019-06-02T00:17:30.051] [ERROR] ribbonType - n is not defined ReferenceError: n is not defined
+    at delData (E:\学习资料\前端开发\amorphous_node\controller\ribbonType.js:152:7)
+[2019-06-02T00:19:32.894] [ERROR] ribbonType - 删除材质失败 Error: 删除材质失败
+    at delData (E:\学习资料\前端开发\amorphous_node\controller\ribbonType.js:157:15)
+[2019-06-02T00:20:13.497] [ERROR] ribbonType - 删除材质失败 Error: 删除材质失败
+    at delData (E:\学习资料\前端开发\amorphous_node\controller\ribbonType.js:159:15)
