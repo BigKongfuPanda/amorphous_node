@@ -73,3 +73,11 @@ CREATE TABLE IF NOT EXISTS `ribbonType`(
   `NCode` VARCHAR(100) COMMENT 'NC编码',
   PRIMARY KEY (`ribbonTypeId`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- 带材宽度
+CREATE TABLE IF NOT EXISTS `ribbonWidth`(
+  `ribbonWidthId` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增id，做主键',
+  `ribbonWidth` INT COMMENT '带材宽度',
+  PRIMARY KEY (`ribbonWidthId`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

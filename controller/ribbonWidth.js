@@ -10,7 +10,7 @@ class ribbonWidth {
 
   async queryData(req, res, next) {
     try {
-      const list = await ribbonWidthModel.find({});
+      const list = await ribbonWidthModel.findAll();
       
       res.send({
         status: 0,
@@ -46,7 +46,11 @@ class ribbonWidth {
     }
 
     try {
-      const data = await ribbonWidthModel.findOne({ ribbonWidth });
+      const data = await ribbonWidthModel.findOne({
+        where:{
+          ribbonWidth
+        }  
+      });
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (data) {
         throw new Error('材质规格重复');
@@ -99,7 +103,12 @@ class ribbonWidth {
       const newData = {
         ribbonWidth
       };
-      const { n } = await ribbonWidthModel.updateOne({ _id: ribbonWidthId }, { $set: newData });
+      // const { n } = await ribbonWidthModel.updateOne({ _id: ribbonWidthId }, { $set: newData });
+      const { n } = await ribbonWidthModel.update(newData, 
+        { where: {
+          ribbonWidthId
+        } 
+      });
       if (n !== 0) {
         res.send({
           status: 0,
@@ -135,7 +144,11 @@ class ribbonWidth {
       return;
     }
     try {
-      const { n } = await ribbonWidthModel.deleteOne({ _id: ribbonWidthId } );
+      const { n } = await ribbonWidthModel.destroy({
+        where: {
+          ribbonWidthId
+        }
+      });
       if (n !== 0) {
         res.send({
           status: 0,

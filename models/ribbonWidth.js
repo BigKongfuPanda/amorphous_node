@@ -1,17 +1,15 @@
 'use strict';
 
-const mongoose =  require('mongoose');
-const Schema = mongoose.Schema;
+const Sequelize =  require('sequelize');
+const sequelize = require('../mysql/db');
 
-const ribbonWidthSchema = new Schema({
-  ribbonWidthId: { type: Schema.Types.ObjectId },
-  ribbonWidth: String
-}, {
-	collection: 'RibbonWidth',
-	timestamps: true,
-  autoIndex: false
+const RibbonWidth = sequelize.define('ribbonWidth', {
+  ribbonWidthId: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  ribbonWidth: Sequelize.INTEGER
 });
-
-const RibbonWidth = mongoose.model('RibbonWidth', ribbonWidthSchema);
 
 module.exports = RibbonWidth;
