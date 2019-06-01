@@ -3,6 +3,7 @@
 const Sequelize = require('sequelize');
 const config = require('config-lite')(__dirname);
 const operatorsAliases = require('./operatorsAliases');
+const chalk = require('chalk');
 
 const sequelize = new Sequelize(
   config.db.database,
@@ -45,10 +46,28 @@ const sequelize = new Sequelize(
 // You can use the .authenticate() function to test if the connection is OK:
 sequelize.authenticate()
   .then(() => {
-    console.log('mysql连接成功');
+    console.log(
+      chalk.green('mysql连接成功')
+    );
   })
   .catch(err => {
-    console.error('mysql连接成功:', err);
+    console.log(
+      chalk.red('mysql连接失败:', err)
+    );
+  });
+
+// Create Database struct from models
+sequelize
+  .sync({ alter: true})
+  .then(async () => {
+    console.log(
+      chalk.green('初始化数据库成功')      
+    );
+  })
+  .catch(error => {
+    console.log(
+      chalk.red('初始化数据库失败: ', error)
+    );
   });
 
 module.exports = sequelize;

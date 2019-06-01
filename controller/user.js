@@ -246,8 +246,8 @@ class User {
       } else if (data.password !== password) {
         throw new Error('密码错误');
       } else {
-        // 将当前用户的 _id 作为 存入 session 中，作为登录态
-        req.session.userId = data._id;
+        // 将当前用户的 userId 作为 存入 session 中，作为登录态
+        req.session.userId = data.userId;
         // 登陆时间
         const time = moment().format('YYYY-MM-DD HH:mm:ss');
         // await userModel.updateOne({username}, { $set: {loginTime: time}});

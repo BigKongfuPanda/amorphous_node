@@ -4,7 +4,7 @@ const Sequelize =  require('sequelize');
 const sequelize = require('../mysql/db');
 
 const Plan = sequelize.define('plan',{
-  id: {
+  planId: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     primaryKey: true
@@ -16,7 +16,7 @@ const Plan = sequelize.define('plan',{
   castId: Sequelize.INTEGER, // 机组编号
   team: Sequelize.STRING,// 班组 早
   taskOrder: Sequelize.STRING, //任务单号
-  ribbonTypeId: { type: Sequelize.INTEGER}, // 材质id
+  // ribbonTypeId: { type: Sequelize.INTEGER}, // 材质id
   ribbonTypeName: Sequelize.STRING,//材质名称 1k107B
   ribbonWidth: Sequelize.FLOAT, // 带宽
   client: Sequelize.STRING, //客户 

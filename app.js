@@ -1,13 +1,13 @@
 const createError = require('http-errors');
 const express = require('express');
 const fs = require('fs');
-const db = require('./mysql/db.js');
+const sequelize = require('./mysql/db.js');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const log4js = require('log4js');
 const session = require('express-session');
-const connectMysql = require('connect-mysql');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const config = require('config-lite')(__dirname);
 const chalk = require('chalk');
 const router = require('./routes/index');
@@ -41,7 +41,6 @@ app.use(express.urlencoded({ extended: true }));//用来解析 content-type: app
 app.use(cookieParser());// cookieParser 中间件要用在 session 中间件之前
 app.use(express.static(path.join(__dirname, 'public')));
 
-const MysqlStore = connectMysql(session);
 app.use(session({
 	name: config.session.name,//生成session 的key名 默认为 connect.sid 可以不设置
 	secret: config.session.secret,//加密字符串 随便写
@@ -49,8 +48,8 @@ app.use(session({
 	rolling: false,//在每次请求时强行设置cookie，这将重置cookie过期时间（默认：false）
 	saveUninitialized: false,//强制将未初始化的 session 存储 默认为 true。
 	cookie: config.session.cookie,
-	store: new MysqlStore({
-		config: config.db
+	store: new SequelizeStore({
+		db:sequelize
 	})
 }));
 

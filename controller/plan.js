@@ -97,7 +97,9 @@ class Plan {
     }
 
     try {
-      await planModel.bulkCreate(formData);
+      const ret = await planModel.bulkCreate(formData);
+      console.log('-----------bulkcreate------------');
+      console.log(ret);
       res.send({
         status: 0,
         message: '新增生产记录成功'
@@ -161,7 +163,7 @@ class Plan {
         
         const { n } = await planModel.update( newData, { where: { id } });
         // 一旦更改生产计划，则需要重新审批，状态变为“待审批”
-        const { l } = await planModel.updateMany( { approved: 0 }, {where: { date, castId }});
+        const { l } = await planModel.update( { approved: 0 }, {where: { date, castId }});
   
         if (n !== 0 && l !== 0) {
           res.send({

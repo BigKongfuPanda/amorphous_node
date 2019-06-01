@@ -10,7 +10,7 @@ class RibbonType {
 
   async queryData(req, res, next) {
     try {
-      const list = await ribbonTypeModel.find({});
+      const list = await ribbonTypeModel.findAll();
       
       res.send({
         status: 0,
@@ -46,7 +46,11 @@ class RibbonType {
     }
 
     try {
-      const data = await ribbonTypeModel.findOne({ $or: [ { ribbonTypeName }, { NCode } ] });
+      const data = await ribbonTypeModel.findOne({ 
+        where: {
+          $or: [ { ribbonTypeName }, { NCode } ]
+        }
+      });
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (data) {
         throw new Error('材质名称或NC编码重复');
@@ -99,7 +103,10 @@ class RibbonType {
       const newData = {
         ribbonTypeName, NCode
       };
-      const { n } = await ribbonTypeModel.updateOne({ _id: ribbonTypeId }, { $set: newData });
+      // const { n } = await ribbonTypeModel.updateOne({ _id: ribbonTypeId }, { $set: newData });
+      const { n } = await ribbonTypeModel.update(newData, {
+        where: { ribbonTypeId } 
+      });
       if (n !== 0) {
         res.send({
           status: 0,
@@ -135,7 +142,10 @@ class RibbonType {
       return;
     }
     try {
-      const { n } = await ribbonTypeModel.deleteOne({ _id: ribbonTypeId } );
+      // const { n } = await ribbonTypeModel.deleteOne({ _id: ribbonTypeId } );
+      const { n } = await ribbonTypeModel.destroy({ 
+        where: { ribbonTypeId } 
+      });
       if (n !== 0) {
         res.send({
           status: 0,

@@ -13,8 +13,7 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "config-lite": "^2.1.0",
-    "connect-mongo": "^2.0.1",
-    "connect-mysql": "^2.2.5",
+    "connect-session-sequelize": "^6.0.0",
     "cookie-parser": "^1.4.3",
     "cross-env": "^5.2.0",
     "debug": "~2.6.9",
