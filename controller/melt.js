@@ -48,6 +48,8 @@ class Melt {
       // const count = await meltModel.countDocuments(queryCondition);
       // const totalPage = Math.ceil(count / limit);
       // const list = await meltModel.find(queryCondition).skip((current - 1) * limit).limit(limit).sort({'furnace': 'asc'});
+
+      // findAndCountAll 返回值的格式：{ count: 0, rows: [] }
       const pageData = await meltModel.findAndCountAll({
         where: queryCondition,
         offset: (current - 1) * limit,
@@ -81,7 +83,7 @@ class Melt {
     }
   }
   async createData(req, res, next) {
-    const { castId, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, hignNbNumber = '', hignNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '', adminname } = req.body;
+    const { castId, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, highNbNumber = '', highNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '', adminname } = req.body;
     try{
       if (!castId || !furnace || !ribbonTypeName || !bucket || !melter || !meltFurnace) {
         throw new Error('参数错误')
@@ -124,7 +126,7 @@ class Melt {
         newAlloyNumber, newAlloyWeight,
         oldAlloyNumber, oldAlloyWeight,
         mixAlloyNumber, mixAlloyWeight,
-        hignNbNumber, hignNbWeight,
+        highNbNumber, highNbWeight,
         Si, Ni, Cu, BFe, NbFe, 
         alloyTotalWeight, alloyOutWeight, alloyFixWeight,
         createPerson: adminname,
@@ -146,9 +148,9 @@ class Melt {
     }
   }
   async updateData(req, res, next) {
-    const { castId, id, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, hignNbNumber = '', hignNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '', createdAt, roleId, adminname } = req.body;
+    const { castId, meltId, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, highNbNumber = '', highNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '', createdAt, roleId, adminname } = req.body;
     try{
-      if (!castId || !id || !furnace || !ribbonTypeName || !bucket || !melter || !meltFurnace) {
+      if (!castId || !meltId || !furnace || !ribbonTypeName || !bucket || !melter || !meltFurnace) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -181,39 +183,43 @@ class Melt {
 
     try {
       const newData = {
-        castId, id, furnace,
+        castId, furnace,
         ribbonTypeName, bucket, melter, meltFurnace,
         newAlloyNumber, newAlloyWeight,
         oldAlloyNumber, oldAlloyWeight,
         mixAlloyNumber, mixAlloyWeight,
-        hignNbNumber, hignNbWeight,
+        highNbNumber, highNbWeight,
         Si, Ni, Cu, BFe, NbFe,
         alloyTotalWeight, alloyOutWeight, alloyFixWeight,
         remark, 
         updatePerson: adminname
       };
-      // await meltModel.updateOne({ id }, { $set: newData });
-      await meltModel.update(newData, {
-        where: { id }
+      // await meltModel.updateOne({ meltId }, { $set: newData });
+      const [ n ] = await meltModel.update(newData, {
+        where: { meltId }
       });
-      res.send({
-        status: 0,
-        message: '更新化钢记录成功'
-      });
+      if (n !== 0) {
+        res.send({
+          status: 0,
+          message: '更新化钢记录成功'
+        });
+      } else {
+        throw new Error('更新化钢记录失败')
+      }
     } catch (err) {
-      console.log('更新化钢记录失败', err);
-      log.error('更新化钢记录失败', err);
+      console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
-        message: `更新化钢记录失败, ${err.message}`
+        message: err.message
       });
     }
   }
 
   async delData(req, res, next) {
-    const { id } = req.body;
+    const { meltId } = req.body;
     try {
-      if (!id) {
+      if (!meltId) {
         throw new Error('参数错误');
       }
     } catch (error) {
@@ -227,7 +233,7 @@ class Melt {
     }
 
     try {
-      const { n } = await meltModel.destroy({ where: {id} });
+      const n = await meltModel.destroy({ where: {meltId} });
       if (n != 0) {
         res.send({
           status: 0,
@@ -310,7 +316,6 @@ class Melt {
       });
       
       conf.rows = list.map(item => {
-        console.log(moment(item.updatedAt).format('YYYY-MM-DD HH:mm:ss'));
         return [
           moment(item.createTime).format('YYYY-MM-DD'), item.ribbonTypeName, item.furnace,
           item.bucket, item.melter, item.meltFurnace, 

@@ -27,7 +27,7 @@ class User {
 
     try {
       // const list = await userModel.find({}).sort({'roleId': 'asc'});
-      const list = await userModel.find({
+      const list = await userModel.findAll({
         oder: [
           'roleId', 'asc'
         ]
@@ -131,7 +131,7 @@ class User {
       return;
     }
     try {
-      const { n } = await userModel.destroy({ 
+      const n = await userModel.destroy({ 
         where: {
           username
         } 

@@ -4,7 +4,7 @@ const Sequelize =  require('sequelize');
 const sequelize = require('../mysql/db');
 
 const Melt = sequelize.define('melt', {
-	id: {
+	meltId: {
 		type: Sequelize.INTEGER,
 		autoIncrement: true,
 		primaryKey: true

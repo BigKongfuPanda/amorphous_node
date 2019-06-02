@@ -47,10 +47,20 @@ class Cast {
           queryCondition.ribbonWidth = { $in: ribbonWidthList };
         }
       }
-      const count = await castModel.countDocuments(queryCondition);
+      // const count = await castModel.countDocuments(queryCondition);
+      // const totalPage = Math.ceil(count / limit);
+      // const list = await castModel.find(queryCondition).skip((current - 1) * limit).limit(limit).sort({'furnace': 'asc'});
+      const pageData = await castModel.findAndCountAll({
+        where: queryCondition,
+        offset: (current - 1) * limit,
+        limit: limit,
+        order: [
+          ['furnace', 'ASC']
+        ]
+      });
+      const list = pageData.rows;
+      const count = pageData.count;
       const totalPage = Math.ceil(count / limit);
-      const list = await castModel.find(queryCondition).skip((current - 1) * limit).limit(limit).sort({'furnace': 'asc'});
-      // 要考虑分页
       res.send({
         status: 0,
         message: '操作成功',
@@ -74,9 +84,9 @@ class Cast {
 
   async createData(req, res, next) {
     const { castId, furnace, team, caster, ribbonWidth, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, uselessRibbonWeight, remark, castTimes = 1, recordJson, createdAt, adminname } = req.body;
-    const _record = JSON.parse(recordJson);
+    // const _record = JSON.parse(recordJson);
     try{
-      if (!castId || !furnace || !team || !caster || !ribbonWidth || !ribbonTypeName   || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !uselessRibbonWeight || !_record || !castTimes) {
+      if (!castId || !furnace || !team || !caster || !ribbonWidth || !ribbonTypeName   || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !uselessRibbonWeight || !recordJson || !castTimes) {
         throw new Error('参数错误');
       }
     }catch(err){
@@ -90,7 +100,8 @@ class Cast {
     }
     
     try {
-      const data = await castModel.findOne({ furnace });
+      // const data = await castModel.findOne({ furnace });
+      const data = await castModel.findOne({ where: {furnace} });
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (data) {
         throw new Error('炉号重复');
@@ -118,13 +129,21 @@ class Cast {
         meltOutWeight, rawWeight, uselessRibbonWeight,
         remark, castTimes,
         createPerson: adminname,
-        record: _record,
+        record: recordJson,
         createTime
       };
       await castModel.create(newData);
       // 将喷带记录表中的 rawWeight 进行更新。 生产计划中的 furname 为 06-20190111-02，而制带过程中的炉号是带有桶号: 06-20190111-02/08
       const planFurnace = furnace.substr(0, 14);
-      await planModel.updateOne({furnace: planFurnace}, {$set: {rawWeight, realRibbonWidth: ribbonWidth}});
+      // await planModel.updateOne({furnace: planFurnace}, {$set: {rawWeight, realRibbonWidth: ribbonWidth}});
+      await planModel.update({
+        rawWeight, 
+        realRibbonWidth: ribbonWidth
+      }, {
+        where: {
+          furnace: planFurnace
+        }
+      });
       res.send({
         status: 0,
         message: '新增喷带记录成功'
@@ -141,9 +160,9 @@ class Cast {
 
   async updateData(req, res, next) {
     const { castId, _id, furnace, team, caster, ribbonWidth, ribbonTypeName, nozzleNum, heatCupNum, tundishCar, tundish, isChangeTundish, meltOutWeight = 0, rawWeight, uselessRibbonWeight, remark, castTimes, recordJson, createdAt, roleId, adminname } = req.body;
-    const _record = JSON.parse(recordJson);
+    // const _record = JSON.parse(recordJson);
     try{
-      if (!castId || !_id || !furnace || !team || !caster || !ribbonWidth || !ribbonTypeName || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !uselessRibbonWeight || !_record || !castTimes || !roleId) {
+      if (!castId || !_id || !furnace || !team || !caster || !ribbonWidth || !ribbonTypeName || !tundishCar || !tundish || !isChangeTundish || !rawWeight || !uselessRibbonWeight || !recordJson || !castTimes || !roleId) {
         throw new Error('参数错误');
       }
     }catch(err){
@@ -200,12 +219,23 @@ class Cast {
         meltOutWeight, rawWeight, uselessRibbonWeight,
         remark, castTimes,
         updatePerson: adminname,
-        record: _record
+        record: recordJson
       };
-      await castModel.updateOne({ _id }, { $set: newData });
+      // await castModel.update({ _id }, { $set: newData });
+      await castModel.update(newData, {
+        where: { _id }
+      });
       // 将喷带记录表中的 rawWeight 进行更新。 生产计划中的 furname 为 06-20190111-02，而制带过程中的炉号是带有桶号: 06-20190111-02/08
       const planFurnace = furnace.substr(0, 14);
-      await planModel.updateOne({furnace: planFurnace}, {$set: {rawWeight, realRibbonWidth: ribbonWidth}});
+      // await planModel.updateOne({furnace: planFurnace}, {$set: {rawWeight, realRibbonWidth: ribbonWidth}});
+      await planModel.update({
+        rawWeight, 
+        realRibbonWidth: ribbonWidth
+      }, {
+        where: {
+          furnace: planFurnace
+        }
+      });
       res.send({
         status: 0,
         message: '更新喷带记录成功'
@@ -237,7 +267,7 @@ class Cast {
     }
 
     try {
-      const { n } = await castModel.deleteOne({ _id });
+      const n = await castModel.destroy({where: { _id }});
       if (n != 0) {
         res.send({
           status: 0,

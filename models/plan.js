@@ -21,7 +21,7 @@ const Plan = sequelize.define('plan',{
   ribbonWidth: Sequelize.FLOAT, // 带宽
   client: Sequelize.STRING, //客户 
   furnace: Sequelize.STRING, //制带炉号 06-20181120-01/01
-  alloyWeight: Sequelize.FLOAT, // 单炉投入重量 KG
+  alloyWeight: { type: Sequelize.FLOAT, allowNull: true }, // 单炉投入重量 KG
   castTime: Sequelize.STRING, //计划喷带时间 8:00-10:00
   rawWeight: Sequelize.FLOAT, // 实际产出的大盘毛重 KG，与 喷带记录表关联
   orderThickness: Sequelize.STRING, // 订单要求：厚度 20-23, ≤23

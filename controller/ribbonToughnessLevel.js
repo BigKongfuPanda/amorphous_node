@@ -109,7 +109,7 @@ class RibbonToughnessLevel {
       const newData = {
         ribbonToughnessLevel, ribbonToughness
       };
-      const { n } = await ribbonToughnessLevelModel.update(newData,
+      const [ n ] = await ribbonToughnessLevelModel.update(newData,
       { 
         where: { ribbonToughnessLevelId } 
       });
@@ -148,7 +148,7 @@ class RibbonToughnessLevel {
       return;
     }
     try {
-      const { n } = await ribbonToughnessLevelModel.destroy({ 
+      const n = await ribbonToughnessLevelModel.destroy({ 
         where: {
           ribbonToughnessLevelId
         }

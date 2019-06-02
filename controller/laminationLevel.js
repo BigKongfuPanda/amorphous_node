@@ -106,7 +106,7 @@ class LaminationLevel {
         laminationLevel, laminationFactorRange
       };
       // const { n } = await laminationLevelModel.updateOne({ _id: laminationLevelId }, { $set: newData });
-      const { n } = await laminationLevelModel.update(
+      const [ n ] = await laminationLevelModel.update(
         newData,
       {
         where: { laminationLevelId } 
@@ -147,7 +147,7 @@ class LaminationLevel {
     }
     try {
       // const { n } = await laminationLevelModel.deleteOne({ _id: laminationLevelId } );
-      const { n } = await laminationLevelModel.destroy({
+      const n = await laminationLevelModel.destroy({
          where: { laminationLevelId } 
         });
       if (n !== 0) {

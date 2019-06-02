@@ -364,3 +364,226 @@ From previous event:
     at delData (E:\学习资料\前端开发\amorphous_node\controller\ribbonType.js:157:15)
 [2019-06-02T00:20:13.497] [ERROR] ribbonType - 删除材质失败 Error: 删除材质失败
     at delData (E:\学习资料\前端开发\amorphous_node\controller\ribbonType.js:159:15)
+[2019-06-02T16:32:52.837] [ERROR] plan - 新增生产记录失败 { SequelizeDatabaseError: Data truncated for column 'rawWeight' at row 1
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Query.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at QueryInterface.bulkInsert (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\query-interface.js:997:27)
+    at Promise.try.then.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:2643:34)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Function.bulkCreate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:2588:8)
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\plan.js:100:35)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Data truncated for column 'rawWeight' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'rawWeight\' at row 1',
+     sql:
+      'INSERT INTO `plan` (`planId`,`date`,`approved`,`remark`,`fileNumber`,`castId`,`team`,`taskOrder`,`ribbonTypeName`,`ribbonWidth`,`client`,`furnace`,`alloyWeight`,`castTime`,`rawWeight`,`orderThickness`,`orderLaminationFactor`,`orderRibbonToughnessLevels`,`orderAppearenceLevels`,`qualifiedThickness`,`qualifiedLaminationFactor`,`qualifiedRibbonToughnessLevels`,`qualifiedAppearenceLevels`,`createdAt`,`updatedAt`) VALUES (NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-01\',\'230\',\'08:00-10:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-02\',\'230\',\'10:00-12:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-03\',\'230\',\'12:00-14:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-04\',\'230\',\'14:00-16:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-05\',\'230\',\'16:00-18:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-06\',\'230\',\'18:00-20:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-07\',\'230\',\'20:00-22:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-08\',\'230\',\'22:00-24:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-09\',\'230\',\'00:00-02:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-10\',\'230\',\'02:00-04:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-11\',\'230\',\'04:00-06:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-12\',\'230\',\'06:00-08:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\');' },
+  original:
+   { Error: Data truncated for column 'rawWeight' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'rawWeight\' at row 1',
+     sql:
+      'INSERT INTO `plan` (`planId`,`date`,`approved`,`remark`,`fileNumber`,`castId`,`team`,`taskOrder`,`ribbonTypeName`,`ribbonWidth`,`client`,`furnace`,`alloyWeight`,`castTime`,`rawWeight`,`orderThickness`,`orderLaminationFactor`,`orderRibbonToughnessLevels`,`orderAppearenceLevels`,`qualifiedThickness`,`qualifiedLaminationFactor`,`qualifiedRibbonToughnessLevels`,`qualifiedAppearenceLevels`,`createdAt`,`updatedAt`) VALUES (NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-01\',\'230\',\'08:00-10:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-02\',\'230\',\'10:00-12:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-03\',\'230\',\'12:00-14:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-04\',\'230\',\'14:00-16:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-05\',\'230\',\'16:00-18:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-06\',\'230\',\'18:00-20:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-07\',\'230\',\'20:00-22:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-08\',\'230\',\'22:00-24:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-09\',\'230\',\'00:00-02:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-10\',\'230\',\'02:00-04:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-11\',\'230\',\'04:00-06:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-12\',\'230\',\'06:00-08:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\');' },
+  sql:
+   'INSERT INTO `plan` (`planId`,`date`,`approved`,`remark`,`fileNumber`,`castId`,`team`,`taskOrder`,`ribbonTypeName`,`ribbonWidth`,`client`,`furnace`,`alloyWeight`,`castTime`,`rawWeight`,`orderThickness`,`orderLaminationFactor`,`orderRibbonToughnessLevels`,`orderAppearenceLevels`,`qualifiedThickness`,`qualifiedLaminationFactor`,`qualifiedRibbonToughnessLevels`,`qualifiedAppearenceLevels`,`createdAt`,`updatedAt`) VALUES (NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-01\',\'230\',\'08:00-10:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-02\',\'230\',\'10:00-12:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-03\',\'230\',\'12:00-14:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-04\',\'230\',\'14:00-16:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-05\',\'230\',\'16:00-18:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-06\',\'230\',\'18:00-20:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-07\',\'230\',\'20:00-22:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-08\',\'230\',\'22:00-24:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-09\',\'230\',\'00:00-02:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-10\',\'230\',\'02:00-04:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-11\',\'230\',\'04:00-06:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\'),(NULL,\'2019-06-02\',0,\'计划喷带12炉，如果有富余时间喷带按照当天最后一炉规定的要求生产。\',\'\',6,\'早\',\'\',\'1K107B\',\'32\',\'\',\'06-20190602-12\',\'230\',\'06:00-08:00\',\'\',\'≤23\',\'≥0.78\',\'A,B,C\',\'A,B,C\',\'≤26\',\'≥0.75\',\'A,B,C\',\'A,B,C\',\'2019-06-02 08:32:52\',\'2019-06-02 08:32:52\');' }
+[2019-06-02T18:22:49.500] [ERROR] user - userModel.find is not a function TypeError: userModel.find is not a function
+    at queryUser (E:\学习资料\前端开发\amorphous_node\controller\user.js:30:36)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+    at tryCatcher (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
+    at Promise.successAdapter [as _fulfillmentHandler0] (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
+    at Promise._settlePromise (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
+    at Promise._settlePromise0 (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
+    at Promise._settlePromises (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
+    at Async._drainQueue (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
+[2019-06-02T18:27:27.420] [ERROR] user - 账号或者姓名重复 Error: 账号或者姓名重复
+    at createUser (E:\学习资料\前端开发\amorphous_node\controller\user.js:82:15)
+[2019-06-02T19:00:57.261] [ERROR] plan - WHERE parameter "id" has invalid "undefined" value Error: WHERE parameter "id" has invalid "undefined" value
+    at MySQLQueryGenerator.whereItemQuery (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\abstract\query-generator.js:2061:13)
+    at Utils.getComplexKeys.forEach.prop (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\abstract\query-generator.js:2050:25)
+    at Array.forEach (<anonymous>)
+    at MySQLQueryGenerator.whereItemsQuery (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\abstract\query-generator.js:2048:35)
+    at MySQLQueryGenerator.whereQuery (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\abstract\query-generator.js:2021:24)
+    at MySQLQueryGenerator.updateQuery (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\abstract\query-generator.js:415:116)
+    at QueryInterface.bulkUpdate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\query-interface.js:1038:37)
+    at Promise.try.then.then.then.results (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3052:34)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Function.update (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3033:8)
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\plan.js:162:39)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+[2019-06-02T19:02:46.981] [ERROR] plan - id is not defined ReferenceError: id is not defined
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\plan.js:162:67)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+    at tryCatcher (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
+    at Promise.successAdapter [as _fulfillmentHandler0] (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
+    at Promise._settlePromise (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
+    at Promise._settlePromise0 (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
+    at Promise._settlePromises (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
+    at Async._drainQueue (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
+[2019-06-02T19:07:15.779] [ERROR] plan - 参数错误 Error: 参数错误
+    at delData (E:\学习资料\前端开发\amorphous_node\controller\plan.js:192:15)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+    at tryCatcher (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
+    at Promise.successAdapter [as _fulfillmentHandler0] (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
+    at Promise._settlePromise (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
+    at Promise._settlePromise0 (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
+    at Promise._settlePromises (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
+    at Async._drainQueue (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
+[2019-06-02T21:46:12.249] [ERROR] melt - 炉号重复 Error: 炉号重复
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\melt.js:106:15)

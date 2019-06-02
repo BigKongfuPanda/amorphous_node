@@ -4,7 +4,7 @@ const Sequelize =  require('sequelize');
 const sequelize = require('../mysql/db');
 
 const Measure = sequelize.define('measure',{
-  id: {
+  measureId: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true
@@ -27,12 +27,12 @@ const Measure = sequelize.define('measure',{
   isFlat: Sequelize.STRING, // 端面是否平整, 是-平整，否-不平整
   orderThickness: Sequelize.STRING, // 订单要求：厚度 20-23, ≤23
   orderLaminationFactor: Sequelize.STRING, // 订单要求：叠片系数 ≥0.78
-  orderRibbonToughnessLevels: Array, // 订单要求：韧性 [A,B,C]
-  orderAppearenceLevels: Array, // 订单要求：外观 [A,B,C]
+  orderRibbonToughnessLevels: Sequelize.STRING, // 订单要求：韧性 [A,B,C]
+  orderAppearenceLevels: Sequelize.STRING, // 订单要求：外观 [A,B,C]
   qualifiedThickness: Sequelize.STRING, // 入库要求：厚度 20-23, ≤23
   qualifiedLaminationFactor: Sequelize.STRING, // 入库要求：叠片系数 ≥0.78
-  qualifiedRibbonToughnessLevels: Array, // 入库要求：韧性 [A,B,C]
-  qualifiedAppearenceLevels: Array, // 入库要求：外观 [A,B,C]
+  qualifiedRibbonToughnessLevels: Sequelize.STRING, // 入库要求：韧性 [A,B,C]
+  qualifiedAppearenceLevels: Sequelize.STRING, // 入库要求：外观 [A,B,C]
   // 检测录入信息
   realRibbonWidth: Sequelize.FLOAT,//实际带宽
   ribbonThickness1: Sequelize.FLOAT, //带材厚度点1, μm
@@ -56,7 +56,7 @@ const Measure = sequelize.define('measure',{
   // storageRule: Object, //入库规则
   isStored: { type: Sequelize.INTEGER, default: 3 }, // 是否入库：1-计划内入库，2-计划外入库，3-否
   unStoreReason: Sequelize.STRING, //不入库原因
-  clients: Array, //去向 德国，法国
+  clients: Sequelize.STRING, //去向 德国，法国
   measureDate: {type: Sequelize.DATE, defaultValue: null}, //检测日期
   // 库房信息
   inStoreDate: {type: Sequelize.DATE, defaultValue: null}, //入库日期

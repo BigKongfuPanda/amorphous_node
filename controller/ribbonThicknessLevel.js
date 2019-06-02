@@ -104,9 +104,7 @@ class RibbonThicknessLevel {
         ribbonThicknessLevel, ribbonThicknessRange
       };
       // const { n } = await ribbonThicknessLevelModel.updateOne({ _id: ribbonThicknessLevelId }, { $set: newData });
-      const { n } = await ribbonThicknessLevelModel.update({
-        ribbonThicknessLevel, ribbonThicknessRange
-      }, 
+      const [ n ] = await ribbonThicknessLevelModel.update(newData, 
       { 
         where: {
           ribbonThicknessLevelId 
@@ -148,7 +146,7 @@ class RibbonThicknessLevel {
     }
     try {
       // const { n } = await ribbonThicknessLevelModel.deleteOne({ _id: ribbonThicknessLevelId } );
-      const { n } = await ribbonThicknessLevelModel.destroy({
+      const n = await ribbonThicknessLevelModel.destroy({
         where: {
           ribbonThicknessLevelId
         }

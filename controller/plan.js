@@ -97,9 +97,7 @@ class Plan {
     }
 
     try {
-      const ret = await planModel.bulkCreate(formData);
-      console.log('-----------bulkcreate------------');
-      console.log(ret);
+      await planModel.bulkCreate(formData);
       res.send({
         status: 0,
         message: '新增生产记录成功'
@@ -115,7 +113,7 @@ class Plan {
   }
   
   async updateData(req, res, next) {
-    const { id, roleId, date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeName, ribbonWidth, client = '', furnace, alloyWeight = 0, castTime = '', orderThickness = '', orderLaminationFactor = '', orderRibbonToughnessLevels = '', orderAppearenceLevels = '', qualifiedThickness = '', qualifiedLaminationFactor = '', qualifiedRibbonToughnessLevels = '', qualifiedAppearenceLevels = '' } = req.body;
+    const { planId, roleId, date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeName, ribbonWidth, client = '', furnace, alloyWeight = 0, castTime = '', orderThickness = '', orderLaminationFactor = '', orderRibbonToughnessLevels = '', orderAppearenceLevels = '', qualifiedThickness = '', qualifiedLaminationFactor = '', qualifiedRibbonToughnessLevels = '', qualifiedAppearenceLevels = '' } = req.body;
 
     // const orderRibbonToughnessLevels = JSON.parse(orderRibbonToughnessLevelsJson);
     // const orderAppearenceLevels = JSON.parse(orderAppearenceLevelsJson);
@@ -138,7 +136,7 @@ class Plan {
     try {
       if (Number(roleId) === 1) { // 角色：厂长，操作：审批，将 isApproved 设置为 1  
         // const { m } = await planModel.updateMany({ date, castId }, { $set: {approved: 1} });
-      const { m } = await planModel.update({ approved: 1}, { where: { date, castId } });
+      const [ m ] = await planModel.update({ approved: 1}, { where: { date, castId } });
   
         if (m !== 0) {
           res.send({
@@ -150,7 +148,7 @@ class Plan {
         }
       } else if (Number(roleId) === 2) { // 角色：生产计划，操作：更新数据
         const newData = {
-          id, date, remark, fileNumber,
+          planId, date, remark, fileNumber,
           castId, team, taskOrder,
           ribbonTypeName, ribbonWidth, client, furnace, alloyWeight, castTime,
           orderThickness, orderLaminationFactor, 
@@ -161,11 +159,11 @@ class Plan {
           qualifiedAppearenceLevels
         };
         
-        const { n } = await planModel.update( newData, { where: { id } });
+        const [ n ] = await planModel.update( newData, { where: { planId } });
         // 一旦更改生产计划，则需要重新审批，状态变为“待审批”
-        const { l } = await planModel.update( { approved: 0 }, {where: { date, castId }});
+        const [ k ] = await planModel.update( { approved: 0 }, {where: { date, castId }});
   
-        if (n !== 0 && l !== 0) {
+        if (n !== 0 && k !== 0) {
           res.send({
             status: 0,
             message: '更新生产计划成功'
@@ -188,9 +186,9 @@ class Plan {
 
   // 删除
   async delData(req, res, next) {
-    const { id } = req.body;
+    const { planId } = req.body;
     try{
-      if (!id) {
+      if (!planId) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -203,8 +201,8 @@ class Plan {
       return;
     }
     try {
-      // const { n } = await planModel.deleteOne({ id } );
-      const { n } = await planModel.destroy({ where: {id} } );
+      // const { n } = await planModel.deleteOne({ planId } );
+      const n = await planModel.destroy({ where: {planId} } );
       if (n !== 0) {
         res.send({
           status: 0,
@@ -285,6 +283,9 @@ class Plan {
           item.taskOrder, item.client, item.alloyWeight, item.castTime, item.rawWeight
         ].map(val => val == undefined ? null : val);
       });
+
+      console.log('-------------------rows------------');
+      console.log(conf.rows);
       
       const result = nodeExcel.execute(conf);
       res.setHeader('Content-Type', 'application/vnd.openxmlformats');

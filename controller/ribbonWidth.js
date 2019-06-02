@@ -3,7 +3,7 @@
 const ribbonWidthModel = require('../models/ribbonWidth');
 const log = require('log4js').getLogger("ribbonWidth");
 
-class ribbonWidth {
+class RibbonWidth {
   constructor() {
 
   }
@@ -104,7 +104,7 @@ class ribbonWidth {
         ribbonWidth
       };
       // const { n } = await ribbonWidthModel.updateOne({ _id: ribbonWidthId }, { $set: newData });
-      const { n } = await ribbonWidthModel.update(newData, 
+      const [ n ] = await ribbonWidthModel.update(newData, 
         { where: {
           ribbonWidthId
         } 
@@ -144,7 +144,7 @@ class ribbonWidth {
       return;
     }
     try {
-      const { n } = await ribbonWidthModel.destroy({
+      const n = await ribbonWidthModel.destroy({
         where: {
           ribbonWidthId
         }
@@ -167,4 +167,4 @@ class ribbonWidth {
   }
 }
 
-module.exports = new ribbonWidth();
+module.exports = new RibbonWidth();
