@@ -56,7 +56,7 @@ const Measure = sequelize.define('measure',{
   // storageRule: Object, //入库规则
   isStored: { type: Sequelize.INTEGER, default: 3 }, // 是否入库：1-计划内入库，2-计划外入库，3-否
   unStoreReason: Sequelize.STRING, //不入库原因
-  clients: Sequelize.STRING, //去向 德国，法国
+  clients: Sequelize.STRING, //去向 [德国，法国]
   measureDate: {type: Sequelize.DATE, defaultValue: null}, //检测日期
   // 库房信息
   inStoreDate: {type: Sequelize.DATE, defaultValue: null}, //入库日期
