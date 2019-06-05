@@ -19,39 +19,39 @@ const User = sequelize.define('user', {
   createTime: Sequelize.STRING // 创建时间
 });
 
-User
-  .sync({ alter: true})
-  .then(async () => {
-    chalk.green('初始化user表成功');
-    // 创建超级管理员
-    try {
-      const superAdmin = await User.findOne({
-        where: {
-          username: 'heyuntao'
-        }
-      });
-      if (superAdmin) {
-        return;
-      }
-      await User.create({
-        roleId: 1,
-        username: 'heyuntao',
-        adminname: '何云涛',
-        createTime: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
-      });
-      console.log(
-        chalk.green('创建超级管理员成功')
-      );
-    } catch(error) {
-      console.log(
-        chalk.red('创建超级管理员失败：', error)
-      );
-    }
-  })
-  .catch(error => {
-    console.log(
-      chalk.red('初始化user表失败: ', error)
-    );
-  });
+// User
+//   .sync({ alter: true})
+//   .then(async () => {
+//     chalk.green('初始化user表成功');
+//     // 创建超级管理员
+//     try {
+//       const superAdmin = await User.findOne({
+//         where: {
+//           username: 'heyuntao'
+//         }
+//       });
+//       if (superAdmin) {
+//         return;
+//       }
+//       await User.create({
+//         roleId: 1,
+//         username: 'heyuntao',
+//         adminname: '何云涛',
+//         createTime: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss')
+//       });
+//       console.log(
+//         chalk.green('创建超级管理员成功')
+//       );
+//     } catch(error) {
+//       console.log(
+//         chalk.red('创建超级管理员失败：', error)
+//       );
+//     }
+//   })
+//   .catch(error => {
+//     console.log(
+//       chalk.red('初始化user表失败: ', error)
+//     );
+//   });
 
 module.exports = User;

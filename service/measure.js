@@ -38,7 +38,8 @@ class MeasureService {
         delete clone.measureId;
         delete clone.createdAt;
         delete clone.updatedAt;
-        await storageModel.create(clone);
+        // await storageModel.create(clone);
+        await storageModel.bulkCreate(clone);
       });
       res.send({
         status: 0,

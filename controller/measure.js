@@ -227,7 +227,7 @@ class Measure {
       return measureService.measureConfirm(req, res, next);
     }
 
-    let { measureId, roleId, adminname, castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, ribbonTypeName, ribbonWidth, roller, rollMachine, isFlat, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients = [], remainWeight, takeBy, shipRemark, place, createdAt, totalStoredWeight = 0, inPlanStoredWeight = 0, outPlanStoredWeight = 0, qualityOfA = 0, qualityOfB = 0, qualityOfC = 0, qualityOfD = 0, qualityOfE = 0, highFactorThinRibbonWeight = 0, thinRibbonWeight = 0, inPlanThickRibbonWeight = 0, qualityOfGood = 0, qualityOfFine = 0, qualityOfNormal = 0 } = req.body;
+    let { measureId, roleId, adminname, castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, ribbonTypeName, ribbonWidth, roller, rollMachine, isFlat, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients = '', remainWeight, takeBy, shipRemark, place, createdAt, totalStoredWeight = 0, inPlanStoredWeight = 0, outPlanStoredWeight = 0, qualityOfA = 0, qualityOfB = 0, qualityOfC = 0, qualityOfD = 0, qualityOfE = 0, highFactorThinRibbonWeight = 0, thinRibbonWeight = 0, inPlanThickRibbonWeight = 0, qualityOfGood = 0, qualityOfFine = 0, qualityOfNormal = 0 } = req.body;
     try{
       if (!measureId) {
         throw new Error('参数错误')
@@ -301,17 +301,23 @@ class Measure {
         inPlanThickRibbonWeight,
         qualityOfGood, qualityOfFine, qualityOfNormal
       };
-      await measureModel.updateOne({ measureId }, { $set: newData });
-      res.send({
-        status: 0,
-        message: '更新数据成功'
-      });
+      // await measureModel.updateOne({ measureId }, { $set: newData });
+      const [ n ] = await measureModel.update(newData, { where: { measureId }});
+      if (n !== 0) {
+        res.send({
+          status: 0,
+          message: '更新数据成功'
+        });
+      } else {
+        throw new Error('更新数据失败');
+      }
+      
     } catch (err) {
-      console.log('更新数据失败', err);
-      log.error('更新数据失败', err);
+      console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
-        message: `更新数据失败, ${err.message}`
+        message: err.message
       });
     }
   }
@@ -333,8 +339,9 @@ class Measure {
     }
 
     try {
-      const { n } = await measureModel.deleteOne({ measureId });
-      if (n != 0) {
+      // const { n } = await measureModel.deleteOne({ measureId });
+      const m = await measureModel.destroy({ where: { measureId }});
+      if (m != 0) {
         res.send({
           status: 0,
           message: '删除检测记录成功'
@@ -451,7 +458,14 @@ class Measure {
         { caption: '判定去向', type: 'string' },
       ];
       conf.rows = [];
-      const list = await measureModel.find(queryCondition).sort({'furnace': 'asc', 'coilNumber': 'asc'});
+      // const list = await measureModel.find(queryCondition).sort({'furnace': 'asc', 'coilNumber': 'asc'});
+      const list = await measureModel.findAll({
+        where: queryCondition,
+        roder: [
+          ['furnace', 'asc'],
+          ['coilNumber', 'asc']
+        ]
+      });
       
       conf.rows = list.map(item => {
         return [ 
@@ -463,7 +477,7 @@ class Measure {
           item.ribbonThickness9, 
           item.ribbonThicknessDeviation, item.ribbonThickness, item.ribbonThicknessLevel,
           item.ribbonToughness, item.ribbonToughnessLevel, item.appearence, item.appearenceLevel, item.ribbonTotalLevel, isStoredDesc(item.isStored),
-          item.unStoreReason, item.clients.join()
+          item.unStoreReason, item.clients
         ].map(val => val == undefined ? null : val);
       });
 
@@ -536,7 +550,14 @@ class Measure {
         { caption: '是否平整', type: 'string' }
       ];
       conf.rows = [];
-      const list = await measureModel.find(queryCondition).sort({'furnace': 'asc', 'coilNumber': 'asc'});
+      // const list = await measureModel.find(queryCondition).sort({'furnace': 'asc', 'coilNumber': 'asc'});
+      const list = await measureModel.findAll({
+        where: queryCondition,
+        order: [
+          ['furnace', 'asc'],
+          ['coilNumber', 'asc']
+        ]
+      });
       
       conf.rows = list.map(item => {
         return [

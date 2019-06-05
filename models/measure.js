@@ -80,6 +80,13 @@ const Measure = sequelize.define('measure',{
   qualityOfGood: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为好的带材质量：A + 符合订单非薄带
   qualityOfFine: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为良的带材质量：B
   qualityOfNormal: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为中的带材质量：30**、40**+ 计划外入库
+  testName: Sequelize.STRING
 });
+
+Measure.sync({alter: true}).then((result) => {
+  
+}).catch((err) => {
+  console.log('measure表初始化失败', err.message);
+});;
 
 module.exports = Measure;
