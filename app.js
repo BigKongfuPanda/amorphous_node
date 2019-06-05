@@ -78,3 +78,16 @@ app.listen(config.port, config.hostname, () => {
 		chalk.green(`成功监听：${config.hostname}:${config.port}`)
 	)
 });
+
+// You can use the .authenticate() function to test if the connection is OK:
+sequelize.authenticate()
+	.then(() => {
+		console.log(
+			chalk.green('mysql连接成功')
+		);
+	})
+	.catch(err => {
+		console.log(
+			chalk.red('mysql连接失败:', err)
+		);
+	});

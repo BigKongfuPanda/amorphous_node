@@ -52,9 +52,9 @@ const Measure = sequelize.define('measure',{
   appearence: Sequelize.STRING, //带材外观
   appearenceLevel: Sequelize.STRING, //带材外观等级
   ribbonTotalLevel: Sequelize.STRING, //带材综合级别
-  isMeasureConfirmed: { type: Sequelize.INTEGER, default: 0 }, // 检测是否确认可入库：1-是，0-否
+  isMeasureConfirmed: { type: Sequelize.INTEGER, defaultValue: 0 }, // 检测是否确认可入库：1-是，0-否
   // storageRule: Object, //入库规则
-  isStored: { type: Sequelize.INTEGER, default: 3 }, // 是否入库：1-计划内入库，2-计划外入库，3-否
+  isStored: { type: Sequelize.INTEGER, defaultValue: 3 }, // 是否入库：1-计划内入库，2-计划外入库，3-否
   unStoreReason: Sequelize.STRING, //不入库原因
   clients: Sequelize.STRING, //去向 [德国，法国]
   measureDate: {type: Sequelize.DATE, defaultValue: null}, //检测日期
