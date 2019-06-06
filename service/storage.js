@@ -24,16 +24,27 @@ class StorageService {
     }
 
     try {
-      const { n } = await storageModel.updateMany({ 
-        place: place,
-        remainWeight: { $gt: 0 }
+      // const { n } = await storageModel.updateMany({ 
+      //   place: place,
+      //   remainWeight: { $gt: 0 }
+      // }, {
+      //   $set: {
+      //     outStoreDate: new Date(),
+      //     takeBy,
+      //     remainWeight: 0
+      //   }
+      // });
+
+      const [n] = await storageModel.update({
+        outStoreDate: new Date(),
+        takeBy,
+        remainWeight: 0
       }, {
-        $set: {
-          outStoreDate: new Date(),
-          takeBy,
-          remainWeight: 0
-        }
-      });
+          where: {
+            place: place,
+            remainWeight: { $gt: 0 }
+          }
+        });
 
       if (n != 0) {
         res.send({
@@ -54,13 +65,11 @@ class StorageService {
 
   // 批量出库
   async batchOutStore(req, res, next) {
-    const { dataJson } = req.body;
-    let data = [];
+    const { ids, takeBy } = req.body;
     try{
-      if (!dataJson) {
+      if (!ids || takeBy) {
         throw new Error('参数错误')
       }
-      data = JSON.parse(dataJson);
     }catch(err){
       console.log(err.message, err);
       log.error(err.message, err);
@@ -72,10 +81,22 @@ class StorageService {
     }
 
     try {
-      data.forEach(async (item) => {
-      // 批量出库
-        item.outStoreDate = Date.now();
-        await storageModel.updateOne({ _id: item._id }, { $set: item });
+      // data.forEach(async (item) => {
+      // // 批量出库
+      //   item.outStoreDate = Date.now();
+      //   await storageModel.updateOne({ storageId: item.storageId }, { $set: item });
+      // });
+
+      await storageModel.update({
+        outStoreDate: Date.now(),
+        remainWeight: 0,
+        takeBy
+      }, {
+        where: {
+          storageId: {
+            $in: ids.split(',')
+          }
+        }
       });
 
       res.send({

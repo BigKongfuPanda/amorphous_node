@@ -81,10 +81,10 @@ const Storage = sequelize.define('storage', {
   qualityOfNormal: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为中的带材质量：30**、40**+ 计划外入库
 });
 
-Storage.sync({alter: true}).then((result) => {
+// Storage.sync({alter: true}).then((result) => {
 
-}).catch((err) => {
-  console.log('Storage表初始化失败', err.message);
-});;
+// }).catch((err) => {
+//   console.log('Storage表初始化失败', err.message);
+// });;
 
 module.exports = Storage;

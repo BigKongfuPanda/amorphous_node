@@ -60,9 +60,22 @@ class ReturnGoods {
         }
       }
       
-      const count = await returnGoodsModel.countDocuments(queryCondition);
+      // const count = await returnGoodsModel.countDocuments(queryCondition);
+      // const totalPage = Math.ceil(count / limit);
+      // const list = await returnGoodsModel.find(queryCondition).skip((current - 1) * limit).limit(limit).sort({'furnace': 'desc', 'coilNumber': 'asc'});
+
+      const pageData = await returnGoodsModel.findAndCountAll({
+        where: queryCondition,
+        offset: (current - 1) * limit,
+        limit: limit,
+        order: [
+          ['furnace', 'ASC'],
+          ['coilNumber', 'ASC']
+        ]
+      });
+      const list = pageData.rows;
+      const count = pageData.count;
       const totalPage = Math.ceil(count / limit);
-      const list = await returnGoodsModel.find(queryCondition).skip((current - 1) * limit).limit(limit).sort({'furnace': 'desc', 'coilNumber': 'asc'});
       // 要考虑分页
       res.send({
         status: 0,
@@ -76,11 +89,11 @@ class ReturnGoods {
         }
       });
     } catch (err) {
-      console.log('查询检测记录失败', err);
-      log.error('查询检测记录失败', err);
+      console.log('查询退库记录失败', err);
+      log.error('查询退库记录失败', err);
       res.send({
         status: -1,
-        message: '查询检测记录失败'
+        message: '查询退库记录失败'
       });
     }
   }
@@ -96,7 +109,7 @@ class ReturnGoods {
       ribbonTypeName, ribbonWidth, castDate, caster,
       laminationFactor, laminationLevel,
       realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, 
-      ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients = [], remainWeight } = req.body;
+      ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients = '', remainWeight } = req.body;
 
     try {
       const newData = {

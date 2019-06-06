@@ -4,7 +4,7 @@ const Sequelize =  require('sequelize');
 const sequelize = require('../mysql/db');
 
 const ReturnGoods = sequelize.define('returnGoods', {
-  returnGoodId: {
+  returnGoodsId: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true
@@ -52,7 +52,13 @@ const ReturnGoods = sequelize.define('returnGoods', {
   remainWeight: Sequelize.FLOAT, //结余
   takeBy: Sequelize.STRING, //领走的部门 辊剪，顺义，固安，回炉/置换，粉末厂
   place: Sequelize.STRING, //储存的仓位 1-15-2
-  shipRemark: Sequelize.STRING, //发货备注
+  shipRemark: Sequelize.STRING //发货备注
 });
+
+ReturnGoods.sync({ alter: true }).then((result) => {
+
+}).catch((err) => {
+  console.log('ReturnGoods表初始化失败', err.message);
+});;
 
 module.exports = ReturnGoods;
