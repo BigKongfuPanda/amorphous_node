@@ -44,17 +44,17 @@ const sequelize = new Sequelize(
 );
 
 // Create Database struct from models
-// sequelize
-//   .sync()
-//   .then(async () => {
-//     console.log(
-//       chalk.green('初始化数据库成功')
-//     );
-//   })
-//   .catch(error => {
-//     console.log(
-//       chalk.red('初始化数据库失败: ', error)
-//     );
-//   });
+sequelize
+  .sync()
+  .then(async () => {
+    console.log(
+      chalk.green('初始化数据库成功')
+    );
+  })
+  .catch(error => {
+    console.log(
+      chalk.red('初始化数据库失败: ', error)
+    );
+  });
 
 module.exports = sequelize;

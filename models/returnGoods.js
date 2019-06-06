@@ -55,10 +55,10 @@ const ReturnGoods = sequelize.define('returnGoods', {
   shipRemark: Sequelize.STRING //发货备注
 });
 
-ReturnGoods.sync({ alter: true }).then((result) => {
+// ReturnGoods.sync({ alter: true }).then((result) => {
 
-}).catch((err) => {
-  console.log('ReturnGoods表初始化失败', err.message);
-});;
+// }).catch((err) => {
+//   console.log('ReturnG oods表初始化失败', err.message);
+// });
 
 module.exports = ReturnGoods;

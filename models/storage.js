@@ -85,6 +85,6 @@ const Storage = sequelize.define('storage', {
 
 // }).catch((err) => {
 //   console.log('Storage表初始化失败', err.message);
-// });;
+// });
 
 module.exports = Storage;
