@@ -83,10 +83,10 @@ const Measure = sequelize.define('measure',{
   testName: Sequelize.STRING
 });
 
-Measure.sync({alter: true}).then((result) => {
+// Measure.sync({alter: true}).then((result) => {
   
-}).catch((err) => {
-  console.log('measure表初始化失败', err.message);
-});;
+// }).catch((err) => {
+//   console.log('measure表初始化失败', err.message);
+// });
 
 module.exports = Measure;
