@@ -53,9 +53,9 @@ const Storage = sequelize.define('storage', {
   ribbonTotalLevel: Sequelize.STRING, //带材综合级别
   // isMeasureConfirmed: { type: Number, default: 0 }, // 检测是否确认可入库：1-是，0-否
   // storageRule: Object, //入库规则
-  isStored: { type: Sequelize.INTEGER, default: 3 }, // 是否入库：1-计划内入库，2-计划外入库，3-否
+  isStored: { type: Sequelize.INTEGER, defaultValue: 3 }, // 是否入库：1-计划内入库，2-计划外入库，3-否
   unStoreReason: Sequelize.STRING, //不入库原因
-  clients: Sequelize.INTEGER, //去向 [德国，法国] ---> '德国,法国'
+  clients: Sequelize.STRING, //去向 [德国，法国] ---> '德国,法国'
   measureDate: {type: Sequelize.DATE, defaultValue: null}, //检测日期
   // 库房信息
   inStoreDate: {type: Sequelize.DATE, defaultValue: null}, //入库日期
@@ -80,5 +80,11 @@ const Storage = sequelize.define('storage', {
   qualityOfFine: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为良的带材质量：B
   qualityOfNormal: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为中的带材质量：30**、40**+ 计划外入库
 });
+
+// Storage.sync({alter: true}).then((result) => {
+
+// }).catch((err) => {
+//   console.log('Storage表初始化失败', err.message);
+// });;
 
 module.exports = Storage;

@@ -79,8 +79,7 @@ const Measure = sequelize.define('measure',{
   inPlanThickRibbonWeight: { type: Sequelize.FLOAT, defaultValue: 0 }, // 符合订单非薄带：满足订单要求，且厚度为2级别的带材重量
   qualityOfGood: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为好的带材质量：A + 符合订单非薄带
   qualityOfFine: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为良的带材质量：B
-  qualityOfNormal: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为中的带材质量：30**、40**+ 计划外入库
-  testName: Sequelize.STRING
+  qualityOfNormal: { type: Sequelize.FLOAT, defaultValue: 0 } // 质量等级为中的带材质量：30**、40**+ 计划外入库
 });
 
 // Measure.sync({alter: true}).then((result) => {
