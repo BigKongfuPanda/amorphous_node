@@ -75,15 +75,29 @@ class Storage {
         queryCondition.ribbonTotalLevel = { $in: ribbonTotalLevelList };
       }
       
-      const count = await storageModel.countDocuments(queryCondition);
-      const totalPage = Math.ceil(count / limit);
-      const totalList = await storageModel.find(queryCondition);
-      let totalCoilNum = totalList.length;
-      let totalWeight = 0;
-      totalList.forEach(item => {
-        totalWeight += item.remainWeight;
+      // const totalList = await storageModel.findAll(queryCondition);
+      // const totalCoilNum = totalList.length;
+      // let totalWeight = 0;
+      // totalList.forEach(item => {
+      //   totalWeight += item.remainWeight;
+      // });
+      const totalCoilNum = await storageModel.count();
+      const totalWeight = await storageModel.sum('remainWeight');
+      
+      // const list = await storageModel.find(queryCondition).skip((current - 1) * limit).limit(limit).sort({'furnace': 'desc', 'coilNumber': 'asc'});
+      
+      const pageData = await storageModel.findAndCountAll({
+        where: queryCondition,
+        offset: (current - 1) * limit,
+        limit: limit,
+        order: [
+          ['furnace', 'ASC'],
+          ['coilNumber', 'ASC']
+        ]
       });
-      const list = await storageModel.find(queryCondition).skip((current - 1) * limit).limit(limit).sort({'furnace': 'desc', 'coilNumber': 'asc'});
+      const list = pageData.rows;
+      const count = pageData.count;
+      const totalPage = Math.ceil(count / limit);
       // 要考虑分页
       res.send({
         status: 0,
@@ -119,9 +133,9 @@ class Storage {
       return storageService.batchOutStore(req, res, next);
     }
 
-    let { _id, roleId, adminname, castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, ribbonTypeName, ribbonWidth, roller, rollMachine, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients = [], remainWeight, takeBy, shipRemark, place, createdAt, totalStoredWeight = 0, inPlanStoredWeight = 0, outPlanStoredWeight = 0, qualityOfA = 0, qualityOfB = 0, qualityOfC = 0, qualityOfD = 0, qualityOfE = 0, highFactorThinRibbonWeight = 0, thinRibbonWeight = 0, inPlanThickRibbonWeight = 0, qualityOfGood = 0, qualityOfFine = 0, qualityOfNormal = 0 } = req.body;
+    let { storageId, roleId, adminname, castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, ribbonTypeName, ribbonWidth, roller, rollMachine, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients = '', remainWeight, takeBy, shipRemark, place, createdAt, totalStoredWeight = 0, inPlanStoredWeight = 0, outPlanStoredWeight = 0, qualityOfA = 0, qualityOfB = 0, qualityOfC = 0, qualityOfD = 0, qualityOfE = 0, highFactorThinRibbonWeight = 0, thinRibbonWeight = 0, inPlanThickRibbonWeight = 0, qualityOfGood = 0, qualityOfFine = 0, qualityOfNormal = 0 } = req.body;
     try{
-      if (!_id) {
+      if (!storageId) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -158,25 +172,29 @@ class Storage {
         inPlanThickRibbonWeight,
         qualityOfGood, qualityOfFine, qualityOfNormal
       };
-      await storageModel.updateOne({ _id }, { $set: newData });
-      res.send({
-        status: 0,
-        message: '更新数据成功'
-      });
+      const [n] = await storageModel.update(newData, { where: { storageId } });
+      if (n !== 0) {
+        res.send({
+          status: 0,
+          message: '更新数据成功'
+        });
+      } else {
+        throw new Error('更新库房记录表失败');
+      }
     } catch (err) {
-      console.log('更新数据失败', err);
-      log.error('更新数据失败', err);
+      console.log(err.message, err);
+      log.error(err.message, err);
       res.send({
         status: -1,
-        message: `更新数据失败, ${err.message}`
+        message: err.message
       });
     }
   }
 
   async delData(req, res, next) {
-    const { _id, furnace, coilNumber } = req.body;
+    const { storageId, furnace, coilNumber } = req.body;
     try {
-      if (!_id || !furnace || !coilNumber) {
+      if (!storageId || !furnace || !coilNumber) {
         throw new Error('参数错误');
       }
     } catch (err) {
@@ -191,8 +209,10 @@ class Storage {
 
     try {
       // 此处应该使用事务，二者要么都成功，要么都失败 
-      const { n } = await storageModel.deleteOne({ _id });
-      const { m } = await measureModel.updateOne({ furnace, coilNumber: coilNumber }, { $set: { isStored: 3, isMeasureConfirmed: 0 } });
+      // const { n } = await storageModel.deleteOne({ storageId });
+      // const { m } = await measureModel.updateOne({ furnace, coilNumber: coilNumber }, { $set: { isStored: 3, isMeasureConfirmed: 0 } });
+      const n = await storageModel.destroy({ where: { storageId } });
+      const m = await measureModel.update({ isStored: 3, isMeasureConfirmed: 0 }, { where: { furnace, coilNumber } });
       if (n != 0 && m != 0) {
         res.send({
           status: 0,
@@ -291,7 +311,14 @@ class Storage {
         { caption: '发货备注', type: 'string' }
       ];
       conf.rows = [];
-      const list = await storageModel.find(queryCondition).sort({'furnace': 'desc', 'coilNumber': 'asc'});
+      // const list = await storageModel.find(queryCondition).sort({ 'furnace': 'desc', 'coilNumber': 'asc' });
+      const list = await storageModel.findAll({
+        where: queryCondition,
+        order: [
+          ['furnace', 'desc'],
+          ['coilNumber', 'desc']
+        ]
+      });
       
       conf.rows = list.map(item => {
         return [ 
@@ -374,7 +401,8 @@ class Storage {
       try {
         for (let i = 0, len = list.length; i < len; i++) {
           const item = list[i];
-          const { n } = await storageModel.updateOne({ furnace: item.furnace, coilNumber: item.coilNumber }, { place: item.place });
+          // const { n } = await storageModel.updateOne({ furnace: item.furnace, coilNumber: item.coilNumber }, { place: item.place });
+          const [n] = await storageModel.update({ place: item.place }, { where: { furnace: item.furnace, coilNumber: item.coilNumber } });
           if (n == 0) {
             errList.push({
               furnace: item.furnace,

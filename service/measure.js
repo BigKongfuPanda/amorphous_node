@@ -32,14 +32,15 @@ class MeasureService {
         item.inStoreDate = Date.now();
         item.measureDate = Date.now();
         item.isMeasureConfirmed = 1; // 1-检测确认入库，0-没有入库
-        await measureModel.updateOne({ measureId: item.measureId }, { $set: { inStoreDate: item.inStoreDate, measureDate: item.measureDate, isMeasureConfirmed: 1 } });
+        // await measureModel.updateOne({ measureId: item.measureId }, { $set: { inStoreDate: item.inStoreDate, measureDate: item.measureDate, isMeasureConfirmed: 1 } });
+        await measureModel.update({ inStoreDate: item.inStoreDate, measureDate: item.measureDate, isMeasureConfirmed: 1 }, { where: { measureId: item.measureId }});
         // 将入库数据
         let clone = cloneDeep(item);
         delete clone.measureId;
         delete clone.createdAt;
         delete clone.updatedAt;
         // await storageModel.create(clone);
-        await storageModel.bulkCreate(clone);
+        await storageModel.create(clone);
       });
       res.send({
         status: 0,
