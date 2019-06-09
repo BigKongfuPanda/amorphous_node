@@ -51,4 +51,10 @@ const Cast = sequelize.define('cast', {
 	record: Sequelize.TEXT
 });
 
+// Cast.sync({alter: true}).then((result) => {
+  
+// }).catch((err) => {
+//   console.log('cast表初始化失败', err.message);
+// });
+
 module.exports = Cast;

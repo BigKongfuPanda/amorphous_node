@@ -1,7 +1,11 @@
 'use strict';
 
+const sequelize = require('../mysql/db');
 const castModel = require('../models/cast');
+const measureModel = require('../models/measure');
+const melttModel = require('../models/melt');
 const log = require('log4js').getLogger("statistics");
+const { toFixed, percent } = require('../util');
 
 class Statistics {
   constructor() {
@@ -43,46 +47,41 @@ class Statistics {
           queryCondition.ribbonWidth = { $in: ribbonWidthList };
         }
       }
-      const count = await castModel.countDocuments(queryCondition);
+
+      const sqlStr = `SELECT c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight, 
+      SUM(m.coilNetWeight) AS coilNetWeight, 
+      SUM(m.totalStoredWeight) AS totalStoredWeight, 
+      SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,
+      SUM(m.qualityOfA) AS qualityOfA,
+      SUM(m.qualityOfB) AS qualityOfB, 
+      SUM(m.qualityOfC) AS qualityOfC, 
+      SUM(m.qualityOfD) AS qualityOfD, 
+      SUM(m.qualityOfE) AS qualityOfE, 
+      SUM(m.thinRibbonWeight) AS thinRibbonWeight, 
+      SUM(m.highFactorThinRibbonWeight) AS highFactorThinRibbonWeight, 
+      SUM(m.inPlanStoredWeight) AS inPlanStoredWeight, 
+      SUM(m.outPlanStoredWeight) AS outPlanStoredWeight, 
+      SUM(m.inPlanThickRibbonWeight) AS inPlanThickRibbonWeight, 
+      SUM(m.qualityOfGood) AS qualityOfGood, 
+      SUM(m.qualityOfFine) AS qualityOfFine, 
+      SUM(m.qualityOfNormal) AS qualityOfNormal 
+      FROM cast AS c, measure AS m, melt AS t 
+      WHERE c.furnace = m.furnace AND t.furnace = c.furnace 
+      GROUP BY m.furnace 
+      LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
+
+      let list = await sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
+      const count = list.length;
       const totalPage = Math.ceil(count / limit);
-      const list = await castModel.aggregate([
-        {
-          $match: queryCondition
-        },
-        {
-          $lookup: {
-            from: 'Measure',
-            localField: 'furnace',
-            foreignField: 'furnace',
-            as: 'fromMeasure'
+
+      list = list.map(item => {
+        Object.keys(item).forEach(key => {
+          if (typeof item[key] === 'number' && key !== 'castId' && key !== 'ribbonWidth') {
+            item[key] = item[key].toFixed(2);
           }
-        },
-        {
-          $lookup: {
-            from: 'Melt',
-            localField: 'furnace',
-            foreignField: 'furnace',
-            as: 'fromMelt'
-          }
-        },
-        // {
-        //   $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$fromMelt", 0 ] }, "$$ROOT" ] } }
-        // },
-        {
-          $project: { 
-            record: 0
-          }
-        },
-        {
-          $skip: (current - 1) * limit
-        },
-        {
-          $limit: limit
-        },
-        {
-          $sort: { furnace: -1 }
-        }
-      ]);
+        });
+        return item;
+      });
 
       // 要考虑分页
       res.send({
@@ -115,129 +114,117 @@ class Statistics {
         queryCondition.createdAt = { $gt: startTime, $lt: endTime };
       }
       let list = [];
+      // 低产零产率：6,8,9机组 <= 80kg，7机组 <=50，算低产
       if (ratioType === 'byCaster') {
-        list = await castModel.aggregate([
-          {
-            $match: queryCondition
-          },
-          {
-            $lookup: {
-              from: 'Measure',
-              localField: 'furnace',
-              foreignField: 'furnace',
-              as: 'fromMeasure'
-            }
-          },
-          {
-            $lookup: {
-              from: 'Melt',
-              localField: 'furnace',
-              foreignField: 'furnace',
-              as: 'fromMelt'
-            }
-          },
-          // {
-          //   $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$fromMelt", 0 ] }, "$$ROOT" ] } }
-          // },
-          // {
-          //   $project: {
-          //     fromMelt: 0,
-          //     record: 0
-          //   }
-          // },
-          {
-            $unwind: '$fromMelt'
-          },  
-          {
-            $group: {
-              _id: '$caster',
-              nozzleNum: { $sum: '$nozzleNum' },
-              totalHeatNum: { $sum: 1 },
-              alloyTotalWeight: { $sum: '$fromMelt.alloyTotalWeight' },
-              rawWeight: { $sum: '$rawWeight' },
-              uselessRibbonWeight: { $sum: '$uselessRibbonWeight' },
-              furnaceList: {
-                $push: '$$ROOT'
-              }
-            }
-          }
-        ]);  
+        const sqlStr = `SELECT c.castId, c.team, c.caster,
+        COUNT(c.furnace) AS totalHeatNum,
+        SUM(c.nozzleNum) AS nozzleNum,
+        SUM(t.alloyTotalWeight) AS alloyTotalWeight,
+        SUM(c.rawWeight) AS rawWeight,
+        SUM(m.coilNetWeight) AS coilNetWeight,
+        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,
+        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,
+        SUM(m.totalStoredWeight) AS totalStoredWeight,
+        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,
+        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,
+        SUM(c.meltOutWeight) AS meltOutWeight,
+        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,
+        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,
+        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,
+        SUM(m.qualityOfA) AS qualityOfA,
+        SUM(m.qualityOfB) AS qualityOfB,
+        SUM(m.qualityOfC) AS qualityOfC,
+        SUM(m.qualityOfD) AS qualityOfD,
+        SUM(m.qualityOfE) AS qualityOfE,
+        SUM(m.qualityOfGood) AS qualityOfGood,
+        SUM(m.qualityOfFine) AS qualityOfFine,
+        SUM(m.qualityOfNormal) AS qualityOfNormal
+        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum
+        FROM cast AS c, measure AS m, melt AS t
+        WHERE c.furnace = m.furnace AND t.furnace = c.furnace
+        GROUP BY m.caster`;
+        list = await sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
+        // 对数据进行格式化处理
+        list.forEach(item => {
+          item.alloyTotalWeight = toFixed(item.alloyTotalWeight);
+          item.rawWeight = toFixed(item.rawWeight);
+          item.coilNetWeight = toFixed(item.coilNetWeight);
+          item.inPlanStoredWeight = toFixed(item.inPlanStoredWeight);
+          item.outPlanStoredWeight = toFixed(item.outPlanStoredWeight);
+          item.totalStoredWeight = toFixed(item.totalStoredWeight);
+          item.unqualifiedWeight = toFixed(item.unqualifiedWeight);
+          item.uselessRibbonWeight = toFixed(item.uselessRibbonWeight);
+          item.effectiveMeltRatio = percent(item.effectiveMeltRatio);
+          item.rollRatio = percent(item.rollRatio);
+          item.qualifiedRatio = percent(item.qualifiedRatio);
+          item.totalRatio = percent(item.effectiveMeltRatio * item.rollRatio * item.qualifiedRatio);
+          item.qualityOfA = toFixed(item.qualityOfA);
+          item.qualityOfB = toFixed(item.qualityOfB);
+          item.qualityOfC = toFixed(item.qualityOfC);
+          item.qualityOfD = toFixed(item.qualityOfD);
+          item.qualityOfE = toFixed(item.qualityOfE);
+          item.qualityOfGood = toFixed(item.qualityOfGood);
+          item.qualityOfFine = toFixed(item.qualityOfFine);
+          item.qualityOfNormal = toFixed(item.qualityOfNormal);
+          // 计算低产零产
+          
+        });
       } else if (ratioType === 'byTeam') {
-        list = await castModel.aggregate([
-          {
-            $match: queryCondition
-          },
-          {
-            $lookup: {
-              from: 'Measure',
-              localField: 'furnace',
-              foreignField: 'furnace',
-              as: 'fromMeasure'
-            }
-          },
-          {
-            $lookup: {
-              from: 'Melt',
-              localField: 'furnace',
-              foreignField: 'furnace',
-              as: 'fromMelt'
-            }
-          },
-          {
-            $unwind: '$fromMelt'
-          },
-          {
-            $group: {
-              _id: '$team',
-              nozzleNum: { $sum: '$nozzleNum' },
-              totalHeatNum: { $sum: 1 },
-              alloyTotalWeight: { $sum: '$fromMelt.alloyTotalWeight' },
-              rawWeight: { $sum: '$rawWeight' },
-              uselessRibbonWeight: { $sum: '$uselessRibbonWeight' },
-              furnaceList: {
-                $push: '$$ROOT'
-              }
-            }
-          }
-        ]);
+        const sqlStr = `SELECT c.castId, c.team, c.caster,
+        COUNT(c.furnace) AS totalHeatNum,
+        SUM(c.nozzleNum) AS nozzleNum,
+        SUM(t.alloyTotalWeight) AS alloyTotalWeight,
+        SUM(c.rawWeight) AS rawWeight,
+        SUM(m.coilNetWeight) AS coilNetWeight,
+        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,
+        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,
+        SUM(m.totalStoredWeight) AS totalStoredWeight,
+        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,
+        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,
+        SUM(c.meltOutWeight) AS meltOutWeight,
+        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,
+        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,
+        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,
+        SUM(m.qualityOfA) AS qualityOfA,
+        SUM(m.qualityOfB) AS qualityOfB,
+        SUM(m.qualityOfC) AS qualityOfC,
+        SUM(m.qualityOfD) AS qualityOfD,
+        SUM(m.qualityOfE) AS qualityOfE,
+        SUM(m.qualityOfGood) AS qualityOfGood,
+        SUM(m.qualityOfFine) AS qualityOfFine,
+        SUM(m.qualityOfNormal) AS qualityOfNormal
+        FROM cast AS c, measure AS m, melt AS t
+        WHERE c.furnace = m.furnace AND t.furnace = c.furnace
+        GROUP BY c.team`;
+        list = sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
       } else if (ratioType === 'byCastId') {
-        list = await castModel.aggregate([
-          {
-            $match: queryCondition
-          },
-          {
-            $lookup: {
-              from: 'Measure',
-              localField: 'furnace',
-              foreignField: 'furnace',
-              as: 'fromMeasure'
-            }
-          },
-          {
-            $lookup: {
-              from: 'Melt',
-              localField: 'furnace',
-              foreignField: 'furnace',
-              as: 'fromMelt'
-            }
-          },
-          {
-            $unwind: '$fromMelt'
-          },
-          {
-            $group: {
-              _id: '$castId',
-              nozzleNum: { $sum: '$nozzleNum' },
-              totalHeatNum: { $sum: 1 },
-              alloyTotalWeight: { $sum: '$fromMelt.alloyTotalWeight' },
-              rawWeight: { $sum: '$rawWeight' },
-              uselessRibbonWeight: { $sum: '$uselessRibbonWeight' },
-              furnaceList: {
-                $push: '$$ROOT'
-              }
-            }
-          }
-        ]);
+        const sqlStr = `SELECT c.castId, c.team, c.caster,
+        COUNT(c.furnace) AS totalHeatNum,
+        SUM(c.nozzleNum) AS nozzleNum,
+        SUM(t.alloyTotalWeight) AS alloyTotalWeight,
+        SUM(c.rawWeight) AS rawWeight,
+        SUM(m.coilNetWeight) AS coilNetWeight,
+        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,
+        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,
+        SUM(m.totalStoredWeight) AS totalStoredWeight,
+        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,
+        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,
+        SUM(c.meltOutWeight) AS meltOutWeight,
+        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,
+        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,
+        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,
+        SUM(m.qualityOfA) AS qualityOfA,
+        SUM(m.qualityOfB) AS qualityOfB,
+        SUM(m.qualityOfC) AS qualityOfC,
+        SUM(m.qualityOfD) AS qualityOfD,
+        SUM(m.qualityOfE) AS qualityOfE,
+        SUM(m.qualityOfGood) AS qualityOfGood,
+        SUM(m.qualityOfFine) AS qualityOfFine,
+        SUM(m.qualityOfNormal) AS qualityOfNormal
+        FROM cast AS c, measure AS m, melt AS t
+        WHERE c.furnace = m.furnace AND t.furnace = c.furnace
+        GROUP BY m.castId`;
+        list = sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
       }
       
       res.send({
