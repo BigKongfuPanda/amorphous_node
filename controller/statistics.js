@@ -138,37 +138,13 @@ class Statistics {
         SUM(m.qualityOfE) AS qualityOfE,
         SUM(m.qualityOfGood) AS qualityOfGood,
         SUM(m.qualityOfFine) AS qualityOfFine,
-        SUM(m.qualityOfNormal) AS qualityOfNormal
-        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum
+        SUM(m.qualityOfNormal) AS qualityOfNormal,
+        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,
+        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum
         FROM cast AS c, measure AS m, melt AS t
         WHERE c.furnace = m.furnace AND t.furnace = c.furnace
         GROUP BY m.caster`;
         list = await sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
-        // 对数据进行格式化处理
-        list.forEach(item => {
-          item.alloyTotalWeight = toFixed(item.alloyTotalWeight);
-          item.rawWeight = toFixed(item.rawWeight);
-          item.coilNetWeight = toFixed(item.coilNetWeight);
-          item.inPlanStoredWeight = toFixed(item.inPlanStoredWeight);
-          item.outPlanStoredWeight = toFixed(item.outPlanStoredWeight);
-          item.totalStoredWeight = toFixed(item.totalStoredWeight);
-          item.unqualifiedWeight = toFixed(item.unqualifiedWeight);
-          item.uselessRibbonWeight = toFixed(item.uselessRibbonWeight);
-          item.effectiveMeltRatio = percent(item.effectiveMeltRatio);
-          item.rollRatio = percent(item.rollRatio);
-          item.qualifiedRatio = percent(item.qualifiedRatio);
-          item.totalRatio = percent(item.effectiveMeltRatio * item.rollRatio * item.qualifiedRatio);
-          item.qualityOfA = toFixed(item.qualityOfA);
-          item.qualityOfB = toFixed(item.qualityOfB);
-          item.qualityOfC = toFixed(item.qualityOfC);
-          item.qualityOfD = toFixed(item.qualityOfD);
-          item.qualityOfE = toFixed(item.qualityOfE);
-          item.qualityOfGood = toFixed(item.qualityOfGood);
-          item.qualityOfFine = toFixed(item.qualityOfFine);
-          item.qualityOfNormal = toFixed(item.qualityOfNormal);
-          // 计算低产零产
-          
-        });
       } else if (ratioType === 'byTeam') {
         const sqlStr = `SELECT c.castId, c.team, c.caster,
         COUNT(c.furnace) AS totalHeatNum,
@@ -192,7 +168,9 @@ class Statistics {
         SUM(m.qualityOfE) AS qualityOfE,
         SUM(m.qualityOfGood) AS qualityOfGood,
         SUM(m.qualityOfFine) AS qualityOfFine,
-        SUM(m.qualityOfNormal) AS qualityOfNormal
+        SUM(m.qualityOfNormal) AS qualityOfNormal,
+        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,
+        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum
         FROM cast AS c, measure AS m, melt AS t
         WHERE c.furnace = m.furnace AND t.furnace = c.furnace
         GROUP BY c.team`;
@@ -220,12 +198,40 @@ class Statistics {
         SUM(m.qualityOfE) AS qualityOfE,
         SUM(m.qualityOfGood) AS qualityOfGood,
         SUM(m.qualityOfFine) AS qualityOfFine,
-        SUM(m.qualityOfNormal) AS qualityOfNormal
+        SUM(m.qualityOfNormal) AS qualityOfNormal,
+        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,
+        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum
         FROM cast AS c, measure AS m, melt AS t
         WHERE c.furnace = m.furnace AND t.furnace = c.furnace
         GROUP BY m.castId`;
         list = sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
       }
+
+      // 对数据进行格式化处理
+      list.forEach(item => {
+        item.alloyTotalWeight = toFixed(item.alloyTotalWeight);
+        item.rawWeight = toFixed(item.rawWeight);
+        item.coilNetWeight = toFixed(item.coilNetWeight);
+        item.inPlanStoredWeight = toFixed(item.inPlanStoredWeight);
+        item.outPlanStoredWeight = toFixed(item.outPlanStoredWeight);
+        item.totalStoredWeight = toFixed(item.totalStoredWeight);
+        item.unqualifiedWeight = toFixed(item.unqualifiedWeight);
+        item.uselessRibbonWeight = toFixed(item.uselessRibbonWeight);
+        item.effectiveMeltRatio = percent(item.effectiveMeltRatio);
+        item.rollRatio = percent(item.rollRatio);
+        item.qualifiedRatio = percent(item.qualifiedRatio);
+        item.totalRatio = percent(item.effectiveMeltRatio * item.rollRatio * item.qualifiedRatio);
+        item.qualityOfA = toFixed(item.qualityOfA);
+        item.qualityOfB = toFixed(item.qualityOfB);
+        item.qualityOfC = toFixed(item.qualityOfC);
+        item.qualityOfD = toFixed(item.qualityOfD);
+        item.qualityOfE = toFixed(item.qualityOfE);
+        item.qualityOfGood = toFixed(item.qualityOfGood);
+        item.qualityOfFine = toFixed(item.qualityOfFine);
+        item.qualityOfNormal = toFixed(item.qualityOfNormal);
+        // 计算低产零产
+        item.lowAndZeroRatio = percent((item.zeroHeatNum + item.lowHeatNum)/item.totalHeatNum);
+      });
       
       res.send({
         status: 0,
