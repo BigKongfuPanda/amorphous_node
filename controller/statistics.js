@@ -174,7 +174,7 @@ class Statistics {
         FROM cast AS c, measure AS m, melt AS t
         WHERE c.furnace = m.furnace AND t.furnace = c.furnace
         GROUP BY c.team`;
-        list = sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
+        list = await sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
       } else if (ratioType === 'byCastId') {
         const sqlStr = `SELECT c.castId, c.team, c.caster,
         COUNT(c.furnace) AS totalHeatNum,
@@ -204,7 +204,7 @@ class Statistics {
         FROM cast AS c, measure AS m, melt AS t
         WHERE c.furnace = m.furnace AND t.furnace = c.furnace
         GROUP BY m.castId`;
-        list = sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
+        list = await sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
       }
 
       // 对数据进行格式化处理
@@ -217,10 +217,11 @@ class Statistics {
         item.totalStoredWeight = toFixed(item.totalStoredWeight);
         item.unqualifiedWeight = toFixed(item.unqualifiedWeight);
         item.uselessRibbonWeight = toFixed(item.uselessRibbonWeight);
+        item.totalRatio = percent(item.effectiveMeltRatio * item.rollRatio * item.qualifiedRatio);
         item.effectiveMeltRatio = percent(item.effectiveMeltRatio);
         item.rollRatio = percent(item.rollRatio);
         item.qualifiedRatio = percent(item.qualifiedRatio);
-        item.totalRatio = percent(item.effectiveMeltRatio * item.rollRatio * item.qualifiedRatio);
+        item.inPlanRatio = percent(item.inPlanRatio);
         item.qualityOfA = toFixed(item.qualityOfA);
         item.qualityOfB = toFixed(item.qualityOfB);
         item.qualityOfC = toFixed(item.qualityOfC);

@@ -18,6 +18,9 @@ const app = express();
 log4js.configure('./config/log4js.json');
 
 app.all('*', (req, res, next) => {
+	res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
 	res.header("Access-Control-Allow-Origin", req.headers.origin || req.headers.referer || '*');
 	res.header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Requested-With");
 	res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
