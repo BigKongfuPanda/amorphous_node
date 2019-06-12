@@ -57,3 +57,8 @@ SUM(m.qualityOfNormal) AS qualityOfNormal,
 FROM cast AS c, measure AS m, melt AS t
 WHERE c.furnace = m.furnace AND t.furnace = c.furnace
 GROUP BY c.team
+
+
+SELECT SUM(coilWeight) AS weight 
+FROM measure
+WHERE  furnace = furnace

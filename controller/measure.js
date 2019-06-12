@@ -1,5 +1,5 @@
 'use strict';
-
+const sequelize = require('../mysql/db');
 const measureModel = require('../models/measure');
 const castModel = require('../models/cast');
 const planModel = require('../models/plan');
@@ -164,6 +164,34 @@ class Measure {
       return;
     }
 
+    // 判断当前的盘重总数是否小于本炉的大盘毛重
+    try {
+      // 获取合计盘重的重量
+      const rawRetCoil = await sequelize.query(`SELECT SUM(coilWeight) AS weight FROM measure WHERE  furnace = '${furnace}'`, {
+        type: sequelize.QueryTypes.SELECT
+      });
+      // [{ weight: 122.2323 }]
+      const coilTotalWeight = rawRetCoil[0].weight;
+      
+      // 获取本炉的大盘毛重
+      const rawRetFurnace = await castModel.findOne({
+        where: {furnace}
+      });
+      const rawWeight = rawRetFurnace.rawWeight;
+
+      if (coilTotalWeight > rawWeight) {
+        throw new Error('重卷总重不能大于当前炉次的大盘毛重');
+      }
+    } catch (err) {
+      console.log(err.message, err);
+      log.error(err.message, err);
+      res.send({
+        status: -1,
+        message: err.message
+      });
+      return;
+    }
+
     try {
       /** 
        * 计算单盘净重，不同规格的内衬重量不同
@@ -228,6 +256,7 @@ class Measure {
     }
 
     let { measureId, roleId, adminname, castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, ribbonTypeName, ribbonWidth, roller, rollMachine, isFlat, castDate, caster, laminationFactor, laminationLevel, realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients = '', remainWeight, takeBy, shipRemark, place, createdAt, totalStoredWeight = 0, inPlanStoredWeight = 0, outPlanStoredWeight = 0, qualityOfA = 0, qualityOfB = 0, qualityOfC = 0, qualityOfD = 0, qualityOfE = 0, highFactorThinRibbonWeight = 0, thinRibbonWeight = 0, inPlanThickRibbonWeight = 0, qualityOfGood = 0, qualityOfFine = 0, qualityOfNormal = 0 } = req.body;
+
     try{
       if (!measureId) {
         throw new Error('参数错误')

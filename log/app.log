@@ -3665,3 +3665,1204 @@ From previous event:
     at Promise._settlePromise0 (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
     at Promise._settlePromises (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
     at Async._drainQueue (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
+[2019-06-12T23:16:25.744] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:187:15)
+[2019-06-12T23:20:04.300] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:187:15)
+[2019-06-12T23:21:51.223] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:187:15)
+[2019-06-12T23:25:14.698] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:187:15)
+[2019-06-12T23:28:45.937] [ERROR] measure - 炉号和盘号重复 Error: 炉号和盘号重复
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:155:15)
+[2019-06-12T23:28:55.791] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:187:15)
+[2019-06-12T23:28:56.125] [ERROR] measure - 参数错误 Error: 参数错误
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:121:15)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+    at tryCatcher (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
+    at Promise.successAdapter [as _fulfillmentHandler0] (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
+    at Promise._settlePromise (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
+    at Promise._settlePromise0 (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
+    at Promise._settlePromises (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
+    at Async._drainQueue (E:\学习资料\前端开发\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
+[2019-06-12T23:29:15.042] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:187:15)
+[2019-06-12T23:34:53.004] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:187:15)
+[2019-06-12T23:36:23.136] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:187:15)
+[2019-06-12T23:39:33.431] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:187:15)
+[2019-06-12T23:39:57.958] [ERROR] measure - Data truncated for column 'laminationFactor' at row 1 { SequelizeDatabaseError: Data truncated for column 'laminationFactor' at row 1
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Execute.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at QueryInterface.bulkUpdate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\query-interface.js:1043:27)
+    at Promise.try.then.then.then.results (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3052:34)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Function.update (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3033:8)
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:337:40)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  original:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  sql:
+   'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' }
+[2019-06-12T23:46:41.325] [ERROR] measure - Data truncated for column 'laminationFactor' at row 1 { SequelizeDatabaseError: Data truncated for column 'laminationFactor' at row 1
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Execute.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at QueryInterface.bulkUpdate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\query-interface.js:1043:27)
+    at Promise.try.then.then.then.results (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3052:34)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Function.update (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3033:8)
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:337:40)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  original:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  sql:
+   'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' }
+[2019-06-12T23:46:54.204] [ERROR] measure - Data truncated for column 'laminationFactor' at row 1 { SequelizeDatabaseError: Data truncated for column 'laminationFactor' at row 1
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Execute.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at QueryInterface.bulkUpdate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\query-interface.js:1043:27)
+    at Promise.try.then.then.then.results (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3052:34)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Function.update (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3033:8)
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:337:40)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  original:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  sql:
+   'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' }
+[2019-06-12T23:47:10.127] [ERROR] measure - Data truncated for column 'laminationFactor' at row 1 { SequelizeDatabaseError: Data truncated for column 'laminationFactor' at row 1
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Execute.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at QueryInterface.bulkUpdate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\query-interface.js:1043:27)
+    at Promise.try.then.then.then.results (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3052:34)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Function.update (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3033:8)
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:337:40)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  original:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  sql:
+   'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' }
+[2019-06-12T23:49:17.322] [ERROR] measure - Data truncated for column 'laminationFactor' at row 1 { SequelizeDatabaseError: Data truncated for column 'laminationFactor' at row 1
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Execute.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at QueryInterface.bulkUpdate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\query-interface.js:1043:27)
+    at Promise.try.then.then.then.results (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3052:34)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Function.update (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3033:8)
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:333:40)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  original:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  sql:
+   'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' }
+[2019-06-12T23:53:03.447] [ERROR] measure - Data truncated for column 'laminationFactor' at row 1 { SequelizeDatabaseError: Data truncated for column 'laminationFactor' at row 1
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Execute.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at QueryInterface.bulkUpdate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\query-interface.js:1043:27)
+    at Promise.try.then.then.then.results (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3052:34)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Function.update (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3033:8)
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:333:40)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  original:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  sql:
+   'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' }
+[2019-06-12T23:56:57.748] [ERROR] measure - Data truncated for column 'laminationFactor' at row 1 { SequelizeDatabaseError: Data truncated for column 'laminationFactor' at row 1
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Execute.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at QueryInterface.bulkUpdate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\query-interface.js:1043:27)
+    at Promise.try.then.then.then.results (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3052:34)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Function.update (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3033:8)
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:333:40)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  original:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  sql:
+   'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' }
+[2019-06-12T23:58:38.167] [ERROR] measure - Data truncated for column 'laminationFactor' at row 1 { SequelizeDatabaseError: Data truncated for column 'laminationFactor' at row 1
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Execute.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at QueryInterface.bulkUpdate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\query-interface.js:1043:27)
+    at Promise.try.then.then.then.results (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3052:34)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Function.update (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3033:8)
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:333:40)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  original:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  sql:
+   'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' }
+[2019-06-13T00:00:48.074] [ERROR] measure - Data truncated for column 'laminationFactor' at row 1 { SequelizeDatabaseError: Data truncated for column 'laminationFactor' at row 1
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Execute.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at QueryInterface.bulkUpdate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\query-interface.js:1043:27)
+    at Promise.try.then.then.then.results (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3052:34)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Function.update (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3033:8)
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:333:40)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  original:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  sql:
+   'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' }
+[2019-06-13T00:10:06.754] [ERROR] measure - Data truncated for column 'laminationFactor' at row 1 { SequelizeDatabaseError: Data truncated for column 'laminationFactor' at row 1
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Execute.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at QueryInterface.bulkUpdate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\query-interface.js:1043:27)
+    at Promise.try.then.then.then.results (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3052:34)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Function.update (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3033:8)
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:337:40)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  original:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  sql:
+   'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' }
+[2019-06-13T00:10:52.597] [ERROR] measure - Data truncated for column 'laminationFactor' at row 1 { SequelizeDatabaseError: Data truncated for column 'laminationFactor' at row 1
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Execute.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at QueryInterface.bulkUpdate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\query-interface.js:1043:27)
+    at Promise.try.then.then.then.results (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3052:34)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Function.update (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3033:8)
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:337:40)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  original:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  sql:
+   'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' }
+[2019-06-13T00:12:36.501] [ERROR] measure - Data truncated for column 'laminationFactor' at row 1 { SequelizeDatabaseError: Data truncated for column 'laminationFactor' at row 1
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Execute.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at QueryInterface.bulkUpdate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\query-interface.js:1043:27)
+    at Promise.try.then.then.then.results (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3052:34)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Function.update (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3033:8)
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:337:40)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  original:
+   { Error: Data truncated for column 'laminationFactor' at row 1
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Execute.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'WARN_DATA_TRUNCATED',
+     errno: 1265,
+     sqlState: '01000',
+     sqlMessage: 'Data truncated for column \'laminationFactor\' at row 1',
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  sql:
+   'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`remainWeight`=?,`takeBy`=?,`shipRemark`=?,`place`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' }
