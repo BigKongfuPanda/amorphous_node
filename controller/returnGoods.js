@@ -118,9 +118,12 @@ class ReturnGoods {
         laminationFactor, laminationLevel,
         realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients, remainWeight, takeBy: '', shipRemark: '', place: ''
       };
-      const { m } = await returnGoodsModel.deleteOne({ furnace, coilNumber });
-      const { n } = await returnGoodsModel.create(newData);
-      if (n != 0) {
+      // const { m } = await returnGoodsModel.deleteOne({ furnace, coilNumber });
+      const m = await returnGoodsModel.destroy({
+        where: { furnace, coilNumber } 
+      });
+      await returnGoodsModel.create(newData);
+      if (m != 0) {
         res.send({
           status: 0,
           message: '保存数据成功'
@@ -212,7 +215,15 @@ class ReturnGoods {
         { caption: '判定去向', type: 'string' },
       ];
       conf.rows = [];
-      const list = await returnGoodsModel.find(queryCondition).sort({'furnace': 'desc', 'coilNumber': 'asc'});
+      // const list = await returnGoodsModel.find(queryCondition).sort({'furnace': 'desc', 'coilNumber': 'asc'});
+
+      const list = await returnGoodsModel.findAll({
+        where: queryCondition,
+        roder: [
+          ['furnace', 'asc'],
+          ['coilNumber', 'asc']
+        ]
+      });
       
       conf.rows = list.map(item => {
         return [ 

@@ -364,7 +364,7 @@ class Storage {
           item.coilWeight, item.coilNetWeight, isStoredDesc(item.isStored),
           moment(item.inStoreDate).format('YYYY-MM-DD'), 
           item.outStoreDate ? moment(item.outStoreDate).format('YYYY-MM-DD') : '', 
-          item.clients.join(), item.takeBy,
+          item.clients, item.takeBy,
           item.takeBy ? 0 : item.coilNetWeight,
           item.place, item.shipRemark 
         ].map(val => val == undefined ? null : val);
