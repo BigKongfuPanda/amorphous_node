@@ -179,7 +179,7 @@ class Measure {
       });
       const rawWeight = rawRetFurnace.rawWeight;
 
-      if (coilTotalWeight > rawWeight) {
+      if (coilTotalWeight > (rawWeight + 10)) {
         throw new Error('重卷总重不能大于当前炉次的大盘毛重');
       }
     } catch (err) {
