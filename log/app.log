@@ -1,0 +1,6 @@
+[2019-06-23T11:11:50.510] [ERROR] user - 密码错误 Error: 密码错误
+    at login (E:\学习资料\前端开发\amorphous_node\controller\user.js:247:15)
+[2019-06-23T11:12:05.798] [ERROR] user - 密码错误 Error: 密码错误
+    at login (E:\学习资料\前端开发\amorphous_node\controller\user.js:247:15)
+[2019-06-23T11:12:05.971] [ERROR] user - 密码错误 Error: 密码错误
+    at login (E:\学习资料\前端开发\amorphous_node\controller\user.js:247:15)
