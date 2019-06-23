@@ -14,7 +14,7 @@ class Measure {
   }
 
   async queryData(req, res, next) {
-    const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, ribbonToughnessLevelJson,  appearenceLevelJson, place, ribbonTotalLevels, current = 1, limit = 20 } = req.query;
+    const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, ribbonToughnessLevelJson,  appearenceLevelJson, place, ribbonTotalLevels, current = 1, limit = 30 } = req.query;
     try {
       let queryCondition = {};
       if(castId) {
@@ -85,7 +85,8 @@ class Measure {
         limit: limit,
         order: [
           ['furnace', 'ASC'],
-          ['coilNumber', 'ASC']
+          ['coilNumber', 'ASC'],
+          ['castDate', 'DESC']
         ]
       });
       const list = pageData.rows;
@@ -179,7 +180,7 @@ class Measure {
       });
       const rawWeight = rawRetFurnace.rawWeight;
 
-      if (coilTotalWeight > rawWeight) {
+      if (coilTotalWeight > (rawWeight + 10)) {
         throw new Error('重卷总重不能大于当前炉次的大盘毛重');
       }
     } catch (err) {
