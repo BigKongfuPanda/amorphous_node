@@ -272,13 +272,31 @@ class Measure {
       return;
     }
 
-    // 如果修改时间相比创建时间，已经过了24小时，则除了超级管理员，检测，库房以外不能修改。
+    // 过了24小时，重卷人员不能修改
     if (roleId == 4) { // roleId: 4 重卷人员
       try {
         const createTime = new Date(createdAt);
         const period = Date.now() - createTime;
         if (period > 24*60*60*1000) {
           throw new Error('已过24小时，您无操作权限，请联系车间主任或厂长！');
+        }
+      } catch (err) {
+        console.log(err.message, err);
+        res.send({
+          status: -1,
+          message: err.message
+        });
+        return;
+      }
+    }
+
+    // 过了72小时，重卷组长也不能修改
+    if (roleId == 15) { // roleId: 15 重卷组长
+      try {
+        const createTime = new Date(createdAt);
+        const period = Date.now() - createTime;
+        if (period > 3*24*60*60*1000) {
+          throw new Error('已过72小时，您无操作权限，请联系车间主任或厂长！');
         }
       } catch (err) {
         console.log(err.message, err);
