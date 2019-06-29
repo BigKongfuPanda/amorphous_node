@@ -16,7 +16,19 @@ const User = sequelize.define('user', {
   adminname: Sequelize.STRING, // 真实姓名
   password: { type: Sequelize.STRING, defaultValue: '123456' },
   loginTime: Sequelize.STRING, //登陆时间
-  createTime: Sequelize.STRING // 创建时间
+  createTime: Sequelize.STRING, // 创建时间
+  createdAt: {
+		type: Sequelize.DATE,
+		get() {
+			return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
+		}
+	},
+	updatedAt: {
+		type: Sequelize.DATE,
+		get() {
+			return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
+		}
+	}
 });
 
 // User

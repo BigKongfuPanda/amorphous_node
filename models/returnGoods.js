@@ -2,6 +2,7 @@
 
 const Sequelize =  require('sequelize');
 const sequelize = require('../mysql/db');
+const moment = require('moment');
 
 const ReturnGoods = sequelize.define('returnGoods', {
   returnGoodsId: {
@@ -14,7 +15,12 @@ const ReturnGoods = sequelize.define('returnGoods', {
   furnace: Sequelize.STRING,// 制带炉号 06-20181120-01/01
   ribbonTypeName: Sequelize.STRING,//材质名称
   ribbonWidth: Sequelize.INTEGER,//带宽
-  castDate: Sequelize.DATE, //生产日期
+  castDate: {
+    type: Sequelize.DATE, 
+    get() {
+			return moment(this.getDataValue('castDate')).format('YYYY-MM-DD HH:mm:ss');
+		}
+  }, //生产日期
   caster: Sequelize.STRING, //喷带手
   coilNumber: Sequelize.INTEGER, // 盘号 1, 2, 3
   diameter: Sequelize.FLOAT, // 外径
@@ -45,14 +51,44 @@ const ReturnGoods = sequelize.define('returnGoods', {
   isStored: { type: Sequelize.INTEGER, defaultValue: 3 }, // 是否入库：1-计划内入库，2-计划外入库，3-否, 4-退货入库
   unStoreReason: Sequelize.STRING, //不入库原因
   clients: Sequelize.STRING, //去向 德国，法国
-  measureDate: {type: Sequelize.DATE, defaultValue: null}, //检测日期
+  measureDate: {
+    type: Sequelize.DATE, 
+    defaultValue: null,
+    get() {
+			return moment(this.getDataValue('measureDate')).format('YYYY-MM-DD HH:mm:ss');
+		}
+  }, //检测日期
   // 库房信息
-  inStoreDate: {type: Sequelize.DATE, defaultValue: null}, //入库日期
-  outStoreDate: {type: Sequelize.DATE, defaultValue: null}, //出库日期
+  inStoreDate: {
+    type: Sequelize.DATE, 
+    defaultValue: null,
+    get() {
+			return moment(this.getDataValue('inStoreDate')).format('YYYY-MM-DD HH:mm:ss');
+		}
+  }, //入库日期
+  outStoreDate: {
+    type: Sequelize.DATE, 
+    defaultValue: null,
+    get() {
+			return moment(this.getDataValue('outStoreDate')).format('YYYY-MM-DD HH:mm:ss');
+		}
+  }, //出库日期
   remainWeight: Sequelize.FLOAT, //结余
   takeBy: Sequelize.STRING, //领走的部门 辊剪，顺义，固安，回炉/置换，粉末厂
   place: Sequelize.STRING, //储存的仓位 1-15-2
-  shipRemark: Sequelize.STRING //发货备注
+  shipRemark: Sequelize.STRING, //发货备注
+  createdAt: {
+		type: Sequelize.DATE,
+		get() {
+			return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
+		}
+	},
+	updatedAt: {
+		type: Sequelize.DATE,
+		get() {
+			return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
+		}
+	}
 });
 
 // ReturnGoods.sync({ alter: true }).then((result) => {

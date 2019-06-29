@@ -2,6 +2,7 @@
 
 const Sequelize =  require('sequelize');
 const sequelize = require('../mysql/db');
+const moment = require('moment');
 
 const Cast = sequelize.define('cast', {
 	_id: {
@@ -27,7 +28,12 @@ const Cast = sequelize.define('cast', {
 	updatePerson: Sequelize.STRING, // 更新者
 	createPerson: Sequelize.STRING, // 创建者
 	uselessRibbonWeight: {type: Sequelize.FLOAT, default: 0 }, //废带重量
-	createTime: Sequelize.DATE, // 冶炼时间，00:00:00 - 08:00:00 之间的算上一天，不能算当天
+	createTime: {
+		type: Sequelize.DATE,
+		get() {
+			return moment(this.getDataValue('createTime')).format('YYYY-MM-DD HH:mm:ss');
+		}
+	}, // 冶炼时间，00:00:00 - 08:00:00 之间的算上一天，不能算当天
 	// record: [
 	// 	{
 	// 		nozzleSize: String, //喷嘴规格 30*0.25
@@ -48,7 +54,19 @@ const Cast = sequelize.define('cast', {
 	// 		describe: String//喷带过程和结果描述
 	// 	}
 	// ]
-	record: Sequelize.TEXT
+	record: Sequelize.TEXT,
+	createdAt: {
+		type: Sequelize.DATE,
+		get() {
+			return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
+		}
+	},
+	updatedAt: {
+		type: Sequelize.DATE,
+		get() {
+			return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
+		}
+	}
 });
 
 // Cast.sync({alter: true}).then((result) => {

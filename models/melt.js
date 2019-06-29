@@ -2,6 +2,7 @@
 
 const Sequelize =  require('sequelize');
 const sequelize = require('../mysql/db');
+const moment = require('moment');
 
 const Melt = sequelize.define('melt', {
 	meltId: {
@@ -35,7 +36,24 @@ const Melt = sequelize.define('melt', {
 	updatePerson: Sequelize.STRING, // 更新者
 	createPerson: Sequelize.STRING, // 创建者
 	remark: Sequelize.STRING, // 备注
-	createTime: Sequelize.DATE // 冶炼时间，00:00:00 - 08:00:00 之间的算上一天，不能算当天
+	createTime: {
+		type: Sequelize.DATE,
+		get() {
+			return moment(this.getDataValue('createTime')).format('YYYY-MM-DD HH:mm:ss');
+		}
+	}, // 冶炼时间，00:00:00 - 08:00:00 之间的算上一天，不能算当天
+	createdAt: {
+		type: Sequelize.DATE,
+		get() {
+			return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
+		}
+	},
+	updatedAt: {
+		type: Sequelize.DATE,
+		get() {
+			return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
+		}
+	}
 });
 
 module.exports = Melt;

@@ -2,6 +2,7 @@
 
 const Sequelize =  require('sequelize');
 const sequelize = require('../mysql/db');
+const moment = require('moment');
 
 const Plan = sequelize.define('plan',{
   planId: {
@@ -32,7 +33,19 @@ const Plan = sequelize.define('plan',{
   qualifiedLaminationFactor: Sequelize.STRING, // 入库要求：叠片系数 ≥0.78
   qualifiedRibbonToughnessLevels: Sequelize.STRING, // 入库要求：韧性 [A,B,C]
   qualifiedAppearenceLevels: Sequelize.STRING, // 入库要求：外观 [A,B,C]
-  realRibbonWidth: Sequelize.FLOAT // 实际带宽
+  realRibbonWidth: Sequelize.FLOAT, // 实际带宽
+  createdAt: {
+		type: Sequelize.DATE,
+		get() {
+			return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
+		}
+	},
+	updatedAt: {
+		type: Sequelize.DATE,
+		get() {
+			return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
+		}
+	}
 });
 
 module.exports = Plan;
