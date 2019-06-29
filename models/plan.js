@@ -29,10 +29,11 @@ const Plan = sequelize.define('plan',{
   orderLaminationFactor: Sequelize.STRING, // 订单要求：叠片系数 ≥0.78
   orderRibbonToughnessLevels: Sequelize.STRING, // 订单要求：韧性 [A,B,C]
   orderAppearenceLevels: Sequelize.STRING, // 订单要求：外观 [A,B,C]
-  qualifiedThickness: Sequelize.STRING, // 入库要求：厚度 20-23, ≤23
-  qualifiedLaminationFactor: Sequelize.STRING, // 入库要求：叠片系数 ≥0.78
-  qualifiedRibbonToughnessLevels: Sequelize.STRING, // 入库要求：韧性 [A,B,C]
-  qualifiedAppearenceLevels: Sequelize.STRING, // 入库要求：外观 [A,B,C]
+  // qualifiedThickness: Sequelize.STRING, // 入库要求：厚度 20-23, ≤23
+  // qualifiedLaminationFactor: Sequelize.STRING, // 入库要求：叠片系数 ≥0.78
+  // qualifiedRibbonToughnessLevels: Sequelize.STRING, // 入库要求：韧性 [A,B,C]
+  // qualifiedAppearenceLevels: Sequelize.STRING, // 入库要求：外观 [A,B,C]
+  qualifiedDemands: Sequelize.TEXT, //入库要求
   realRibbonWidth: Sequelize.FLOAT, // 实际带宽
   createdAt: {
 		type: Sequelize.DATE,
@@ -47,5 +48,11 @@ const Plan = sequelize.define('plan',{
 		}
 	}
 });
+
+// Plan.sync({alter: true}).then((result) => {
+  
+// }).catch((err) => {
+//   console.log('plan表初始化失败', err.message);
+// });
 
 module.exports = Plan;

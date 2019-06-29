@@ -113,7 +113,9 @@ class Plan {
   }
   
   async updateData(req, res, next) {
-    const { planId, roleId, date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeName, ribbonWidth, client = '', furnace, alloyWeight = 0, castTime = '', orderThickness = '', orderLaminationFactor = '', orderRibbonToughnessLevels = '', orderAppearenceLevels = '', qualifiedThickness = '', qualifiedLaminationFactor = '', qualifiedRibbonToughnessLevels = '', qualifiedAppearenceLevels = '' } = req.body;
+    // const { planId, roleId, date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeName, ribbonWidth, client = '', furnace, alloyWeight = 0, castTime = '', orderThickness = '', orderLaminationFactor = '', orderRibbonToughnessLevels = '', orderAppearenceLevels = '', qualifiedThickness = '', qualifiedLaminationFactor = '', qualifiedRibbonToughnessLevels = '', qualifiedAppearenceLevels = '' } = req.body;
+
+    const { planId, roleId, date, castId, remark = '', fileNumber = '', team, taskOrder = '', ribbonTypeName, ribbonWidth, client = '', furnace, alloyWeight = 0, castTime = '', orderThickness = '', orderLaminationFactor = '', orderRibbonToughnessLevels = '', orderAppearenceLevels = '', qualifiedDemands } = req.body;
 
     // const orderRibbonToughnessLevels = JSON.parse(orderRibbonToughnessLevelsJson);
     // const orderAppearenceLevels = JSON.parse(orderAppearenceLevelsJson);
@@ -154,9 +156,10 @@ class Plan {
           orderThickness, orderLaminationFactor, 
           orderRibbonToughnessLevels, 
           orderAppearenceLevels, 
-          qualifiedThickness, qualifiedLaminationFactor, 
-          qualifiedRibbonToughnessLevels, 
-          qualifiedAppearenceLevels
+          // qualifiedThickness, qualifiedLaminationFactor, 
+          // qualifiedRibbonToughnessLevels, 
+          // qualifiedAppearenceLevels
+          qualifiedDemands
         };
         
         const [ n ] = await planModel.update( newData, { where: { planId } });
@@ -262,6 +265,10 @@ class Plan {
         { caption: '叠片(入库要求)', type: 'string' },
         { caption: '韧性(入库要求)', type: 'string' },
         { caption: '外观(入库要求)', type: 'string' },
+        { caption: '带厚(入库要求)', type: 'string' },
+        { caption: '叠片(入库要求)', type: 'string' },
+        { caption: '韧性(入库要求)', type: 'string' },
+        { caption: '外观(入库要求)', type: 'string' },
         { caption: '任务单号', type: 'string' },
         { caption: '客户', type: 'string' },
         { caption: '单炉投入', type: 'number' },
@@ -277,15 +284,25 @@ class Plan {
       });
       
       conf.rows = list.map(item => {
+        const qualifiedDemands = JSON.stringify(item.qualifiedDemands);
+        qualifiedDemands.forEach(item => {
+          item.qualifiedRibbonToughnessLevels = item.qualifiedRibbonToughnessLevels.join();
+          item.qualifiedAppearenceLevels = item.qualifiedAppearenceLevels.join();
+        });
+        if (qualifiedDemands.length < 2) {
+          qualifiedDemands.push({
+            qualifiedThickness: '',
+            qualifiedLaminationFactor: '',
+            qualifiedRibbonToughnessLevels: '',
+            qualifiedAppearenceLevels: ''
+          });
+        }
         return [
           item.date, item.castId, item.team, item.ribbonTypeName, item.ribbonWidth, item.furnace, item.orderThickness, item.orderLaminationFactor, item.orderRibbonToughnessLevels, item.orderAppearenceLevels, 
-          item.qualifiedThickness, item.qualifiedLaminationFactor, item.qualifiedRibbonToughnessLevels, item.qualifiedAppearenceLevels, 
+          ...qualifiedDemands,
           item.taskOrder, item.client, item.alloyWeight, item.castTime, item.rawWeight
         ].map(val => val == undefined ? null : val);
       });
-
-      console.log('-------------------rows------------');
-      console.log(conf.rows);
       
       const result = nodeExcel.execute(conf);
       res.setHeader('Content-Type', 'application/vnd.openxmlformats');

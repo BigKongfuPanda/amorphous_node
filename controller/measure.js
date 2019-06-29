@@ -90,6 +90,24 @@ class Measure {
         ]
       });
       const list = pageData.rows;
+
+      // const uniqueFurnaceList = Array.from(new Set(list.map(item => item.furnace)));
+      // const furnaceMapToqualifiedDemands = uniqueFurnaceList.reduce(async (acc, furnace) => {
+      //   // 查询生产计划集合中，当前炉次的订单要求和入库要求
+      //   const planFurnace = furnace.substr(0, 14);
+      //   const { qualifiedDemands } = await planModel.findOne({
+      //     where: { furnace: planFurnace }
+      //   });
+      //   return acc[furnace] = qualifiedDemands;
+      // }, {});
+
+      // console.log('=======================');
+      // console.log(furnaceMapToqualifiedDemands);
+
+      // list.forEach(item => {
+      //   item.qualifiedDemands = furnaceMapToqualifiedDemands[item.furnace];
+      // });
+
       const count = pageData.count;
       const totalPage = Math.ceil(count / limit);
       // 要考虑分页
@@ -216,23 +234,33 @@ class Measure {
         linerWeight = 0.12;
       } else if (ribbonWidth >= 58) { // 58mm 以上的使用两个 30 的内衬拼接起来
         linerWeight = 0.08 * 2;
-      } 
+      }
 
       const coilNetWeight = coilWeight - linerWeight;
       const remainWeight = coilNetWeight;
 
       // 查询生产计划集合中，当前炉次的订单要求和入库要求
       const planFurnace = furnace.substr(0, 14);
-      const { orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedThickness, qualifiedLaminationFactor, qualifiedRibbonToughnessLevels, qualifiedAppearenceLevels } = await planModel.findOne({
+      // const { orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedThickness, qualifiedLaminationFactor, qualifiedRibbonToughnessLevels, qualifiedAppearenceLevels } = await planModel.findOne({
+      //   where: { furnace: planFurnace }
+      // });
+      const { orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedDemands } = await planModel.findOne({
         where: { furnace: planFurnace }
       });
 
+      // const newData = {
+      //   castId, furnace,
+      //   ribbonTypeName, ribbonWidth, caster, castDate,
+      //   coilNumber, diameter, coilWeight, coilNetWeight, remainWeight,
+      //   roller, rollMachine, isFlat,
+      //   orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedThickness, qualifiedLaminationFactor, qualifiedRibbonToughnessLevels, qualifiedAppearenceLevels
+      // };
       const newData = {
         castId, furnace,
         ribbonTypeName, ribbonWidth, caster, castDate,
         coilNumber, diameter, coilWeight, coilNetWeight, remainWeight,
         roller, rollMachine, isFlat,
-        orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedThickness, qualifiedLaminationFactor, qualifiedRibbonToughnessLevels, qualifiedAppearenceLevels
+        orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedDemands
       };
       await measureModel.create(newData);
       res.send({
