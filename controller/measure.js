@@ -14,7 +14,7 @@ class Measure {
   }
 
   async queryData(req, res, next) {
-    const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, ribbonToughnessLevelJson,  appearenceLevelJson, place, ribbonTotalLevels, current = 1, limit = 30 } = req.query;
+    const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, ribbonToughnessLevelJson,  appearenceLevelJson, place, ribbonTotalLevels, thicknessDivation,  current = 1, limit = 30 } = req.query;
     try {
       let queryCondition = {};
       if(castId) {
@@ -75,6 +75,9 @@ class Measure {
         const ribbonTotalLevelList = ribbonTotalLevels.split(',');
         queryCondition.ribbonTotalLevel = { $in: ribbonTotalLevelList };
       }
+      if (thicknessDivation) {
+        queryCondition.ribbonThicknessDeviation = { $lte: thicknessDivation };
+      }
       
       // const count = await measureModel.countDocuments(queryCondition);
       // const totalPage = Math.ceil(count / limit);
@@ -84,7 +87,7 @@ class Measure {
         offset: (current - 1) * limit,
         limit: limit,
         order: [
-          ['furnace', 'ASC'],
+          ['furnace', 'DESC'],
           ['coilNumber', 'ASC'],
           ['castDate', 'DESC']
         ]

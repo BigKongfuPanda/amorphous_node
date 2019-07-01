@@ -14,6 +14,8 @@ const ribbonToughnessLevel = require('./ribbonToughnessLevel');
 const laminationLevel = require('./laminationLevel');
 const statistics = require('./statistics');
 const _returnGoods = require('./returnGoods');
+const clients = require('./clients');
+const appearenceLevel = require('./appearenceLevel');
 
 module.exports = app => {
   app.use(checkLogin);
@@ -30,4 +32,6 @@ module.exports = app => {
   app.use('/laminationLevel', laminationLevel);
   app.use('/statistics', statistics);
   app.use('/returnGoods', _returnGoods);
+  app.use('/clients', clients);
+  app.use('/appearenceLevel', appearenceLevel);
 };

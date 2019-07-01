@@ -81,10 +81,19 @@ class Storage {
       // totalList.forEach(item => {
       //   totalWeight += item.remainWeight;
       // });
-      const totalCoilNum = await storageModel.count();
-      const totalWeight = await storageModel.sum('remainWeight');
+      // const totalCoilNum = await storageModel.count();
+      // const totalWeight = await storageModel.sum('remainWeight');
       
       // const list = await storageModel.find(queryCondition).skip((current - 1) * limit).limit(limit).sort({'furnace': 'desc', 'coilNumber': 'asc'});
+
+      const totalList = await storageModel.findAll({
+        where: queryCondition
+      });
+      const totalCoilNum = totalList.length;
+      let totalWeight = 0;
+      totalList.forEach(item => {
+        totalWeight += item.remainWeight;
+      });
       
       const pageData = await storageModel.findAndCountAll({
         where: queryCondition,

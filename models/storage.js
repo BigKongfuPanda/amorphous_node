@@ -34,10 +34,11 @@ const Storage = sequelize.define('storage', {
   orderLaminationFactor: Sequelize.STRING, // 订单要求：叠片系数 ≥0.78
   orderRibbonToughnessLevels: Sequelize.STRING, // 订单要求：韧性 [A,B,C]
   orderAppearenceLevels: Sequelize.STRING, // 订单要求：外观 [A,B,C]
-  qualifiedThickness: Sequelize.STRING, // 入库要求：厚度 20-23, ≤23
-  qualifiedLaminationFactor: Sequelize.STRING, // 入库要求：叠片系数 ≥0.78
-  qualifiedRibbonToughnessLevels: Sequelize.STRING, // 入库要求：韧性 [A,B,C]
-  qualifiedAppearenceLevels: Sequelize.STRING, // 入库要求：外观 [A,B,C]
+  // qualifiedThickness: Sequelize.STRING, // 入库要求：厚度 20-23, ≤23
+  // qualifiedLaminationFactor: Sequelize.STRING, // 入库要求：叠片系数 ≥0.78
+  // qualifiedRibbonToughnessLevels: Sequelize.STRING, // 入库要求：韧性 [A,B,C]
+  // qualifiedAppearenceLevels: Sequelize.STRING, // 入库要求：外观 [A,B,C]
+  qualifiedDemands: Sequelize.TEXT, //入库要求
   // 检测录入信息
   realRibbonWidth: Sequelize.FLOAT,//实际带宽
   ribbonThickness1: Sequelize.FLOAT, //带材厚度点1, μm
@@ -65,24 +66,24 @@ const Storage = sequelize.define('storage', {
   measureDate: {
     type: Sequelize.DATE, 
     defaultValue: null,
-    get() {
-			return moment(this.getDataValue('measureDate')).format('YYYY-MM-DD HH:mm:ss');
-		}
+    // get() {
+		// 	return moment(this.getDataValue('measureDate')).format('YYYY-MM-DD HH:mm:ss');
+		// }
   }, //检测日期
   // 库房信息
   inStoreDate: {
     type: Sequelize.DATE, 
     defaultValue: null,
-    get() {
-			return moment(this.getDataValue('inStoreDate')).format('YYYY-MM-DD HH:mm:ss');
-		}
+    // get() {
+		// 	return moment(this.getDataValue('inStoreDate')).format('YYYY-MM-DD HH:mm:ss');
+		// }
   }, //入库日期
   outStoreDate: {
     type: Sequelize.DATE, 
     defaultValue: null,
-    get() {
-			return moment(this.getDataValue('outStoreDate')).format('YYYY-MM-DD HH:mm:ss');
-		}
+    // get() {
+		// 	return moment(this.getDataValue('outStoreDate')).format('YYYY-MM-DD HH:mm:ss');
+		// }
   }, //出库日期
   remainWeight: Sequelize.FLOAT, //结余
   takeBy: Sequelize.STRING, //领走的部门 辊剪，顺义，固安，回炉/置换，粉末厂

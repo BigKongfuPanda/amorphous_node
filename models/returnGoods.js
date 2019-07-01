@@ -54,24 +54,24 @@ const ReturnGoods = sequelize.define('returnGoods', {
   measureDate: {
     type: Sequelize.DATE, 
     defaultValue: null,
-    get() {
-			return moment(this.getDataValue('measureDate')).format('YYYY-MM-DD HH:mm:ss');
-		}
+    // get() {
+		// 	return moment(this.getDataValue('measureDate')).format('YYYY-MM-DD HH:mm:ss');
+		// }
   }, //检测日期
   // 库房信息
   inStoreDate: {
     type: Sequelize.DATE, 
     defaultValue: null,
-    get() {
-			return moment(this.getDataValue('inStoreDate')).format('YYYY-MM-DD HH:mm:ss');
-		}
+    // get() {
+		// 	return moment(this.getDataValue('inStoreDate')).format('YYYY-MM-DD HH:mm:ss');
+		// }
   }, //入库日期
   outStoreDate: {
     type: Sequelize.DATE, 
     defaultValue: null,
-    get() {
-			return moment(this.getDataValue('outStoreDate')).format('YYYY-MM-DD HH:mm:ss');
-		}
+    // get() {
+		// 	return moment(this.getDataValue('outStoreDate')).format('YYYY-MM-DD HH:mm:ss');
+		// }
   }, //出库日期
   remainWeight: Sequelize.FLOAT, //结余
   takeBy: Sequelize.STRING, //领走的部门 辊剪，顺义，固安，回炉/置换，粉末厂

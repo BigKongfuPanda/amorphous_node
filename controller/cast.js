@@ -55,7 +55,7 @@ class Cast {
         offset: (current - 1) * limit,
         limit: limit,
         order: [
-          ['furnace', 'ASC'],
+          ['furnace', 'DESC'],
           ['createTime', 'DESC']
         ]
       });
