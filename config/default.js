@@ -1,14 +1,14 @@
 'use strict';
 
 module.exports = {
-	hostname: '192.168.0.89',
+	hostname: 'localhost',
 	port: parseInt(process.env.PORT, 10) || 8001,
 	// url: 'mongodb://localhost:27017/amorphous',
 	db: {
 		host: 'localhost',
 		port: '3306',
 		user: 'root',
-		password: 'root1234#',
+		password: 'root',
 		database: 'daicai'
 	},
 	session: {
