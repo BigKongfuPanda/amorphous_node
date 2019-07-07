@@ -55,8 +55,8 @@ class Cast {
         offset: (current - 1) * limit,
         limit: limit,
         order: [
-          ['furnace', 'DESC'],
-          ['createTime', 'DESC']
+          ['createTime', 'DESC'],
+          ['furnace', 'ASC']
         ]
       });
       const list = pageData.rows;

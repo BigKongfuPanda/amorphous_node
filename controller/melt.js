@@ -55,8 +55,8 @@ class Melt {
         offset: (current - 1) * limit,
         limit: limit,
         order: [
-          ['furnace', 'ASC'],
-          ['createTime', 'DESC']
+          ['createTime', 'DESC'], 
+          ['furnace']
         ]
       });
       const list = pageData.rows;
