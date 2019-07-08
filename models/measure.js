@@ -120,9 +120,9 @@ const Measure = sequelize.define('measure',{
 	}
 });
 
-Cast.hasMany(Measure, {
-  foreignKey: '_id'
-});
+// Cast.hasMany(Measure, {
+//   foreignKey: '_id', targetKey: '_id'
+// });
 
 // Measure.sync({alter: true}).then((result) => {
   
