@@ -95,23 +95,22 @@ class Measure {
       const list = pageData.rows;
 
       const uniqueFurnaceList = Array.from(new Set(list.map(item => item.furnace)));
-      const furnaceMapToqualifiedDemands = await uniqueFurnaceList.reduce(async (acc, furnace) => {
+      let furnaceMapToOrderAndqualifiedDemands = {};
+      for (const furnace of uniqueFurnaceList) {
         // 查询生产计划集合中，当前炉次的订单要求和入库要求
         const planFurnace = furnace.substr(0, 14);
-        const { qualifiedDemands } = await planModel.findOne({
+        const { orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedDemands } = await planModel.findOne({
           where: { furnace: planFurnace }
         });
-        acc[furnace] = qualifiedDemands;
-        console.log('1=======================');
-        console.log(acc);
-        return acc;
-      }, {});
-
-      console.log('2=======================');
-      console.log(furnaceMapToqualifiedDemands);
+        furnaceMapToOrderAndqualifiedDemands[furnace] = { orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedDemands };
+      }
 
       list.forEach(item => {
-        item.qualifiedDemands = furnaceMapToqualifiedDemands[item.furnace];
+        item.orderThickness = furnaceMapToOrderAndqualifiedDemands[item.furnace]['orderThickness'] || '';
+        item.orderLaminationFactor = furnaceMapToOrderAndqualifiedDemands[item.furnace]['orderLaminationFactor'] || '';
+        item.orderRibbonToughnessLevels = furnaceMapToOrderAndqualifiedDemands[item.furnace]['orderRibbonToughnessLevels'] || '';
+        item.orderAppearenceLevels = furnaceMapToOrderAndqualifiedDemands[item.furnace]['orderAppearenceLevels'] || '';
+        item.qualifiedDemands = furnaceMapToOrderAndqualifiedDemands[item.furnace]['qualifiedDemands'] || '[]';
       });
 
       const count = pageData.count;
@@ -204,6 +203,9 @@ class Measure {
       });
       const rawWeight = rawRetFurnace.rawWeight;
 
+      console.log('rawWeight', rawWeight);
+      console.log('coilTotalWeight', coilTotalWeight);
+
       if (coilTotalWeight > (rawWeight + 10)) {
         throw new Error('重卷总重不能大于当前炉次的大盘毛重');
       }
@@ -250,9 +252,10 @@ class Measure {
       // const { orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedThickness, qualifiedLaminationFactor, qualifiedRibbonToughnessLevels, qualifiedAppearenceLevels } = await planModel.findOne({
       //   where: { furnace: planFurnace }
       // });
-      const { orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedDemands } = await planModel.findOne({
-        where: { furnace: planFurnace }
-      });
+
+      // const { orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedDemands } = await planModel.findOne({
+      //   where: { furnace: planFurnace }
+      // });
 
       // const newData = {
       //   castId, furnace,
@@ -266,7 +269,8 @@ class Measure {
         ribbonTypeName, ribbonWidth, caster, castDate,
         coilNumber, diameter, coilWeight, coilNetWeight, remainWeight,
         roller, rollMachine, isFlat,
-        orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedDemands
+        // orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, 
+        // qualifiedDemands
       };
       await measureModel.create(newData);
       res.send({
@@ -370,6 +374,34 @@ class Measure {
         } 
         coilNetWeight = (coilWeight - linerWeight).toFixed(2);
         remainWeight = coilNetWeight;
+
+        // 判断当前的盘重总数是否小于本炉的大盘毛重
+        try {
+          // 获取合计盘重的重量
+          const rawRetCoil = await sequelize.query(`SELECT SUM(coilWeight) AS weight FROM measure WHERE  furnace = '${furnace}'`, {
+            type: sequelize.QueryTypes.SELECT
+          });
+          // [{ weight: 122.2323 }]
+          const coilTotalWeight = rawRetCoil[0].weight;
+          
+          // 获取本炉的大盘毛重
+          const rawRetFurnace = await castModel.findOne({
+            where: {furnace}
+          });
+          const rawWeight = rawRetFurnace.rawWeight;
+
+          if (coilTotalWeight > (rawWeight + 10)) {
+            throw new Error('重卷总重不能大于当前炉次的大盘毛重');
+          }
+        } catch (err) {
+          console.log(err.message, err);
+          log.error(err.message, err);
+          res.send({
+            status: -1,
+            message: err.message
+          });
+          return;
+        }
       }
 
       const newData = {

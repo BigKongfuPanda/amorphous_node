@@ -1,0 +1,33 @@
+[2019-07-11T23:43:45.154] [ERROR] cast - 炉号重复 Error: 炉号重复
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\cast.js:108:15)
+[2019-07-11T23:53:14.987] [ERROR] measure - 查询检测记录失败 TypeError: Cannot read property 'orderThickness' of undefined
+    at list.forEach.item (E:\学习资料\前端开发\amorphous_node\controller\measure.js:116:81)
+    at Array.forEach (<anonymous>)
+    at queryData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:115:12)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+[2019-07-12T00:00:43.419] [ERROR] measure - 查询检测记录失败 TypeError: Cannot read property 'orderThickness' of undefined
+    at list.forEach.item (E:\学习资料\前端开发\amorphous_node\controller\measure.js:116:81)
+    at Array.forEach (<anonymous>)
+    at queryData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:115:12)
+[2019-07-12T00:00:59.050] [ERROR] measure - 查询检测记录失败 TypeError: Cannot read property 'orderThickness' of undefined
+    at list.forEach.item (E:\学习资料\前端开发\amorphous_node\controller\measure.js:116:81)
+    at Array.forEach (<anonymous>)
+    at queryData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:115:12)
+[2019-07-12T00:08:34.070] [ERROR] measure - 查询检测记录失败 TypeError: Cannot read property 'orderThickness' of undefined
+    at list.forEach.item (E:\学习资料\前端开发\amorphous_node\controller\measure.js:117:81)
+    at Array.forEach (<anonymous>)
+    at queryData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:116:12)
+[2019-07-12T00:09:00.715] [ERROR] measure - 查询检测记录失败 TypeError: Cannot read property 'orderThickness' of undefined
+    at list.forEach.item (E:\学习资料\前端开发\amorphous_node\controller\measure.js:116:81)
+    at Array.forEach (<anonymous>)
+    at queryData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:115:12)
+[2019-07-12T00:25:51.893] [ERROR] user - 用户不存在 Error: 用户不存在
+    at login (E:\学习资料\前端开发\amorphous_node\controller\user.js:245:15)
+[2019-07-12T00:33:06.601] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:210:15)
+[2019-07-12T00:37:04.504] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:397:19)
+[2019-07-12T00:37:10.442] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:397:19)
+[2019-07-12T00:50:13.677] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:210:15)
