@@ -31,6 +31,14 @@ const User = sequelize.define('user', {
 	}
 });
 
+// User.sync({alter: true}).then((result) => {
+
+// }).catch((err) => {
+//   console.log(
+//     chalk.red('user表初始化失败', err.message)
+//   );
+// });
+
 // User
 //   .sync({ alter: true})
 //   .then(async () => {
