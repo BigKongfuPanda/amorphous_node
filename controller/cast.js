@@ -36,7 +36,7 @@ class Cast {
         queryCondition.furnace = furnace;
       }
       if (startTime && endTime) {
-        queryCondition.createdAt = { $gt: startTime, $lt: endTime };
+        queryCondition.createTime = { $gt: startTime, $lt: endTime };
       }
       if (ribbonTypeName) {
         queryCondition.ribbonTypeName = ribbonTypeName;

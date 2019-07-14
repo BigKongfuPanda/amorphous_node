@@ -19,6 +19,7 @@ const sequelize = new Sequelize(
       acquire: 30000,
       idle: 10000
     },
+    timezone: '+08:00',
     // Specify options, which are used when sequelize.define is called.
     // The following example:
     //   define: { timestamps: false }

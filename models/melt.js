@@ -36,6 +36,12 @@ const Melt = sequelize.define('melt', {
 	updatePerson: Sequelize.STRING, // 更新者
 	createPerson: Sequelize.STRING, // 创建者
 	remark: Sequelize.STRING, // 备注
+	addMeltNumber1: Sequelize.STRING,// 二次续钢炉号  
+	addMeltWeight1: Sequelize.FLOAT,// 二次续钢重量
+	addMeltNumber2: Sequelize.STRING,// 二次续钢炉号
+	addMeltWeight2: Sequelize.FLOAT,// 二次续钢重量
+	addMeltNumber3: Sequelize.STRING,// 二次续钢炉号
+	addMeltWeight3: Sequelize.FLOAT,// 二次续钢重量
 	createTime: {
 		type: Sequelize.DATE,
 		get() {
@@ -55,5 +61,11 @@ const Melt = sequelize.define('melt', {
 		}
 	}
 });
+
+// Melt.sync({alter: true}).then((result) => {
+  
+// }).catch((err) => {
+//   console.log('melt表初始化失败', err.message);
+// });
 
 module.exports = Melt;

@@ -94,23 +94,31 @@ class Measure {
       });
       const list = pageData.rows;
 
+      // 查询生产计划集合中，当前炉次的订单要求和入库要求
       const uniqueFurnaceList = Array.from(new Set(list.map(item => item.furnace)));
       let furnaceMapToOrderAndqualifiedDemands = {};
+      let furnaceMapToCastInfo = {};
       for (const furnace of uniqueFurnaceList) {
-        // 查询生产计划集合中，当前炉次的订单要求和入库要求
         const planFurnace = furnace.substr(0, 14);
         const { orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedDemands } = await planModel.findOne({
           where: { furnace: planFurnace }
         });
         furnaceMapToOrderAndqualifiedDemands[furnace] = { orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedDemands };
+        const { ribbonTypeName, ribbonWidth, createTime, caster } = await castModel.findOne({
+          where: { furnace }
+        });
+        furnaceMapToCastInfo[furnace] = { ribbonTypeName, ribbonWidth, createTime, caster };
       }
-
       list.forEach(item => {
         item.orderThickness = furnaceMapToOrderAndqualifiedDemands[item.furnace]['orderThickness'] || '';
         item.orderLaminationFactor = furnaceMapToOrderAndqualifiedDemands[item.furnace]['orderLaminationFactor'] || '';
         item.orderRibbonToughnessLevels = furnaceMapToOrderAndqualifiedDemands[item.furnace]['orderRibbonToughnessLevels'] || '';
         item.orderAppearenceLevels = furnaceMapToOrderAndqualifiedDemands[item.furnace]['orderAppearenceLevels'] || '';
         item.qualifiedDemands = furnaceMapToOrderAndqualifiedDemands[item.furnace]['qualifiedDemands'] || '[]';
+        item.ribbonTypeName = furnaceMapToCastInfo[item.furnace]['ribbonTypeName'] || '';
+        item.ribbonWidth = furnaceMapToCastInfo[item.furnace]['ribbonWidth'] || '';
+        item.castDate = furnaceMapToCastInfo[item.furnace]['createTime'] || '';
+        item.caster = furnaceMapToCastInfo[item.furnace]['caster'] || '';
       });
 
       const count = pageData.count;
@@ -139,7 +147,8 @@ class Measure {
 
   // 更新操作，由重卷人员使用
   async createData(req, res, next) {
-    let { castId, furnace, coilNumber, diameter, coilWeight, ribbonTypeName, ribbonWidth, castDate, caster, roller, rollMachine, isFlat } = req.body;
+    // let { castId, furnace, coilNumber, diameter, coilWeight, ribbonTypeName, ribbonWidth, castDate, caster, roller, rollMachine, isFlat } = req.body;
+    let { castId, furnace, coilNumber, diameter, coilWeight, roller, rollMachine, isFlat } = req.body;
     try{
       if (!castId || !furnace || !coilNumber || !diameter || !coilWeight || !roller || !rollMachine || !isFlat) {
         throw new Error('参数错误')
@@ -202,13 +211,10 @@ class Measure {
         where: {furnace}
       });
       const rawWeight = rawRetFurnace.rawWeight;
-
-      console.log('rawWeight', rawWeight);
-      console.log('coilTotalWeight', coilTotalWeight);
-
       if (coilTotalWeight > (rawWeight + 10)) {
         throw new Error('重卷总重不能大于当前炉次的大盘毛重');
       }
+
     } catch (err) {
       console.log(err.message, err);
       log.error(err.message, err);
@@ -266,7 +272,7 @@ class Measure {
       // };
       const newData = {
         castId, furnace,
-        ribbonTypeName, ribbonWidth, caster, castDate,
+        // ribbonTypeName, ribbonWidth, caster, castDate,
         coilNumber, diameter, coilWeight, coilNetWeight, remainWeight,
         roller, rollMachine, isFlat,
         // orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, 
