@@ -1,13 +1,15 @@
 'use strict';
 
 const meltModel = require('../models/melt');
+const castModel = require('../models/cast');
+const mearsureModel = require('../models/measure');
 const log = require('log4js').getLogger("melt");
 const moment = require('moment');
 const nodeExcel = require('excel-export');
 
 class Melt {
   constructor() {
-
+  
   }
 
   async queryData(req, res, next) {
@@ -84,7 +86,7 @@ class Melt {
     }
   }
   async createData(req, res, next) {
-    const { castId, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, highNbNumber = '', highNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '', adminname } = req.body;
+    const { castId, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, highNbNumber = '', highNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '', adminname, addMeltNumber1 = '', addMeltNumber2 = '', addMeltNumber3 = '', addMeltWeight1 = 0, addMeltWeight2 = 0, addMeltWeight3 = 0 } = req.body;
     try{
       if (!castId || !furnace || !ribbonTypeName || !bucket || !melter || !meltFurnace) {
         throw new Error('参数错误')
@@ -132,7 +134,8 @@ class Melt {
         alloyTotalWeight, alloyOutWeight, alloyFixWeight,
         createPerson: adminname,
         remark, 
-        createTime
+        createTime,
+        addMeltNumber1, addMeltNumber2, addMeltNumber3, addMeltWeight1, addMeltWeight2, addMeltWeight3
       };
       await meltModel.create(newData);
       res.send({
@@ -149,12 +152,12 @@ class Melt {
     }
   }
   async updateData(req, res, next) {
-    const { castId, meltId, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, highNbNumber = '', highNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '', createdAt, roleId, adminname } = req.body;
+    const { castId, meltId, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, highNbNumber = '', highNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '', createdAt, roleId, adminname, addMeltNumber1 = '', addMeltNumber2 = '', addMeltNumber3 = '', addMeltWeight1 = 0, addMeltWeight2 = 0, addMeltWeight3 = 0 } = req.body;
     try{
       if (!castId || !meltId || !furnace || !ribbonTypeName || !bucket || !melter || !meltFurnace) {
         throw new Error('参数错误')
       }
-    }catch(err){
+    } catch(err) {
       console.log(err.message, err);
       log.error(err.message, err);
       res.send({
@@ -183,6 +186,21 @@ class Melt {
     }
 
     try {
+      // 当化钢修改炉号的时候，喷带和重卷，检测表中对应的炉号都改变
+      const data = await meltModel.findOne({where: { meltId }});
+      const oldFurnace = data.furnace;
+      if (furnace !== oldFurnace) {
+        await castModel.update({furnace: furnace}, {
+          where: {
+            furnace: oldFurnace
+          }
+        });
+        await mearsureModel.update({furnace: furnace}, {
+          where: {
+            furnace: oldFurnace
+          }
+        });
+      }
       const newData = {
         castId, furnace,
         ribbonTypeName, bucket, melter, meltFurnace,
@@ -193,7 +211,8 @@ class Melt {
         Si, Ni, Cu, BFe, NbFe,
         alloyTotalWeight, alloyOutWeight, alloyFixWeight,
         remark, 
-        updatePerson: adminname
+        updatePerson: adminname,
+        addMeltNumber1, addMeltNumber2, addMeltNumber3, addMeltWeight1, addMeltWeight2, addMeltWeight3
       };
       // await meltModel.updateOne({ meltId }, { $set: newData });
       const [ n ] = await meltModel.update(newData, {

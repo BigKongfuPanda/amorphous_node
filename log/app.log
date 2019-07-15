@@ -1,0 +1,28 @@
+[2019-07-14T20:46:45.764] [ERROR] melt - string violation: furnace cannot be an array or an object { SequelizeValidationError: string violation: furnace cannot be an array or an object
+    at Promise.all.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\instance-validator.js:74:15)
+From previous event:
+    at InstanceValidator._validate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\instance-validator.js:72:8)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\instance-validator.js:107:14)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at InstanceValidator._validateAndRunHooks (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\instance-validator.js:106:8)
+    at InstanceValidator.validate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\instance-validator.js:90:38)
+    at model.validate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3963:49)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:2936:22)
+From previous event:
+    at Function.update (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:2923:23)
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\melt.js:191:25)
+  name: 'SequelizeValidationError',
+  errors:
+   [ ValidationErrorItem {
+       message: 'furnace cannot be an array or an object',
+       type: 'string violation',
+       path: 'furnace',
+       value: [melt],
+       origin: 'CORE',
+       instance: [cast],
+       validatorKey: 'not_a_string',
+       validatorName: null,
+       validatorArgs: [] } ] }
