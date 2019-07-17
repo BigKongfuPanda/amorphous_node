@@ -587,10 +587,14 @@ class Measure {
         ]
       });
       
-      conf.rows = list.map(item => {
+      conf.rows = await list.map(async (item) => {
+        const { ribbonTypeName, ribbonWidth, createTime, caster } = await castModel.findOne({
+          where: { furnace }
+        });
+
         return [ 
-          item.furnace, item.coilNumber, item.ribbonTypeName, item.ribbonWidth, 
-          moment(item.castDate).format('YYYY-MM-DD'), item.caster, item.diameter,
+          item.furnace, item.coilNumber, ribbonTypeName, ribbonWidth, 
+          moment(createTime).format('YYYY-MM-DD'), caster, item.diameter,
           item.coilWeight, item.laminationFactor, item.laminationLevel, item.realRibbonWidth,
           item.ribbonThickness1, item.ribbonThickness2, item.ribbonThickness3, item.ribbonThickness4,
           item.ribbonThickness5, item.ribbonThickness6, item.ribbonThickness7, item.ribbonThickness8,
@@ -599,6 +603,18 @@ class Measure {
           item.ribbonToughness, item.ribbonToughnessLevel, item.appearence, item.appearenceLevel, item.ribbonTotalLevel, isStoredDesc(item.isStored),
           item.unStoreReason, item.clients
         ].map(val => val == undefined ? null : val);
+
+        // return [ 
+        //   item.furnace, item.coilNumber, item.ribbonTypeName, item.ribbonWidth, 
+        //   moment(item.castDate).format('YYYY-MM-DD'), item.caster, item.diameter,
+        //   item.coilWeight, item.laminationFactor, item.laminationLevel, item.realRibbonWidth,
+        //   item.ribbonThickness1, item.ribbonThickness2, item.ribbonThickness3, item.ribbonThickness4,
+        //   item.ribbonThickness5, item.ribbonThickness6, item.ribbonThickness7, item.ribbonThickness8,
+        //   item.ribbonThickness9, 
+        //   item.ribbonThicknessDeviation, item.ribbonThickness, item.ribbonThicknessLevel,
+        //   item.ribbonToughness, item.ribbonToughnessLevel, item.appearence, item.appearenceLevel, item.ribbonTotalLevel, isStoredDesc(item.isStored),
+        //   item.unStoreReason, item.clients
+        // ].map(val => val == undefined ? null : val);
       });
 
       function isStoredDesc (status) {
@@ -679,13 +695,24 @@ class Measure {
         ]
       });
       
-      conf.rows = list.map(item => {
+      conf.rows = await list.map(async (item) => {
+        const { ribbonTypeName, ribbonWidth, createTime, caster } = await castModel.findOne({
+          where: { furnace }
+        });
+
         return [
-          item.furnace, item.ribbonTypeName, item.ribbonWidth, 
-          moment(item.castDate).format('YYYY-MM-DD'), item.caster, item.coilNumber, 
+          item.furnace, ribbonTypeName, ribbonWidth, 
+          moment(createTime).format('YYYY-MM-DD'), caster, item.coilNumber, 
           item.diameter, item.coilWeight, item.rollMachine, item.roller,
           moment(item.createdAt).format('YYYY-MM-DD HH:mm:ss'), item.isFlat
         ].map(val => val == undefined ? null : val);
+
+        // return [
+        //   item.furnace, item.ribbonTypeName, item.ribbonWidth, 
+        //   moment(item.castDate).format('YYYY-MM-DD'), item.caster, item.coilNumber, 
+        //   item.diameter, item.coilWeight, item.rollMachine, item.roller,
+        //   moment(item.createdAt).format('YYYY-MM-DD HH:mm:ss'), item.isFlat
+        // ].map(val => val == undefined ? null : val);
       });
       
       const result = nodeExcel.execute(conf);

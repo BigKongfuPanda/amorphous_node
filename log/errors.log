@@ -26,3 +26,5 @@ From previous event:
        validatorKey: 'not_a_string',
        validatorName: null,
        validatorArgs: [] } ] }
+[2019-07-17T09:27:47.984] [ERROR] user - 用户不存在 Error: 用户不存在
+    at login (E:\学习资料\前端开发\amorphous_node\controller\user.js:245:15)
