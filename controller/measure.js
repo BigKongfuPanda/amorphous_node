@@ -235,23 +235,23 @@ class Measure {
         40: 0.12,
         50: 0.12
        */
-      let linerWeight = 0;
-      if (ribbonWidth < 25) {
-        linerWeight = 0.05;
-      } else if (ribbonWidth >= 25 && ribbonWidth < 30) {
-        linerWeight = 0.06;
-      } else if (ribbonWidth >= 30 && ribbonWidth < 40) {
-        linerWeight = 0.08;
-      } else if (ribbonWidth >= 40 && ribbonWidth < 50) {
-        linerWeight = 0.12;
-      } else if (ribbonWidth >= 50 && ribbonWidth < 58) {
-        linerWeight = 0.12;
-      } else if (ribbonWidth >= 58) { // 58mm 以上的使用两个 30 的内衬拼接起来
-        linerWeight = 0.08 * 2;
-      }
+      // let linerWeight = 0;
+      // if (ribbonWidth < 25) {
+      //   linerWeight = 0.05;
+      // } else if (ribbonWidth >= 25 && ribbonWidth < 30) {
+      //   linerWeight = 0.06;
+      // } else if (ribbonWidth >= 30 && ribbonWidth < 40) {
+      //   linerWeight = 0.08;
+      // } else if (ribbonWidth >= 40 && ribbonWidth < 50) {
+      //   linerWeight = 0.12;
+      // } else if (ribbonWidth >= 50 && ribbonWidth < 58) {
+      //   linerWeight = 0.12;
+      // } else if (ribbonWidth >= 58) { // 58mm 以上的使用两个 30 的内衬拼接起来
+      //   linerWeight = 0.08 * 2;
+      // }
 
-      const coilNetWeight = coilWeight - linerWeight;
-      const remainWeight = coilNetWeight;
+      // const coilNetWeight = coilWeight - linerWeight;
+      // const remainWeight = coilNetWeight;
 
       // 查询生产计划集合中，当前炉次的订单要求和入库要求
       const planFurnace = furnace.substr(0, 14);
@@ -354,32 +354,32 @@ class Measure {
 
     try {
       // 没有入库的情况下，才能重新计算净重和结存，由重卷人员来操作
-      if (isStored !== 1 || isStored !== 2) {
-        /** 
-         * 计算单盘净重，不同规格的内衬重量不同
-         * 内衬的规格和重量对应表
-         * 20.5: 0.05,
-          25.5: 0.06,
-          30: 0.08,
-          40: 0.12,
-          50: 0.12
-        */
-        let linerWeight = 0;
-        if (ribbonWidth < 25) {
-          linerWeight = 0.05;
-        } else if (ribbonWidth >= 25 && ribbonWidth < 30) {
-          linerWeight = 0.06;
-        } else if (ribbonWidth >= 30 && ribbonWidth < 40) {
-          linerWeight = 0.08;
-        } else if (ribbonWidth >= 40 && ribbonWidth < 50) {
-          linerWeight = 0.12;
-        } else if (ribbonWidth >= 50 && ribbonWidth < 58) {
-          linerWeight = 0.12;
-        } else if (ribbonWidth >= 58) { // 58mm 以上的使用两个 30 的内衬拼接起来
-          linerWeight = 0.08 * 2;
-        } 
-        coilNetWeight = (coilWeight - linerWeight).toFixed(2);
-        remainWeight = coilNetWeight;
+      // if (isStored !== 1 || isStored !== 2) {
+      //   /** 
+      //    * 计算单盘净重，不同规格的内衬重量不同
+      //    * 内衬的规格和重量对应表
+      //    * 20.5: 0.05,
+      //     25.5: 0.06,
+      //     30: 0.08,
+      //     40: 0.12,
+      //     50: 0.12
+      //   */
+      //   let linerWeight = 0;
+      //   if (ribbonWidth < 25) {
+      //     linerWeight = 0.05;
+      //   } else if (ribbonWidth >= 25 && ribbonWidth < 30) {
+      //     linerWeight = 0.06;
+      //   } else if (ribbonWidth >= 30 && ribbonWidth < 40) {
+      //     linerWeight = 0.08;
+      //   } else if (ribbonWidth >= 40 && ribbonWidth < 50) {
+      //     linerWeight = 0.12;
+      //   } else if (ribbonWidth >= 50 && ribbonWidth < 58) {
+      //     linerWeight = 0.12;
+      //   } else if (ribbonWidth >= 58) { // 58mm 以上的使用两个 30 的内衬拼接起来
+      //     linerWeight = 0.08 * 2;
+      //   } 
+      //   coilNetWeight = (coilWeight - linerWeight).toFixed(2);
+      //   remainWeight = coilNetWeight;
 
         // 判断当前的盘重总数是否小于本炉的大盘毛重
         try {
@@ -408,7 +408,7 @@ class Measure {
           });
           return;
         }
-      }
+      
 
       const newData = {
         castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight,

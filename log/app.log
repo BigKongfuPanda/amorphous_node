@@ -28,3 +28,11 @@ From previous event:
        validatorArgs: [] } ] }
 [2019-07-17T09:27:47.984] [ERROR] user - 用户不存在 Error: 用户不存在
     at login (E:\学习资料\前端开发\amorphous_node\controller\user.js:245:15)
+[2019-07-17T23:25:10.474] [ERROR] user - 密码错误 Error: 密码错误
+    at login (E:\学习资料\前端开发\amorphous_node\controller\user.js:247:15)
+[2019-07-17T23:25:26.849] [ERROR] user - 密码错误 Error: 密码错误
+    at login (E:\学习资料\前端开发\amorphous_node\controller\user.js:247:15)
+[2019-07-17T23:25:55.137] [ERROR] measure - 新增重卷记录失败 ReferenceError: ribbonWidth is not defined
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:239:7)
+[2019-07-17T23:26:20.211] [ERROR] measure - 新增重卷记录失败 ReferenceError: ribbonWidth is not defined
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:239:7)
