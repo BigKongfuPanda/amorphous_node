@@ -273,7 +273,8 @@ class Measure {
       const newData = {
         castId, furnace,
         // ribbonTypeName, ribbonWidth, caster, castDate,
-        coilNumber, diameter, coilWeight, coilNetWeight, remainWeight,
+        coilNumber, diameter, coilWeight, 
+        // coilNetWeight, remainWeight,
         roller, rollMachine, isFlat,
         // orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, 
         // qualifiedDemands
@@ -352,7 +353,7 @@ class Measure {
       }
     }
 
-    try {
+    // try {
       // 没有入库的情况下，才能重新计算净重和结存，由重卷人员来操作
       // if (isStored !== 1 || isStored !== 2) {
       //   /** 
@@ -381,37 +382,37 @@ class Measure {
       //   coilNetWeight = (coilWeight - linerWeight).toFixed(2);
       //   remainWeight = coilNetWeight;
 
-        // 判断当前的盘重总数是否小于本炉的大盘毛重
-        try {
-          // 获取合计盘重的重量
-          const rawRetCoil = await sequelize.query(`SELECT SUM(coilWeight) AS weight FROM measure WHERE  furnace = '${furnace}'`, {
-            type: sequelize.QueryTypes.SELECT
-          });
-          // [{ weight: 122.2323 }]
-          const coilTotalWeight = rawRetCoil[0].weight;
-          
-          // 获取本炉的大盘毛重
-          const rawRetFurnace = await castModel.findOne({
-            where: {furnace}
-          });
-          const rawWeight = rawRetFurnace.rawWeight;
+      // 判断当前的盘重总数是否小于本炉的大盘毛重
+      try {
+        // 获取合计盘重的重量
+        const rawRetCoil = await sequelize.query(`SELECT SUM(coilWeight) AS weight FROM measure WHERE  furnace = '${furnace}'`, {
+          type: sequelize.QueryTypes.SELECT
+        });
+        // [{ weight: 122.2323 }]
+        const coilTotalWeight = rawRetCoil[0].weight;
+        
+        // 获取本炉的大盘毛重
+        const rawRetFurnace = await castModel.findOne({
+          where: {furnace}
+        });
+        const rawWeight = rawRetFurnace.rawWeight;
 
-          if (coilTotalWeight > (rawWeight + 10)) {
-            throw new Error('重卷总重不能大于当前炉次的大盘毛重');
-          }
-        } catch (err) {
-          console.log(err.message, err);
-          log.error(err.message, err);
-          res.send({
-            status: -1,
-            message: err.message
-          });
-          return;
+        if (coilTotalWeight > (rawWeight + 10)) {
+          throw new Error('重卷总重不能大于当前炉次的大盘毛重');
         }
+      } catch (err) {
+        console.log(err.message, err);
+        log.error(err.message, err);
+        res.send({
+          status: -1,
+          message: err.message
+        });
+        return;
+      }
       
-
+    try {
       const newData = {
-        castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight,
+        castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, 
         ribbonTypeName, ribbonWidth, castDate, caster, roller, rollMachine, isFlat,
         laminationFactor, laminationLevel,
         realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients, remainWeight, takeBy, shipRemark, place, 
@@ -592,7 +593,7 @@ class Measure {
           where: { furnace }
         });
 
-        return [ 
+        return [
           item.furnace, item.coilNumber, ribbonTypeName, ribbonWidth, 
           moment(createTime).format('YYYY-MM-DD'), caster, item.diameter,
           item.coilWeight, item.laminationFactor, item.laminationLevel, item.realRibbonWidth,

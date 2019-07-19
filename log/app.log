@@ -36,3 +36,15 @@ From previous event:
     at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:239:7)
 [2019-07-17T23:26:20.211] [ERROR] measure - 新增重卷记录失败 ReferenceError: ribbonWidth is not defined
     at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:239:7)
+[2019-07-18T23:21:49.350] [ERROR] measure - 新增重卷记录失败 ReferenceError: coilNetWeight is not defined
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:276:43)
+[2019-07-18T23:54:40.598] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:215:15)
+[2019-07-18T23:54:58.274] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:215:15)
+[2019-07-18T23:55:01.198] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:215:15)
+[2019-07-18T23:55:03.958] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:215:15)
+[2019-07-18T23:55:07.587] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:215:15)
