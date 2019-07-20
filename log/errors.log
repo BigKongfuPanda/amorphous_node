@@ -48,3 +48,85 @@ From previous event:
     at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:215:15)
 [2019-07-18T23:55:07.587] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
     at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:215:15)
+[2019-07-20T11:39:39.555] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:401:17)
+[2019-07-20T11:51:31.411] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:403:17)
+[2019-07-20T16:19:25.113] [ERROR] user - 密码错误 Error: 密码错误
+    at login (E:\学习资料\前端开发\amorphous_node\controller\user.js:247:15)
+[2019-07-20T18:36:15.101] [ERROR] measure - read ECONNRESET { SequelizeDatabaseError: read ECONNRESET
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at handler (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Prepare.Commands.Prepare [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:636:11)
+    at Connection._notifyError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:190:21)
+    at Connection._handleFatalError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:153:10)
+    at Connection._handleNetworkError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:162:10)
+    at Socket.emit (events.js:189:13)
+    at emitErrorNT (internal/streams/destroy.js:82:8)
+    at emitErrorAndCloseNT (internal/streams/destroy.js:50:3)
+    at process._tickCallback (internal/process/next_tick.js:63:19)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at QueryInterface.bulkUpdate (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\query-interface.js:1043:27)
+    at Promise.try.then.then.then.results (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3052:34)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Function.update (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\model.js:3033:8)
+    at updateData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:430:40)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: read ECONNRESET
+       at TCP.onStreamRead (internal/stream_base_commons.js:111:27)
+     errno: 'ECONNRESET',
+     code: 'ECONNRESET',
+     syscall: 'read',
+     fatal: true,
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`clients`=?,`remainWeight`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  original:
+   { Error: read ECONNRESET
+       at TCP.onStreamRead (internal/stream_base_commons.js:111:27)
+     errno: 'ECONNRESET',
+     code: 'ECONNRESET',
+     syscall: 'read',
+     fatal: true,
+     sql:
+      'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`clients`=?,`remainWeight`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' },
+  sql:
+   'UPDATE `measure` SET `castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`ribbonTypeName`=?,`ribbonWidth`=?,`castDate`=?,`caster`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`laminationFactor`=?,`laminationLevel`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`clients`=?,`remainWeight`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`highFactorThinRibbonWeight`=?,`thinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`updatedAt`=? WHERE `measureId` = ?' }
+[2019-07-20T22:26:16.198] [ERROR] measure - 重卷总重不能大于当前炉次的大盘毛重 Error: 重卷总重不能大于当前炉次的大盘毛重
+    at createData (E:\学习资料\前端开发\amorphous_node\controller\measure.js:215:15)

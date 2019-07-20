@@ -30,7 +30,7 @@ class Measure {
         queryCondition.furnace = furnace;        
       }
       if(startTime && endTime) {
-        queryCondition.inStoreDate = { $gt: startTime, $lt: endTime };
+        queryCondition.castDate = { $gt: startTime, $lt: endTime };
       }
       if (ribbonTypeNameJson) {
         const ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
@@ -117,7 +117,7 @@ class Measure {
         item.qualifiedDemands = furnaceMapToOrderAndqualifiedDemands[item.furnace]['qualifiedDemands'] || '[]';
         item.ribbonTypeName = furnaceMapToCastInfo[item.furnace]['ribbonTypeName'] || '';
         item.ribbonWidth = furnaceMapToCastInfo[item.furnace]['ribbonWidth'] || '';
-        item.castDate = furnaceMapToCastInfo[item.furnace]['createTime'] || '';
+        // item.castDate = furnaceMapToCastInfo[item.furnace]['createTime'] || '';
         item.caster = furnaceMapToCastInfo[item.furnace]['caster'] || '';
       });
 
@@ -270,9 +270,14 @@ class Measure {
       //   roller, rollMachine, isFlat,
       //   orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedThickness, qualifiedLaminationFactor, qualifiedRibbonToughnessLevels, qualifiedAppearenceLevels
       // };
+
+      const { createTime } = await castModel.findOne({
+        where: { furnace }
+      });
       const newData = {
         castId, furnace,
         // ribbonTypeName, ribbonWidth, caster, castDate,
+        castDate: createTime,
         coilNumber, diameter, coilWeight, 
         // coilNetWeight, remainWeight,
         roller, rollMachine, isFlat,
@@ -282,7 +287,7 @@ class Measure {
       await measureModel.create(newData);
       res.send({
         status: 0,
-        message: '新增重卷记录成功'
+        message: '新增重卷记录成功' 
       });
     } catch (err) {
       console.log('新增重卷记录失败', err);
@@ -382,6 +387,7 @@ class Measure {
       //   coilNetWeight = (coilWeight - linerWeight).toFixed(2);
       //   remainWeight = coilNetWeight;
 
+    if (roleId == 4 || roleId == 15) {
       // 判断当前的盘重总数是否小于本炉的大盘毛重
       try {
         // 获取合计盘重的重量
@@ -397,6 +403,8 @@ class Measure {
         });
         const rawWeight = rawRetFurnace.rawWeight;
 
+        console.log(coilTotalWeight, rawWeight); // 224, 200
+
         if (coilTotalWeight > (rawWeight + 10)) {
           throw new Error('重卷总重不能大于当前炉次的大盘毛重');
         }
@@ -409,7 +417,8 @@ class Measure {
         });
         return;
       }
-      
+    }
+
     try {
       const newData = {
         castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, 
