@@ -17,7 +17,7 @@ class Storage {
   }
 
   async queryData(req, res, next) {
-    const { castId, furnaceJson, startTime, endTime, outStartTime, outEndTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels, isRemain = 1, current = 1, limit = 20 } = req.query;
+    const { castId, furnaceJson, startTime, endTime, outStartTime, outEndTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, takebyJson, place, ribbonTotalLevels, isRemain = 1, current = 1, limit = 20 } = req.query;
     try {
       let queryCondition = {};
       if(castId) {
@@ -65,13 +65,19 @@ class Storage {
           queryCondition.laminationLevel = { $in: laminationLevelList };
         }
       }
+      if (takebyJson) {
+        const takebyList = JSON.parse(takebyJson);
+        if (takebyList.length > 0) {
+          queryCondition.takeBy = { $in: takebyList };
+        }
+      }
       if(place) {
         const placeList = place.split(',');
         queryCondition.place = { $in: placeList};        
       }
-      if(isRemain == 0) {
+      if(isRemain === '0') {
         queryCondition.remainWeight = 0;        
-      } else {
+      } else if(isRemain === '1') {
         queryCondition.remainWeight = {$gt: 0};
       }
       if (ribbonTotalLevels) {
@@ -319,7 +325,9 @@ class Storage {
   }
 
   async exportStorage(req, res, next) {
-    const { castId, furnace, startTime, endTime, outStartTime, outEndTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels, isRemain = 1 } = req.query;
+    const { castId, furnace, startTime, endTime, outStartTime, outEndTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, takebyJson, place, ribbonTotalLevels, isRemain = 1 } = req.query;
+
+    console.log(req.query);
     try {
       let queryCondition = {};
       if(castId) {
@@ -364,12 +372,18 @@ class Storage {
           queryCondition.laminationLevel = { $in: laminationLevelList };
         }
       }
+      if (takebyJson) {
+        const takebyList = JSON.parse(takebyJson);
+        if (takebyList.length > 0) {
+          queryCondition.takeBy = { $in: takebyList };
+        }
+      }
       if(place) {
         queryCondition.place = place;        
       }
-      if(isRemain === 0) {
+      if(isRemain === '0') {
         queryCondition.remainWeight = 0;        
-      } else {
+      } else if(isRemain === '1') {
         queryCondition.remainWeight = {$gt: 0};
       }
       if (ribbonTotalLevels) {
@@ -406,6 +420,8 @@ class Storage {
           ['coilNumber', 'desc']
         ]
       });
+
+      console.log(list);
       
       conf.rows = list.map(item => {
         return [ 

@@ -594,12 +594,14 @@ class Measure {
         roder: [
           ['furnace', 'asc'],
           ['coilNumber', 'asc']
-        ]
+        ],
+        raw: true
       });
       
-      conf.rows = await list.map(async (item) => {
+      conf.rows = await Promise.all(list.map(async (item) => {
         const { ribbonTypeName, ribbonWidth, createTime, caster } = await castModel.findOne({
-          where: { furnace }
+          where: { furnace: item.furnace },
+          raw: true
         });
 
         return [
@@ -625,7 +627,7 @@ class Measure {
         //   item.ribbonToughness, item.ribbonToughnessLevel, item.appearence, item.appearenceLevel, item.ribbonTotalLevel, isStoredDesc(item.isStored),
         //   item.unStoreReason, item.clients
         // ].map(val => val == undefined ? null : val);
-      });
+      }));
 
       function isStoredDesc (status) {
         switch (status) {
@@ -702,12 +704,14 @@ class Measure {
         order: [
           ['furnace', 'asc'],
           ['coilNumber', 'asc']
-        ]
+        ],
+        raw: true
       });
       
-      conf.rows = await list.map(async (item) => {
+      conf.rows = await Promise.all(list.map(async (item) => {
         const { ribbonTypeName, ribbonWidth, createTime, caster } = await castModel.findOne({
-          where: { furnace }
+          where: { furnace: item.furnace },
+          raw: true
         });
 
         return [
@@ -723,7 +727,7 @@ class Measure {
         //   item.diameter, item.coilWeight, item.rollMachine, item.roller,
         //   moment(item.createdAt).format('YYYY-MM-DD HH:mm:ss'), item.isFlat
         // ].map(val => val == undefined ? null : val);
-      });
+      }));
       
       const result = nodeExcel.execute(conf);
       res.setHeader('Content-Type', 'application/vnd.openxmlformats');
