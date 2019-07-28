@@ -3,6 +3,7 @@
 const Sequelize =  require('sequelize');
 const sequelize = require('../mysql/db');
 const moment = require('moment');
+const Plan = require('./plan');
 
 const Melt = sequelize.define('melt', {
 	meltId: {
@@ -54,13 +55,15 @@ const Melt = sequelize.define('melt', {
 			return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
 		}
 	},
-	updatedAt: {
+	updatedAt: { 
 		type: Sequelize.DATE,
 		get() {
 			return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
 		}
 	}
 });
+
+// Melt.belongsTo(Plan, {foreignKey: 'planId'});
 
 // Melt.sync({alter: true}).then((result) => {
   

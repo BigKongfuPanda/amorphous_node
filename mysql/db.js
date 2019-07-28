@@ -47,7 +47,7 @@ const sequelize = new Sequelize(
 // Create Database struct from models
 sequelize
   .sync()
-  .then(async () => {
+  .then(() => {
     console.log(
       chalk.green('初始化数据库成功')
     );
