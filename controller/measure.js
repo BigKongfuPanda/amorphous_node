@@ -30,7 +30,7 @@ class Measure {
         queryCondition.furnace = furnace;        
       }
       if(startTime && endTime) {
-        queryCondition.inStoreDate = { $gt: startTime, $lt: endTime };
+        queryCondition.castDate = { $gt: startTime, $lt: endTime };
       }
       if (ribbonTypeNameJson) {
         const ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
@@ -117,7 +117,7 @@ class Measure {
         item.qualifiedDemands = furnaceMapToOrderAndqualifiedDemands[item.furnace]['qualifiedDemands'] || '[]';
         item.ribbonTypeName = furnaceMapToCastInfo[item.furnace]['ribbonTypeName'] || '';
         item.ribbonWidth = furnaceMapToCastInfo[item.furnace]['ribbonWidth'] || '';
-        item.castDate = furnaceMapToCastInfo[item.furnace]['createTime'] || '';
+        // item.castDate = furnaceMapToCastInfo[item.furnace]['createTime'] || '';
         item.caster = furnaceMapToCastInfo[item.furnace]['caster'] || '';
       });
 
@@ -235,23 +235,23 @@ class Measure {
         40: 0.12,
         50: 0.12
        */
-      let linerWeight = 0;
-      if (ribbonWidth < 25) {
-        linerWeight = 0.05;
-      } else if (ribbonWidth >= 25 && ribbonWidth < 30) {
-        linerWeight = 0.06;
-      } else if (ribbonWidth >= 30 && ribbonWidth < 40) {
-        linerWeight = 0.08;
-      } else if (ribbonWidth >= 40 && ribbonWidth < 50) {
-        linerWeight = 0.12;
-      } else if (ribbonWidth >= 50 && ribbonWidth < 58) {
-        linerWeight = 0.12;
-      } else if (ribbonWidth >= 58) { // 58mm 以上的使用两个 30 的内衬拼接起来
-        linerWeight = 0.08 * 2;
-      }
+      // let linerWeight = 0;
+      // if (ribbonWidth < 25) {
+      //   linerWeight = 0.05;
+      // } else if (ribbonWidth >= 25 && ribbonWidth < 30) {
+      //   linerWeight = 0.06;
+      // } else if (ribbonWidth >= 30 && ribbonWidth < 40) {
+      //   linerWeight = 0.08;
+      // } else if (ribbonWidth >= 40 && ribbonWidth < 50) {
+      //   linerWeight = 0.12;
+      // } else if (ribbonWidth >= 50 && ribbonWidth < 58) {
+      //   linerWeight = 0.12;
+      // } else if (ribbonWidth >= 58) { // 58mm 以上的使用两个 30 的内衬拼接起来
+      //   linerWeight = 0.08 * 2;
+      // }
 
-      const coilNetWeight = coilWeight - linerWeight;
-      const remainWeight = coilNetWeight;
+      // const coilNetWeight = coilWeight - linerWeight;
+      // const remainWeight = coilNetWeight;
 
       // 查询生产计划集合中，当前炉次的订单要求和入库要求
       const planFurnace = furnace.substr(0, 14);
@@ -270,10 +270,16 @@ class Measure {
       //   roller, rollMachine, isFlat,
       //   orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedThickness, qualifiedLaminationFactor, qualifiedRibbonToughnessLevels, qualifiedAppearenceLevels
       // };
+
+      const { createTime } = await castModel.findOne({
+        where: { furnace }
+      });
       const newData = {
         castId, furnace,
         // ribbonTypeName, ribbonWidth, caster, castDate,
-        coilNumber, diameter, coilWeight, coilNetWeight, remainWeight,
+        castDate: createTime,
+        coilNumber, diameter, coilWeight, 
+        // coilNetWeight, remainWeight,
         roller, rollMachine, isFlat,
         // orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, 
         // qualifiedDemands
@@ -281,7 +287,7 @@ class Measure {
       await measureModel.create(newData);
       res.send({
         status: 0,
-        message: '新增重卷记录成功'
+        message: '新增重卷记录成功' 
       });
     } catch (err) {
       console.log('新增重卷记录失败', err);
@@ -352,66 +358,70 @@ class Measure {
       }
     }
 
-    try {
+    // try {
       // 没有入库的情况下，才能重新计算净重和结存，由重卷人员来操作
-      if (isStored !== 1 || isStored !== 2) {
-        /** 
-         * 计算单盘净重，不同规格的内衬重量不同
-         * 内衬的规格和重量对应表
-         * 20.5: 0.05,
-          25.5: 0.06,
-          30: 0.08,
-          40: 0.12,
-          50: 0.12
-        */
-        let linerWeight = 0;
-        if (ribbonWidth < 25) {
-          linerWeight = 0.05;
-        } else if (ribbonWidth >= 25 && ribbonWidth < 30) {
-          linerWeight = 0.06;
-        } else if (ribbonWidth >= 30 && ribbonWidth < 40) {
-          linerWeight = 0.08;
-        } else if (ribbonWidth >= 40 && ribbonWidth < 50) {
-          linerWeight = 0.12;
-        } else if (ribbonWidth >= 50 && ribbonWidth < 58) {
-          linerWeight = 0.12;
-        } else if (ribbonWidth >= 58) { // 58mm 以上的使用两个 30 的内衬拼接起来
-          linerWeight = 0.08 * 2;
-        } 
-        coilNetWeight = (coilWeight - linerWeight).toFixed(2);
-        remainWeight = coilNetWeight;
+      // if (isStored !== 1 || isStored !== 2) {
+      //   /** 
+      //    * 计算单盘净重，不同规格的内衬重量不同
+      //    * 内衬的规格和重量对应表
+      //    * 20.5: 0.05,
+      //     25.5: 0.06,
+      //     30: 0.08,
+      //     40: 0.12,
+      //     50: 0.12
+      //   */
+      //   let linerWeight = 0;
+      //   if (ribbonWidth < 25) {
+      //     linerWeight = 0.05;
+      //   } else if (ribbonWidth >= 25 && ribbonWidth < 30) {
+      //     linerWeight = 0.06;
+      //   } else if (ribbonWidth >= 30 && ribbonWidth < 40) {
+      //     linerWeight = 0.08;
+      //   } else if (ribbonWidth >= 40 && ribbonWidth < 50) {
+      //     linerWeight = 0.12;
+      //   } else if (ribbonWidth >= 50 && ribbonWidth < 58) {
+      //     linerWeight = 0.12;
+      //   } else if (ribbonWidth >= 58) { // 58mm 以上的使用两个 30 的内衬拼接起来
+      //     linerWeight = 0.08 * 2;
+      //   } 
+      //   coilNetWeight = (coilWeight - linerWeight).toFixed(2);
+      //   remainWeight = coilNetWeight;
 
-        // 判断当前的盘重总数是否小于本炉的大盘毛重
-        try {
-          // 获取合计盘重的重量
-          const rawRetCoil = await sequelize.query(`SELECT SUM(coilWeight) AS weight FROM measure WHERE  furnace = '${furnace}'`, {
-            type: sequelize.QueryTypes.SELECT
-          });
-          // [{ weight: 122.2323 }]
-          const coilTotalWeight = rawRetCoil[0].weight;
-          
-          // 获取本炉的大盘毛重
-          const rawRetFurnace = await castModel.findOne({
-            where: {furnace}
-          });
-          const rawWeight = rawRetFurnace.rawWeight;
+    if (roleId == 4 || roleId == 15) {
+      // 判断当前的盘重总数是否小于本炉的大盘毛重
+      try {
+        // 获取合计盘重的重量
+        const rawRetCoil = await sequelize.query(`SELECT SUM(coilWeight) AS weight FROM measure WHERE  furnace = '${furnace}'`, {
+          type: sequelize.QueryTypes.SELECT
+        });
+        // [{ weight: 122.2323 }]
+        const coilTotalWeight = rawRetCoil[0].weight;
+        
+        // 获取本炉的大盘毛重
+        const rawRetFurnace = await castModel.findOne({
+          where: {furnace}
+        });
+        const rawWeight = rawRetFurnace.rawWeight;
 
-          if (coilTotalWeight > (rawWeight + 10)) {
-            throw new Error('重卷总重不能大于当前炉次的大盘毛重');
-          }
-        } catch (err) {
-          console.log(err.message, err);
-          log.error(err.message, err);
-          res.send({
-            status: -1,
-            message: err.message
-          });
-          return;
+        console.log(coilTotalWeight, rawWeight); // 224, 200
+
+        if (coilTotalWeight > (rawWeight + 10)) {
+          throw new Error('重卷总重不能大于当前炉次的大盘毛重');
         }
+      } catch (err) {
+        console.log(err.message, err);
+        log.error(err.message, err);
+        res.send({
+          status: -1,
+          message: err.message
+        });
+        return;
       }
+    }
 
+    try {
       const newData = {
-        castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight,
+        castId, furnace, coilNumber, diameter, coilWeight, coilNetWeight, 
         ribbonTypeName, ribbonWidth, castDate, caster, roller, rollMachine, isFlat,
         laminationFactor, laminationLevel,
         realRibbonWidth, ribbonThickness1, ribbonThickness2, ribbonThickness3, ribbonThickness4, ribbonThickness5, ribbonThickness6, ribbonThickness7, ribbonThickness8, ribbonThickness9, ribbonThicknessDeviation, ribbonThickness, ribbonThicknessLevel, ribbonToughness, ribbonToughnessLevel, appearence, appearenceLevel, ribbonTotalLevel, isMeasureConfirmed, isStored, unStoreReason, clients, remainWeight, takeBy, shipRemark, place, 
@@ -584,13 +594,19 @@ class Measure {
         roder: [
           ['furnace', 'asc'],
           ['coilNumber', 'asc']
-        ]
+        ],
+        raw: true
       });
       
-      conf.rows = list.map(item => {
-        return [ 
-          item.furnace, item.coilNumber, item.ribbonTypeName, item.ribbonWidth, 
-          moment(item.castDate).format('YYYY-MM-DD'), item.caster, item.diameter,
+      conf.rows = await Promise.all(list.map(async (item) => {
+        const { ribbonTypeName, ribbonWidth, createTime, caster } = await castModel.findOne({
+          where: { furnace: item.furnace },
+          raw: true
+        });
+
+        return [
+          item.furnace, item.coilNumber, ribbonTypeName, ribbonWidth, 
+          moment(createTime).format('YYYY-MM-DD'), caster, item.diameter,
           item.coilWeight, item.laminationFactor, item.laminationLevel, item.realRibbonWidth,
           item.ribbonThickness1, item.ribbonThickness2, item.ribbonThickness3, item.ribbonThickness4,
           item.ribbonThickness5, item.ribbonThickness6, item.ribbonThickness7, item.ribbonThickness8,
@@ -599,7 +615,19 @@ class Measure {
           item.ribbonToughness, item.ribbonToughnessLevel, item.appearence, item.appearenceLevel, item.ribbonTotalLevel, isStoredDesc(item.isStored),
           item.unStoreReason, item.clients
         ].map(val => val == undefined ? null : val);
-      });
+
+        // return [ 
+        //   item.furnace, item.coilNumber, item.ribbonTypeName, item.ribbonWidth, 
+        //   moment(item.castDate).format('YYYY-MM-DD'), item.caster, item.diameter,
+        //   item.coilWeight, item.laminationFactor, item.laminationLevel, item.realRibbonWidth,
+        //   item.ribbonThickness1, item.ribbonThickness2, item.ribbonThickness3, item.ribbonThickness4,
+        //   item.ribbonThickness5, item.ribbonThickness6, item.ribbonThickness7, item.ribbonThickness8,
+        //   item.ribbonThickness9, 
+        //   item.ribbonThicknessDeviation, item.ribbonThickness, item.ribbonThicknessLevel,
+        //   item.ribbonToughness, item.ribbonToughnessLevel, item.appearence, item.appearenceLevel, item.ribbonTotalLevel, isStoredDesc(item.isStored),
+        //   item.unStoreReason, item.clients
+        // ].map(val => val == undefined ? null : val);
+      }));
 
       function isStoredDesc (status) {
         switch (status) {
@@ -676,17 +704,30 @@ class Measure {
         order: [
           ['furnace', 'asc'],
           ['coilNumber', 'asc']
-        ]
+        ],
+        raw: true
       });
       
-      conf.rows = list.map(item => {
+      conf.rows = await Promise.all(list.map(async (item) => {
+        const { ribbonTypeName, ribbonWidth, createTime, caster } = await castModel.findOne({
+          where: { furnace: item.furnace },
+          raw: true
+        });
+
         return [
-          item.furnace, item.ribbonTypeName, item.ribbonWidth, 
-          moment(item.castDate).format('YYYY-MM-DD'), item.caster, item.coilNumber, 
+          item.furnace, ribbonTypeName, ribbonWidth, 
+          moment(createTime).format('YYYY-MM-DD'), caster, item.coilNumber, 
           item.diameter, item.coilWeight, item.rollMachine, item.roller,
           moment(item.createdAt).format('YYYY-MM-DD HH:mm:ss'), item.isFlat
         ].map(val => val == undefined ? null : val);
-      });
+
+        // return [
+        //   item.furnace, item.ribbonTypeName, item.ribbonWidth, 
+        //   moment(item.castDate).format('YYYY-MM-DD'), item.caster, item.coilNumber, 
+        //   item.diameter, item.coilWeight, item.rollMachine, item.roller,
+        //   moment(item.createdAt).format('YYYY-MM-DD HH:mm:ss'), item.isFlat
+        // ].map(val => val == undefined ? null : val);
+      }));
       
       const result = nodeExcel.execute(conf);
       res.setHeader('Content-Type', 'application/vnd.openxmlformats');

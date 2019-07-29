@@ -17,7 +17,7 @@ class Storage {
   }
 
   async queryData(req, res, next) {
-    const { castId, furnace, startTime, endTime, outStartTime, outEndTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels, isRemain = 1, current = 1, limit = 20 } = req.query;
+    const { castId, furnaceJson, startTime, endTime, outStartTime, outEndTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, takebyJson, place, ribbonTotalLevels, isRemain = 1, current = 1, limit = 20 } = req.query;
     try {
       let queryCondition = {};
       if(castId) {
@@ -29,8 +29,11 @@ class Storage {
       if (roller) {
         queryCondition.roller = roller;
       }
-      if(furnace) {
-        queryCondition.furnace = furnace;        
+      if(furnaceJson) {
+        const furnaceList = JSON.parse(furnaceJson);
+        if(furnaceList.length > 0) {
+          queryCondition.furnace = { $in: furnaceList };
+        }
       }
       if(startTime && endTime) {
         queryCondition.inStoreDate = { $gt: startTime, $lt: endTime };
@@ -62,12 +65,19 @@ class Storage {
           queryCondition.laminationLevel = { $in: laminationLevelList };
         }
       }
-      if(place) {
-        queryCondition.place = place;        
+      if (takebyJson) {
+        const takebyList = JSON.parse(takebyJson);
+        if (takebyList.length > 0) {
+          queryCondition.takeBy = { $in: takebyList };
+        }
       }
-      if(isRemain == 0) {
+      if(place) {
+        const placeList = place.split(',');
+        queryCondition.place = { $in: placeList};        
+      }
+      if(isRemain === '0') {
         queryCondition.remainWeight = 0;        
-      } else {
+      } else if(isRemain === '1') {
         queryCondition.remainWeight = {$gt: 0};
       }
       if (ribbonTotalLevels) {
@@ -127,6 +137,43 @@ class Storage {
       res.send({
         status: -1,
         message: '查询库房记录失败'
+      });
+    }
+  }
+
+  async queryFurnace(req, res, next) {
+    const {query} = req.query;
+    try {
+      let list = await storageModel.findAll({
+        attributes: ['furnace'],
+        where: {
+          furnace: {
+            $like: `%${query}%`
+          }
+        },
+        raw: true
+      });
+
+      let furnaceList = list.map(item => {
+        return item.furnace;
+      });
+
+      furnaceList = Array.from(new Set(furnaceList));
+      console.log(furnaceList);
+
+      res.send({
+        status: 0,
+        message: '查询成功',
+        data: {
+          list: furnaceList
+        }
+      });
+    } catch (error) {
+      console.log('查询库房炉号记录失败', err);
+      log.error('查询库房炉号记录失败', err);
+      res.send({
+        status: -1,
+        message: '查询库房炉号记录失败'
       });
     }
   }
@@ -278,7 +325,9 @@ class Storage {
   }
 
   async exportStorage(req, res, next) {
-    const { castId, furnace, startTime, endTime, outStartTime, outEndTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, place, ribbonTotalLevels, isRemain = 1 } = req.query;
+    const { castId, furnace, startTime, endTime, outStartTime, outEndTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, takebyJson, place, ribbonTotalLevels, isRemain = 1 } = req.query;
+
+    console.log(req.query);
     try {
       let queryCondition = {};
       if(castId) {
@@ -323,12 +372,18 @@ class Storage {
           queryCondition.laminationLevel = { $in: laminationLevelList };
         }
       }
+      if (takebyJson) {
+        const takebyList = JSON.parse(takebyJson);
+        if (takebyList.length > 0) {
+          queryCondition.takeBy = { $in: takebyList };
+        }
+      }
       if(place) {
         queryCondition.place = place;        
       }
-      if(isRemain === 0) {
+      if(isRemain === '0') {
         queryCondition.remainWeight = 0;        
-      } else {
+      } else if(isRemain === '1') {
         queryCondition.remainWeight = {$gt: 0};
       }
       if (ribbonTotalLevels) {
@@ -365,6 +420,8 @@ class Storage {
           ['coilNumber', 'desc']
         ]
       });
+
+      console.log(list);
       
       conf.rows = list.map(item => {
         return [ 

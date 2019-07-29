@@ -7,6 +7,9 @@ const Storage = require('../controller/storage');
 // 获取库房记录表
 router.get('/', Storage.queryData);
 
+// 获取库房记录表中所有的炉号
+router.get('/furnace', Storage.queryFurnace);
+
 // 更新库房记录表
 router.put('/', Storage.updateData);
 

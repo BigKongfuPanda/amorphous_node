@@ -66,11 +66,11 @@ class StorageService {
   // 批量出库
   async batchOutStore(req, res, next) {
     const { ids, takeBy } = req.body;
-    try{
-      if (!ids || takeBy) {
+    try {
+      if (!ids || !takeBy) {
         throw new Error('参数错误')
       }
-    }catch(err){
+    } catch(err) {
       console.log(err.message, err);
       log.error(err.message, err);
       res.send({
