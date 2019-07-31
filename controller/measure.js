@@ -94,12 +94,23 @@ class Measure {
       });
       const list = pageData.rows;
 
+      // 如果排产12炉，喷带13或以上，则从第13炉开始，需要取第12炉的材质，规格，订单要求和排产要求
       // 查询生产计划集合中，当前炉次的订单要求和入库要求
       const uniqueFurnaceList = Array.from(new Set(list.map(item => item.furnace)));
       let furnaceMapToOrderAndqualifiedDemands = {};
       let furnaceMapToCastInfo = {};
       for (const furnace of uniqueFurnaceList) {
-        const planFurnace = furnace.substr(0, 14);
+        let planFurnace = furnace.substr(0, 14);
+        const date = furnace.split('-')[1]; // 06-20190111-02/08 ---> 2019-01-11
+        const fomatDate = moment(date).format('YYYY-MM-DD');
+        const planListByDate = await planModel.findAll({
+          where: { date: fomatDate },
+          raw: true
+        });
+        const _len = planListByDate.length;
+        if (Number(planFurnace.split('-')[2]) > _len) {
+          planFurnace = planListByDate[_len - 1].furnace;
+        }
         const { orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedDemands } = await planModel.findOne({
           where: { furnace: planFurnace }
         });
@@ -214,7 +225,6 @@ class Measure {
       if (coilTotalWeight > (rawWeight + 10)) {
         throw new Error('重卷总重不能大于当前炉次的大盘毛重');
       }
-
     } catch (err) {
       console.log(err.message, err);
       log.error(err.message, err);
