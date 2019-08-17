@@ -149,94 +149,201 @@ class Statistics {
       let list = [];
       // 低产零产率：6,8,9机组 <= 80kg，7机组 <=50，算低产
       if (ratioType === 'byCaster') {
-        const sqlStr = `SELECT c.castId, c.team, c.caster,
-        COUNT(c.furnace) AS totalHeatNum,
-        SUM(c.nozzleNum) AS nozzleNum,
-        SUM(t.alloyTotalWeight) AS alloyTotalWeight,
-        SUM(c.rawWeight) AS rawWeight,
-        SUM(m.coilNetWeight) AS coilNetWeight,
-        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,
-        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,
-        SUM(m.totalStoredWeight) AS totalStoredWeight,
-        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,
-        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,
-        SUM(c.meltOutWeight) AS meltOutWeight,
-        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,
-        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,
-        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,
-        SUM(m.qualityOfA) AS qualityOfA,
-        SUM(m.qualityOfB) AS qualityOfB,
-        SUM(m.qualityOfC) AS qualityOfC,
-        SUM(m.qualityOfD) AS qualityOfD,
-        SUM(m.qualityOfE) AS qualityOfE,
-        SUM(m.qualityOfGood) AS qualityOfGood,
-        SUM(m.qualityOfFine) AS qualityOfFine,
-        SUM(m.qualityOfNormal) AS qualityOfNormal,
-        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,
-        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum
-        FROM cast AS c, measure AS m, melt AS t
-        where c.furnace = m.furnace AND t.furnace = c.furnace
-        GROUP BY m.caster`;
+        const sqlStr = `
+        SELECT 
+          j.caster, 
+          COUNT(m.furnace) AS totalHeatNum,
+          SUM(j.nozzleNum) AS nozzleNum, 
+          SUM(j.lowHeatNum) AS lowHeatNum,
+          SUM(j.zeroHeatNum) AS zeroHeatNum,
+          SUM(j.alloyTotalWeight) AS alloyTotalWeight,
+          SUM(j.rawWeight) AS rawWeight,
+          SUM(m.coilNetWeight) AS coilNetWeight, 
+          SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,
+          SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,
+          SUM(m.totalStoredWeight) AS totalStoredWeight,
+          SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,
+          SUM(j.uselessRibbonWeight) AS uselessRibbonWeight,
+          SUM(j.meltOutWeight) AS meltOutWeight,
+          SUM(j.rawWeight+j.uselessRibbonWeight)/SUM(j.alloyTotalWeight) AS effectiveMeltRatio,
+          SUM(j.rawWeight)/SUM(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,
+          SUM(m.totalStoredWeight)/SUM(j.rawWeight) AS qualifiedRatio,
+          SUM(m.qualityOfA) AS qualityOfA,
+          SUM(m.qualityOfB) AS qualityOfB, 
+          SUM(m.qualityOfC) AS qualityOfC,
+          SUM(m.qualityOfD) AS qualityOfD,
+          SUM(m.qualityOfE) AS qualityOfE,
+          SUM(m.qualityOfGood) AS qualityOfGood,
+          SUM(m.qualityOfFine) AS qualityOfFine,
+          SUM(m.qualityOfNormal) AS qualityOfNormal
+        FROM
+          (
+            SELECT
+              furnace,
+              SUM(coilNetWeight) AS coilNetWeight, 
+              SUM(inPlanStoredWeight) AS inPlanStoredWeight,
+              SUM(outPlanStoredWeight) AS outPlanStoredWeight,
+              SUM(totalStoredWeight) AS totalStoredWeight,
+              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,
+              SUM(qualityOfA) AS qualityOfA,
+              SUM(qualityOfB) AS qualityOfB,
+              SUM(qualityOfC) AS qualityOfC,
+              SUM(qualityOfD) AS qualityOfD,
+              SUM(qualityOfE) AS qualityOfE,
+              SUM(qualityOfGood) AS qualityOfGood,
+              SUM(qualityOfFine) AS qualityOfFine,
+              SUM(qualityOfNormal) AS qualityOfNormal
+            FROM measure GROUP BY furnace
+          ) AS m 
+          LEFT JOIN
+          (
+            SELECT 
+              c.*, t.alloyTotalWeight,
+              (
+                SELECT COUNT(*)
+                FROM cast
+                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)
+              ) AS lowHeatNum,
+              (
+                SELECT COUNT(*)
+                FROM cast
+                WHERE rawWeight = 0
+              ) AS zeroHeatNum
+            FROM cast c JOIN melt t
+            ON c.furnace = t.furnace
+          ) AS j 
+          ON m.furnace = j.furnace
+        GROUP BY j.caster;`
         list = await sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
       } else if (ratioType === 'byTeam') {
-        const sqlStr = `SELECT c.castId, c.team, c.caster,
-        COUNT(c.furnace) AS totalHeatNum,
-        SUM(c.nozzleNum) AS nozzleNum,
-        SUM(t.alloyTotalWeight) AS alloyTotalWeight,
-        SUM(c.rawWeight) AS rawWeight,
-        SUM(m.coilNetWeight) AS coilNetWeight,
-        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,
-        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,
-        SUM(m.totalStoredWeight) AS totalStoredWeight,
-        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,
-        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,
-        SUM(c.meltOutWeight) AS meltOutWeight,
-        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,
-        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,
-        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,
-        SUM(m.qualityOfA) AS qualityOfA,
-        SUM(m.qualityOfB) AS qualityOfB,
-        SUM(m.qualityOfC) AS qualityOfC,
-        SUM(m.qualityOfD) AS qualityOfD,
-        SUM(m.qualityOfE) AS qualityOfE,
-        SUM(m.qualityOfGood) AS qualityOfGood,
-        SUM(m.qualityOfFine) AS qualityOfFine,
-        SUM(m.qualityOfNormal) AS qualityOfNormal,
-        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,
-        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum
-        FROM cast AS c, measure AS m, melt AS t
-        where c.furnace = m.furnace AND t.furnace = c.furnace
-        GROUP BY c.team`;
+        const sqlStr = `
+        SELECT 
+          j.team, 
+          COUNT(m.furnace) AS totalHeatNum,
+          SUM(j.nozzleNum) AS nozzleNum, 
+          SUM(j.alloyTotalWeight) AS alloyTotalWeight,
+          SUM(j.rawWeight) AS rawWeight,
+          SUM(m.coilNetWeight) AS coilNetWeight, 
+          SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,
+          SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,
+          SUM(m.totalStoredWeight) AS totalStoredWeight,
+          SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,
+          SUM(j.uselessRibbonWeight) AS uselessRibbonWeight,
+          SUM(j.meltOutWeight) AS meltOutWeight,
+          SUM(j.rawWeight+j.uselessRibbonWeight)/SUM(j.alloyTotalWeight) AS effectiveMeltRatio,
+          SUM(j.rawWeight)/SUM(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,
+          SUM(m.totalStoredWeight)/SUM(j.rawWeight) AS qualifiedRatio,
+          SUM(m.qualityOfA) AS qualityOfA,
+          SUM(m.qualityOfB) AS qualityOfB, 
+          SUM(m.qualityOfC) AS qualityOfC,
+          SUM(m.qualityOfD) AS qualityOfD,
+          SUM(m.qualityOfE) AS qualityOfE,
+          SUM(m.qualityOfGood) AS qualityOfGood,
+          SUM(m.qualityOfFine) AS qualityOfFine,
+          SUM(m.qualityOfNormal) AS qualityOfNormal
+        FROM
+          (
+            SELECT
+              furnace,
+              SUM(coilNetWeight) AS coilNetWeight, 
+              SUM(inPlanStoredWeight) AS inPlanStoredWeight,
+              SUM(outPlanStoredWeight) AS outPlanStoredWeight,
+              SUM(totalStoredWeight) AS totalStoredWeight,
+              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,
+              SUM(qualityOfA) AS qualityOfA,
+              SUM(qualityOfB) AS qualityOfB,
+              SUM(qualityOfC) AS qualityOfC,
+              SUM(qualityOfD) AS qualityOfD,
+              SUM(qualityOfE) AS qualityOfE,
+              SUM(qualityOfGood) AS qualityOfGood,
+              SUM(qualityOfFine) AS qualityOfFine,
+              SUM(qualityOfNormal) AS qualityOfNormal
+            FROM measure GROUP BY furnace
+          ) AS m 
+          LEFT JOIN
+          (
+            SELECT 
+              c.*, t.alloyTotalWeight,
+              (
+                SELECT COUNT(*)
+                FROM cast
+                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)
+              ) AS lowHeatNum,
+              (
+                SELECT COUNT(*)
+                FROM cast
+                WHERE rawWeight = 0
+              ) AS zeroHeatNum
+            FROM cast c JOIN melt t
+            ON c.furnace = t.furnace
+          ) AS j 
+          ON m.furnace = j.furnace
+        GROUP BY j.team;`;
         list = await sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
       } else if (ratioType === 'byCastId') {
-        const sqlStr = `SELECT c.castId, c.team, c.caster,
-        COUNT(c.furnace) AS totalHeatNum,
-        SUM(c.nozzleNum) AS nozzleNum,
-        SUM(t.alloyTotalWeight) AS alloyTotalWeight,
-        SUM(c.rawWeight) AS rawWeight,
-        SUM(m.coilNetWeight) AS coilNetWeight,
-        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,
-        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,
-        SUM(m.totalStoredWeight) AS totalStoredWeight,
-        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,
-        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,
-        SUM(c.meltOutWeight) AS meltOutWeight,
-        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,
-        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,
-        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,
-        SUM(m.qualityOfA) AS qualityOfA,
-        SUM(m.qualityOfB) AS qualityOfB,
-        SUM(m.qualityOfC) AS qualityOfC,
-        SUM(m.qualityOfD) AS qualityOfD,
-        SUM(m.qualityOfE) AS qualityOfE,
-        SUM(m.qualityOfGood) AS qualityOfGood,
-        SUM(m.qualityOfFine) AS qualityOfFine,
-        SUM(m.qualityOfNormal) AS qualityOfNormal,
-        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,
-        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum
-        FROM cast AS c, measure AS m, melt AS t
-        where c.furnace = m.furnace AND t.furnace = c.furnace
-        GROUP BY m.castId`;
+        const sqlStr = `
+        SELECT 
+          j.castId, 
+          COUNT(m.furnace) AS totalHeatNum,
+          SUM(j.nozzleNum) AS nozzleNum, 
+          SUM(j.alloyTotalWeight) AS alloyTotalWeight,
+          SUM(j.rawWeight) AS rawWeight,
+          SUM(m.coilNetWeight) AS coilNetWeight, 
+          SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,
+          SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,
+          SUM(m.totalStoredWeight) AS totalStoredWeight,
+          SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,
+          SUM(j.uselessRibbonWeight) AS uselessRibbonWeight,
+          SUM(j.meltOutWeight) AS meltOutWeight,
+          SUM(j.rawWeight+j.uselessRibbonWeight)/SUM(j.alloyTotalWeight) AS effectiveMeltRatio,
+          SUM(j.rawWeight)/SUM(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,
+          SUM(m.totalStoredWeight)/SUM(j.rawWeight) AS qualifiedRatio,
+          SUM(m.qualityOfA) AS qualityOfA,
+          SUM(m.qualityOfB) AS qualityOfB, 
+          SUM(m.qualityOfC) AS qualityOfC,
+          SUM(m.qualityOfD) AS qualityOfD,
+          SUM(m.qualityOfE) AS qualityOfE,
+          SUM(m.qualityOfGood) AS qualityOfGood,
+          SUM(m.qualityOfFine) AS qualityOfFine,
+          SUM(m.qualityOfNormal) AS qualityOfNormal
+        FROM
+          (
+            SELECT
+              furnace,
+              SUM(coilNetWeight) AS coilNetWeight, 
+              SUM(inPlanStoredWeight) AS inPlanStoredWeight,
+              SUM(outPlanStoredWeight) AS outPlanStoredWeight,
+              SUM(totalStoredWeight) AS totalStoredWeight,
+              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,
+              SUM(qualityOfA) AS qualityOfA,
+              SUM(qualityOfB) AS qualityOfB,
+              SUM(qualityOfC) AS qualityOfC,
+              SUM(qualityOfD) AS qualityOfD,
+              SUM(qualityOfE) AS qualityOfE,
+              SUM(qualityOfGood) AS qualityOfGood,
+              SUM(qualityOfFine) AS qualityOfFine,
+              SUM(qualityOfNormal) AS qualityOfNormal
+            FROM measure GROUP BY furnace
+          ) AS m 
+          LEFT JOIN
+          (
+            SELECT 
+              c.*, t.alloyTotalWeight,
+              (
+                SELECT COUNT(*)
+                FROM cast
+                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)
+              ) AS lowHeatNum,
+              (
+                SELECT COUNT(*)
+                FROM cast
+                WHERE rawWeight = 0
+              ) AS zeroHeatNum
+            FROM cast c JOIN melt t
+            ON c.furnace = t.furnace
+          ) AS j 
+          ON m.furnace = j.furnace
+        GROUP BY j.castId;`;
         list = await sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
       }
 

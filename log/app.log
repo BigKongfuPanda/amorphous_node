@@ -1736,3 +1736,482 @@ From previous event:
       'select j.*, m.* from\n      (SELECT\n          furnace,\n          SUM(coilNetWeight) AS coilNetWeight,\n          SUM(totalStoredWeight) AS totalStoredWeight,\n          SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n          SUM(qualityOfA) AS qualityOfA,\n          SUM(qualityOfB) AS qualityOfB,\n          SUM(qualityOfC) AS qualityOfC,\n          SUM(qualityOfD) AS qualityOfD,\n          SUM(qualityOfE) AS qualityOfE,\n          SUM(thinRibbonWeight) AS thinRibbonWeight,\n          SUM(highFactorThinRibbonWeight) AS highFactorThinRibbonWeight,\n          SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n          SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n          SUM(inPlanThickRibbonWeight) AS inPlanThickRibbonWeight,\n          SUM(qualityOfGood) AS qualityOfGood,\n          SUM(qualityOfFine) AS qualityOfFine,\n          SUM(qualityOfNormal) AS qualityOfNormal\n      FROM measure WHERE  AND castId IN (6) AND castId IN (6)  GROUP BY furnace) AS m LEFT JOIN (\n          SELECT c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n      FROM cast c JOIN melt t\n          ON c.furnace = t.furnace\n      ) j ON m.furnace = j.furnace\n      LIMIT 20 OFFSET 0' },
   sql:
    'select j.*, m.* from\n      (SELECT\n          furnace,\n          SUM(coilNetWeight) AS coilNetWeight,\n          SUM(totalStoredWeight) AS totalStoredWeight,\n          SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n          SUM(qualityOfA) AS qualityOfA,\n          SUM(qualityOfB) AS qualityOfB,\n          SUM(qualityOfC) AS qualityOfC,\n          SUM(qualityOfD) AS qualityOfD,\n          SUM(qualityOfE) AS qualityOfE,\n          SUM(thinRibbonWeight) AS thinRibbonWeight,\n          SUM(highFactorThinRibbonWeight) AS highFactorThinRibbonWeight,\n          SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n          SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n          SUM(inPlanThickRibbonWeight) AS inPlanThickRibbonWeight,\n          SUM(qualityOfGood) AS qualityOfGood,\n          SUM(qualityOfFine) AS qualityOfFine,\n          SUM(qualityOfNormal) AS qualityOfNormal\n      FROM measure WHERE  AND castId IN (6) AND castId IN (6)  GROUP BY furnace) AS m LEFT JOIN (\n          SELECT c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n      FROM cast c JOIN melt t\n          ON c.furnace = t.furnace\n      ) j ON m.furnace = j.furnace\n      LIMIT 20 OFFSET 0' }
+[2019-08-17T13:51:54.372] [ERROR] statistics - 查询直通率统计失败 { SequelizeDatabaseError: Duplicate column name 'totalStoredWeight'
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Query.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at queryDataOfRatio (E:\学习资料\前端开发\amorphous_node\controller\statistics.js:244:32)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Duplicate column name 'totalStoredWeight'
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_DUP_FIELDNAME',
+     errno: 1060,
+     sqlState: '42S21',
+     sqlMessage: 'Duplicate column name \'totalStoredWeight\'',
+     sql:
+      'SELECT \n          m.caster, \n          COUNT(m.furnace) AS totalHeatNum,\n          SUM(j.nozzleNum) AS nozzleNum, \n          SUM(j.alloyTotalWeight) AS alloyTotalWeight,\n          SUM(j.rawWeight) AS rawWeight,\n          SUM(m.coilNetWeight) AS coilNetWeight, \n          SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n          SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n          SUM(m.totalStoredWeight) AS totalStoredWeight,\n          SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n          SUM(j.uselessRibbonWeight) AS uselessRibbonWeight,\n          SUM(j.meltOutWeight) AS meltOutWeight,\n          SUM(j.rawWeight+j.uselessRibbonWeight)/SUM(j.alloyTotalWeight) AS effectiveMeltRatio,\n          SUM(j.rawWeight)/SUM(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n          SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n          SUM(m.qualityOfA) AS qualityOfA,\n          SUM(m.qualityOfB) AS qualityOfB, \n          SUM(m.qualityOfC) AS qualityOfC,\n          SUM(m.qualityOfD) AS qualityOfD,\n          SUM(m.qualityOfE) AS qualityOfE,\n          SUM(m.qualityOfGood) AS qualityOfGood,\n          SUM(m.qualityOfFine) AS qualityOfFine,\n          SUM(m.qualityOfNormal) AS qualityOfNormal\n        FROM\n          (\n            SELECT\n              furnace,\n              SUM(coilNetWeight) AS coilNetWeight, \n              SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n              SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(qualityOfA) AS qualityOfA,\n              SUM(qualityOfB) AS qualityOfB,\n              SUM(qualityOfC) AS qualityOfC,\n              SUM(qualityOfD) AS qualityOfD,\n              SUM(qualityOfE) AS qualityOfE,\n              SUM(qualityOfGood) AS qualityOfGood,\n              SUM(qualityOfFine) AS qualityOfFine,\n              SUM(qualityOfNormal) AS qualityOfNormal\n            FROM measure GROUP BY furnace\n          ) AS m \n          LEFT JOIN\n          (\n            SELECT \n              c.*, t.alloyTotalWeight,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)\n              ) AS lowHeatNum,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight = 0\n              ) AS zeroHeatNum\n            FROM cast c JOIN melt t\n            ON c.furnace = t.furnace\n          ) AS j \n          ON m.furnace = j.furnace\n        GROUP BY m.caster;' },
+  original:
+   { Error: Duplicate column name 'totalStoredWeight'
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_DUP_FIELDNAME',
+     errno: 1060,
+     sqlState: '42S21',
+     sqlMessage: 'Duplicate column name \'totalStoredWeight\'',
+     sql:
+      'SELECT \n          m.caster, \n          COUNT(m.furnace) AS totalHeatNum,\n          SUM(j.nozzleNum) AS nozzleNum, \n          SUM(j.alloyTotalWeight) AS alloyTotalWeight,\n          SUM(j.rawWeight) AS rawWeight,\n          SUM(m.coilNetWeight) AS coilNetWeight, \n          SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n          SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n          SUM(m.totalStoredWeight) AS totalStoredWeight,\n          SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n          SUM(j.uselessRibbonWeight) AS uselessRibbonWeight,\n          SUM(j.meltOutWeight) AS meltOutWeight,\n          SUM(j.rawWeight+j.uselessRibbonWeight)/SUM(j.alloyTotalWeight) AS effectiveMeltRatio,\n          SUM(j.rawWeight)/SUM(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n          SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n          SUM(m.qualityOfA) AS qualityOfA,\n          SUM(m.qualityOfB) AS qualityOfB, \n          SUM(m.qualityOfC) AS qualityOfC,\n          SUM(m.qualityOfD) AS qualityOfD,\n          SUM(m.qualityOfE) AS qualityOfE,\n          SUM(m.qualityOfGood) AS qualityOfGood,\n          SUM(m.qualityOfFine) AS qualityOfFine,\n          SUM(m.qualityOfNormal) AS qualityOfNormal\n        FROM\n          (\n            SELECT\n              furnace,\n              SUM(coilNetWeight) AS coilNetWeight, \n              SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n              SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(qualityOfA) AS qualityOfA,\n              SUM(qualityOfB) AS qualityOfB,\n              SUM(qualityOfC) AS qualityOfC,\n              SUM(qualityOfD) AS qualityOfD,\n              SUM(qualityOfE) AS qualityOfE,\n              SUM(qualityOfGood) AS qualityOfGood,\n              SUM(qualityOfFine) AS qualityOfFine,\n              SUM(qualityOfNormal) AS qualityOfNormal\n            FROM measure GROUP BY furnace\n          ) AS m \n          LEFT JOIN\n          (\n            SELECT \n              c.*, t.alloyTotalWeight,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)\n              ) AS lowHeatNum,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight = 0\n              ) AS zeroHeatNum\n            FROM cast c JOIN melt t\n            ON c.furnace = t.furnace\n          ) AS j \n          ON m.furnace = j.furnace\n        GROUP BY m.caster;' },
+  sql:
+   'SELECT \n          m.caster, \n          COUNT(m.furnace) AS totalHeatNum,\n          SUM(j.nozzleNum) AS nozzleNum, \n          SUM(j.alloyTotalWeight) AS alloyTotalWeight,\n          SUM(j.rawWeight) AS rawWeight,\n          SUM(m.coilNetWeight) AS coilNetWeight, \n          SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n          SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n          SUM(m.totalStoredWeight) AS totalStoredWeight,\n          SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n          SUM(j.uselessRibbonWeight) AS uselessRibbonWeight,\n          SUM(j.meltOutWeight) AS meltOutWeight,\n          SUM(j.rawWeight+j.uselessRibbonWeight)/SUM(j.alloyTotalWeight) AS effectiveMeltRatio,\n          SUM(j.rawWeight)/SUM(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n          SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n          SUM(m.qualityOfA) AS qualityOfA,\n          SUM(m.qualityOfB) AS qualityOfB, \n          SUM(m.qualityOfC) AS qualityOfC,\n          SUM(m.qualityOfD) AS qualityOfD,\n          SUM(m.qualityOfE) AS qualityOfE,\n          SUM(m.qualityOfGood) AS qualityOfGood,\n          SUM(m.qualityOfFine) AS qualityOfFine,\n          SUM(m.qualityOfNormal) AS qualityOfNormal\n        FROM\n          (\n            SELECT\n              furnace,\n              SUM(coilNetWeight) AS coilNetWeight, \n              SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n              SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(qualityOfA) AS qualityOfA,\n              SUM(qualityOfB) AS qualityOfB,\n              SUM(qualityOfC) AS qualityOfC,\n              SUM(qualityOfD) AS qualityOfD,\n              SUM(qualityOfE) AS qualityOfE,\n              SUM(qualityOfGood) AS qualityOfGood,\n              SUM(qualityOfFine) AS qualityOfFine,\n              SUM(qualityOfNormal) AS qualityOfNormal\n            FROM measure GROUP BY furnace\n          ) AS m \n          LEFT JOIN\n          (\n            SELECT \n              c.*, t.alloyTotalWeight,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)\n              ) AS lowHeatNum,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight = 0\n              ) AS zeroHeatNum\n            FROM cast c JOIN melt t\n            ON c.furnace = t.furnace\n          ) AS j \n          ON m.furnace = j.furnace\n        GROUP BY m.caster;' }
+[2019-08-17T13:53:26.961] [ERROR] statistics - 查询直通率统计失败 { SequelizeDatabaseError: Unknown column 'm.caster' in 'field list'
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Query.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at queryDataOfRatio (E:\学习资料\前端开发\amorphous_node\controller\statistics.js:243:32)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Unknown column 'm.caster' in 'field list'
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'m.caster\' in \'field list\'',
+     sql:
+      'SELECT \n          m.caster, \n          COUNT(m.furnace) AS totalHeatNum,\n          SUM(j.nozzleNum) AS nozzleNum, \n          SUM(j.alloyTotalWeight) AS alloyTotalWeight,\n          SUM(j.rawWeight) AS rawWeight,\n          SUM(m.coilNetWeight) AS coilNetWeight, \n          SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n          SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n          SUM(m.totalStoredWeight) AS totalStoredWeight,\n          SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n          SUM(j.uselessRibbonWeight) AS uselessRibbonWeight,\n          SUM(j.meltOutWeight) AS meltOutWeight,\n          SUM(j.rawWeight+j.uselessRibbonWeight)/SUM(j.alloyTotalWeight) AS effectiveMeltRatio,\n          SUM(j.rawWeight)/SUM(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n          SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n          SUM(m.qualityOfA) AS qualityOfA,\n          SUM(m.qualityOfB) AS qualityOfB, \n          SUM(m.qualityOfC) AS qualityOfC,\n          SUM(m.qualityOfD) AS qualityOfD,\n          SUM(m.qualityOfE) AS qualityOfE,\n          SUM(m.qualityOfGood) AS qualityOfGood,\n          SUM(m.qualityOfFine) AS qualityOfFine,\n          SUM(m.qualityOfNormal) AS qualityOfNormal\n        FROM\n          (\n            SELECT\n              furnace,\n              SUM(coilNetWeight) AS coilNetWeight, \n              SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n              SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n              SUM(qualityOfA) AS qualityOfA,\n              SUM(qualityOfB) AS qualityOfB,\n              SUM(qualityOfC) AS qualityOfC,\n              SUM(qualityOfD) AS qualityOfD,\n              SUM(qualityOfE) AS qualityOfE,\n              SUM(qualityOfGood) AS qualityOfGood,\n              SUM(qualityOfFine) AS qualityOfFine,\n              SUM(qualityOfNormal) AS qualityOfNormal\n            FROM measure GROUP BY furnace\n          ) AS m \n          LEFT JOIN\n          (\n            SELECT \n              c.*, t.alloyTotalWeight,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)\n              ) AS lowHeatNum,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight = 0\n              ) AS zeroHeatNum\n            FROM cast c JOIN melt t\n            ON c.furnace = t.furnace\n          ) AS j \n          ON m.furnace = j.furnace\n        GROUP BY m.caster;' },
+  original:
+   { Error: Unknown column 'm.caster' in 'field list'
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'m.caster\' in \'field list\'',
+     sql:
+      'SELECT \n          m.caster, \n          COUNT(m.furnace) AS totalHeatNum,\n          SUM(j.nozzleNum) AS nozzleNum, \n          SUM(j.alloyTotalWeight) AS alloyTotalWeight,\n          SUM(j.rawWeight) AS rawWeight,\n          SUM(m.coilNetWeight) AS coilNetWeight, \n          SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n          SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n          SUM(m.totalStoredWeight) AS totalStoredWeight,\n          SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n          SUM(j.uselessRibbonWeight) AS uselessRibbonWeight,\n          SUM(j.meltOutWeight) AS meltOutWeight,\n          SUM(j.rawWeight+j.uselessRibbonWeight)/SUM(j.alloyTotalWeight) AS effectiveMeltRatio,\n          SUM(j.rawWeight)/SUM(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n          SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n          SUM(m.qualityOfA) AS qualityOfA,\n          SUM(m.qualityOfB) AS qualityOfB, \n          SUM(m.qualityOfC) AS qualityOfC,\n          SUM(m.qualityOfD) AS qualityOfD,\n          SUM(m.qualityOfE) AS qualityOfE,\n          SUM(m.qualityOfGood) AS qualityOfGood,\n          SUM(m.qualityOfFine) AS qualityOfFine,\n          SUM(m.qualityOfNormal) AS qualityOfNormal\n        FROM\n          (\n            SELECT\n              furnace,\n              SUM(coilNetWeight) AS coilNetWeight, \n              SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n              SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n              SUM(qualityOfA) AS qualityOfA,\n              SUM(qualityOfB) AS qualityOfB,\n              SUM(qualityOfC) AS qualityOfC,\n              SUM(qualityOfD) AS qualityOfD,\n              SUM(qualityOfE) AS qualityOfE,\n              SUM(qualityOfGood) AS qualityOfGood,\n              SUM(qualityOfFine) AS qualityOfFine,\n              SUM(qualityOfNormal) AS qualityOfNormal\n            FROM measure GROUP BY furnace\n          ) AS m \n          LEFT JOIN\n          (\n            SELECT \n              c.*, t.alloyTotalWeight,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)\n              ) AS lowHeatNum,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight = 0\n              ) AS zeroHeatNum\n            FROM cast c JOIN melt t\n            ON c.furnace = t.furnace\n          ) AS j \n          ON m.furnace = j.furnace\n        GROUP BY m.caster;' },
+  sql:
+   'SELECT \n          m.caster, \n          COUNT(m.furnace) AS totalHeatNum,\n          SUM(j.nozzleNum) AS nozzleNum, \n          SUM(j.alloyTotalWeight) AS alloyTotalWeight,\n          SUM(j.rawWeight) AS rawWeight,\n          SUM(m.coilNetWeight) AS coilNetWeight, \n          SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n          SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n          SUM(m.totalStoredWeight) AS totalStoredWeight,\n          SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n          SUM(j.uselessRibbonWeight) AS uselessRibbonWeight,\n          SUM(j.meltOutWeight) AS meltOutWeight,\n          SUM(j.rawWeight+j.uselessRibbonWeight)/SUM(j.alloyTotalWeight) AS effectiveMeltRatio,\n          SUM(j.rawWeight)/SUM(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n          SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n          SUM(m.qualityOfA) AS qualityOfA,\n          SUM(m.qualityOfB) AS qualityOfB, \n          SUM(m.qualityOfC) AS qualityOfC,\n          SUM(m.qualityOfD) AS qualityOfD,\n          SUM(m.qualityOfE) AS qualityOfE,\n          SUM(m.qualityOfGood) AS qualityOfGood,\n          SUM(m.qualityOfFine) AS qualityOfFine,\n          SUM(m.qualityOfNormal) AS qualityOfNormal\n        FROM\n          (\n            SELECT\n              furnace,\n              SUM(coilNetWeight) AS coilNetWeight, \n              SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n              SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n              SUM(qualityOfA) AS qualityOfA,\n              SUM(qualityOfB) AS qualityOfB,\n              SUM(qualityOfC) AS qualityOfC,\n              SUM(qualityOfD) AS qualityOfD,\n              SUM(qualityOfE) AS qualityOfE,\n              SUM(qualityOfGood) AS qualityOfGood,\n              SUM(qualityOfFine) AS qualityOfFine,\n              SUM(qualityOfNormal) AS qualityOfNormal\n            FROM measure GROUP BY furnace\n          ) AS m \n          LEFT JOIN\n          (\n            SELECT \n              c.*, t.alloyTotalWeight,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)\n              ) AS lowHeatNum,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight = 0\n              ) AS zeroHeatNum\n            FROM cast c JOIN melt t\n            ON c.furnace = t.furnace\n          ) AS j \n          ON m.furnace = j.furnace\n        GROUP BY m.caster;' }
+[2019-08-17T13:54:46.780] [ERROR] statistics - 查询直通率统计失败 { SequelizeDatabaseError: Unknown column 'c.rawWeight' in 'field list'
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Query.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at queryDataOfRatio (E:\学习资料\前端开发\amorphous_node\controller\statistics.js:243:32)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Unknown column 'c.rawWeight' in 'field list'
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'c.rawWeight\' in \'field list\'',
+     sql:
+      'SELECT \n          j.caster, \n          COUNT(m.furnace) AS totalHeatNum,\n          SUM(j.nozzleNum) AS nozzleNum, \n          SUM(j.alloyTotalWeight) AS alloyTotalWeight,\n          SUM(j.rawWeight) AS rawWeight,\n          SUM(m.coilNetWeight) AS coilNetWeight, \n          SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n          SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n          SUM(m.totalStoredWeight) AS totalStoredWeight,\n          SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n          SUM(j.uselessRibbonWeight) AS uselessRibbonWeight,\n          SUM(j.meltOutWeight) AS meltOutWeight,\n          SUM(j.rawWeight+j.uselessRibbonWeight)/SUM(j.alloyTotalWeight) AS effectiveMeltRatio,\n          SUM(j.rawWeight)/SUM(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n          SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n          SUM(m.qualityOfA) AS qualityOfA,\n          SUM(m.qualityOfB) AS qualityOfB, \n          SUM(m.qualityOfC) AS qualityOfC,\n          SUM(m.qualityOfD) AS qualityOfD,\n          SUM(m.qualityOfE) AS qualityOfE,\n          SUM(m.qualityOfGood) AS qualityOfGood,\n          SUM(m.qualityOfFine) AS qualityOfFine,\n          SUM(m.qualityOfNormal) AS qualityOfNormal\n        FROM\n          (\n            SELECT\n              furnace,\n              SUM(coilNetWeight) AS coilNetWeight, \n              SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n              SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n              SUM(qualityOfA) AS qualityOfA,\n              SUM(qualityOfB) AS qualityOfB,\n              SUM(qualityOfC) AS qualityOfC,\n              SUM(qualityOfD) AS qualityOfD,\n              SUM(qualityOfE) AS qualityOfE,\n              SUM(qualityOfGood) AS qualityOfGood,\n              SUM(qualityOfFine) AS qualityOfFine,\n              SUM(qualityOfNormal) AS qualityOfNormal\n            FROM measure GROUP BY furnace\n          ) AS m \n          LEFT JOIN\n          (\n            SELECT \n              c.*, t.alloyTotalWeight,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)\n              ) AS lowHeatNum,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight = 0\n              ) AS zeroHeatNum\n            FROM cast c JOIN melt t\n            ON c.furnace = t.furnace\n          ) AS j \n          ON m.furnace = j.furnace\n        GROUP BY j.caster;' },
+  original:
+   { Error: Unknown column 'c.rawWeight' in 'field list'
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'c.rawWeight\' in \'field list\'',
+     sql:
+      'SELECT \n          j.caster, \n          COUNT(m.furnace) AS totalHeatNum,\n          SUM(j.nozzleNum) AS nozzleNum, \n          SUM(j.alloyTotalWeight) AS alloyTotalWeight,\n          SUM(j.rawWeight) AS rawWeight,\n          SUM(m.coilNetWeight) AS coilNetWeight, \n          SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n          SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n          SUM(m.totalStoredWeight) AS totalStoredWeight,\n          SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n          SUM(j.uselessRibbonWeight) AS uselessRibbonWeight,\n          SUM(j.meltOutWeight) AS meltOutWeight,\n          SUM(j.rawWeight+j.uselessRibbonWeight)/SUM(j.alloyTotalWeight) AS effectiveMeltRatio,\n          SUM(j.rawWeight)/SUM(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n          SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n          SUM(m.qualityOfA) AS qualityOfA,\n          SUM(m.qualityOfB) AS qualityOfB, \n          SUM(m.qualityOfC) AS qualityOfC,\n          SUM(m.qualityOfD) AS qualityOfD,\n          SUM(m.qualityOfE) AS qualityOfE,\n          SUM(m.qualityOfGood) AS qualityOfGood,\n          SUM(m.qualityOfFine) AS qualityOfFine,\n          SUM(m.qualityOfNormal) AS qualityOfNormal\n        FROM\n          (\n            SELECT\n              furnace,\n              SUM(coilNetWeight) AS coilNetWeight, \n              SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n              SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n              SUM(qualityOfA) AS qualityOfA,\n              SUM(qualityOfB) AS qualityOfB,\n              SUM(qualityOfC) AS qualityOfC,\n              SUM(qualityOfD) AS qualityOfD,\n              SUM(qualityOfE) AS qualityOfE,\n              SUM(qualityOfGood) AS qualityOfGood,\n              SUM(qualityOfFine) AS qualityOfFine,\n              SUM(qualityOfNormal) AS qualityOfNormal\n            FROM measure GROUP BY furnace\n          ) AS m \n          LEFT JOIN\n          (\n            SELECT \n              c.*, t.alloyTotalWeight,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)\n              ) AS lowHeatNum,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight = 0\n              ) AS zeroHeatNum\n            FROM cast c JOIN melt t\n            ON c.furnace = t.furnace\n          ) AS j \n          ON m.furnace = j.furnace\n        GROUP BY j.caster;' },
+  sql:
+   'SELECT \n          j.caster, \n          COUNT(m.furnace) AS totalHeatNum,\n          SUM(j.nozzleNum) AS nozzleNum, \n          SUM(j.alloyTotalWeight) AS alloyTotalWeight,\n          SUM(j.rawWeight) AS rawWeight,\n          SUM(m.coilNetWeight) AS coilNetWeight, \n          SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n          SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n          SUM(m.totalStoredWeight) AS totalStoredWeight,\n          SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n          SUM(j.uselessRibbonWeight) AS uselessRibbonWeight,\n          SUM(j.meltOutWeight) AS meltOutWeight,\n          SUM(j.rawWeight+j.uselessRibbonWeight)/SUM(j.alloyTotalWeight) AS effectiveMeltRatio,\n          SUM(j.rawWeight)/SUM(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n          SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n          SUM(m.qualityOfA) AS qualityOfA,\n          SUM(m.qualityOfB) AS qualityOfB, \n          SUM(m.qualityOfC) AS qualityOfC,\n          SUM(m.qualityOfD) AS qualityOfD,\n          SUM(m.qualityOfE) AS qualityOfE,\n          SUM(m.qualityOfGood) AS qualityOfGood,\n          SUM(m.qualityOfFine) AS qualityOfFine,\n          SUM(m.qualityOfNormal) AS qualityOfNormal\n        FROM\n          (\n            SELECT\n              furnace,\n              SUM(coilNetWeight) AS coilNetWeight, \n              SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n              SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n              SUM(qualityOfA) AS qualityOfA,\n              SUM(qualityOfB) AS qualityOfB,\n              SUM(qualityOfC) AS qualityOfC,\n              SUM(qualityOfD) AS qualityOfD,\n              SUM(qualityOfE) AS qualityOfE,\n              SUM(qualityOfGood) AS qualityOfGood,\n              SUM(qualityOfFine) AS qualityOfFine,\n              SUM(qualityOfNormal) AS qualityOfNormal\n            FROM measure GROUP BY furnace\n          ) AS m \n          LEFT JOIN\n          (\n            SELECT \n              c.*, t.alloyTotalWeight,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)\n              ) AS lowHeatNum,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight = 0\n              ) AS zeroHeatNum\n            FROM cast c JOIN melt t\n            ON c.furnace = t.furnace\n          ) AS j \n          ON m.furnace = j.furnace\n        GROUP BY j.caster;' }
+[2019-08-17T13:56:09.556] [ERROR] statistics - 查询直通率统计失败 { SequelizeDatabaseError: Unknown column 'm.team' in 'field list'
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Query.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at queryDataOfRatio (E:\学习资料\前端开发\amorphous_node\controller\statistics.js:336:32)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Unknown column 'm.team' in 'field list'
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'m.team\' in \'field list\'',
+     sql:
+      'SELECT \n          m.team, \n          COUNT(m.furnace) AS totalHeatNum,\n          SUM(j.nozzleNum) AS nozzleNum, \n          SUM(j.alloyTotalWeight) AS alloyTotalWeight,\n          SUM(j.rawWeight) AS rawWeight,\n          SUM(m.coilNetWeight) AS coilNetWeight, \n          SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n          SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n          SUM(m.totalStoredWeight) AS totalStoredWeight,\n          SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n          SUM(j.uselessRibbonWeight) AS uselessRibbonWeight,\n          SUM(j.meltOutWeight) AS meltOutWeight,\n          SUM(j.rawWeight+j.uselessRibbonWeight)/SUM(j.alloyTotalWeight) AS effectiveMeltRatio,\n          SUM(j.rawWeight)/SUM(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n          SUM(m.totalStoredWeight)/SUM(j.rawWeight) AS qualifiedRatio,\n          SUM(m.qualityOfA) AS qualityOfA,\n          SUM(m.qualityOfB) AS qualityOfB, \n          SUM(m.qualityOfC) AS qualityOfC,\n          SUM(m.qualityOfD) AS qualityOfD,\n          SUM(m.qualityOfE) AS qualityOfE,\n          SUM(m.qualityOfGood) AS qualityOfGood,\n          SUM(m.qualityOfFine) AS qualityOfFine,\n          SUM(m.qualityOfNormal) AS qualityOfNormal\n        FROM\n          (\n            SELECT\n              furnace,\n              SUM(coilNetWeight) AS coilNetWeight, \n              SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n              SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n              SUM(qualityOfA) AS qualityOfA,\n              SUM(qualityOfB) AS qualityOfB,\n              SUM(qualityOfC) AS qualityOfC,\n              SUM(qualityOfD) AS qualityOfD,\n              SUM(qualityOfE) AS qualityOfE,\n              SUM(qualityOfGood) AS qualityOfGood,\n              SUM(qualityOfFine) AS qualityOfFine,\n              SUM(qualityOfNormal) AS qualityOfNormal\n            FROM measure GROUP BY furnace\n          ) AS m \n          LEFT JOIN\n          (\n            SELECT \n              c.*, t.alloyTotalWeight,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)\n              ) AS lowHeatNum,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight = 0\n              ) AS zeroHeatNum\n            FROM cast c JOIN melt t\n            ON c.furnace = t.furnace\n          ) AS j \n          ON m.furnace = j.furnace\n        GROUP BY m.team;' },
+  original:
+   { Error: Unknown column 'm.team' in 'field list'
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'m.team\' in \'field list\'',
+     sql:
+      'SELECT \n          m.team, \n          COUNT(m.furnace) AS totalHeatNum,\n          SUM(j.nozzleNum) AS nozzleNum, \n          SUM(j.alloyTotalWeight) AS alloyTotalWeight,\n          SUM(j.rawWeight) AS rawWeight,\n          SUM(m.coilNetWeight) AS coilNetWeight, \n          SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n          SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n          SUM(m.totalStoredWeight) AS totalStoredWeight,\n          SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n          SUM(j.uselessRibbonWeight) AS uselessRibbonWeight,\n          SUM(j.meltOutWeight) AS meltOutWeight,\n          SUM(j.rawWeight+j.uselessRibbonWeight)/SUM(j.alloyTotalWeight) AS effectiveMeltRatio,\n          SUM(j.rawWeight)/SUM(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n          SUM(m.totalStoredWeight)/SUM(j.rawWeight) AS qualifiedRatio,\n          SUM(m.qualityOfA) AS qualityOfA,\n          SUM(m.qualityOfB) AS qualityOfB, \n          SUM(m.qualityOfC) AS qualityOfC,\n          SUM(m.qualityOfD) AS qualityOfD,\n          SUM(m.qualityOfE) AS qualityOfE,\n          SUM(m.qualityOfGood) AS qualityOfGood,\n          SUM(m.qualityOfFine) AS qualityOfFine,\n          SUM(m.qualityOfNormal) AS qualityOfNormal\n        FROM\n          (\n            SELECT\n              furnace,\n              SUM(coilNetWeight) AS coilNetWeight, \n              SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n              SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n              SUM(qualityOfA) AS qualityOfA,\n              SUM(qualityOfB) AS qualityOfB,\n              SUM(qualityOfC) AS qualityOfC,\n              SUM(qualityOfD) AS qualityOfD,\n              SUM(qualityOfE) AS qualityOfE,\n              SUM(qualityOfGood) AS qualityOfGood,\n              SUM(qualityOfFine) AS qualityOfFine,\n              SUM(qualityOfNormal) AS qualityOfNormal\n            FROM measure GROUP BY furnace\n          ) AS m \n          LEFT JOIN\n          (\n            SELECT \n              c.*, t.alloyTotalWeight,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)\n              ) AS lowHeatNum,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight = 0\n              ) AS zeroHeatNum\n            FROM cast c JOIN melt t\n            ON c.furnace = t.furnace\n          ) AS j \n          ON m.furnace = j.furnace\n        GROUP BY m.team;' },
+  sql:
+   'SELECT \n          m.team, \n          COUNT(m.furnace) AS totalHeatNum,\n          SUM(j.nozzleNum) AS nozzleNum, \n          SUM(j.alloyTotalWeight) AS alloyTotalWeight,\n          SUM(j.rawWeight) AS rawWeight,\n          SUM(m.coilNetWeight) AS coilNetWeight, \n          SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n          SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n          SUM(m.totalStoredWeight) AS totalStoredWeight,\n          SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n          SUM(j.uselessRibbonWeight) AS uselessRibbonWeight,\n          SUM(j.meltOutWeight) AS meltOutWeight,\n          SUM(j.rawWeight+j.uselessRibbonWeight)/SUM(j.alloyTotalWeight) AS effectiveMeltRatio,\n          SUM(j.rawWeight)/SUM(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n          SUM(m.totalStoredWeight)/SUM(j.rawWeight) AS qualifiedRatio,\n          SUM(m.qualityOfA) AS qualityOfA,\n          SUM(m.qualityOfB) AS qualityOfB, \n          SUM(m.qualityOfC) AS qualityOfC,\n          SUM(m.qualityOfD) AS qualityOfD,\n          SUM(m.qualityOfE) AS qualityOfE,\n          SUM(m.qualityOfGood) AS qualityOfGood,\n          SUM(m.qualityOfFine) AS qualityOfFine,\n          SUM(m.qualityOfNormal) AS qualityOfNormal\n        FROM\n          (\n            SELECT\n              furnace,\n              SUM(coilNetWeight) AS coilNetWeight, \n              SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n              SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n              SUM(qualityOfA) AS qualityOfA,\n              SUM(qualityOfB) AS qualityOfB,\n              SUM(qualityOfC) AS qualityOfC,\n              SUM(qualityOfD) AS qualityOfD,\n              SUM(qualityOfE) AS qualityOfE,\n              SUM(qualityOfGood) AS qualityOfGood,\n              SUM(qualityOfFine) AS qualityOfFine,\n              SUM(qualityOfNormal) AS qualityOfNormal\n            FROM measure GROUP BY furnace\n          ) AS m \n          LEFT JOIN\n          (\n            SELECT \n              c.*, t.alloyTotalWeight,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)\n              ) AS lowHeatNum,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight = 0\n              ) AS zeroHeatNum\n            FROM cast c JOIN melt t\n            ON c.furnace = t.furnace\n          ) AS j \n          ON m.furnace = j.furnace\n        GROUP BY m.team;' }
+[2019-08-17T14:27:10.585] [ERROR] statistics - 查询直通率统计失败 { SequelizeDatabaseError: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM
+          (
+            SELECT
+              furnace,
+              SUM(coi' at line 2
+    at Query.formatError (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Query.handler [as onResult] (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at runHooks.then (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\学习资料\前端开发\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at Promise.try (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (E:\学习资料\前端开发\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at queryDataOfRatio (E:\学习资料\前端开发\amorphous_node\controller\statistics.js:258:32)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\学习资料\前端开发\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\学习资料\前端开发\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\学习资料\前端开发\amorphous_node\node_modules\express-session\index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM
+             (
+               SELECT
+                 furnace,
+                 SUM(coi' at line 2
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_PARSE_ERROR',
+     errno: 1064,
+     sqlState: '42000',
+     sqlMessage:
+      'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'FROM\n          (\n            SELECT\n              furnace,\n              SUM(coi\' at line 2',
+     sql:
+      'SELECT \n          j.*, m.*, \n        FROM\n          (\n            SELECT\n              furnace,\n              SUM(coilNetWeight) AS coilNetWeight, \n              SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n              SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n              SUM(qualityOfA) AS qualityOfA,\n              SUM(qualityOfB) AS qualityOfB,\n              SUM(qualityOfC) AS qualityOfC,\n              SUM(qualityOfD) AS qualityOfD,\n              SUM(qualityOfE) AS qualityOfE,\n              SUM(qualityOfGood) AS qualityOfGood,\n              SUM(qualityOfFine) AS qualityOfFine,\n              SUM(qualityOfNormal) AS qualityOfNormal\n            FROM measure GROUP BY furnace\n          ) AS m \n          LEFT JOIN\n          (\n            SELECT \n              c.*, t.alloyTotalWeight,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)\n              ) AS lowHeatNum,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight = 0\n              ) AS zeroHeatNum\n            FROM cast c JOIN melt t\n            ON c.furnace = t.furnace\n          ) AS j \n          ON m.furnace = j.furnace;' },
+  original:
+   { Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM
+             (
+               SELECT
+                 furnace,
+                 SUM(coi' at line 2
+       at Packet.asError (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+       at Query.execute (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+       at Connection.handlePacket (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+       at PacketParser.executeStart (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (E:\学习资料\前端开发\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_PARSE_ERROR',
+     errno: 1064,
+     sqlState: '42000',
+     sqlMessage:
+      'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'FROM\n          (\n            SELECT\n              furnace,\n              SUM(coi\' at line 2',
+     sql:
+      'SELECT \n          j.*, m.*, \n        FROM\n          (\n            SELECT\n              furnace,\n              SUM(coilNetWeight) AS coilNetWeight, \n              SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n              SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n              SUM(qualityOfA) AS qualityOfA,\n              SUM(qualityOfB) AS qualityOfB,\n              SUM(qualityOfC) AS qualityOfC,\n              SUM(qualityOfD) AS qualityOfD,\n              SUM(qualityOfE) AS qualityOfE,\n              SUM(qualityOfGood) AS qualityOfGood,\n              SUM(qualityOfFine) AS qualityOfFine,\n              SUM(qualityOfNormal) AS qualityOfNormal\n            FROM measure GROUP BY furnace\n          ) AS m \n          LEFT JOIN\n          (\n            SELECT \n              c.*, t.alloyTotalWeight,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)\n              ) AS lowHeatNum,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight = 0\n              ) AS zeroHeatNum\n            FROM cast c JOIN melt t\n            ON c.furnace = t.furnace\n          ) AS j \n          ON m.furnace = j.furnace;' },
+  sql:
+   'SELECT \n          j.*, m.*, \n        FROM\n          (\n            SELECT\n              furnace,\n              SUM(coilNetWeight) AS coilNetWeight, \n              SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n              SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n              SUM(totalStoredWeight) AS totalStoredWeight,\n              SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n              SUM(qualityOfA) AS qualityOfA,\n              SUM(qualityOfB) AS qualityOfB,\n              SUM(qualityOfC) AS qualityOfC,\n              SUM(qualityOfD) AS qualityOfD,\n              SUM(qualityOfE) AS qualityOfE,\n              SUM(qualityOfGood) AS qualityOfGood,\n              SUM(qualityOfFine) AS qualityOfFine,\n              SUM(qualityOfNormal) AS qualityOfNormal\n            FROM measure GROUP BY furnace\n          ) AS m \n          LEFT JOIN\n          (\n            SELECT \n              c.*, t.alloyTotalWeight,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)\n              ) AS lowHeatNum,\n              (\n                SELECT COUNT(*)\n                FROM cast\n                WHERE rawWeight = 0\n              ) AS zeroHeatNum\n            FROM cast c JOIN melt t\n            ON c.furnace = t.furnace\n          ) AS j \n          ON m.furnace = j.furnace;' }
