@@ -16,58 +16,91 @@ class Statistics {
     const { castIdJson, furnace, caster, ribbonTypeNameJson, ribbonWidthJson,  current = 1, limit = 20 } = req.query;
 
     try {
-      let queryCondition = {};
+      // let queryCondition = {};
+      // if (caster) {
+      //   queryCondition.caster = caster;
+      // }
+      // if (furnace) {
+      //   queryCondition.furnace = furnace;
+      // }
+      // if (castIdJson) {
+      //   let castIdList = JSON.parse(castIdJson);
+      //   if (castIdList.length > 0) {
+      //     castIdList = castIdList.map(item => {
+      //       return Number(item);
+      //     });
+      //     queryCondition.castId = { $in: castIdList };
+      //   }
+      // }
+      // if (ribbonTypeNameJson) {
+      //   let ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
+      //   if (ribbonTypeNameList.length > 0) {
+      //     queryCondition.ribbonTypeName = { $in: ribbonTypeNameList };
+      //   }
+      // }
+      // if (ribbonWidthJson) {
+      //   let ribbonWidthList = JSON.parse(ribbonWidthJson);
+      //   if (ribbonWidthList.length > 0) {
+      //     ribbonWidthList = ribbonWidthList.map(item => {
+      //       return Number(item);
+      //     });
+      //     queryCondition.ribbonWidth = { $in: ribbonWidthList };
+      //   }
+      // }
+
+      let queryCondition = '';
       if (caster) {
-        queryCondition.caster = caster;
+        queryCondition += `caster=${caster}`;
       }
       if (furnace) {
-        queryCondition.furnace = furnace;
+        queryCondition += queryCondition !== '' ? ` AND furnace=${furnace}` : ` furnace=${furnace}`;
       }
       if (castIdJson) {
         let castIdList = JSON.parse(castIdJson);
         if (castIdList.length > 0) {
-          castIdList = castIdList.map(item => {
-            return Number(item);
-          });
-          queryCondition.castId = { $in: castIdList };
+          const castIds = castIdList.join();
+          queryCondition += queryCondition !== '' ? ` AND castId IN (${castIds})` : ` castId IN (${castIds})`;
         }
       }
       if (ribbonTypeNameJson) {
         let ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
         if (ribbonTypeNameList.length > 0) {
-          queryCondition.ribbonTypeName = { $in: ribbonTypeNameList };
+          const ribbonTypeNames = ribbonTypeNameList.join();
+          queryCondition += queryCondition !== '' ? ` AND ribbonTypeName IN (${ribbonTypeNames})` : ` ribbonTypeName IN (${ribbonTypeNames})`;
         }
       }
       if (ribbonWidthJson) {
         let ribbonWidthList = JSON.parse(ribbonWidthJson);
         if (ribbonWidthList.length > 0) {
-          ribbonWidthList = ribbonWidthList.map(item => {
-            return Number(item);
-          });
-          queryCondition.ribbonWidth = { $in: ribbonWidthList };
+          const ribbonWidths = ribbonWidthList.join();
+          queryCondition += queryCondition !== '' ? ` AND ribbonWidth IN (${ribbonWidths})` : ` ribbonWidth IN (${ribbonWidths})`;
         }
       }
 
-      const sqlStr = `SELECT c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight, 
-      SUM(m.coilNetWeight) AS coilNetWeight, 
-      SUM(m.totalStoredWeight) AS totalStoredWeight, 
-      SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,
-      SUM(m.qualityOfA) AS qualityOfA,
-      SUM(m.qualityOfB) AS qualityOfB, 
-      SUM(m.qualityOfC) AS qualityOfC, 
-      SUM(m.qualityOfD) AS qualityOfD, 
-      SUM(m.qualityOfE) AS qualityOfE, 
-      SUM(m.thinRibbonWeight) AS thinRibbonWeight, 
-      SUM(m.highFactorThinRibbonWeight) AS highFactorThinRibbonWeight, 
-      SUM(m.inPlanStoredWeight) AS inPlanStoredWeight, 
-      SUM(m.outPlanStoredWeight) AS outPlanStoredWeight, 
-      SUM(m.inPlanThickRibbonWeight) AS inPlanThickRibbonWeight, 
-      SUM(m.qualityOfGood) AS qualityOfGood, 
-      SUM(m.qualityOfFine) AS qualityOfFine, 
-      SUM(m.qualityOfNormal) AS qualityOfNormal 
-      FROM cast AS c, measure AS m, melt AS t 
-      WHERE c.furnace = m.furnace AND t.furnace = c.furnace 
-      GROUP BY m.furnace 
+      const sqlStr = `select j.*, m.* from
+      (SELECT
+          furnace,
+          SUM(coilNetWeight) AS coilNetWeight,
+          SUM(totalStoredWeight) AS totalStoredWeight,
+          SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,
+          SUM(qualityOfA) AS qualityOfA,
+          SUM(qualityOfB) AS qualityOfB,
+          SUM(qualityOfC) AS qualityOfC,
+          SUM(qualityOfD) AS qualityOfD,
+          SUM(qualityOfE) AS qualityOfE,
+          SUM(thinRibbonWeight) AS thinRibbonWeight,
+          SUM(highFactorThinRibbonWeight) AS highFactorThinRibbonWeight,
+          SUM(inPlanStoredWeight) AS inPlanStoredWeight,
+          SUM(outPlanStoredWeight) AS outPlanStoredWeight,
+          SUM(inPlanThickRibbonWeight) AS inPlanThickRibbonWeight,
+          SUM(qualityOfGood) AS qualityOfGood,
+          SUM(qualityOfFine) AS qualityOfFine,
+          SUM(qualityOfNormal) AS qualityOfNormal
+      FROM measure ${ queryCondition !== '' ? 'WHERE ' + queryCondition : ''}  GROUP BY furnace) AS m LEFT JOIN (
+          SELECT c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight
+      FROM cast c JOIN melt t
+          ON c.furnace = t.furnace
+      ) j ON m.furnace = j.furnace
       LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
 
       let list = await sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
@@ -142,7 +175,7 @@ class Statistics {
         (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,
         (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum
         FROM cast AS c, measure AS m, melt AS t
-        WHERE c.furnace = m.furnace AND t.furnace = c.furnace
+        where c.furnace = m.furnace AND t.furnace = c.furnace
         GROUP BY m.caster`;
         list = await sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
       } else if (ratioType === 'byTeam') {
@@ -172,7 +205,7 @@ class Statistics {
         (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,
         (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum
         FROM cast AS c, measure AS m, melt AS t
-        WHERE c.furnace = m.furnace AND t.furnace = c.furnace
+        where c.furnace = m.furnace AND t.furnace = c.furnace
         GROUP BY c.team`;
         list = await sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
       } else if (ratioType === 'byCastId') {
@@ -202,7 +235,7 @@ class Statistics {
         (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,
         (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum
         FROM cast AS c, measure AS m, melt AS t
-        WHERE c.furnace = m.furnace AND t.furnace = c.furnace
+        where c.furnace = m.furnace AND t.furnace = c.furnace
         GROUP BY m.castId`;
         list = await sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
       }

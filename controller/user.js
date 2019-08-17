@@ -244,6 +244,8 @@ class User {
       if (!data) {
         throw new Error('用户不存在');
       } else if (data.password !== password) {
+        console.log('11111111');
+        console.log(data.password, password);
         throw new Error('密码错误');
       } else {
         // 将当前用户的 userId 作为 存入 session 中，作为登录态
