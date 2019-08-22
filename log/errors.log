@@ -1736,3 +1736,478 @@ From previous event:
       'select j.*, m.* from\n      (SELECT\n          furnace,\n          SUM(coilNetWeight) AS coilNetWeight,\n          SUM(totalStoredWeight) AS totalStoredWeight,\n          SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n          SUM(qualityOfA) AS qualityOfA,\n          SUM(qualityOfB) AS qualityOfB,\n          SUM(qualityOfC) AS qualityOfC,\n          SUM(qualityOfD) AS qualityOfD,\n          SUM(qualityOfE) AS qualityOfE,\n          SUM(thinRibbonWeight) AS thinRibbonWeight,\n          SUM(highFactorThinRibbonWeight) AS highFactorThinRibbonWeight,\n          SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n          SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n          SUM(inPlanThickRibbonWeight) AS inPlanThickRibbonWeight,\n          SUM(qualityOfGood) AS qualityOfGood,\n          SUM(qualityOfFine) AS qualityOfFine,\n          SUM(qualityOfNormal) AS qualityOfNormal\n      FROM measure WHERE  AND castId IN (6) AND castId IN (6)  GROUP BY furnace) AS m LEFT JOIN (\n          SELECT c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n      FROM cast c JOIN melt t\n          ON c.furnace = t.furnace\n      ) j ON m.furnace = j.furnace\n      LIMIT 20 OFFSET 0' },
   sql:
    'select j.*, m.* from\n      (SELECT\n          furnace,\n          SUM(coilNetWeight) AS coilNetWeight,\n          SUM(totalStoredWeight) AS totalStoredWeight,\n          SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n          SUM(qualityOfA) AS qualityOfA,\n          SUM(qualityOfB) AS qualityOfB,\n          SUM(qualityOfC) AS qualityOfC,\n          SUM(qualityOfD) AS qualityOfD,\n          SUM(qualityOfE) AS qualityOfE,\n          SUM(thinRibbonWeight) AS thinRibbonWeight,\n          SUM(highFactorThinRibbonWeight) AS highFactorThinRibbonWeight,\n          SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n          SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n          SUM(inPlanThickRibbonWeight) AS inPlanThickRibbonWeight,\n          SUM(qualityOfGood) AS qualityOfGood,\n          SUM(qualityOfFine) AS qualityOfFine,\n          SUM(qualityOfNormal) AS qualityOfNormal\n      FROM measure WHERE  AND castId IN (6) AND castId IN (6)  GROUP BY furnace) AS m LEFT JOIN (\n          SELECT c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n      FROM cast c JOIN melt t\n          ON c.furnace = t.furnace\n      ) j ON m.furnace = j.furnace\n      LIMIT 20 OFFSET 0' }
+[2019-08-22T15:24:15.437] [ERROR] statistics - 查询直通率统计失败 { SequelizeDatabaseError: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'daicai.c.castId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:239:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:46:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at runHooks.then (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:632:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at Promise.try (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:576:23)
+    at queryDataOfRatio (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:180:32)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'daicai.c.castId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_WRONG_FIELD_WITH_GROUP',
+     errno: 1055,
+     sqlState: '42000',
+     sqlMessage:
+      'Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column \'daicai.c.castId\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by',
+     sql:
+      'SELECT c.castId, c.team, c.caster,\n        COUNT(c.furnace) AS totalHeatNum,\n        SUM(c.nozzleNum) AS nozzleNum,\n        SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n        SUM(c.rawWeight) AS rawWeight,\n        SUM(m.coilNetWeight) AS coilNetWeight,\n        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n        SUM(m.totalStoredWeight) AS totalStoredWeight,\n        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n        SUM(c.meltOutWeight) AS meltOutWeight,\n        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n        SUM(m.qualityOfA) AS qualityOfA,\n        SUM(m.qualityOfB) AS qualityOfB,\n        SUM(m.qualityOfC) AS qualityOfC,\n        SUM(m.qualityOfD) AS qualityOfD,\n        SUM(m.qualityOfE) AS qualityOfE,\n        SUM(m.qualityOfGood) AS qualityOfGood,\n        SUM(m.qualityOfFine) AS qualityOfFine,\n        SUM(m.qualityOfNormal) AS qualityOfNormal,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum\n        FROM cast AS c, measure AS m, melt AS t\n        where c.furnace = m.furnace AND t.furnace = c.furnace\n        GROUP BY m.caster' },
+  original:
+   { Error: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'daicai.c.castId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_WRONG_FIELD_WITH_GROUP',
+     errno: 1055,
+     sqlState: '42000',
+     sqlMessage:
+      'Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column \'daicai.c.castId\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by',
+     sql:
+      'SELECT c.castId, c.team, c.caster,\n        COUNT(c.furnace) AS totalHeatNum,\n        SUM(c.nozzleNum) AS nozzleNum,\n        SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n        SUM(c.rawWeight) AS rawWeight,\n        SUM(m.coilNetWeight) AS coilNetWeight,\n        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n        SUM(m.totalStoredWeight) AS totalStoredWeight,\n        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n        SUM(c.meltOutWeight) AS meltOutWeight,\n        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n        SUM(m.qualityOfA) AS qualityOfA,\n        SUM(m.qualityOfB) AS qualityOfB,\n        SUM(m.qualityOfC) AS qualityOfC,\n        SUM(m.qualityOfD) AS qualityOfD,\n        SUM(m.qualityOfE) AS qualityOfE,\n        SUM(m.qualityOfGood) AS qualityOfGood,\n        SUM(m.qualityOfFine) AS qualityOfFine,\n        SUM(m.qualityOfNormal) AS qualityOfNormal,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum\n        FROM cast AS c, measure AS m, melt AS t\n        where c.furnace = m.furnace AND t.furnace = c.furnace\n        GROUP BY m.caster' },
+  sql:
+   'SELECT c.castId, c.team, c.caster,\n        COUNT(c.furnace) AS totalHeatNum,\n        SUM(c.nozzleNum) AS nozzleNum,\n        SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n        SUM(c.rawWeight) AS rawWeight,\n        SUM(m.coilNetWeight) AS coilNetWeight,\n        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n        SUM(m.totalStoredWeight) AS totalStoredWeight,\n        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n        SUM(c.meltOutWeight) AS meltOutWeight,\n        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n        SUM(m.qualityOfA) AS qualityOfA,\n        SUM(m.qualityOfB) AS qualityOfB,\n        SUM(m.qualityOfC) AS qualityOfC,\n        SUM(m.qualityOfD) AS qualityOfD,\n        SUM(m.qualityOfE) AS qualityOfE,\n        SUM(m.qualityOfGood) AS qualityOfGood,\n        SUM(m.qualityOfFine) AS qualityOfFine,\n        SUM(m.qualityOfNormal) AS qualityOfNormal,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum\n        FROM cast AS c, measure AS m, melt AS t\n        where c.furnace = m.furnace AND t.furnace = c.furnace\n        GROUP BY m.caster' }
+[2019-08-22T15:25:33.688] [ERROR] statistics - 查询直通率统计失败 { SequelizeDatabaseError: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'daicai.c.castId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:239:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:46:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at runHooks.then (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:632:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at Promise.try (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:576:23)
+    at queryDataOfRatio (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:180:32)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'daicai.c.castId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_WRONG_FIELD_WITH_GROUP',
+     errno: 1055,
+     sqlState: '42000',
+     sqlMessage:
+      'Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column \'daicai.c.castId\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by',
+     sql:
+      'SELECT c.castId, c.team, c.caster,\n        COUNT(c.furnace) AS totalHeatNum,\n        SUM(c.nozzleNum) AS nozzleNum,\n        SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n        SUM(c.rawWeight) AS rawWeight,\n        SUM(m.coilNetWeight) AS coilNetWeight,\n        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n        SUM(m.totalStoredWeight) AS totalStoredWeight,\n        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n        SUM(c.meltOutWeight) AS meltOutWeight,\n        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n        SUM(m.qualityOfA) AS qualityOfA,\n        SUM(m.qualityOfB) AS qualityOfB,\n        SUM(m.qualityOfC) AS qualityOfC,\n        SUM(m.qualityOfD) AS qualityOfD,\n        SUM(m.qualityOfE) AS qualityOfE,\n        SUM(m.qualityOfGood) AS qualityOfGood,\n        SUM(m.qualityOfFine) AS qualityOfFine,\n        SUM(m.qualityOfNormal) AS qualityOfNormal,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum\n        FROM cast AS c, measure AS m, melt AS t\n        where c.furnace = m.furnace AND t.furnace = c.furnace\n        GROUP BY m.caster' },
+  original:
+   { Error: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'daicai.c.castId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_WRONG_FIELD_WITH_GROUP',
+     errno: 1055,
+     sqlState: '42000',
+     sqlMessage:
+      'Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column \'daicai.c.castId\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by',
+     sql:
+      'SELECT c.castId, c.team, c.caster,\n        COUNT(c.furnace) AS totalHeatNum,\n        SUM(c.nozzleNum) AS nozzleNum,\n        SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n        SUM(c.rawWeight) AS rawWeight,\n        SUM(m.coilNetWeight) AS coilNetWeight,\n        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n        SUM(m.totalStoredWeight) AS totalStoredWeight,\n        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n        SUM(c.meltOutWeight) AS meltOutWeight,\n        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n        SUM(m.qualityOfA) AS qualityOfA,\n        SUM(m.qualityOfB) AS qualityOfB,\n        SUM(m.qualityOfC) AS qualityOfC,\n        SUM(m.qualityOfD) AS qualityOfD,\n        SUM(m.qualityOfE) AS qualityOfE,\n        SUM(m.qualityOfGood) AS qualityOfGood,\n        SUM(m.qualityOfFine) AS qualityOfFine,\n        SUM(m.qualityOfNormal) AS qualityOfNormal,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum\n        FROM cast AS c, measure AS m, melt AS t\n        where c.furnace = m.furnace AND t.furnace = c.furnace\n        GROUP BY m.caster' },
+  sql:
+   'SELECT c.castId, c.team, c.caster,\n        COUNT(c.furnace) AS totalHeatNum,\n        SUM(c.nozzleNum) AS nozzleNum,\n        SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n        SUM(c.rawWeight) AS rawWeight,\n        SUM(m.coilNetWeight) AS coilNetWeight,\n        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n        SUM(m.totalStoredWeight) AS totalStoredWeight,\n        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n        SUM(c.meltOutWeight) AS meltOutWeight,\n        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n        SUM(m.qualityOfA) AS qualityOfA,\n        SUM(m.qualityOfB) AS qualityOfB,\n        SUM(m.qualityOfC) AS qualityOfC,\n        SUM(m.qualityOfD) AS qualityOfD,\n        SUM(m.qualityOfE) AS qualityOfE,\n        SUM(m.qualityOfGood) AS qualityOfGood,\n        SUM(m.qualityOfFine) AS qualityOfFine,\n        SUM(m.qualityOfNormal) AS qualityOfNormal,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum\n        FROM cast AS c, measure AS m, melt AS t\n        where c.furnace = m.furnace AND t.furnace = c.furnace\n        GROUP BY m.caster' }
+[2019-08-22T15:25:57.232] [ERROR] statistics - 查询直通率统计失败 { SequelizeDatabaseError: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'daicai.c.castId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:239:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:46:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at runHooks.then (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:632:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at Promise.try (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:576:23)
+    at queryDataOfRatio (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:240:32)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'daicai.c.castId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_WRONG_FIELD_WITH_GROUP',
+     errno: 1055,
+     sqlState: '42000',
+     sqlMessage:
+      'Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column \'daicai.c.castId\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by',
+     sql:
+      'SELECT c.castId, c.team, c.caster,\n        COUNT(c.furnace) AS totalHeatNum,\n        SUM(c.nozzleNum) AS nozzleNum,\n        SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n        SUM(c.rawWeight) AS rawWeight,\n        SUM(m.coilNetWeight) AS coilNetWeight,\n        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n        SUM(m.totalStoredWeight) AS totalStoredWeight,\n        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n        SUM(c.meltOutWeight) AS meltOutWeight,\n        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n        SUM(m.qualityOfA) AS qualityOfA,\n        SUM(m.qualityOfB) AS qualityOfB,\n        SUM(m.qualityOfC) AS qualityOfC,\n        SUM(m.qualityOfD) AS qualityOfD,\n        SUM(m.qualityOfE) AS qualityOfE,\n        SUM(m.qualityOfGood) AS qualityOfGood,\n        SUM(m.qualityOfFine) AS qualityOfFine,\n        SUM(m.qualityOfNormal) AS qualityOfNormal,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum\n        FROM cast AS c, measure AS m, melt AS t\n        where c.furnace = m.furnace AND t.furnace = c.furnace\n        GROUP BY m.castId' },
+  original:
+   { Error: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'daicai.c.castId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_WRONG_FIELD_WITH_GROUP',
+     errno: 1055,
+     sqlState: '42000',
+     sqlMessage:
+      'Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column \'daicai.c.castId\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by',
+     sql:
+      'SELECT c.castId, c.team, c.caster,\n        COUNT(c.furnace) AS totalHeatNum,\n        SUM(c.nozzleNum) AS nozzleNum,\n        SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n        SUM(c.rawWeight) AS rawWeight,\n        SUM(m.coilNetWeight) AS coilNetWeight,\n        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n        SUM(m.totalStoredWeight) AS totalStoredWeight,\n        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n        SUM(c.meltOutWeight) AS meltOutWeight,\n        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n        SUM(m.qualityOfA) AS qualityOfA,\n        SUM(m.qualityOfB) AS qualityOfB,\n        SUM(m.qualityOfC) AS qualityOfC,\n        SUM(m.qualityOfD) AS qualityOfD,\n        SUM(m.qualityOfE) AS qualityOfE,\n        SUM(m.qualityOfGood) AS qualityOfGood,\n        SUM(m.qualityOfFine) AS qualityOfFine,\n        SUM(m.qualityOfNormal) AS qualityOfNormal,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum\n        FROM cast AS c, measure AS m, melt AS t\n        where c.furnace = m.furnace AND t.furnace = c.furnace\n        GROUP BY m.castId' },
+  sql:
+   'SELECT c.castId, c.team, c.caster,\n        COUNT(c.furnace) AS totalHeatNum,\n        SUM(c.nozzleNum) AS nozzleNum,\n        SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n        SUM(c.rawWeight) AS rawWeight,\n        SUM(m.coilNetWeight) AS coilNetWeight,\n        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n        SUM(m.totalStoredWeight) AS totalStoredWeight,\n        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n        SUM(c.meltOutWeight) AS meltOutWeight,\n        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n        SUM(m.qualityOfA) AS qualityOfA,\n        SUM(m.qualityOfB) AS qualityOfB,\n        SUM(m.qualityOfC) AS qualityOfC,\n        SUM(m.qualityOfD) AS qualityOfD,\n        SUM(m.qualityOfE) AS qualityOfE,\n        SUM(m.qualityOfGood) AS qualityOfGood,\n        SUM(m.qualityOfFine) AS qualityOfFine,\n        SUM(m.qualityOfNormal) AS qualityOfNormal,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum\n        FROM cast AS c, measure AS m, melt AS t\n        where c.furnace = m.furnace AND t.furnace = c.furnace\n        GROUP BY m.castId' }
+[2019-08-22T15:25:58.340] [ERROR] statistics - 查询直通率统计失败 { SequelizeDatabaseError: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'daicai.c.castId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:239:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:46:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at runHooks.then (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:632:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at Promise.try (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:576:23)
+    at queryDataOfRatio (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:210:32)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'daicai.c.castId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_WRONG_FIELD_WITH_GROUP',
+     errno: 1055,
+     sqlState: '42000',
+     sqlMessage:
+      'Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column \'daicai.c.castId\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by',
+     sql:
+      'SELECT c.castId, c.team, c.caster,\n        COUNT(c.furnace) AS totalHeatNum,\n        SUM(c.nozzleNum) AS nozzleNum,\n        SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n        SUM(c.rawWeight) AS rawWeight,\n        SUM(m.coilNetWeight) AS coilNetWeight,\n        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n        SUM(m.totalStoredWeight) AS totalStoredWeight,\n        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n        SUM(c.meltOutWeight) AS meltOutWeight,\n        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n        SUM(m.qualityOfA) AS qualityOfA,\n        SUM(m.qualityOfB) AS qualityOfB,\n        SUM(m.qualityOfC) AS qualityOfC,\n        SUM(m.qualityOfD) AS qualityOfD,\n        SUM(m.qualityOfE) AS qualityOfE,\n        SUM(m.qualityOfGood) AS qualityOfGood,\n        SUM(m.qualityOfFine) AS qualityOfFine,\n        SUM(m.qualityOfNormal) AS qualityOfNormal,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum\n        FROM cast AS c, measure AS m, melt AS t\n        where c.furnace = m.furnace AND t.furnace = c.furnace\n        GROUP BY c.team' },
+  original:
+   { Error: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'daicai.c.castId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_WRONG_FIELD_WITH_GROUP',
+     errno: 1055,
+     sqlState: '42000',
+     sqlMessage:
+      'Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column \'daicai.c.castId\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by',
+     sql:
+      'SELECT c.castId, c.team, c.caster,\n        COUNT(c.furnace) AS totalHeatNum,\n        SUM(c.nozzleNum) AS nozzleNum,\n        SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n        SUM(c.rawWeight) AS rawWeight,\n        SUM(m.coilNetWeight) AS coilNetWeight,\n        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n        SUM(m.totalStoredWeight) AS totalStoredWeight,\n        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n        SUM(c.meltOutWeight) AS meltOutWeight,\n        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n        SUM(m.qualityOfA) AS qualityOfA,\n        SUM(m.qualityOfB) AS qualityOfB,\n        SUM(m.qualityOfC) AS qualityOfC,\n        SUM(m.qualityOfD) AS qualityOfD,\n        SUM(m.qualityOfE) AS qualityOfE,\n        SUM(m.qualityOfGood) AS qualityOfGood,\n        SUM(m.qualityOfFine) AS qualityOfFine,\n        SUM(m.qualityOfNormal) AS qualityOfNormal,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum\n        FROM cast AS c, measure AS m, melt AS t\n        where c.furnace = m.furnace AND t.furnace = c.furnace\n        GROUP BY c.team' },
+  sql:
+   'SELECT c.castId, c.team, c.caster,\n        COUNT(c.furnace) AS totalHeatNum,\n        SUM(c.nozzleNum) AS nozzleNum,\n        SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n        SUM(c.rawWeight) AS rawWeight,\n        SUM(m.coilNetWeight) AS coilNetWeight,\n        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n        SUM(m.totalStoredWeight) AS totalStoredWeight,\n        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n        SUM(c.meltOutWeight) AS meltOutWeight,\n        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n        SUM(m.qualityOfA) AS qualityOfA,\n        SUM(m.qualityOfB) AS qualityOfB,\n        SUM(m.qualityOfC) AS qualityOfC,\n        SUM(m.qualityOfD) AS qualityOfD,\n        SUM(m.qualityOfE) AS qualityOfE,\n        SUM(m.qualityOfGood) AS qualityOfGood,\n        SUM(m.qualityOfFine) AS qualityOfFine,\n        SUM(m.qualityOfNormal) AS qualityOfNormal,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum\n        FROM cast AS c, measure AS m, melt AS t\n        where c.furnace = m.furnace AND t.furnace = c.furnace\n        GROUP BY c.team' }
+[2019-08-22T15:26:21.965] [ERROR] statistics - 查询直通率统计失败 { SequelizeDatabaseError: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'daicai.c.castId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:239:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:46:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at runHooks.then (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:632:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at Promise.try (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:576:23)
+    at queryDataOfRatio (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:180:32)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'daicai.c.castId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_WRONG_FIELD_WITH_GROUP',
+     errno: 1055,
+     sqlState: '42000',
+     sqlMessage:
+      'Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column \'daicai.c.castId\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by',
+     sql:
+      'SELECT c.castId, c.team, c.caster,\n        COUNT(c.furnace) AS totalHeatNum,\n        SUM(c.nozzleNum) AS nozzleNum,\n        SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n        SUM(c.rawWeight) AS rawWeight,\n        SUM(m.coilNetWeight) AS coilNetWeight,\n        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n        SUM(m.totalStoredWeight) AS totalStoredWeight,\n        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n        SUM(c.meltOutWeight) AS meltOutWeight,\n        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n        SUM(m.qualityOfA) AS qualityOfA,\n        SUM(m.qualityOfB) AS qualityOfB,\n        SUM(m.qualityOfC) AS qualityOfC,\n        SUM(m.qualityOfD) AS qualityOfD,\n        SUM(m.qualityOfE) AS qualityOfE,\n        SUM(m.qualityOfGood) AS qualityOfGood,\n        SUM(m.qualityOfFine) AS qualityOfFine,\n        SUM(m.qualityOfNormal) AS qualityOfNormal,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum\n        FROM cast AS c, measure AS m, melt AS t\n        where c.furnace = m.furnace AND t.furnace = c.furnace\n        GROUP BY m.caster' },
+  original:
+   { Error: Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'daicai.c.castId' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_WRONG_FIELD_WITH_GROUP',
+     errno: 1055,
+     sqlState: '42000',
+     sqlMessage:
+      'Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column \'daicai.c.castId\' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by',
+     sql:
+      'SELECT c.castId, c.team, c.caster,\n        COUNT(c.furnace) AS totalHeatNum,\n        SUM(c.nozzleNum) AS nozzleNum,\n        SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n        SUM(c.rawWeight) AS rawWeight,\n        SUM(m.coilNetWeight) AS coilNetWeight,\n        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n        SUM(m.totalStoredWeight) AS totalStoredWeight,\n        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n        SUM(c.meltOutWeight) AS meltOutWeight,\n        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n        SUM(m.qualityOfA) AS qualityOfA,\n        SUM(m.qualityOfB) AS qualityOfB,\n        SUM(m.qualityOfC) AS qualityOfC,\n        SUM(m.qualityOfD) AS qualityOfD,\n        SUM(m.qualityOfE) AS qualityOfE,\n        SUM(m.qualityOfGood) AS qualityOfGood,\n        SUM(m.qualityOfFine) AS qualityOfFine,\n        SUM(m.qualityOfNormal) AS qualityOfNormal,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum\n        FROM cast AS c, measure AS m, melt AS t\n        where c.furnace = m.furnace AND t.furnace = c.furnace\n        GROUP BY m.caster' },
+  sql:
+   'SELECT c.castId, c.team, c.caster,\n        COUNT(c.furnace) AS totalHeatNum,\n        SUM(c.nozzleNum) AS nozzleNum,\n        SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n        SUM(c.rawWeight) AS rawWeight,\n        SUM(m.coilNetWeight) AS coilNetWeight,\n        SUM(m.inPlanStoredWeight) AS inPlanStoredWeight,\n        SUM(m.outPlanStoredWeight) AS outPlanStoredWeight,\n        SUM(m.totalStoredWeight) AS totalStoredWeight,\n        SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n        SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n        SUM(c.meltOutWeight) AS meltOutWeight,\n        SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n        SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n        SUM(m.totalStoredWeight)/SUM(c.rawWeight) AS qualifiedRatio,\n        SUM(m.qualityOfA) AS qualityOfA,\n        SUM(m.qualityOfB) AS qualityOfB,\n        SUM(m.qualityOfC) AS qualityOfC,\n        SUM(m.qualityOfD) AS qualityOfD,\n        SUM(m.qualityOfE) AS qualityOfE,\n        SUM(m.qualityOfGood) AS qualityOfGood,\n        SUM(m.qualityOfFine) AS qualityOfFine,\n        SUM(m.qualityOfNormal) AS qualityOfNormal,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)) AS lowHeatNum,\n        (SELECT COUNT(*) FROM cast WHERE rawWeight = 0) AS zeroHeatNum\n        FROM cast AS c, measure AS m, melt AS t\n        where c.furnace = m.furnace AND t.furnace = c.furnace\n        GROUP BY m.caster' }
