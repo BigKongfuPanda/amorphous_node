@@ -16,89 +16,177 @@ class Measure {
   async queryData(req, res, next) {
     const { castId, furnace, startTime, endTime, caster, roller, ribbonTypeNameJson, ribbonWidthJson, ribbonThicknessLevelJson, laminationLevelJson, ribbonToughnessLevelJson,  appearenceLevelJson, place, ribbonTotalLevels, thicknessDivation,  current = 1, limit = 30 } = req.query;
     try {
-      let queryCondition = {};
-      if(castId) {
-        queryCondition.castId = castId;
+      // let queryCondition = {};
+      // if(castId) {
+      //   queryCondition.castId = castId;
+      // }
+      // if(caster) {
+      //   queryCondition.caster = caster;
+      // }
+      // if (roller) {
+      //   queryCondition.roller = roller;
+      // }
+      // if(furnace) {
+      //   queryCondition.furnace = furnace;        
+      // }
+      // if(startTime && endTime) {
+      //   queryCondition.castDate = { $gt: startTime, $lt: endTime };
+      // }
+      // if (ribbonTypeNameJson) {
+      //   const ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
+      //   if(ribbonTypeNameList.length > 0) {
+      //     queryCondition.ribbonTypeName = { $in: ribbonTypeNameList };
+      //   }
+      // }
+      // if (ribbonWidthJson) {
+      //   const ribbonWidthList = JSON.parse(ribbonWidthJson);
+      //   if (ribbonWidthList.length > 0) {
+      //     queryCondition.ribbonWidth = { $in: ribbonWidthList };
+      //   }
+      // }
+      // if (ribbonThicknessLevelJson) {
+      //   const ribbonThicknessLevelList = JSON.parse(ribbonThicknessLevelJson);
+      //   if (ribbonThicknessLevelList.length > 0) {
+      //     queryCondition.ribbonThicknessLevel = { $in: ribbonThicknessLevelList };
+      //   }
+      // }
+      // if (laminationLevelJson) {
+      //   const laminationLevelList = JSON.parse(laminationLevelJson);
+      //   if (laminationLevelList.length > 0) {
+      //     queryCondition.laminationLevel = { $in: laminationLevelList };
+      //   }
+      // }
+      // if (ribbonToughnessLevelJson) {
+      //   const ribbonToughnessLevelList = JSON.parse(ribbonToughnessLevelJson);
+      //   if (ribbonToughnessLevelList.length > 0) {
+      //     queryCondition.ribbonToughnessLevel = { $in: ribbonToughnessLevelList };
+      //   }
+      // }
+      // if (appearenceLevelJson) {
+      //   const appearenceLevelList = JSON.parse(appearenceLevelJson);
+      //   if (appearenceLevelList.length > 0) {
+      //     queryCondition.appearenceLevel = { $in: appearenceLevelList };
+      //   }
+      // }
+      // if(place) {
+      //   queryCondition.place = place;        
+      // }
+      // if (ribbonTotalLevels) {
+      //   const ribbonTotalLevelList = ribbonTotalLevels.split(',');
+      //   queryCondition.ribbonTotalLevel = { $in: ribbonTotalLevelList };
+      // }
+      // if (thicknessDivation) {
+      //   queryCondition.ribbonThicknessDeviation = { $lte: thicknessDivation };
+      // }
+
+      let queryCondition = '';
+      if (caster) {
+        queryCondition += `caster=${caster}`;
       }
-      if(caster) {
-        queryCondition.caster = caster;
+      if (castId) {
+        queryCondition += queryCondition !== '' ? ` AND c.castId=${castId}` : ` c.castId=${castId}`;
       }
       if (roller) {
-        queryCondition.roller = roller;
+        queryCondition += queryCondition !== '' ? ` AND roller=${roller}` : ` roller=${roller}`;
       }
-      if(furnace) {
-        queryCondition.furnace = furnace;        
+      if (furnace) {
+        queryCondition += queryCondition !== '' ? ` AND furnace=${furnace}` : ` furnace=${furnace}`;
       }
-      if(startTime && endTime) {
-        queryCondition.castDate = { $gt: startTime, $lt: endTime };
+      if (place) {
+        queryCondition += queryCondition !== '' ? ` AND place=${place}` : ` place=${place}`;
+      }
+      if (startTime && endTime) {
+        queryCondition += queryCondition !== '' ? ` AND castDate BETWEEN ${startTime} AND ${endTime}` : ` castDate BETWEEN ${startTime} AND ${endTime}`;
       }
       if (ribbonTypeNameJson) {
-        const ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
-        if(ribbonTypeNameList.length > 0) {
-          queryCondition.ribbonTypeName = { $in: ribbonTypeNameList };
+        let ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
+        if (ribbonTypeNameList.length > 0) {
+          const ribbonTypeNames = ribbonTypeNameList.join();
+          queryCondition += queryCondition !== '' ? ` AND ribbonTypeName IN (${ribbonTypeNames})` : ` ribbonTypeName IN (${ribbonTypeNames})`;
         }
       }
       if (ribbonWidthJson) {
-        const ribbonWidthList = JSON.parse(ribbonWidthJson);
+        let ribbonWidthList = JSON.parse(ribbonWidthJson);
         if (ribbonWidthList.length > 0) {
-          queryCondition.ribbonWidth = { $in: ribbonWidthList };
+          const ribbonWidths = ribbonWidthList.join();
+          queryCondition += queryCondition !== '' ? ` AND ribbonWidth IN (${ribbonWidths})` : ` ribbonWidth IN (${ribbonWidths})`;
         }
       }
       if (ribbonThicknessLevelJson) {
-        const ribbonThicknessLevelList = JSON.parse(ribbonThicknessLevelJson);
+        let ribbonThicknessLevelList = JSON.parse(ribbonThicknessLevelJson);
         if (ribbonThicknessLevelList.length > 0) {
-          queryCondition.ribbonThicknessLevel = { $in: ribbonThicknessLevelList };
+          const ribbonThicknessLevels = ribbonThicknessLevelList.join();
+          queryCondition += queryCondition !== '' ? ` AND ribbonThicknessLevel IN (${ribbonThicknessLevels})` : ` ribbonThicknessLevel IN (${ribbonThicknessLevels})`;
         }
       }
       if (laminationLevelJson) {
-        const laminationLevelList = JSON.parse(laminationLevelJson);
+        let laminationLevelList = JSON.parse(laminationLevelJson);
         if (laminationLevelList.length > 0) {
-          queryCondition.laminationLevel = { $in: laminationLevelList };
+          const laminationLevels = laminationLevelList.join();
+          queryCondition += queryCondition !== '' ? ` AND laminationLevel IN (${laminationLevels})` : ` laminationLevel IN (${laminationLevels})`;
         }
       }
       if (ribbonToughnessLevelJson) {
-        const ribbonToughnessLevelList = JSON.parse(ribbonToughnessLevelJson);
+        let ribbonToughnessLevelList = JSON.parse(ribbonToughnessLevelJson);
         if (ribbonToughnessLevelList.length > 0) {
-          queryCondition.ribbonToughnessLevel = { $in: ribbonToughnessLevelList };
+          const ribbonToughnessLevels = ribbonToughnessLevelList.join();
+          queryCondition += queryCondition !== '' ? ` AND ribbonToughnessLevel IN (${ribbonToughnessLevels})` : ` ribbonToughnessLevel IN (${ribbonToughnessLevels})`;
         }
       }
       if (appearenceLevelJson) {
-        const appearenceLevelList = JSON.parse(appearenceLevelJson);
+        let appearenceLevelList = JSON.parse(appearenceLevelJson);
         if (appearenceLevelList.length > 0) {
-          queryCondition.appearenceLevel = { $in: appearenceLevelList };
+          const appearenceLevels = appearenceLevelList.join();
+          queryCondition += queryCondition !== '' ? ` AND appearenceLevel IN (${appearenceLevels})` : ` appearenceLevel IN (${appearenceLevels})`;
         }
       }
-      if(place) {
-        queryCondition.place = place;        
-      }
       if (ribbonTotalLevels) {
-        const ribbonTotalLevelList = ribbonTotalLevels.split(',');
-        queryCondition.ribbonTotalLevel = { $in: ribbonTotalLevelList };
+        queryCondition += queryCondition !== '' ? ` AND ribbonTotalLevel IN (${ribbonTotalLevels})` : ` ribbonTotalLevel IN (${ribbonTotalLevels})`;
       }
       if (thicknessDivation) {
         queryCondition.ribbonThicknessDeviation = { $lte: thicknessDivation };
       }
+      if (thicknessDivation) {
+        queryCondition += queryCondition !== '' ? ` AND ribbonThicknessDeviation<=${thicknessDivation}` : ` ribbonThicknessDeviation<=${thicknessDivation}`;
+      }
       
-      // const count = await measureModel.countDocuments(queryCondition);
-      // const totalPage = Math.ceil(count / limit);
-      // const list = await measureModel.find(queryCondition).skip((current - 1) * limit).limit(limit).sort({'furnace': 'desc', 'coilNumber': 'asc'});
-      const pageData = await measureModel.findAndCountAll({
-        where: queryCondition,
-        offset: (current - 1) * limit,
-        limit: limit,
-        order: [
-          ['furnace', 'DESC'],
-          ['coilNumber', 'ASC'],
-          ['castDate', 'DESC']
-        ]
-      });
-      const list = pageData.rows;
+      // const pageData = await measureModel.findAndCountAll({
+      //   where: queryCondition,
+      //   offset: (current - 1) * limit,
+      //   limit: limit,
+      //   order: [
+      //     ['furnace', 'DESC'],
+      //     ['coilNumber', 'ASC'],
+      //     ['castDate', 'DESC']
+      //   ]
+      // });
+      // const list = pageData.rows;
+
+      const sqlStr = `SELECT 
+                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId
+                      FROM measure m 
+                      LEFT JOIN cast c 
+                      ON m.furnace=c.furnace
+                      ${ queryCondition !== '' ? 'WHERE ' + queryCondition : ''}
+                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC
+                      LIMIT ${ limit} OFFSET ${(current - 1) * limit }`;
+      const sqlStr2 = `SELECT 
+                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId
+                      FROM measure m 
+                      LEFT JOIN cast c 
+                      ON m.furnace=c.furnace
+                      ${ queryCondition !== '' ? 'WHERE ' + queryCondition : ''}`;
+
+      let list = await sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
+      const totalList = await sequelize.query(sqlStr2, { type: sequelize.QueryTypes.SELECT });
+      const count = totalList.length;
+      const totalPage = Math.ceil(count / limit);
 
       // 如果排产12炉，喷带13或以上，则从第13炉开始，需要取第12炉的材质，规格，订单要求和排产要求
       // 查询生产计划集合中，当前炉次的订单要求和入库要求
       const uniqueFurnaceList = Array.from(new Set(list.map(item => item.furnace)));
       let furnaceMapToOrderAndqualifiedDemands = {};
-      let furnaceMapToCastInfo = {};
+      // let furnaceMapToCastInfo = {};
       for (const furnace of uniqueFurnaceList) {
         let planFurnace = furnace.substr(0, 14);
         const date = furnace.split('-')[1]; // 06-20190111-02/08 ---> 2019-01-11
@@ -115,10 +203,10 @@ class Measure {
           where: { furnace: planFurnace }
         });
         furnaceMapToOrderAndqualifiedDemands[furnace] = { orderThickness, orderLaminationFactor, orderRibbonToughnessLevels, orderAppearenceLevels, qualifiedDemands };
-        const { ribbonTypeName, ribbonWidth, createTime, caster } = await castModel.findOne({
-          where: { furnace }
-        });
-        furnaceMapToCastInfo[furnace] = { ribbonTypeName, ribbonWidth, createTime, caster };
+        // const { ribbonTypeName, ribbonWidth, createTime, caster } = await castModel.findOne({
+        //   where: { furnace }
+        // });
+        // furnaceMapToCastInfo[furnace] = { ribbonTypeName, ribbonWidth, createTime, caster };
       }
       list.forEach(item => {
         item.orderThickness = furnaceMapToOrderAndqualifiedDemands[item.furnace]['orderThickness'] || '';
@@ -126,14 +214,14 @@ class Measure {
         item.orderRibbonToughnessLevels = furnaceMapToOrderAndqualifiedDemands[item.furnace]['orderRibbonToughnessLevels'] || '';
         item.orderAppearenceLevels = furnaceMapToOrderAndqualifiedDemands[item.furnace]['orderAppearenceLevels'] || '';
         item.qualifiedDemands = furnaceMapToOrderAndqualifiedDemands[item.furnace]['qualifiedDemands'] || '[]';
-        item.ribbonTypeName = furnaceMapToCastInfo[item.furnace]['ribbonTypeName'] || '';
-        item.ribbonWidth = furnaceMapToCastInfo[item.furnace]['ribbonWidth'] || '';
+        // item.ribbonTypeName = furnaceMapToCastInfo[item.furnace]['ribbonTypeName'] || '';
+        // item.ribbonWidth = furnaceMapToCastInfo[item.furnace]['ribbonWidth'] || '';
         // item.castDate = furnaceMapToCastInfo[item.furnace]['createTime'] || '';
-        item.caster = furnaceMapToCastInfo[item.furnace]['caster'] || '';
+        // item.caster = furnaceMapToCastInfo[item.furnace]['caster'] || '';
       });
 
-      const count = pageData.count;
-      const totalPage = Math.ceil(count / limit);
+      // const count = pageData.count;
+      // const totalPage = Math.ceil(count / limit);
       // 要考虑分页
       res.send({
         status: 0,
@@ -285,7 +373,8 @@ class Measure {
         where: { furnace }
       });
       const newData = {
-        castId, furnace,
+        // castId, 
+        furnace,
         // ribbonTypeName, ribbonWidth, caster, castDate,
         castDate: createTime,
         coilNumber, diameter, coilWeight, 

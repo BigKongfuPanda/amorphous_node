@@ -31,7 +31,7 @@ const Measure = sequelize.define('measure',{
   laminationLevel: Sequelize.STRING, //叠片等级 不合格, 0, 1, 2, 3, 4
   roller: Sequelize.STRING, // 重卷人
   rollMachine: Sequelize.INTEGER, // 重卷机器编号
-  isFlat: Sequelize.STRING, // 端面是否平整, 是-平整，否-不平整
+  isFlat: Sequelize.INTEGER, // 端面是否平整, 1-平整，0-不平整
   
   orderThickness: Sequelize.STRING, // 订单要求：厚度 20-23, ≤23
   orderLaminationFactor: Sequelize.STRING, // 订单要求：叠片系数 ≥0.78

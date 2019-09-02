@@ -11,7 +11,7 @@ const Clients = sequelize.define('clients', {
     primaryKey: true
   },
   client: Sequelize.STRING,
-  isFlat: Sequelize.STRING, // 是否需要平整，是/否
+  isFlat: Sequelize.INTEGER, // 是否需要平整，是/否, 1-是，0-否
   createdAt: {
 		type: Sequelize.DATE,
 		get() {
