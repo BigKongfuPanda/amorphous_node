@@ -81,73 +81,70 @@ class Measure {
 
       let queryCondition = '';
       if (caster) {
-        queryCondition += `caster=${caster}`;
+        queryCondition += `c.caster='${caster}'`;
       }
       if (castId) {
         queryCondition += queryCondition !== '' ? ` AND c.castId=${castId}` : ` c.castId=${castId}`;
       }
       if (roller) {
-        queryCondition += queryCondition !== '' ? ` AND roller=${roller}` : ` roller=${roller}`;
+        queryCondition += queryCondition !== '' ? ` AND roller='${roller}'` : ` roller='${roller}'`;
       }
       if (furnace) {
-        queryCondition += queryCondition !== '' ? ` AND furnace=${furnace}` : ` furnace=${furnace}`;
+        queryCondition += queryCondition !== '' ? ` AND m.furnace='${furnace}'` : ` m.furnace='${furnace}'`;
       }
       if (place) {
-        queryCondition += queryCondition !== '' ? ` AND place=${place}` : ` place=${place}`;
+        queryCondition += queryCondition !== '' ? ` AND m.place='${place}'` : ` m.place='${place}'`;
       }
       if (startTime && endTime) {
-        queryCondition += queryCondition !== '' ? ` AND castDate BETWEEN ${startTime} AND ${endTime}` : ` castDate BETWEEN ${startTime} AND ${endTime}`;
+        queryCondition += queryCondition !== '' ? ` AND m.castDate BETWEEN '${startTime}' AND '${endTime}'` : ` m.castDate BETWEEN '${startTime}' AND '${endTime}'`;
       }
       if (ribbonTypeNameJson) {
         let ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
         if (ribbonTypeNameList.length > 0) {
-          const ribbonTypeNames = ribbonTypeNameList.join();
-          queryCondition += queryCondition !== '' ? ` AND ribbonTypeName IN (${ribbonTypeNames})` : ` ribbonTypeName IN (${ribbonTypeNames})`;
+          const ribbonTypeNames = ribbonTypeNameList.map(item => `'${item}'`).join();
+          queryCondition += queryCondition !== '' ? ` AND c.ribbonTypeName IN (${ribbonTypeNames})` : ` c.ribbonTypeName IN (${ribbonTypeNames})`;
         }
       }
       if (ribbonWidthJson) {
         let ribbonWidthList = JSON.parse(ribbonWidthJson);
         if (ribbonWidthList.length > 0) {
           const ribbonWidths = ribbonWidthList.join();
-          queryCondition += queryCondition !== '' ? ` AND ribbonWidth IN (${ribbonWidths})` : ` ribbonWidth IN (${ribbonWidths})`;
+          queryCondition += queryCondition !== '' ? ` AND c.ribbonWidth IN (${ribbonWidths})` : ` c.ribbonWidth IN (${ribbonWidths})`;
         }
       }
       if (ribbonThicknessLevelJson) {
         let ribbonThicknessLevelList = JSON.parse(ribbonThicknessLevelJson);
         if (ribbonThicknessLevelList.length > 0) {
           const ribbonThicknessLevels = ribbonThicknessLevelList.join();
-          queryCondition += queryCondition !== '' ? ` AND ribbonThicknessLevel IN (${ribbonThicknessLevels})` : ` ribbonThicknessLevel IN (${ribbonThicknessLevels})`;
+          queryCondition += queryCondition !== '' ? ` AND m.ribbonThicknessLevel IN (${ribbonThicknessLevels})` : ` m.ribbonThicknessLevel IN (${ribbonThicknessLevels})`;
         }
       }
       if (laminationLevelJson) {
         let laminationLevelList = JSON.parse(laminationLevelJson);
         if (laminationLevelList.length > 0) {
           const laminationLevels = laminationLevelList.join();
-          queryCondition += queryCondition !== '' ? ` AND laminationLevel IN (${laminationLevels})` : ` laminationLevel IN (${laminationLevels})`;
+          queryCondition += queryCondition !== '' ? ` AND m.laminationLevel IN (${laminationLevels})` : ` m.laminationLevel IN (${laminationLevels})`;
         }
       }
       if (ribbonToughnessLevelJson) {
         let ribbonToughnessLevelList = JSON.parse(ribbonToughnessLevelJson);
         if (ribbonToughnessLevelList.length > 0) {
-          const ribbonToughnessLevels = ribbonToughnessLevelList.join();
-          queryCondition += queryCondition !== '' ? ` AND ribbonToughnessLevel IN (${ribbonToughnessLevels})` : ` ribbonToughnessLevel IN (${ribbonToughnessLevels})`;
+          const ribbonToughnessLevels = ribbonToughnessLevelList.map(item => `'${item}'`).join();
+          queryCondition += queryCondition !== '' ? ` AND m.ribbonToughnessLevel IN (${ribbonToughnessLevels})` : ` m.ribbonToughnessLevel IN (${ribbonToughnessLevels})`;
         }
       }
       if (appearenceLevelJson) {
         let appearenceLevelList = JSON.parse(appearenceLevelJson);
         if (appearenceLevelList.length > 0) {
-          const appearenceLevels = appearenceLevelList.join();
-          queryCondition += queryCondition !== '' ? ` AND appearenceLevel IN (${appearenceLevels})` : ` appearenceLevel IN (${appearenceLevels})`;
+          const appearenceLevels = appearenceLevelList.map(item => `'${item}'`).join();
+          queryCondition += queryCondition !== '' ? ` AND m.appearenceLevel IN (${appearenceLevels})` : ` m.appearenceLevel IN (${appearenceLevels})`;
         }
       }
       if (ribbonTotalLevels) {
-        queryCondition += queryCondition !== '' ? ` AND ribbonTotalLevel IN (${ribbonTotalLevels})` : ` ribbonTotalLevel IN (${ribbonTotalLevels})`;
+        queryCondition += queryCondition !== '' ? ` AND m.ribbonTotalLevel IN (${ribbonTotalLevels})` : ` m.ribbonTotalLevel IN (${ribbonTotalLevels})`;
       }
       if (thicknessDivation) {
-        queryCondition.ribbonThicknessDeviation = { $lte: thicknessDivation };
-      }
-      if (thicknessDivation) {
-        queryCondition += queryCondition !== '' ? ` AND ribbonThicknessDeviation<=${thicknessDivation}` : ` ribbonThicknessDeviation<=${thicknessDivation}`;
+        queryCondition += queryCondition !== '' ? ` AND m.ribbonThicknessDeviation<=${thicknessDivation}` : ` m.ribbonThicknessDeviation<=${thicknessDivation}`;
       }
       
       // const pageData = await measureModel.findAndCountAll({

@@ -1126,3 +1126,940 @@ From previous event:
       'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      \n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.castDate DESC\n                      LIMIT 30 OFFSET 0' },
   sql:
    'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      \n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.castDate DESC\n                      LIMIT 30 OFFSET 0' }
+[2019-09-03T11:42:58.242] [ERROR] measure - 查询检测记录失败 { SequelizeDatabaseError: Column 'caster' in where clause is ambiguous
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:239:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:46:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at runHooks.then (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:632:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at Promise.try (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:576:23)
+    at queryData (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/measure.js:180:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Column 'caster' in where clause is ambiguous
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_NON_UNIQ_ERROR',
+     errno: 1052,
+     sqlState: '23000',
+     sqlMessage: 'Column \'caster\' in where clause is ambiguous',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE caster=佛挡杀 AND c.castId=6\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  original:
+   { Error: Column 'caster' in where clause is ambiguous
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_NON_UNIQ_ERROR',
+     errno: 1052,
+     sqlState: '23000',
+     sqlMessage: 'Column \'caster\' in where clause is ambiguous',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE caster=佛挡杀 AND c.castId=6\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  sql:
+   'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE caster=佛挡杀 AND c.castId=6\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' }
+[2019-09-03T11:43:49.830] [ERROR] measure - 查询检测记录失败 { SequelizeDatabaseError: Unknown column '佛挡杀佛' in 'where clause'
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:239:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:46:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at runHooks.then (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:632:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at Promise.try (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:576:23)
+    at queryData (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/measure.js:180:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Unknown column '佛挡杀佛' in 'where clause'
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'佛挡杀佛\' in \'where clause\'',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE c.caster=佛挡杀佛 AND c.castId=6\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  original:
+   { Error: Unknown column '佛挡杀佛' in 'where clause'
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'佛挡杀佛\' in \'where clause\'',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE c.caster=佛挡杀佛 AND c.castId=6\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  sql:
+   'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE c.caster=佛挡杀佛 AND c.castId=6\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' }
+[2019-09-03T14:38:31.320] [ERROR] measure - 查询检测记录失败 { SequelizeDatabaseError: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':00:00.000Z AND 2019-09-05T15:59:59.000Z
+                      ORDER BY m.furnac' at line 3
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:239:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:46:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at runHooks.then (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:632:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at Promise.try (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:576:23)
+    at queryData (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/measure.js:180:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':00:00.000Z AND 2019-09-05T15:59:59.000Z
+                         ORDER BY m.furnac' at line 3
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_PARSE_ERROR',
+     errno: 1064,
+     sqlState: '42000',
+     sqlMessage:
+      'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \':00:00.000Z AND 2019-09-05T15:59:59.000Z\n                      ORDER BY m.furnac\' at line 3',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE  c.castId=6 AND castDate BETWEEN 2019-09-02T16:00:00.000Z AND 2019-09-05T15:59:59.000Z\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  original:
+   { Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':00:00.000Z AND 2019-09-05T15:59:59.000Z
+                         ORDER BY m.furnac' at line 3
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_PARSE_ERROR',
+     errno: 1064,
+     sqlState: '42000',
+     sqlMessage:
+      'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \':00:00.000Z AND 2019-09-05T15:59:59.000Z\n                      ORDER BY m.furnac\' at line 3',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE  c.castId=6 AND castDate BETWEEN 2019-09-02T16:00:00.000Z AND 2019-09-05T15:59:59.000Z\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  sql:
+   'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE  c.castId=6 AND castDate BETWEEN 2019-09-02T16:00:00.000Z AND 2019-09-05T15:59:59.000Z\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' }
+[2019-09-03T14:39:48.940] [ERROR] measure - 查询检测记录失败 { SequelizeDatabaseError: Unknown column '多少' in 'where clause'
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:239:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:46:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at runHooks.then (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:632:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at Promise.try (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:576:23)
+    at queryData (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/measure.js:180:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Unknown column '多少' in 'where clause'
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'多少\' in \'where clause\'',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE c.caster=多少 AND c.castId=6\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  original:
+   { Error: Unknown column '多少' in 'where clause'
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'多少\' in \'where clause\'',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE c.caster=多少 AND c.castId=6\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  sql:
+   'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE c.caster=多少 AND c.castId=6\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' }
+[2019-09-03T14:41:16.280] [ERROR] measure - 查询检测记录失败 { SequelizeDatabaseError: Column 'ribbonTypeName' in where clause is ambiguous
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:239:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:46:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at runHooks.then (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:632:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at Promise.try (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:576:23)
+    at queryData (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/measure.js:180:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Column 'ribbonTypeName' in where clause is ambiguous
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_NON_UNIQ_ERROR',
+     errno: 1052,
+     sqlState: '23000',
+     sqlMessage: 'Column \'ribbonTypeName\' in where clause is ambiguous',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE  c.castId=6 AND ribbonTypeName IN (1K107B)\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  original:
+   { Error: Column 'ribbonTypeName' in where clause is ambiguous
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_NON_UNIQ_ERROR',
+     errno: 1052,
+     sqlState: '23000',
+     sqlMessage: 'Column \'ribbonTypeName\' in where clause is ambiguous',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE  c.castId=6 AND ribbonTypeName IN (1K107B)\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  sql:
+   'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE  c.castId=6 AND ribbonTypeName IN (1K107B)\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' }
+[2019-09-03T15:14:39.469] [ERROR] measure - 查询检测记录失败 { SequelizeDatabaseError: Unknown column 'A' in 'where clause'
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:239:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:46:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at runHooks.then (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:632:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at Promise.try (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:576:23)
+    at queryData (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/measure.js:177:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Unknown column 'A' in 'where clause'
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'A\' in \'where clause\'',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE  c.castId=6 AND m.ribbonToughnessLevel IN (A)\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  original:
+   { Error: Unknown column 'A' in 'where clause'
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'A\' in \'where clause\'',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE  c.castId=6 AND m.ribbonToughnessLevel IN (A)\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  sql:
+   'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE  c.castId=6 AND m.ribbonToughnessLevel IN (A)\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' }
+[2019-09-03T15:45:19.742] [ERROR] measure - 查询检测记录失败 { SequelizeDatabaseError: Unknown column '吃大餐' in 'where clause'
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:239:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:46:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at runHooks.then (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:632:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at Promise.try (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:576:23)
+    at queryData (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/measure.js:177:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Unknown column '吃大餐' in 'where clause'
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'吃大餐\' in \'where clause\'',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE c.caster=吃大餐 AND c.castId=6 AND m.ribbonToughnessLevel IN (A)\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  original:
+   { Error: Unknown column '吃大餐' in 'where clause'
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'吃大餐\' in \'where clause\'',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE c.caster=吃大餐 AND c.castId=6 AND m.ribbonToughnessLevel IN (A)\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  sql:
+   'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE c.caster=吃大餐 AND c.castId=6 AND m.ribbonToughnessLevel IN (A)\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' }
+[2019-09-03T15:45:59.295] [ERROR] measure - 查询检测记录失败 { SequelizeDatabaseError: Unknown column 'B' in 'where clause'
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:239:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:46:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at runHooks.then (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:632:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at Promise.try (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:576:23)
+    at queryData (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/measure.js:177:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Unknown column 'B' in 'where clause'
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'B\' in \'where clause\'',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE  c.castId=6 AND m.ribbonToughnessLevel IN (B)\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  original:
+   { Error: Unknown column 'B' in 'where clause'
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'B\' in \'where clause\'',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE  c.castId=6 AND m.ribbonToughnessLevel IN (B)\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  sql:
+   'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE  c.castId=6 AND m.ribbonToughnessLevel IN (B)\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' }
+[2019-09-03T15:47:55.673] [ERROR] measure - 查询检测记录失败 { SequelizeDatabaseError: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':00:00.000Z AND 2019-09-12T15:59:59.000Z AND c.ribbonTypeName IN (1K107B,AD25) A' at line 3
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:239:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:46:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at runHooks.then (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:632:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at Promise.try (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:576:23)
+    at queryData (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/measure.js:179:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':00:00.000Z AND 2019-09-12T15:59:59.000Z AND c.ribbonTypeName IN (1K107B,AD25) A' at line 3
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_PARSE_ERROR',
+     errno: 1064,
+     sqlState: '42000',
+     sqlMessage:
+      'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \':00:00.000Z AND 2019-09-12T15:59:59.000Z AND c.ribbonTypeName IN (1K107B,AD25) A\' at line 3',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE c.caster=第三方 AND c.castId=6 AND m.castDate BETWEEN 2019-09-02T16:00:00.000Z AND 2019-09-12T15:59:59.000Z AND c.ribbonTypeName IN (1K107B,AD25) AND c.ribbonWidth IN (20,25) AND m.ribbonThicknessLevel IN (2,3) AND m.laminationLevel IN (1,3) AND m.ribbonToughnessLevel IN (B) AND m.ribbonThicknessDeviation<=2\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  original:
+   { Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':00:00.000Z AND 2019-09-12T15:59:59.000Z AND c.ribbonTypeName IN (1K107B,AD25) A' at line 3
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_PARSE_ERROR',
+     errno: 1064,
+     sqlState: '42000',
+     sqlMessage:
+      'You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \':00:00.000Z AND 2019-09-12T15:59:59.000Z AND c.ribbonTypeName IN (1K107B,AD25) A\' at line 3',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE c.caster=第三方 AND c.castId=6 AND m.castDate BETWEEN 2019-09-02T16:00:00.000Z AND 2019-09-12T15:59:59.000Z AND c.ribbonTypeName IN (1K107B,AD25) AND c.ribbonWidth IN (20,25) AND m.ribbonThicknessLevel IN (2,3) AND m.laminationLevel IN (1,3) AND m.ribbonToughnessLevel IN (B) AND m.ribbonThicknessDeviation<=2\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  sql:
+   'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE c.caster=第三方 AND c.castId=6 AND m.castDate BETWEEN 2019-09-02T16:00:00.000Z AND 2019-09-12T15:59:59.000Z AND c.ribbonTypeName IN (1K107B,AD25) AND c.ribbonWidth IN (20,25) AND m.ribbonThicknessLevel IN (2,3) AND m.laminationLevel IN (1,3) AND m.ribbonToughnessLevel IN (B) AND m.ribbonThicknessDeviation<=2\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' }
+[2019-09-03T16:38:46.330] [ERROR] measure - 查询检测记录失败 { SequelizeDatabaseError: Unknown column 'B' in 'where clause'
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:239:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:46:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+    at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+    at Socket.emit (events.js:189:13)
+    at addChunk (_stream_readable.js:284:12)
+    at readableAddChunk (_stream_readable.js:265:11)
+    at Socket.Readable.push (_stream_readable.js:220:10)
+    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at runHooks.then (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:29)
+From previous event:
+    at Promise.try.then.connection (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:635:12)
+    at runCallback (timers.js:705:18)
+    at tryOnImmediate (timers.js:676:5)
+    at processImmediate (timers.js:658:5)
+From previous event:
+    at Promise.resolve.retry (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:632:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at Promise.try (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:619:30)
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:576:23)
+    at queryData (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/measure.js:180:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:489:7
+    at runCallback (timers.js:705:18)
+  name: 'SequelizeDatabaseError',
+  parent:
+   { Error: Unknown column 'B' in 'where clause'
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'B\' in \'where clause\'',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE  c.castId=6 AND m.appearenceLevel IN (B)\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  original:
+   { Error: Unknown column 'B' in 'where clause'
+       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:684:17)
+       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:449:32)
+       at PacketParser.Connection.packetParser.p [as onPacket] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:72:12)
+       at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+       at Socket.Connection.stream.on.data (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:79:25)
+       at Socket.emit (events.js:189:13)
+       at addChunk (_stream_readable.js:284:12)
+       at readableAddChunk (_stream_readable.js:265:11)
+       at Socket.Readable.push (_stream_readable.js:220:10)
+       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+     code: 'ER_BAD_FIELD_ERROR',
+     errno: 1054,
+     sqlState: '42S22',
+     sqlMessage: 'Unknown column \'B\' in \'where clause\'',
+     sql:
+      'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE  c.castId=6 AND m.appearenceLevel IN (B)\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
+  sql:
+   'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE  c.castId=6 AND m.appearenceLevel IN (B)\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' }
