@@ -1,19 +1,25 @@
-'use strict';
+"use strict";
 
-const sequelize = require('../mysql/db');
-const castModel = require('../models/cast');
-const measureModel = require('../models/measure');
-const melttModel = require('../models/melt');
-const log = require('log4js').getLogger("statistics");
-const { toFixed, percent } = require('../util');
+const sequelize = require("../mysql/db");
+const castModel = require("../models/cast");
+const measureModel = require("../models/measure");
+const melttModel = require("../models/melt");
+const log = require("log4js").getLogger("statistics");
+const { toFixed, percent, handleSqlQuery } = require("../util");
 
 class Statistics {
-  constructor() {
-
-  }
+  constructor() {}
 
   async queryDataOfQuality(req, res, next) {
-    const { castIdJson, furnace, caster, ribbonTypeNameJson, ribbonWidthJson,  current = 1, limit = 20 } = req.query;
+    const {
+      castIdJson,
+      furnace,
+      caster,
+      ribbonTypeNameJson,
+      ribbonWidthJson,
+      current = 1,
+      limit = 20
+    } = req.query;
 
     try {
       // let queryCondition = {};
@@ -48,34 +54,58 @@ class Statistics {
       //   }
       // }
 
-      let queryCondition = '';
-      if (caster) {
-        queryCondition += `caster=${caster}`;
-      }
-      if (furnace) {
-        queryCondition += queryCondition !== '' ? ` AND furnace=${furnace}` : ` furnace=${furnace}`;
-      }
-      if (castIdJson) {
-        let castIdList = JSON.parse(castIdJson);
-        if (castIdList.length > 0) {
-          const castIds = castIdList.join();
-          queryCondition += queryCondition !== '' ? ` AND castId IN (${castIds})` : ` castId IN (${castIds})`;
+      const queryCondition = handleSqlQuery({
+        equal: {
+          furnace,
+          caster
+        },
+        json: {
+          castIdJson,
+          ribbonTypeNameJson,
+          ribbonWidthJson
         }
-      }
-      if (ribbonTypeNameJson) {
-        let ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
-        if (ribbonTypeNameList.length > 0) {
-          const ribbonTypeNames = ribbonTypeNameList.join();
-          queryCondition += queryCondition !== '' ? ` AND ribbonTypeName IN (${ribbonTypeNames})` : ` ribbonTypeName IN (${ribbonTypeNames})`;
-        }
-      }
-      if (ribbonWidthJson) {
-        let ribbonWidthList = JSON.parse(ribbonWidthJson);
-        if (ribbonWidthList.length > 0) {
-          const ribbonWidths = ribbonWidthList.join();
-          queryCondition += queryCondition !== '' ? ` AND ribbonWidth IN (${ribbonWidths})` : ` ribbonWidth IN (${ribbonWidths})`;
-        }
-      }
+      });
+
+      // let queryCondition = "";
+      // if (caster) {
+      //   queryCondition += `caster=${caster}`;
+      // }
+      // if (furnace) {
+      //   queryCondition +=
+      //     queryCondition !== ""
+      //       ? ` AND furnace=${furnace}`
+      //       : ` furnace=${furnace}`;
+      // }
+      // if (castIdJson) {
+      //   let castIdList = JSON.parse(castIdJson);
+      //   if (castIdList.length > 0) {
+      //     const castIds = castIdList.join();
+      //     queryCondition +=
+      //       queryCondition !== ""
+      //         ? ` AND castId IN (${castIds})`
+      //         : ` castId IN (${castIds})`;
+      //   }
+      // }
+      // if (ribbonTypeNameJson) {
+      //   let ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
+      //   if (ribbonTypeNameList.length > 0) {
+      //     const ribbonTypeNames = ribbonTypeNameList.join();
+      //     queryCondition +=
+      //       queryCondition !== ""
+      //         ? ` AND ribbonTypeName IN (${ribbonTypeNames})`
+      //         : ` ribbonTypeName IN (${ribbonTypeNames})`;
+      //   }
+      // }
+      // if (ribbonWidthJson) {
+      //   let ribbonWidthList = JSON.parse(ribbonWidthJson);
+      //   if (ribbonWidthList.length > 0) {
+      //     const ribbonWidths = ribbonWidthList.join();
+      //     queryCondition +=
+      //       queryCondition !== ""
+      //         ? ` AND ribbonWidth IN (${ribbonWidths})`
+      //         : ` ribbonWidth IN (${ribbonWidths})`;
+      //   }
+      // }
 
       const sqlStr = `select j.*, m.* from
       (SELECT
@@ -96,20 +126,26 @@ class Statistics {
           SUM(qualityOfGood) AS qualityOfGood,
           SUM(qualityOfFine) AS qualityOfFine,
           SUM(qualityOfNormal) AS qualityOfNormal
-      FROM measure ${ queryCondition !== '' ? 'WHERE ' + queryCondition : ''}  GROUP BY furnace) AS m LEFT JOIN (
+      FROM measure ${queryCondition}  GROUP BY furnace) AS m LEFT JOIN (
           SELECT c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight
       FROM cast c JOIN melt t
           ON c.furnace = t.furnace
       ) j ON m.furnace = j.furnace
       LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
 
-      let list = await sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
+      let list = await sequelize.query(sqlStr, {
+        type: sequelize.QueryTypes.SELECT
+      });
       const count = list.length;
       const totalPage = Math.ceil(count / limit);
 
       list = list.map(item => {
         Object.keys(item).forEach(key => {
-          if (typeof item[key] === 'number' && key !== 'castId' && key !== 'ribbonWidth') {
+          if (
+            typeof item[key] === "number" &&
+            key !== "castId" &&
+            key !== "ribbonWidth"
+          ) {
             item[key] = item[key].toFixed(2);
           }
         });
@@ -119,7 +155,7 @@ class Statistics {
       // 要考虑分页
       res.send({
         status: 0,
-        message: '操作成功',
+        message: "操作成功",
         data: {
           count,
           current,
@@ -129,11 +165,11 @@ class Statistics {
         }
       });
     } catch (err) {
-      console.log('查询带材质量统计失败', err);
-      log.error('查询带材质量统计失败', err);
+      console.log("查询带材质量统计失败", err);
+      log.error("查询带材质量统计失败", err);
       res.send({
         status: -1,
-        message: '查询带材质量统计失败'
+        message: "查询带材质量统计失败"
       });
     }
   }
@@ -143,12 +179,12 @@ class Statistics {
 
     try {
       let queryCondition = {};
-      if(startTime && endTime) {
+      if (startTime && endTime) {
         queryCondition.createdAt = { $gt: startTime, $lt: endTime };
       }
       let list = [];
       // 低产零产率：6,8,9机组 <= 80kg，7机组 <=50，算低产
-      if (ratioType === 'byCaster') {
+      if (ratioType === "byCaster") {
         const sqlStr = `
         SELECT
           j.caster,
@@ -223,9 +259,11 @@ class Statistics {
             ON c.furnace = t.furnace
             GROUP BY c.caster
           ) AS j
-          ON m.caster = j.caster;`
-        list = await sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
-      } else if (ratioType === 'byTeam') {
+          ON m.caster = j.caster;`;
+        list = await sequelize.query(sqlStr, {
+          type: sequelize.QueryTypes.SELECT
+        });
+      } else if (ratioType === "byTeam") {
         const sqlStr = `
         SELECT 
           j.team, 
@@ -289,8 +327,10 @@ class Statistics {
           ) AS j 
           ON m.furnace = j.furnace
         GROUP BY j.team;`;
-        list = await sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
-      } else if (ratioType === 'byCastId') {
+        list = await sequelize.query(sqlStr, {
+          type: sequelize.QueryTypes.SELECT
+        });
+      } else if (ratioType === "byCastId") {
         const sqlStr = `
         SELECT 
           j.castId, 
@@ -354,7 +394,9 @@ class Statistics {
           ) AS j 
           ON m.furnace = j.furnace
         GROUP BY j.castId;`;
-        list = await sequelize.query(sqlStr, { type: sequelize.QueryTypes.SELECT });
+        list = await sequelize.query(sqlStr, {
+          type: sequelize.QueryTypes.SELECT
+        });
       }
 
       // 对数据进行格式化处理
@@ -367,7 +409,9 @@ class Statistics {
         item.totalStoredWeight = toFixed(item.totalStoredWeight);
         item.unqualifiedWeight = toFixed(item.unqualifiedWeight);
         item.uselessRibbonWeight = toFixed(item.uselessRibbonWeight);
-        item.totalRatio = percent(item.effectiveMeltRatio * item.rollRatio * item.qualifiedRatio);
+        item.totalRatio = percent(
+          item.effectiveMeltRatio * item.rollRatio * item.qualifiedRatio
+        );
         item.effectiveMeltRatio = percent(item.effectiveMeltRatio);
         item.rollRatio = percent(item.rollRatio);
         item.qualifiedRatio = percent(item.qualifiedRatio);
@@ -381,22 +425,24 @@ class Statistics {
         item.qualityOfFine = toFixed(item.qualityOfFine);
         item.qualityOfNormal = toFixed(item.qualityOfNormal);
         // 计算低产零产
-        item.lowAndZeroRatio = percent((item.zeroHeatNum + item.lowHeatNum)/item.totalHeatNum);
+        item.lowAndZeroRatio = percent(
+          (item.zeroHeatNum + item.lowHeatNum) / item.totalHeatNum
+        );
       });
-      
+
       res.send({
         status: 0,
-        message: '操作成功',
+        message: "操作成功",
         data: {
           list
         }
       });
     } catch (err) {
-      console.log('查询直通率统计失败', err);
-      log.error('查询直通率统计失败', err);
+      console.log("查询直通率统计失败", err);
+      log.error("查询直通率统计失败", err);
       res.send({
         status: -1,
-        message: '查询直通率统计失败'
+        message: "查询直通率统计失败"
       });
     }
   }
