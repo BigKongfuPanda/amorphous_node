@@ -2063,3 +2063,9 @@ From previous event:
       'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE  c.castId=6 AND m.appearenceLevel IN (B)\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' },
   sql:
    'SELECT \n                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId\n                      FROM measure m \n                      LEFT JOIN cast c \n                      ON m.furnace=c.furnace\n                      WHERE  c.castId=6 AND m.appearenceLevel IN (B)\n                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC\n                      LIMIT 30 OFFSET 0' }
+[2020-01-05T10:12:34.557] [ERROR] user - 用户不存在 Error: 用户不存在
+    at login (E:\学习资料\前端开发\amorphous_node\controller\user.js:242:15)
+[2020-01-05T10:14:51.671] [ERROR] user - 用户不存在 Error: 用户不存在
+    at login (E:\学习资料\前端开发\amorphous_node\controller\user.js:242:15)
+[2020-01-05T10:14:59.860] [ERROR] user - 用户不存在 Error: 用户不存在
+    at login (E:\学习资料\前端开发\amorphous_node\controller\user.js:242:15)
