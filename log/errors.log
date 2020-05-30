@@ -2069,3 +2069,5 @@ From previous event:
     at login (E:\学习资料\前端开发\amorphous_node\controller\user.js:242:15)
 [2020-01-05T10:14:59.860] [ERROR] user - 用户不存在 Error: 用户不存在
     at login (E:\学习资料\前端开发\amorphous_node\controller\user.js:242:15)
+[2020-05-01T20:44:54.321] [ERROR] user - 用户不存在 Error: 用户不存在
+    at login (E:\学习资料\前端开发\amorphous_node\controller\user.js:242:15)
