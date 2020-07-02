@@ -2071,3 +2071,7 @@ From previous event:
     at login (E:\学习资料\前端开发\amorphous_node\controller\user.js:242:15)
 [2020-05-01T20:44:54.321] [ERROR] user - 用户不存在 Error: 用户不存在
     at login (E:\学习资料\前端开发\amorphous_node\controller\user.js:242:15)
+[2020-05-30T20:59:57.171] [ERROR] measure - 炉号 06-20190717-13/01 和盘号 1 重复 Error: 炉号 06-20190717-13/01 和盘号 1 重复
+    at list.forEach (E:\学习资料\前端开发\amorphous_node\service\measure.js:66:19)
+[2020-05-30T21:15:12.762] [ERROR] measure - sequelize is not defined ReferenceError: sequelize is not defined
+    at list.forEach (E:\学习资料\前端开发\amorphous_node\service\measure.js:62:30)
