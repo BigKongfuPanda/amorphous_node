@@ -16,8 +16,9 @@ const statistics = require("./statistics");
 const _returnGoods = require("./returnGoods");
 const clients = require("./clients");
 const appearenceLevel = require("./appearenceLevel");
+const roller = require("./roller");
 
-module.exports = app => {
+module.exports = (app) => {
   // app.use(checkLogin);
   app.use("/user", checkLogin, user);
   app.use("/melt", checkLogin, melt);
@@ -34,4 +35,5 @@ module.exports = app => {
   app.use("/laminationLevel", laminationLevel);
   app.use("/ribbonThicknessLevel", ribbonThicknessLevel);
   app.use("/ribbonToughnessLevel", ribbonToughnessLevel);
+  app.use("/roller", roller);
 };

@@ -642,16 +642,16 @@ class Measure {
       if (m != 0) {
         res.send({
           status: 0,
-          message: "删除检测记录成功",
+          message: "删除记录成功",
         });
       } else {
-        throw new Error("删除检测记录失败");
+        throw new Error("删除记录失败");
       }
     } catch (err) {
       log.error(err.message, err);
       res.send({
         status: -1,
-        message: "删除检测记录失败",
+        message: "删除记录失败",
       });
     }
   }

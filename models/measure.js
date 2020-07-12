@@ -32,7 +32,7 @@ const Measure = sequelize.define("measure", {
   coilNetWeight: Sequelize.FLOAT, //单盘净重,kg
   laminationFactor: Sequelize.FLOAT, //叠片系数 0.80
   laminationLevel: Sequelize.STRING, //叠片等级 不合格, 0, 1, 2, 3, 4
-  roller: Sequelize.STRING, // 重卷人
+  roller: Sequelize.INTEGER, // 重卷人编号
   rollMachine: Sequelize.INTEGER, // 重卷机器编号
   isFlat: Sequelize.INTEGER, // 端面是否平整, 1-不平整，0-平整
   isRollConfirmed: {
