@@ -3,15 +3,16 @@
 const Sequelize = require("sequelize");
 const sequelize = require("../mysql/db");
 const moment = require("moment");
+const chalk = require("chalk");
 
-const Clients = sequelize.define("clients", {
-  clientsId: {
+const Roller = sequelize.define("roller", {
+  rollerId: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
-  client: Sequelize.STRING,
-  isFlat: Sequelize.INTEGER, // 是否需要平整，是/否, 1-否，0-是
+  roller: { type: Sequelize.INTEGER, unique: true }, // 编号
+  rollerName: Sequelize.STRING, // 真实姓名
   createdAt: {
     type: Sequelize.DATE,
     get() {
@@ -30,10 +31,12 @@ const Clients = sequelize.define("clients", {
   },
 });
 
-// Clients.sync({alter: true}).then((result) => {
+Roller.sync({ alter: true })
+  .then((result) => {
+    console.log(chalk.green("roller表初始化成功"));
+  })
+  .catch((err) => {
+    console.log(chalk.red("roller表初始化失败", err.message));
+  });
 
-// }).catch((err) => {
-//   console.log('clients表初始化失败', err.message);
-// });
-
-module.exports = Clients;
+module.exports = Roller;

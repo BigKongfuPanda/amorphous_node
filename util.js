@@ -16,7 +16,7 @@ function percent(value = 0, pricion = 2) {
 
 function filter(obj = {}) {
   const newObj = {};
-  Object.keys(obj).forEach(key => {
+  Object.keys(obj).forEach((key) => {
     const value = obj[key];
     if (value != undefined) {
       newObj[key] = value;
@@ -27,13 +27,13 @@ function filter(obj = {}) {
 
 function handleSqlQuery({ equal = {}, json = {} }) {
   let arr = [];
-  Object.keys(filter(equal)).forEach(key => {
+  Object.keys(filter(equal)).forEach((key) => {
     const value = isNumber(equal[key]) ? equal[key] : `'${equal[key]}'`;
     const value = `'${equal[key]}'`;
     arr.push(`${key}=${value}`);
   });
-  Object.keys(filter(json)).forEach(key => {
-    const list = JSON.parse(json[key]).map(item =>
+  Object.keys(filter(json)).forEach((key) => {
+    const list = JSON.parse(json[key]).map((item) =>
       isNumber(item) ? item : `'${item}'`
     );
     const str = list.join();
@@ -50,9 +50,22 @@ function handleSqlQuery({ equal = {}, json = {} }) {
   return query;
 }
 
+const valueToString = (value) => {
+  let _value = "";
+  if (value !== undefined || value !== null) {
+    try {
+      _value = value.toString();
+    } catch (error) {
+      _value = value;
+    }
+  }
+  return _value;
+};
+
 module.exports = {
   toFixed,
   percent,
   filter,
-  handleSqlQuery
+  handleSqlQuery,
+  valueToString,
 };

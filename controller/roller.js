@@ -1,15 +1,15 @@
 "use strict";
 
-const clientsModel = require("../models/clients");
-const log = require("log4js").getLogger("clients");
+const rollerModel = require("../models/roller");
+const log = require("log4js").getLogger("roller");
 const { valueToString } = require("../util");
 
-class Clients {
+class Roller {
   constructor() {}
 
   async queryData(req, res, next) {
     try {
-      const list = await clientsModel.findAll();
+      const list = await rollerModel.findAll();
 
       res.send({
         status: 0,
@@ -19,19 +19,19 @@ class Clients {
         },
       });
     } catch (err) {
-      console.log("查询客户列表失败", err);
-      log.error("查询客户列表失败", err);
+      console.log("查询重卷人员列表失败", err);
+      log.error("查询重卷人员列表失败", err);
       res.send({
         status: -1,
-        message: "查询客户列表失败",
+        message: "查询重卷人员列表失败",
       });
     }
   }
 
   async createData(req, res, next) {
-    const { client, isFlat } = req.body;
+    const { roller, rollerName } = req.body;
     try {
-      if (!client || !valueToString(isFlat)) {
+      if (!rollerName || !valueToString(roller)) {
         throw new Error("参数错误");
       }
     } catch (err) {
@@ -45,15 +45,14 @@ class Clients {
     }
 
     try {
-      // const data = await clientsModel.findOne({$or: [{ laminationLevel }, { laminationFactorRange }]});
-      const data = await clientsModel.findOne({
+      const data = await rollerModel.findOne({
         where: {
-          $or: [{ client }],
+          $or: [{ rollerName }, { roller }],
         },
       });
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (data) {
-        throw new Error("客户名称重复");
+        throw new Error("重卷人员名称或编号重复");
       }
     } catch (err) {
       console.log(err.message, err);
@@ -67,28 +66,28 @@ class Clients {
 
     try {
       const newData = {
-        client,
-        isFlat,
+        rollerName,
+        roller,
       };
-      await clientsModel.create(newData);
+      await rollerModel.create(newData);
       res.send({
         status: 0,
-        message: "新增客户成功",
+        message: "新增重卷人员成功",
       });
     } catch (err) {
-      console.log("新增客户失败", err);
-      log.error("新增客户失败", err);
+      console.log("新增重卷人员失败", err);
+      log.error("新增重卷人员失败", err);
       res.send({
         status: -1,
-        message: `新增客户失败, ${err.message}`,
+        message: `新增重卷人员失败, ${err.message}`,
       });
     }
   }
 
   async updateData(req, res, next) {
-    const { clientsId, client, isFlat } = req.body;
+    const { rollerId, rollerName, roller } = req.body;
     try {
-      if (!clientsId || !client || !valueToString(isFlat)) {
+      if (!rollerId || !rollerName || !valueToString(roller)) {
         throw new Error("参数错误");
       }
     } catch (err) {
@@ -102,20 +101,19 @@ class Clients {
     }
     try {
       const newData = {
-        client,
-        isFlat,
+        rollerName,
+        roller,
       };
-      // const { n } = await clientsModel.updateOne({ _id: laminationLevelId }, { $set: newData });
-      const [n] = await clientsModel.update(newData, {
-        where: { clientsId },
+      const [n] = await rollerModel.update(newData, {
+        where: { rollerId },
       });
       if (n !== 0) {
         res.send({
           status: 0,
-          message: "更新客户列表成功",
+          message: "更新重卷人员列表成功",
         });
       } else {
-        throw new Error("更新客户列表失败");
+        throw new Error("更新重卷人员列表失败");
       }
     } catch (err) {
       console.log(err.message, err);
@@ -129,9 +127,9 @@ class Clients {
 
   // 删除
   async delData(req, res, next) {
-    const { clientsId } = req.body;
+    const { rollerId } = req.body;
     try {
-      if (!clientsId) {
+      if (!rollerId) {
         throw new Error("参数错误");
       }
     } catch (err) {
@@ -144,17 +142,16 @@ class Clients {
       return;
     }
     try {
-      // const { n } = await clientsModel.deleteOne({ _id: clientsId } );
-      const n = await clientsModel.destroy({
-        where: { clientsId },
+      const n = await rollerModel.destroy({
+        where: { rollerId },
       });
       if (n !== 0) {
         res.send({
           status: 0,
-          message: "删除客户成功",
+          message: "删除重卷人员成功",
         });
       } else {
-        throw new Error("删除客户失败");
+        throw new Error("删除重卷人员失败");
       }
     } catch (err) {
       log.error(err.message, err);
@@ -166,4 +163,4 @@ class Clients {
   }
 }
 
-module.exports = new Clients();
+module.exports = new Roller();
