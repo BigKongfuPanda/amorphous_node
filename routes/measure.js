@@ -1,25 +1,28 @@
-'use strict';
+"use strict";
 
-const express = require('express');
-const router= express.Router();
-const Measure = require('../controller/measure');
+const express = require("express");
+const router = express.Router();
+const Measure = require("../controller/measure");
+
+// 获取重卷记录表
+router.get("/queryRollData", Measure.queryRollData);
 
 // 获取检测记录表
-router.get('/', Measure.queryData);
+router.get("/", Measure.queryData);
 
 // 新增检测记录表
-router.post('/', Measure.createData);
+router.post("/", Measure.createData);
 
 // 更新检测记录表
-router.put('/', Measure.updateData);
+router.put("/", Measure.updateData);
 
 // 删除检测记录
-router.delete('/', Measure.delData);
+router.delete("/", Measure.delData);
 
 // 导出检测excel
-router.get('/exportmeasure', Measure.exportMeasure);
+router.get("/exportmeasure", Measure.exportMeasure);
 
 // 导出重卷excel
-router.get('/exportroll', Measure.exportRoll);
+router.get("/exportroll", Measure.exportRoll);
 
 module.exports = router;

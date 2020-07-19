@@ -12,6 +12,95 @@ const { valueToString } = require("../util");
 class Measure {
   constructor() {}
 
+  async queryRollData(req, res, next) {
+    const {
+      castId,
+      furnace,
+      startTime,
+      endTime,
+      caster,
+      roller,
+      current = 1,
+      limit = 30,
+    } = req.query;
+    try {
+      let queryCondition = "";
+      if (caster) {
+        queryCondition += `c.caster='${caster}'`;
+      }
+      if (castId) {
+        queryCondition +=
+          queryCondition !== ""
+            ? ` AND m.castId=${castId}`
+            : ` m.castId=${castId}`;
+      }
+      if (roller) {
+        queryCondition +=
+          queryCondition !== ""
+            ? ` AND roller='${roller}'`
+            : ` roller='${roller}'`;
+      }
+      if (furnace) {
+        queryCondition +=
+          queryCondition !== ""
+            ? ` AND m.furnace='${furnace}'`
+            : ` m.furnace='${furnace}'`;
+      }
+      if (startTime && endTime) {
+        queryCondition +=
+          queryCondition !== ""
+            ? ` AND c.createTime BETWEEN '${startTime}' AND '${endTime}'`
+            : ` c.createTime BETWEEN '${startTime}' AND '${endTime}'`;
+      }
+
+      const sqlStr = `SELECT 
+                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster
+                      FROM measure m 
+                      LEFT JOIN cast c 
+                      ON m.furnace=c.furnace
+                      ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
+                      ORDER BY m.createdAt DESC, m.furnace DESC, m.coilNumber ASC
+                      LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
+      const sqlStr2 = `SELECT 
+                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster
+                      FROM measure m 
+                      LEFT JOIN cast c 
+                      ON m.furnace=c.furnace
+                      ${
+                        queryCondition !== "" ? "WHERE " + queryCondition : ""
+                      }`;
+
+      const list = await sequelize.query(sqlStr, {
+        type: sequelize.QueryTypes.SELECT,
+      });
+      const totalList = await sequelize.query(sqlStr2, {
+        type: sequelize.QueryTypes.SELECT,
+      });
+      const count = totalList.length;
+      const totalPage = Math.ceil(count / limit);
+
+      // 要考虑分页
+      res.send({
+        status: 0,
+        message: "操作成功",
+        data: {
+          count,
+          current,
+          totalPage,
+          limit,
+          list,
+        },
+      });
+    } catch (err) {
+      console.log("查询重卷记录失败", err);
+      log.error("查询重卷记录失败", err);
+      res.send({
+        status: -1,
+        message: "查询重卷记录失败",
+      });
+    }
+  }
+
   async queryData(req, res, next) {
     const {
       castId,
@@ -40,8 +129,8 @@ class Measure {
       if (castId) {
         queryCondition +=
           queryCondition !== ""
-            ? ` AND c.castId=${castId}`
-            : ` c.castId=${castId}`;
+            ? ` AND m.castId=${castId}`
+            : ` m.castId=${castId}`;
       }
       if (roller) {
         queryCondition +=
@@ -64,8 +153,8 @@ class Measure {
       if (startTime && endTime) {
         queryCondition +=
           queryCondition !== ""
-            ? ` AND m.castDate BETWEEN '${startTime}' AND '${endTime}'`
-            : ` m.castDate BETWEEN '${startTime}' AND '${endTime}'`;
+            ? ` AND c.createTime BETWEEN '${startTime}' AND '${endTime}'`
+            : ` c.createTime BETWEEN '${startTime}' AND '${endTime}'`;
       }
       if (ribbonTypeNameJson) {
         let ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
@@ -147,16 +236,16 @@ class Measure {
       }
 
       const sqlStr = `SELECT 
-                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId
-                      FROM mytable m 
+                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster
+                      FROM measure m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
                       ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
-                      ORDER BY m.furnace DESC, m.coilNumber ASC, c.createTime DESC
+                      ORDER BY m.createdAt DESC, m.furnace DESC, m.coilNumber ASC
                       LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
       const sqlStr2 = `SELECT 
-                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster, c.castId
-                      FROM mytable m 
+                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster
+                      FROM measure m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
                       ${
@@ -178,7 +267,7 @@ class Measure {
         new Set(list.map((item) => item.furnace))
       );
       let furnaceMapToOrderAndqualifiedDemands = {};
-      // let furnaceMapToCastInfo = {};
+      let furnaceMapToCastInfo = {};
       for (const furnace of uniqueFurnaceList) {
         let planFurnace = furnace.substr(0, 14);
         const date = furnace.split("-")[1]; // 06-20190111-02/08 ---> 2019-01-11

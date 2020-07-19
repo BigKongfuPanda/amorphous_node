@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development supervisor --harmony app.js",
-    "start": "cross-env NODE_ENV=production pm2 start app.js",
+    "start": "cross-env NODE_ENV=production supervisor --harmony app.js",
     "initDB": "node ./mysql/initDb.js"
   },
   "repository": {

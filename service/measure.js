@@ -46,9 +46,9 @@ class MeasureService {
         try {
           const data = await castModel.findOne({ where: { furnace } });
           if (!data) {
-            throw new Error(`炉号 ${furnace} 该炉号不存在，请检查炉号是否正确`);
+            throw new Error(`炉号 ${furnace} 不存在，请检查炉号是否正确`);
           }
-        } catch (error) {
+        } catch (err) {
           log.error(err.message, err);
           res.send({
             status: -1,

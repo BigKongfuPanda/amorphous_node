@@ -5,26 +5,26 @@ const sequelize = require("../mysql/db");
 const Cast = require("./cast");
 const moment = require("moment");
 
-const Measure = sequelize.define("mytable", {
+const Measure = sequelize.define("measure", {
   measureId: {
     type: Sequelize.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
   qrCode: Sequelize.STRING, // 二维码编号
-  // castId: Sequelize.INTEGER, // 机组编号
+  castId: Sequelize.INTEGER, // 机组编号
   // 重卷录入信息
   furnace: Sequelize.STRING, // 制带炉号 06-20181120-01/01
   // ribbonTypeName: Sequelize.STRING, //材质名称
   // ribbonWidth: Sequelize.INTEGER, //带宽
-  castDate: {
-    type: Sequelize.DATE,
-    get() {
-      return moment(this.getDataValue("castDate")).format(
-        "YYYY-MM-DD HH:mm:ss"
-      );
-    },
-  }, //生产日期
+  // castDate: {
+  //   type: Sequelize.DATE,
+  //   get() {
+  //     return moment(this.getDataValue("castDate")).format(
+  //       "YYYY-MM-DD HH:mm:ss"
+  //     );
+  //   },
+  // }, //生产日期
   // caster: Sequelize.STRING, //喷带手
   coilNumber: Sequelize.INTEGER, // 盘号 1, 2, 3
   diameter: Sequelize.FLOAT, // 外径
