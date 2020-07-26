@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
-const Sequelize = require('sequelize');
-const config = require('config-lite')(__dirname);
-const operatorsAliases = require('./operatorsAliases');
-const chalk = require('chalk');
+const Sequelize = require("sequelize");
+const config = require("config-lite")(__dirname);
+const operatorsAliases = require("./operatorsAliases");
+const chalk = require("chalk");
 
 const sequelize = new Sequelize(
   config.db.database,
@@ -12,14 +12,14 @@ const sequelize = new Sequelize(
   {
     host: config.db.host,
     port: config.db.port,
-    dialect: 'mysql',
+    dialect: "mysql",
     pool: {
       max: 5,
       min: 0,
       acquire: 30000,
-      idle: 10000
+      idle: 10000,
     },
-    timezone: '+08:00',
+    timezone: "+08:00",
     // Specify options, which are used when sequelize.define is called.
     // The following example:
     //   define: { timestamps: false }
@@ -28,9 +28,9 @@ const sequelize = new Sequelize(
     //   sequelize.define(name, attributes, { timestamps: false });
     // so defining the timestamps for each model will be not necessary
     define: {
-      charset: 'utf8',
+      charset: "utf8",
       dialectOptions: {
-        collate: 'utf8_general_ci'
+        collate: "utf8_general_ci",
       },
       // 默认添加时间戳属性 (updatedAt, createdAt)
       timestamps: true,
@@ -39,8 +39,9 @@ const sequelize = new Sequelize(
       // 禁用修改表名; 默认情况下，sequelize将自动将所有传递的模型名称（define的第一个参数）转换为复数。 如果你不想这样，请设置以下内容
       freezeTableName: true,
     },
-     // Querying - 查询操作符的别名
-    operatorsAliases: operatorsAliases
+    // Querying - 查询操作符的别名
+    operatorsAliases: operatorsAliases,
+    query: { raw: true },
   }
 );
 
@@ -48,14 +49,10 @@ const sequelize = new Sequelize(
 sequelize
   .sync()
   .then(() => {
-    console.log(
-      chalk.green('初始化数据库成功')
-    );
+    console.log(chalk.green("初始化数据库成功"));
   })
-  .catch(error => {
-    console.log(
-      chalk.red('初始化数据库失败: ', error)
-    );
+  .catch((error) => {
+    console.log(chalk.red("初始化数据库失败: ", error));
   });
 
 module.exports = sequelize;

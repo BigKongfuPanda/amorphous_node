@@ -3,6 +3,7 @@ const sequelize = require("../mysql/db");
 const measureModel = require("../models/measure");
 const castModel = require("../models/cast");
 const planModel = require("../models/plan");
+const rollerModel = require("../models/roller");
 const log = require("log4js").getLogger("measure");
 const nodeExcel = require("excel-export");
 const moment = require("moment");
@@ -919,18 +920,6 @@ class Measure {
             item.unStoreReason,
             item.clients,
           ].map((val) => (val == undefined ? null : val));
-
-          // return [
-          //   item.furnace, item.coilNumber, item.ribbonTypeName, item.ribbonWidth,
-          //   moment(item.castDate).format('YYYY-MM-DD'), item.caster, item.diameter,
-          //   item.coilWeight, item.laminationFactor, item.laminationLevel, item.realRibbonWidth,
-          //   item.ribbonThickness1, item.ribbonThickness2, item.ribbonThickness3, item.ribbonThickness4,
-          //   item.ribbonThickness5, item.ribbonThickness6, item.ribbonThickness7, item.ribbonThickness8,
-          //   item.ribbonThickness9,
-          //   item.ribbonThicknessDeviation, item.ribbonThickness, item.ribbonThicknessLevel,
-          //   item.ribbonToughness, item.ribbonToughnessLevel, item.appearence, item.appearenceLevel, item.ribbonTotalLevel, isStoredDesc(item.isStored),
-          //   item.unStoreReason, item.clients
-          // ].map(val => val == undefined ? null : val);
         })
       );
 
@@ -971,23 +960,51 @@ class Measure {
   // 导出重卷记录的excel
   async exportRoll(req, res, next) {
     const { castId, furnace, startTime, endTime, caster, roller } = req.query;
+
     try {
-      let queryCondition = {};
-      if (castId) {
-        queryCondition.castId = castId;
-      }
+      let queryCondition = "";
       if (caster) {
-        queryCondition.caster = caster;
+        queryCondition += `c.caster='${caster}'`;
+      }
+      if (castId) {
+        queryCondition +=
+          queryCondition !== ""
+            ? ` AND m.castId=${castId}`
+            : ` m.castId=${castId}`;
       }
       if (roller) {
-        queryCondition.roller = roller;
+        queryCondition +=
+          queryCondition !== ""
+            ? ` AND roller='${roller}'`
+            : ` roller='${roller}'`;
       }
       if (furnace) {
-        queryCondition.furnace = furnace;
+        queryCondition +=
+          queryCondition !== ""
+            ? ` AND m.furnace='${furnace}'`
+            : ` m.furnace='${furnace}'`;
       }
       if (startTime && endTime) {
-        queryCondition.inStoreDate = { $gt: startTime, $lt: endTime };
+        queryCondition +=
+          queryCondition !== ""
+            ? ` AND c.createTime BETWEEN '${startTime}' AND '${endTime}'`
+            : ` c.createTime BETWEEN '${startTime}' AND '${endTime}'`;
       }
+
+      const sqlStr = `SELECT 
+                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster
+                      FROM measure m 
+                      LEFT JOIN cast c 
+                      ON m.furnace=c.furnace
+                      ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
+                      ORDER BY m.createdAt DESC, m.furnace DESC, m.coilNumber ASC`;
+
+      const list =
+        (await sequelize.query(sqlStr, {
+          type: sequelize.QueryTypes.SELECT,
+        })) || [];
+
+      const rollerList = await rollerModel.findAll();
 
       const conf = {};
       conf.name = "mysheet";
@@ -1005,52 +1022,33 @@ class Measure {
         { caption: "重卷日期", type: "string" },
         { caption: "是否平整", type: "string" },
       ];
-      conf.rows = [];
-      // const list = await measureModel.find(queryCondition).sort({'furnace': 'asc', 'coilNumber': 'asc'});
-      const list = await measureModel.findAll({
-        where: queryCondition,
-        order: [
-          ["furnace", "asc"],
-          ["coilNumber", "asc"],
-        ],
-        raw: true,
+
+      conf.rows = list.map((item) => {
+        let rollerName = "";
+        for (let i = 0; i < rollerList.length; i++) {
+          const roll = rollerList[i];
+          if (roll.roller === item.roller) {
+            rollerName = roll.rollerName;
+            break;
+          }
+        }
+
+        console.log(rollerName);
+        return [
+          item.furnace,
+          item.ribbonTypeName,
+          item.ribbonWidth,
+          moment(item.createTime).format("YYYY-MM-DD"),
+          item.caster,
+          item.coilNumber,
+          item.diameter,
+          item.coilWeight,
+          item.rollMachine,
+          rollerName,
+          moment(item.createdAt).format("YYYY-MM-DD HH:mm:ss"),
+          item.isFlat == 1 ? "不平整" : "平整",
+        ].map((val) => (val == undefined ? null : val));
       });
-
-      conf.rows = await Promise.all(
-        list.map(async (item) => {
-          const {
-            ribbonTypeName,
-            ribbonWidth,
-            createTime,
-            caster,
-          } = await castModel.findOne({
-            where: { furnace: item.furnace },
-            raw: true,
-          });
-
-          return [
-            item.furnace,
-            ribbonTypeName,
-            ribbonWidth,
-            moment(createTime).format("YYYY-MM-DD"),
-            caster,
-            item.coilNumber,
-            item.diameter,
-            item.coilWeight,
-            item.rollMachine,
-            item.roller,
-            moment(item.createdAt).format("YYYY-MM-DD HH:mm:ss"),
-            item.isFlat == 1 ? "不平整" : "平整",
-          ].map((val) => (val == undefined ? null : val));
-
-          // return [
-          //   item.furnace, item.ribbonTypeName, item.ribbonWidth,
-          //   moment(item.castDate).format('YYYY-MM-DD'), item.caster, item.coilNumber,
-          //   item.diameter, item.coilWeight, item.rollMachine, item.roller,
-          //   moment(item.createdAt).format('YYYY-MM-DD HH:mm:ss'), item.isFlat
-          // ].map(val => val == undefined ? null : val);
-        })
-      );
 
       const result = nodeExcel.execute(conf);
       res.setHeader("Content-Type", "application/vnd.openxmlformats");
