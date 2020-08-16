@@ -13,6 +13,7 @@ const { valueToString } = require("../util");
 class Measure {
   constructor() {}
 
+  // 查询重卷数据
   async queryRollData(req, res, next) {
     const {
       castId,
@@ -56,7 +57,7 @@ class Measure {
 
       const sqlStr = `SELECT 
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster
-                      FROM measure m 
+                      FROM mytable m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
                       ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
@@ -64,7 +65,7 @@ class Measure {
                       LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
       const sqlStr2 = `SELECT 
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster
-                      FROM measure m 
+                      FROM mytable m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
                       ${
@@ -993,7 +994,7 @@ class Measure {
 
       const sqlStr = `SELECT 
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster
-                      FROM measure m 
+                      FROM mytable m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
                       ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
@@ -1004,7 +1005,7 @@ class Measure {
           type: sequelize.QueryTypes.SELECT,
         })) || [];
 
-      const rollerList = await rollerModel.findAll();
+      const rollerList = (await rollerModel.findAll()) || [];
 
       const conf = {};
       conf.name = "mysheet";
@@ -1033,7 +1034,6 @@ class Measure {
           }
         }
 
-        console.log(rollerName);
         return [
           item.furnace,
           item.ribbonTypeName,

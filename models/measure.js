@@ -5,7 +5,7 @@ const sequelize = require("../mysql/db");
 const Cast = require("./cast");
 const moment = require("moment");
 
-const Measure = sequelize.define("measure", {
+const Measure = sequelize.define("mytable", {
   measureId: {
     type: Sequelize.INTEGER,
     primaryKey: true,
