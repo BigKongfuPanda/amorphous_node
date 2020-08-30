@@ -56,6 +56,7 @@ class Measure {
       }
 
       const sqlStr = `SELECT 
+                      SQL_CALC_FOUND_ROWS
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster
                       FROM mytable m 
                       LEFT JOIN cast c 
@@ -63,14 +64,7 @@ class Measure {
                       ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
                       ORDER BY m.createdAt DESC, m.furnace DESC, m.coilNumber ASC
                       LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
-      const sqlStr2 = `SELECT 
-                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster
-                      FROM mytable m 
-                      LEFT JOIN cast c 
-                      ON m.furnace=c.furnace
-                      ${
-                        queryCondition !== "" ? "WHERE " + queryCondition : ""
-                      }`;
+      const sqlStr2 = `SELECT FOUND_ROWS()`;
 
       const list = await sequelize.query(sqlStr, {
         type: sequelize.QueryTypes.SELECT,
@@ -78,7 +72,7 @@ class Measure {
       const totalList = await sequelize.query(sqlStr2, {
         type: sequelize.QueryTypes.SELECT,
       });
-      const count = totalList.length;
+      const count = (totalList[0] && totalList[0]["FOUND_ROWS()"]) || 0;
       const totalPage = Math.ceil(count / limit);
 
       // 要考虑分页
