@@ -1,0 +1,9 @@
+[2020-10-09T22:21:22.899] [ERROR] measure - 查询检测记录失败 TypeError: Cannot read property 'furnace' of undefined
+    at queryData (E:\amorphous_node\controller\measure.js:283:50)
+[2020-10-09T22:22:41.427] [ERROR] measure - 查询检测记录失败 TypeError: Cannot read property 'furnace' of undefined
+    at queryData (E:\amorphous_node\controller\measure.js:283:50)
+    at process._tickCallback (internal/process/next_tick.js:68:7)
+[2020-10-09T22:31:24.074] [ERROR] measure - 查询检测记录失败 TypeError: Cannot read property 'furnace' of undefined
+    at queryData (E:\amorphous_node\controller\measure.js:283:50)
+[2020-10-09T22:35:51.762] [ERROR] measure - 查询检测记录失败 TypeError: Cannot read property 'furnace' of undefined
+    at queryData (E:\amorphous_node\controller\measure.js:283:50)
