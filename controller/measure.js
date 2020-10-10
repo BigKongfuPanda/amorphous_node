@@ -57,7 +57,7 @@ class Measure {
 
       const sqlStr = `SELECT 
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster
-                      FROM mytable m 
+                      FROM measure m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
                       ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
@@ -65,7 +65,7 @@ class Measure {
                       LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
       const sqlStr2 = `SELECT 
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster
-                      FROM mytable m 
+                      FROM measure m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
                       ${
