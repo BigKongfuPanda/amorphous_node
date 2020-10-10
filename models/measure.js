@@ -32,7 +32,7 @@ const Measure = sequelize.define("mytable", {
   coilNetWeight: Sequelize.FLOAT, //单盘净重,kg
   laminationFactor: Sequelize.FLOAT, //叠片系数 0.80
   laminationLevel: Sequelize.STRING, //叠片等级 不合格, 0, 1, 2, 3, 4
-  roller: Sequelize.INTEGER, // 重卷人编号
+  roller: Sequelize.INTEGER, // 重卷人编号，PLC数据
   rollMachine: Sequelize.INTEGER, // 重卷机器编号
   isFlat: Sequelize.INTEGER, // 端面是否平整, 1-不平整，0-平整
   isRollConfirmed: {
@@ -52,23 +52,29 @@ const Measure = sequelize.define("mytable", {
   // qualifiedAppearenceLevels: Sequelize.STRING, // 入库要求：外观 [A,B,C]
   qualifiedDemands: Sequelize.TEXT, //入库要求
   // 检测录入信息
+  measureMachine: Sequelize.INTEGER, //检测设备编号
   realRibbonWidth: Sequelize.FLOAT, //实际带宽
-  ribbonThickness1: Sequelize.FLOAT, //带材厚度点1, μm
-  ribbonThickness2: Sequelize.FLOAT, //带材厚度点2, μm
-  ribbonThickness3: Sequelize.FLOAT, //带材厚度点3, μm
-  ribbonThickness4: Sequelize.FLOAT, //带材厚度点4, μm
-  ribbonThickness5: Sequelize.FLOAT, //带材厚度点5, μm
-  ribbonThickness6: Sequelize.FLOAT, //带材厚度点6, μm
-  ribbonThickness7: Sequelize.FLOAT, //带材厚度点7, μm
-  ribbonThickness8: Sequelize.FLOAT, //带材厚度点8, μm
-  ribbonThickness9: Sequelize.FLOAT, //带材厚度点9, μm
-  ribbonThicknessDeviation: Sequelize.FLOAT, // 带材横向偏差, μm
+  ribbonThickness1: Sequelize.INTEGER, //带材厚度点1, μm
+  ribbonThickness2: Sequelize.INTEGER, //带材厚度点2, μm
+  ribbonThickness3: Sequelize.INTEGER, //带材厚度点3, μm
+  ribbonThickness4: Sequelize.INTEGER, //带材厚度点4, μm
+  ribbonThickness5: Sequelize.INTEGER, //带材厚度点5, μm
+  ribbonThickness6: Sequelize.INTEGER, //带材厚度点6, μm
+  ribbonThickness7: Sequelize.INTEGER, //带材厚度点7, μm
+  ribbonThickness8: Sequelize.INTEGER, //带材厚度点8, μm
+  ribbonThickness9: Sequelize.INTEGER, //带材厚度点9, μm
+  ribbonThicknessDeviation: Sequelize.INTEGER, // 带材横向偏差, μm
   ribbonThickness: Sequelize.FLOAT, // 带材平均厚度, μm
   ribbonThicknessLevel: Sequelize.FLOAT, // 带材厚度级别
   ribbonToughness: Sequelize.STRING, //带材韧性
   ribbonToughnessLevel: Sequelize.STRING, //带材韧性等级
+  ribbonToughnessLevelCode: Sequelize.INTEGER, //带材韧性等级符号，PLC的传值
   appearence: Sequelize.STRING, //带材外观
+  appearenceCode1: Sequelize.INTEGER, //带材外观符号，PLC传值
+  appearenceCode2: Sequelize.INTEGER, //带材外观符号，PLC传值
+  appearenceCode3: Sequelize.INTEGER, //带材外观符号，PLC传值
   appearenceLevel: Sequelize.STRING, //带材外观等级
+  appearenceLevelCode: Sequelize.INTEGER, //带材外观等级符号，PLC传值
   ribbonTotalLevel: Sequelize.STRING, //带材综合级别
   isMeasureConfirmed: { type: Sequelize.INTEGER, defaultValue: 0 }, // 检测是否确认可入库：1-是，0-否
   // storageRule: Object, //入库规则
