@@ -29,7 +29,7 @@ function handleSqlQuery({ equal = {}, json = {} }) {
   let arr = [];
   Object.keys(filter(equal)).forEach((key) => {
     const value = isNumber(equal[key]) ? equal[key] : `'${equal[key]}'`;
-    const value = `'${equal[key]}'`;
+    // const value = `'${equal[key]}'`;
     arr.push(`${key}=${value}`);
   });
   Object.keys(filter(json)).forEach((key) => {
