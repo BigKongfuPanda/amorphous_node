@@ -29,19 +29,17 @@ const Measure = sequelize.define("measure", {
   coilNumber: Sequelize.INTEGER, // 盘号 1, 2, 3
   diameter: Sequelize.FLOAT, // 外径
   coilWeight: Sequelize.FLOAT, // 单盘重量,kg
-  coilNetWeight: Sequelize.FLOAT, //单盘净重,kg
-  laminationFactor: Sequelize.FLOAT, //叠片系数 0.80
-  laminationLevel: Sequelize.STRING, //叠片等级 不合格, 0, 1, 2, 3, 4
   roller: Sequelize.INTEGER, // 重卷人编号，PLC数据
   rollMachine: Sequelize.INTEGER, // 重卷机器编号
+  rollMeasureMachine: Sequelize.INTEGER, // 重卷测试设备编号
   isFlat: Sequelize.INTEGER, // 端面是否平整, 1-不平整，0-平整
+  dropNum: Sequelize.INTEGER, // 断头数目
   isRollConfirmed: {
     // 是否确认
     type: Sequelize.INTEGER,
     defaultValue: 0,
   },
-  rollMeasureMachine: Sequelize.INTEGER, // 重卷测试设备编号
-  dropNum: Sequelize.INTEGER, // 断头数目
+  // 检测录入信息
   orderThickness: Sequelize.STRING, // 订单要求：厚度 20-23, ≤23
   orderLaminationFactor: Sequelize.STRING, // 订单要求：叠片系数 ≥0.78
   orderRibbonToughnessLevels: Sequelize.STRING, // 订单要求：韧性 [A,B,C]
@@ -51,9 +49,11 @@ const Measure = sequelize.define("measure", {
   // qualifiedRibbonToughnessLevels: Sequelize.STRING, // 入库要求：韧性 [A,B,C]
   // qualifiedAppearenceLevels: Sequelize.STRING, // 入库要求：外观 [A,B,C]
   qualifiedDemands: Sequelize.TEXT, //入库要求
-  // 检测录入信息
   measureMachine: Sequelize.INTEGER, //检测设备编号
   realRibbonWidth: Sequelize.FLOAT, //实际带宽
+  coilNetWeight: Sequelize.FLOAT, //单盘净重,kg
+  laminationFactor: Sequelize.FLOAT, //叠片系数 0.80
+  laminationLevel: Sequelize.STRING, //叠片等级 不合格, 0, 1, 2, 3, 4
   ribbonThickness1: Sequelize.INTEGER, //带材厚度点1, μm
   ribbonThickness2: Sequelize.INTEGER, //带材厚度点2, μm
   ribbonThickness3: Sequelize.INTEGER, //带材厚度点3, μm

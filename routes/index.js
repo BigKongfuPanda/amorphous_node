@@ -17,6 +17,7 @@ const _returnGoods = require("./returnGoods");
 const clients = require("./clients");
 const appearenceLevel = require("./appearenceLevel");
 const roller = require("./roller");
+const linerWeight = require("./linerWeight");
 
 module.exports = (app) => {
   // app.use(checkLogin);
@@ -29,11 +30,12 @@ module.exports = (app) => {
   app.use("/statistics", checkLogin, statistics);
   app.use("/returnGoods", checkLogin, _returnGoods);
   app.use("/clients", checkLogin, clients);
-  app.use("/ribbonType", ribbonType);
-  app.use("/ribbonWidth", ribbonWidth);
-  app.use("/appearenceLevel", appearenceLevel);
-  app.use("/laminationLevel", laminationLevel);
-  app.use("/ribbonThicknessLevel", ribbonThicknessLevel);
-  app.use("/ribbonToughnessLevel", ribbonToughnessLevel);
-  app.use("/roller", roller);
+  app.use("/ribbonType", checkLogin, ribbonType);
+  app.use("/ribbonWidth", checkLogin, ribbonWidth);
+  app.use("/appearenceLevel", checkLogin, appearenceLevel);
+  app.use("/laminationLevel", checkLogin, laminationLevel);
+  app.use("/ribbonThicknessLevel", checkLogin, ribbonThicknessLevel);
+  app.use("/ribbonToughnessLevel", checkLogin, ribbonToughnessLevel);
+  app.use("/roller", checkLogin, roller);
+  app.use("/linerWeight", checkLogin, linerWeight);
 };

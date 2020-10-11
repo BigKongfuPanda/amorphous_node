@@ -4,10 +4,10 @@ const measureModel = require("../models/measure");
 const castModel = require("../models/cast");
 const planModel = require("../models/plan");
 const rollerModel = require("../models/roller");
+const storageModel = require("../models/storage");
 const log = require("log4js").getLogger("measure");
 const nodeExcel = require("excel-export");
 const moment = require("moment");
-const measureService = require("../service/measure");
 const { valueToString } = require("../util");
 
 class Measure {
@@ -103,7 +103,8 @@ class Measure {
     }
   }
 
-  async queryData(req, res, next) {
+  // 查询检测数据
+  async queryMeasureData(req, res, next) {
     const {
       castId,
       furnace,
@@ -475,34 +476,319 @@ class Measure {
     }
   }
 
-  // 更新操作，由检测人员和库房人员使用
-  async updateData(req, res, next) {
-    // 重卷确认，传参为 rollDataJson
-    if (req.body.rollDataJson) {
-      return measureService.rollConfirm(req, res, next);
-    }
-    // 检测确认入库操作，传参为dataJson
-    if (req.body.dataJson) {
-      return measureService.measureConfirm(req, res, next);
+  // 重卷数据入库
+  async rollConfirm(req, res, next) {
+    const { rollDataJson } = req.body;
+    let list = [];
+    try {
+      if (!rollDataJson) {
+        throw new Error("参数错误");
+      }
+      list = JSON.parse(rollDataJson);
+    } catch (err) {
+      console.log(err.message, err);
+      log.error(err.message, err);
+      res.send({
+        status: -1,
+        message: err.message,
+      });
+      return;
     }
 
+    try {
+      list.forEach(async (item) => {
+        const { furnace, coilNumber } = item;
+        try {
+          if (!furnace || !coilNumber) {
+            throw new Error("参数错误");
+          }
+        } catch (err) {
+          log.error(err.message, err);
+          res.send({
+            status: -1,
+            message: err.message,
+          });
+          return;
+        }
+
+        // 判断该炉号是否在喷带记录中存在
+        try {
+          const data = await castModel.findOne({ where: { furnace } });
+          if (!data) {
+            throw new Error(`炉号 ${furnace} 不存在，请检查炉号是否正确`);
+          }
+        } catch (err) {
+          log.error(err.message, err);
+          res.send({
+            status: -1,
+            message: err.message,
+          });
+          return;
+        }
+
+        // 判断当前的盘重总数是否小于本炉的大盘毛重
+        try {
+          // 获取合计盘重的重量
+          const rawRetCoil = await sequelize.query(
+            `SELECT SUM(coilWeight) AS weight FROM measure WHERE  furnace = '${furnace}'`,
+            {
+              type: sequelize.QueryTypes.SELECT,
+            }
+          );
+          // [{ weight: 122.2323 }]
+          const coilTotalWeight = rawRetCoil[0].weight;
+
+          // 获取本炉的大盘毛重
+          const rawRetFurnace = await castModel.findOne({
+            where: { furnace },
+          });
+          const rawWeight = rawRetFurnace.rawWeight;
+          if (coilTotalWeight > rawWeight + 10) {
+            throw new Error(
+              `炉号 ${furnace} 重卷总重不能大于当前炉次的大盘毛重`
+            );
+          }
+        } catch (err) {
+          log.error(err.message, err);
+          res.send({
+            status: -1,
+            message: err.message,
+          });
+          return;
+        }
+
+        try {
+          const { createTime } = await castModel.findOne({
+            where: { furnace },
+          });
+          const newData = {
+            castDate: createTime,
+            isRollConfirmed: 1, // 确认成功
+          };
+          const [n] = await measureModel.update(newData, {
+            where: { furnace, coilNumber },
+          });
+          if (n !== 0) {
+            res.send({
+              status: 0,
+              message: "更新数据成功",
+            });
+          } else {
+            throw new Error("更新数据失败");
+          }
+        } catch (err) {
+          log.error("保存重卷记录失败", err);
+          res.send({
+            status: -1,
+            message: `保存重卷记录失败, ${err.message}`,
+          });
+        }
+      });
+    } catch (error) {}
+  }
+
+  // 检测确认入库
+  async measureConfirm(req, res, next) {
+    const { dataJson } = req.body;
+    let data = [];
+    try {
+      if (!dataJson) {
+        throw new Error("参数错误");
+      }
+      data = JSON.parse(dataJson);
+    } catch (err) {
+      console.log(err.message, err);
+      log.error(err.message, err);
+      res.send({
+        status: -1,
+        message: err.message,
+      });
+      return;
+    }
+
+    try {
+      data.forEach(async (item) => {
+        // 当带材检测后入库的时候，设置入库日期和检测日期，检测人员操作
+        item.inStoreDate = Date.now();
+        item.measureDate = Date.now();
+        item.isMeasureConfirmed = 1; // 1-检测确认入库，0-没有入库
+        await measureModel.update(
+          {
+            inStoreDate: item.inStoreDate,
+            measureDate: item.measureDate,
+            isMeasureConfirmed: 1,
+          },
+          { where: { measureId: item.measureId } }
+        );
+        // 将入库数据
+        let clone = cloneDeep(item);
+        delete clone.measureId;
+        delete clone.createdAt;
+        delete clone.updatedAt;
+        await storageModel.create(clone);
+      });
+      res.send({
+        status: 0,
+        message: "入库成功",
+      });
+    } catch (err) {
+      log.error(err.message, err);
+      res.send({
+        status: -1,
+        message: "入库失败",
+      });
+    }
+  }
+
+  // 更新操作，由检测人员和库房人员使用
+  async updateRoll(req, res, next) {
     let {
       measureId,
       roleId,
-      adminname,
-      castId,
       furnace,
       coilNumber,
       diameter,
       coilWeight,
-      coilNetWeight,
-      ribbonTypeName,
-      ribbonWidth,
       roller,
       rollMachine,
       isFlat,
-      castDate,
-      caster,
+      createdAt,
+    } = req.body;
+
+    try {
+      if (!measureId) {
+        throw new Error("参数错误");
+      }
+    } catch (err) {
+      console.log(err.message, err);
+      log.error(err.message, err);
+      res.send({
+        status: -1,
+        message: err.message,
+      });
+      return;
+    }
+
+    const createTime = new Date(createdAt);
+    const period = Date.now() - createTime;
+    // 过了24小时，重卷人员不能修改
+    if (roleId == 4) {
+      // roleId: 4 重卷人员
+      try {
+        // const createTime = new Date(createdAt);
+        // const period = Date.now() - createTime;
+        if (period > 24 * 60 * 60 * 1000) {
+          throw new Error("已过24小时，您无操作权限，请联系车间主任或厂长！");
+        }
+      } catch (err) {
+        console.log(err.message, err);
+        res.send({
+          status: -1,
+          message: err.message,
+        });
+        return;
+      }
+    }
+
+    // 过了72小时，重卷组长也不能修改
+    if (roleId == 15) {
+      // roleId: 15 重卷组长
+      try {
+        // const createTime = new Date(createdAt);
+        // const period = Date.now() - createTime;
+        if (period > 3 * 24 * 60 * 60 * 1000) {
+          throw new Error("已过72小时，您无操作权限，请联系车间主任或厂长！");
+        }
+      } catch (err) {
+        console.log(err.message, err);
+        res.send({
+          status: -1,
+          message: err.message,
+        });
+        return;
+      }
+    }
+
+    // 判断当前的盘重总数是否小于本炉的大盘毛重
+    try {
+      // 获取合计盘重的重量
+      const rawRetCoil = await sequelize.query(
+        `SELECT SUM(coilWeight) AS weight FROM measure WHERE  furnace = '${furnace}'`,
+        {
+          type: sequelize.QueryTypes.SELECT,
+        }
+      );
+      // [{ weight: 122.2323 }]
+      const coilTotalWeight = rawRetCoil[0].weight;
+
+      // 获取本炉的大盘毛重
+      const rawRetFurnace = await castModel.findOne({
+        where: { furnace },
+      });
+      const rawWeight = rawRetFurnace.rawWeight;
+
+      console.log(coilTotalWeight, rawWeight); // 224, 200
+
+      if (coilTotalWeight > rawWeight + 10) {
+        throw new Error("重卷总重不能大于当前炉次的大盘毛重");
+      }
+    } catch (err) {
+      console.log(err.message, err);
+      log.error(err.message, err);
+      res.send({
+        status: -1,
+        message: err.message,
+      });
+      return;
+    }
+
+    try {
+      const newData = {
+        furnace,
+        coilNumber,
+        diameter,
+        coilWeight,
+        roller,
+        rollMachine,
+        isFlat,
+      };
+      const [n] = await measureModel.update(newData, { where: { measureId } });
+      if (n !== 0) {
+        res.send({
+          status: 0,
+          message: "更新数据成功",
+        });
+      } else {
+        throw new Error("更新数据失败");
+      }
+    } catch (err) {
+      console.log(err.message, err);
+      log.error(err.message, err);
+      res.send({
+        status: -1,
+        message: err.message,
+      });
+    }
+  }
+
+  // 更新操作，由检测人员和库房人员使用
+  async updateMeasure(req, res, next) {
+    let {
+      measureId,
+      // roleId,
+      // castId,
+      // furnace,
+      // coilNumber,
+      // diameter,
+      // coilWeight,
+      coilNetWeight,
+      // ribbonTypeName,
+      // ribbonWidth,
+      // roller,
+      // rollMachine,
+      // isFlat,
+      // castDate,
+      // caster,
       laminationFactor,
       laminationLevel,
       realRibbonWidth,
@@ -531,7 +817,6 @@ class Measure {
       takeBy,
       shipRemark,
       place,
-      createdAt,
       totalStoredWeight = 0,
       inPlanStoredWeight = 0,
       outPlanStoredWeight = 0,
@@ -562,94 +847,23 @@ class Measure {
       return;
     }
 
-    // 过了24小时，重卷人员不能修改
-    if (roleId == 4) {
-      // roleId: 4 重卷人员
-      try {
-        const createTime = new Date(createdAt);
-        const period = Date.now() - createTime;
-        if (period > 24 * 60 * 60 * 1000) {
-          throw new Error("已过24小时，您无操作权限，请联系车间主任或厂长！");
-        }
-      } catch (err) {
-        console.log(err.message, err);
-        res.send({
-          status: -1,
-          message: err.message,
-        });
-        return;
-      }
-    }
-
-    // 过了72小时，重卷组长也不能修改
-    if (roleId == 15) {
-      // roleId: 15 重卷组长
-      try {
-        const createTime = new Date(createdAt);
-        const period = Date.now() - createTime;
-        if (period > 3 * 24 * 60 * 60 * 1000) {
-          throw new Error("已过72小时，您无操作权限，请联系车间主任或厂长！");
-        }
-      } catch (err) {
-        console.log(err.message, err);
-        res.send({
-          status: -1,
-          message: err.message,
-        });
-        return;
-      }
-    }
-
-    if (roleId == 4 || roleId == 15) {
-      // 判断当前的盘重总数是否小于本炉的大盘毛重
-      try {
-        // 获取合计盘重的重量
-        const rawRetCoil = await sequelize.query(
-          `SELECT SUM(coilWeight) AS weight FROM measure WHERE  furnace = '${furnace}'`,
-          {
-            type: sequelize.QueryTypes.SELECT,
-          }
-        );
-        // [{ weight: 122.2323 }]
-        const coilTotalWeight = rawRetCoil[0].weight;
-
-        // 获取本炉的大盘毛重
-        const rawRetFurnace = await castModel.findOne({
-          where: { furnace },
-        });
-        const rawWeight = rawRetFurnace.rawWeight;
-
-        console.log(coilTotalWeight, rawWeight); // 224, 200
-
-        if (coilTotalWeight > rawWeight + 10) {
-          throw new Error("重卷总重不能大于当前炉次的大盘毛重");
-        }
-      } catch (err) {
-        console.log(err.message, err);
-        log.error(err.message, err);
-        res.send({
-          status: -1,
-          message: err.message,
-        });
-        return;
-      }
-    }
-
     try {
       const newData = {
-        castId,
-        furnace,
-        coilNumber,
-        diameter,
-        coilWeight,
+        // measureId,
+        // roleId,
+        // castId,
+        // furnace,
+        // coilNumber,
+        // diameter,
+        // coilWeight,
         coilNetWeight,
-        ribbonTypeName,
-        ribbonWidth,
-        castDate,
-        caster,
-        roller,
-        rollMachine,
-        isFlat,
+        // ribbonTypeName,
+        // ribbonWidth,
+        // roller,
+        // rollMachine,
+        // isFlat,
+        // castDate,
+        // caster,
         laminationFactor,
         laminationLevel,
         realRibbonWidth,
