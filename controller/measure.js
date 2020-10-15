@@ -10,7 +10,6 @@ const nodeExcel = require("excel-export");
 const moment = require("moment");
 const { valueToString } = require("../util");
 const { cloneDeep } = require("lodash");
-const { delete } = require("../routes/measure");
 
 class Measure {
   constructor() {}
