@@ -9,6 +9,8 @@ const log = require("log4js").getLogger("measure");
 const nodeExcel = require("excel-export");
 const moment = require("moment");
 const { valueToString } = require("../util");
+const { cloneDeep } = require("lodash");
+const { delete } = require("../routes/measure");
 
 class Measure {
   constructor() {}
@@ -771,7 +773,7 @@ class Measure {
     }
   }
 
-  // 更新操作，由检测人员和库房人员使用
+  // 更新操作，由检测人员使用
   async updateMeasure(req, res, next) {
     let {
       measureId,
@@ -924,6 +926,54 @@ class Measure {
         message: err.message,
       });
     }
+  }
+
+  // 批量更新操作，由检测人员使用
+  async updateMeasureByBatch(req, res, next) {
+    const { list } = req.body;
+    Array.isArray(list).forEach(async (item) => {
+      let clone = cloneDeep(item);
+      const { measureId } = clone;
+
+      try {
+        if (!measureId) {
+          throw new Error("参数错误");
+        }
+      } catch (err) {
+        console.log(err.message, err);
+        log.error(err.message, err);
+        res.send({
+          status: -1,
+          message: err.message,
+        });
+        return;
+      }
+
+      try {
+        delete clone.measureId;
+        const newData = {
+          ...clone,
+        };
+        const [n] = await measureModel.update(newData, {
+          where: { measureId },
+        });
+        if (n !== 0) {
+          res.send({
+            status: 0,
+            message: "更新数据成功",
+          });
+        } else {
+          throw new Error("更新数据失败");
+        }
+      } catch (err) {
+        console.log(err.message, err);
+        log.error(err.message, err);
+        res.send({
+          status: -1,
+          message: err.message,
+        });
+      }
+    });
   }
 
   async delData(req, res, next) {

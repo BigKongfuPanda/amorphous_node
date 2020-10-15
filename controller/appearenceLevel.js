@@ -1,47 +1,45 @@
-'use strict';
+"use strict";
 
-const appearenceLevelModel = require('../models/appearenceLevel');
-const log = require('log4js').getLogger("appearenceLevel");
+const appearenceLevelModel = require("../models/appearenceLevel");
+const log = require("log4js").getLogger("appearenceLevel");
 
 class AppearenceLevel {
-  constructor() {
-
-  }
+  constructor() {}
 
   async queryData(req, res, next) {
     try {
       const list = await appearenceLevelModel.findAll();
-      
+
       res.send({
         status: 0,
-        message: '操作成功',
+        message: "操作成功",
         data: {
-          list
-        }
+          list,
+        },
       });
     } catch (err) {
-      console.log('查询带材外观级别列表失败', err);
-      log.error('查询带材外观级别列表失败', err);
+      console.log("查询带材外观级别列表失败", err);
+      log.error("查询带材外观级别列表失败", err);
       res.send({
         status: -1,
-        message: '查询带材外观级别列表失败'
+        message: "查询带材外观级别列表失败",
       });
     }
   }
 
   async createData(req, res, next) {
-    const { appearenceLevel, appearence } = req.body;
-    try{
-      if (!appearence || !appearenceLevel) {
-        throw new Error('参数错误')
+    const { appearenceLevel, appearence, appearenceLevelCode } = req.body;
+    try {
+      if (!appearence || !appearenceLevel || !appearenceLevelCode) {
+        throw new Error("参数错误");
       }
-    }catch(err){
+    } catch (err) {
       console.log(err.message, err);
       log.error(err.message, err);
       res.send({
         status: -1,
-        message: err.message
-      })
+        message: err.message,
+      });
       return;
     }
 
@@ -49,81 +47,93 @@ class AppearenceLevel {
       // const data = await appearenceLevelModel.findOne({$or: [{ appearenceLevel }, { laminationFactorRange }]});
       const data = await appearenceLevelModel.findOne({
         where: {
-          appearence
-        }
+          $or: [{ appearence }, { appearenceLevelCode }],
+        },
       });
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (data) {
-        throw new Error('带材外观值重复');
+        throw new Error("带材外观或PLC映射值重复");
       }
     } catch (err) {
       console.log(err.message, err);
       log.error(err.message, err);
       res.send({
         status: -1,
-        message: err.message
-      })
+        message: err.message,
+      });
       return;
     }
 
     try {
       const newData = {
-        appearenceLevel, appearence
+        appearenceLevel,
+        appearence,
+        appearenceLevelCode,
       };
       await appearenceLevelModel.create(newData);
       res.send({
         status: 0,
-        message: '新增带材外观级别成功'
+        message: "新增带材外观级别成功",
       });
     } catch (err) {
-      console.log('新增带材外观级别失败', err);
-      log.error('新增带材外观级别失败', err);
+      console.log("新增带材外观级别失败", err);
+      log.error("新增带材外观级别失败", err);
       res.send({
         status: -1,
-        message: `新增带材外观级别失败, ${err.message}`
+        message: `新增带材外观级别失败, ${err.message}`,
       });
     }
   }
-  
+
   async updateData(req, res, next) {
-    const { appearenceLevelId, appearenceLevel, appearence } = req.body;
-    try{
-      if (!appearenceLevelId || !appearenceLevel || !appearence) {
-        throw new Error('参数错误')
+    const {
+      appearenceLevelId,
+      appearenceLevel,
+      appearence,
+      appearenceLevelCode,
+    } = req.body;
+    try {
+      if (
+        !appearenceLevelId ||
+        !appearenceLevel ||
+        !appearence ||
+        !appearenceLevelCode
+      ) {
+        throw new Error("参数错误");
       }
-    }catch(err){
+    } catch (err) {
       console.log(err.message, err);
       log.error(err.message, err);
       res.send({
         status: -1,
-        message: err.message
-      })
+        message: err.message,
+      });
       return;
     }
     try {
       const newData = {
-        appearenceLevel, appearence
+        appearenceLevel,
+        appearence,
+        appearenceLevelCode,
       };
       // const { n } = await appearenceLevelModel.updateOne({ _id: appearenceLevelId }, { $set: newData });
-      const [ n ] = await appearenceLevelModel.update(
-        newData,
-      {
-        where: { appearenceLevelId } 
+      const [n] = await appearenceLevelModel.update(newData, {
+        where: { appearenceLevelId },
       });
       if (n !== 0) {
         res.send({
           status: 0,
-          message: '更新带材外观级别成功'
+          message: "更新带材外观级别成功",
         });
       } else {
-        throw new Error('更新带材外观级别失败')
+        throw new Error("更新带材外观级别失败");
       }
     } catch (err) {
       console.log(err.message, err);
       log.error(err.message, err);
       res.send({
         status: -1,
-        message: err.message
+        message: err.message,
       });
     }
   }
@@ -131,37 +141,37 @@ class AppearenceLevel {
   // 删除
   async delData(req, res, next) {
     const { appearenceLevelId } = req.body;
-    try{
+    try {
       if (!appearenceLevelId) {
-        throw new Error('参数错误')
+        throw new Error("参数错误");
       }
-    }catch(err){
+    } catch (err) {
       console.log(err.message, err);
       log.error(err.message, err);
       res.send({
         status: -1,
-        message: err.message
-      })
+        message: err.message,
+      });
       return;
     }
     try {
       // const { n } = await appearenceLevelModel.deleteOne({ _id: appearenceLevelId } );
       const n = await appearenceLevelModel.destroy({
-         where: { appearenceLevelId } 
-        });
+        where: { appearenceLevelId },
+      });
       if (n !== 0) {
         res.send({
           status: 0,
-          message: '删除带材外观级别成功'
+          message: "删除带材外观级别成功",
         });
       } else {
-        throw new Error('删除带材外观级别失败');
+        throw new Error("删除带材外观级别失败");
       }
     } catch (err) {
       log.error(err.message, err);
       res.send({
         status: -1,
-        message: err.message
+        message: err.message,
       });
     }
   }
