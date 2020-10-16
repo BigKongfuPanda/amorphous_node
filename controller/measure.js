@@ -641,7 +641,7 @@ class Measure {
     }
   }
 
-  // 更新操作，由检测人员和库房人员使用
+  // 更新操作，由重卷人员使用
   async updateRoll(req, res, next) {
     let {
       measureId,
