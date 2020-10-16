@@ -930,49 +930,50 @@ class Measure {
   // 批量更新操作，由检测人员使用
   async updateMeasureByBatch(req, res, next) {
     const { list } = req.body;
-    Array.isArray(list).forEach(async (item) => {
-      let clone = cloneDeep(item);
-      const { measureId } = clone;
+    Array.isArray(list) &&
+      list.forEach(async (item) => {
+        let clone = cloneDeep(item);
+        const { measureId } = clone;
 
-      try {
-        if (!measureId) {
-          throw new Error("参数错误");
-        }
-      } catch (err) {
-        console.log(err.message, err);
-        log.error(err.message, err);
-        res.send({
-          status: -1,
-          message: err.message,
-        });
-        return;
-      }
-
-      try {
-        delete clone.measureId;
-        const newData = {
-          ...clone,
-        };
-        const [n] = await measureModel.update(newData, {
-          where: { measureId },
-        });
-        if (n !== 0) {
+        try {
+          if (!measureId) {
+            throw new Error("参数错误");
+          }
+        } catch (err) {
+          console.log(err.message, err);
+          log.error(err.message, err);
           res.send({
-            status: 0,
-            message: "更新数据成功",
+            status: -1,
+            message: err.message,
           });
-        } else {
-          throw new Error("更新数据失败");
+          return;
         }
-      } catch (err) {
-        console.log(err.message, err);
-        log.error(err.message, err);
-        res.send({
-          status: -1,
-          message: err.message,
-        });
-      }
-    });
+
+        try {
+          delete clone.measureId;
+          const newData = {
+            ...clone,
+          };
+          const [n] = await measureModel.update(newData, {
+            where: { measureId },
+          });
+          if (n !== 0) {
+            res.send({
+              status: 0,
+              message: "更新数据成功",
+            });
+          } else {
+            throw new Error("更新数据失败");
+          }
+        } catch (err) {
+          console.log(err.message, err);
+          log.error(err.message, err);
+          res.send({
+            status: -1,
+            message: err.message,
+          });
+        }
+      });
   }
 
   async delData(req, res, next) {
