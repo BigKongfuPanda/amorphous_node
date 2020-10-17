@@ -68,13 +68,13 @@ const Measure = sequelize.define("measure", {
   ribbonThicknessLevel: Sequelize.FLOAT, // 带材厚度级别
   ribbonToughness: Sequelize.STRING, //带材韧性
   ribbonToughnessLevel: Sequelize.STRING, //带材韧性等级
-  ribbonToughnessLevelCode: Sequelize.INTEGER, //带材韧性等级符号，PLC的传值
-  appearence: Sequelize.STRING, //带材外观
-  appearenceCode1: Sequelize.INTEGER, //带材外观符号，PLC传值
-  appearenceCode2: Sequelize.INTEGER, //带材外观符号，PLC传值
-  appearenceCode3: Sequelize.INTEGER, //带材外观符号，PLC传值
+  // ribbonToughnessLevelCode: Sequelize.INTEGER, //带材韧性等级符号，PLC的传值
+  appearence: Sequelize.STRING, //带材外观描述
+  // appearenceCode1: Sequelize.INTEGER, //带材外观符号，PLC传值
+  // appearenceCode2: Sequelize.INTEGER, //带材外观符号，PLC传值
+  // appearenceCode3: Sequelize.INTEGER, //带材外观符号，PLC传值
   appearenceLevel: Sequelize.STRING, //带材外观等级
-  appearenceLevelCode: Sequelize.INTEGER, //带材外观等级符号，PLC传值
+  // appearenceLevelCode: Sequelize.INTEGER, //带材外观等级符号，PLC传值
   ribbonTotalLevel: Sequelize.STRING, //带材综合级别
   isMeasureConfirmed: { type: Sequelize.INTEGER, defaultValue: 0 }, // 检测是否确认可入库：1-是，0-否
   // storageRule: Object, //入库规则

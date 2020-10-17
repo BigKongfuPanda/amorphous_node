@@ -1,394 +1,1431 @@
-[2020-10-09T22:21:22.899] [ERROR] measure - 查询检测记录失败 TypeError: Cannot read property 'furnace' of undefined
-    at queryData (E:\amorphous_node\controller\measure.js:283:50)
-[2020-10-09T22:22:41.427] [ERROR] measure - 查询检测记录失败 TypeError: Cannot read property 'furnace' of undefined
-    at queryData (E:\amorphous_node\controller\measure.js:283:50)
-    at process._tickCallback (internal/process/next_tick.js:68:7)
-[2020-10-09T22:31:24.074] [ERROR] measure - 查询检测记录失败 TypeError: Cannot read property 'furnace' of undefined
-    at queryData (E:\amorphous_node\controller\measure.js:283:50)
-[2020-10-09T22:35:51.762] [ERROR] measure - 查询检测记录失败 TypeError: Cannot read property 'furnace' of undefined
-    at queryData (E:\amorphous_node\controller\measure.js:283:50)
-[2020-10-11T20:17:38.331] [ERROR] roller - 参数错误 Error: 参数错误
-    at createData (E:\amorphous_node\controller\linerWeight.js:34:15)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
-    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
-    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at E:\amorphous_node\node_modules\express-session\index.js:489:7
-    at tryCatcher (E:\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
-    at Promise.successAdapter [as _fulfillmentHandler0] (E:\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
-    at Promise._settlePromise (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
-    at Promise._settlePromise0 (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
-    at Promise._settlePromises (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
-    at Async._drainQueue (E:\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
-[2020-10-11T20:17:49.631] [ERROR] roller - 参数错误 Error: 参数错误
-    at createData (E:\amorphous_node\controller\linerWeight.js:34:15)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
-    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
-    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at E:\amorphous_node\node_modules\express-session\index.js:489:7
-    at tryCatcher (E:\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
-    at Promise.successAdapter [as _fulfillmentHandler0] (E:\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
-    at Promise._settlePromise (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
-    at Promise._settlePromise0 (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
-    at Promise._settlePromises (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
-    at Async._drainQueue (E:\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
-[2020-10-11T20:18:52.784] [ERROR] roller - 参数错误 Error: 参数错误
-    at createData (E:\amorphous_node\controller\linerWeight.js:36:15)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
-    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
-    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at E:\amorphous_node\node_modules\express-session\index.js:489:7
-    at tryCatcher (E:\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
-    at Promise.successAdapter [as _fulfillmentHandler0] (E:\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
-    at Promise._settlePromise (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
-    at Promise._settlePromise0 (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
-    at Promise._settlePromises (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
-    at Async._drainQueue (E:\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
-[2020-10-11T22:36:41.324] [ERROR] measure - 炉号 06-20190717-01/01 重卷总重不能大于当前炉次的大盘毛重 Error: 炉号 06-20190717-01/01 重卷总重不能大于当前炉次的大盘毛重
-    at list.forEach (E:\amorphous_node\controller\measure.js:548:19)
-[2020-10-11T22:36:51.779] [ERROR] measure - 炉号 06-20190717-01/01 重卷总重不能大于当前炉次的大盘毛重 Error: 炉号 06-20190717-01/01 重卷总重不能大于当前炉次的大盘毛重
-    at list.forEach (E:\amorphous_node\controller\measure.js:548:19)
-[2020-10-11T23:05:19.260] [ERROR] measure - 炉号 06-20190717-01/01 重卷总重不能大于当前炉次的大盘毛重 Error: 炉号 06-20190717-01/01 重卷总重不能大于当前炉次的大盘毛重
-    at list.forEach (E:\amorphous_node\controller\measure.js:548:19)
-[2020-10-15T00:37:23.170] [ERROR] ribbonToughnessLevel - 查询带材韧性失败 { SequelizeDatabaseError: Unknown column 'ribbonToughnessLevelCode' in 'field list'
-    at Query.formatError (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
-    at Query.handler [as onResult] (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
-    at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
-    at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
-    at PacketParser.Connection.packetParser.p [as onPacket] (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
-    at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
-    at Socket.Connection.stream.on.data (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
-    at Socket.emit (events.js:189:13)
-    at addChunk (_stream_readable.js:284:12)
-    at readableAddChunk (_stream_readable.js:265:11)
-    at Socket.Readable.push (_stream_readable.js:220:10)
-    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+[2020-10-17T14:08:48.121] [ERROR] user - 用户不存在 Error: 用户不存在
+    at login (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/user.js:242:15)
+[2020-10-17T14:08:58.306] [ERROR] user - 密码错误 Error: 密码错误
+    at login (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/user.js:244:15)
+[2020-10-17T14:24:03.786] [ERROR] statistics - 查询直通率统计失败 DatabaseError [SequelizeDatabaseError]: Unknown column 'caster' in 'field list'
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:244:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:51:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+    at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+    at Socket.emit (events.js:315:20)
+    at addChunk (_stream_readable.js:295:12)
+    at readableAddChunk (_stream_readable.js:271:9)
+    at Socket.Readable.push (_stream_readable.js:212:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:186:23)
 From previous event:
-    at Query.run (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
-    at runHooks.then (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:29
 From previous event:
-    at Promise.try.then.connection (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:12
+    at processImmediate (internal/timers.js:456:21)
 From previous event:
-    at Promise.resolve.retry (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
-    at E:\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:651:10
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
     at new Promise (<anonymous>)
-    at retryAsPromised (E:\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
-    at Promise.try (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:641:30
 From previous event:
-    at Sequelize.query (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
-    at QueryInterface.select (E:\amorphous_node\node_modules\sequelize\lib\query-interface.js:1120:27)
-    at Promise.try.then.then.then (E:\amorphous_node\node_modules\sequelize\lib\model.js:1749:34)
-    at runCallback (timers.js:705:18)
-    at tryOnImmediate (timers.js:676:5)
-    at processImmediate (timers.js:658:5)
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:590:23)
+    at queryDataOfRatio (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:263:32)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:502:7 {
+  parent: Error: Unknown column 'caster' in 'field list'
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:315:20)
+      at addChunk (_stream_readable.js:295:12)
+      at readableAddChunk (_stream_readable.js:271:9)
+      at Socket.Readable.push (_stream_readable.js:212:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:186:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'caster' in 'field list'",
+    sql: 'SELECT\n' +
+      '          j.caster,\n' +
+      '          m.totalHeatNum,\n' +
+      '          j.nozzleNum,\n' +
+      '          j.lowHeatNum,\n' +
+      '          j.zeroHeatNum,\n' +
+      '          j.alloyTotalWeight,\n' +
+      '          j.rawWeight,\n' +
+      '          m.coilNetWeight,\n' +
+      '          m.inPlanStoredWeight,\n' +
+      '          m.outPlanStoredWeight,\n' +
+      '          m.totalStoredWeight,\n' +
+      '          (m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          j.uselessRibbonWeight,\n' +
+      '          j.meltOutWeight,\n' +
+      '          (j.rawWeight+j.uselessRibbonWeight)/j.alloyTotalWeight AS effectiveMeltRatio,\n' +
+      '          j.rawWeight/(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n' +
+      '          m.totalStoredWeight/j.rawWeight AS qualifiedRatio,\n' +
+      '          m.qualityOfA,\n' +
+      '          m.qualityOfB,\n' +
+      '          m.qualityOfC,\n' +
+      '          m.qualityOfD,\n' +
+      '          m.qualityOfE,\n' +
+      '          m.qualityOfGood,\n' +
+      '          m.qualityOfFine,\n' +
+      '          m.qualityOfNormal\n' +
+      '        FROM\n' +
+      '          (\n' +
+      '            SELECT\n' +
+      '            caster,\n' +
+      '            COUNT(DISTINCT furnace) AS totalHeatNum,\n' +
+      '            SUM(coilNetWeight) AS coilNetWeight,\n' +
+      '            SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
+      '            SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
+      '            SUM(totalStoredWeight) AS totalStoredWeight,\n' +
+      '            SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n' +
+      '            SUM(qualityOfA) AS qualityOfA,\n' +
+      '            SUM(qualityOfB) AS qualityOfB,\n' +
+      '            SUM(qualityOfC) AS qualityOfC,\n' +
+      '            SUM(qualityOfD) AS qualityOfD,\n' +
+      '            SUM(qualityOfE) AS qualityOfE,\n' +
+      '            SUM(qualityOfGood) AS qualityOfGood,\n' +
+      '            SUM(qualityOfFine) AS qualityOfFine,\n' +
+      '            SUM(qualityOfNormal) AS qualityOfNormal\n' +
+      '            FROM measure\n' +
+      '            GROUP BY caster\n' +
+      '          ) AS m\n' +
+      '          LEFT JOIN\n' +
+      '          (\n' +
+      '            SELECT\n' +
+      '            c.caster,\n' +
+      '            SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n' +
+      '            SUM(c.nozzleNum) AS nozzleNum,\n' +
+      '            SUM(c.rawWeight) AS rawWeight,\n' +
+      '            SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n' +
+      '            SUM(c.meltOutWeight) AS meltOutWeight,\n' +
+      '            SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n' +
+      '            SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n' +
+      '            (\n' +
+      '                SELECT COUNT(*)\n' +
+      '                FROM cast\n' +
+      '                WHERE (rawWeight <= 50 AND castId = 7) OR (rawWeight <= 80 AND castId IN (6,8,9))\n' +
+      '            ) AS lowHeatNum,\n' +
+      '            (\n' +
+      '                SELECT COUNT(*)\n' +
+      '                FROM cast\n' +
+      '                WHERE rawWeight = 0\n' +
+      '            ) AS zeroHeatNum\n' +
+      '            FROM cast AS c\n' +
+      '            JOIN melt AS t\n' +
+      '            ON c.furnace = t.furnace\n' +
+      '            GROUP BY c.caster\n' +
+      '          ) AS j\n' +
+      '          ON m.caster = j.caster;',
+    parameters: undefined
+  },
+  original: Error: Unknown column 'caster' in 'field list'
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:315:20)
+      at addChunk (_stream_readable.js:295:12)
+      at readableAddChunk (_stream_readable.js:271:9)
+      at Socket.Readable.push (_stream_readable.js:212:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:186:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'caster' in 'field list'",
+    sql: 'SELECT\n' +
+      '          j.caster,\n' +
+      '          m.totalHeatNum,\n' +
+      '          j.nozzleNum,\n' +
+      '          j.lowHeatNum,\n' +
+      '          j.zeroHeatNum,\n' +
+      '          j.alloyTotalWeight,\n' +
+      '          j.rawWeight,\n' +
+      '          m.coilNetWeight,\n' +
+      '          m.inPlanStoredWeight,\n' +
+      '          m.outPlanStoredWeight,\n' +
+      '          m.totalStoredWeight,\n' +
+      '          (m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          j.uselessRibbonWeight,\n' +
+      '          j.meltOutWeight,\n' +
+      '          (j.rawWeight+j.uselessRibbonWeight)/j.alloyTotalWeight AS effectiveMeltRatio,\n' +
+      '          j.rawWeight/(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n' +
+      '          m.totalStoredWeight/j.rawWeight AS qualifiedRatio,\n' +
+      '          m.qualityOfA,\n' +
+      '          m.qualityOfB,\n' +
+      '          m.qualityOfC,\n' +
+      '          m.qualityOfD,\n' +
+      '          m.qualityOfE,\n' +
+      '          m.qualityOfGood,\n' +
+      '          m.qualityOfFine,\n' +
+      '          m.qualityOfNormal\n' +
+      '        FROM\n' +
+      '          (\n' +
+      '            SELECT\n' +
+      '            caster,\n' +
+      '            COUNT(DISTINCT furnace) AS totalHeatNum,\n' +
+      '            SUM(coilNetWeight) AS coilNetWeight,\n' +
+      '            SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
+      '            SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
+      '            SUM(totalStoredWeight) AS totalStoredWeight,\n' +
+      '            SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n' +
+      '            SUM(qualityOfA) AS qualityOfA,\n' +
+      '            SUM(qualityOfB) AS qualityOfB,\n' +
+      '            SUM(qualityOfC) AS qualityOfC,\n' +
+      '            SUM(qualityOfD) AS qualityOfD,\n' +
+      '            SUM(qualityOfE) AS qualityOfE,\n' +
+      '            SUM(qualityOfGood) AS qualityOfGood,\n' +
+      '            SUM(qualityOfFine) AS qualityOfFine,\n' +
+      '            SUM(qualityOfNormal) AS qualityOfNormal\n' +
+      '            FROM measure\n' +
+      '            GROUP BY caster\n' +
+      '          ) AS m\n' +
+      '          LEFT JOIN\n' +
+      '          (\n' +
+      '            SELECT\n' +
+      '            c.caster,\n' +
+      '            SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n' +
+      '            SUM(c.nozzleNum) AS nozzleNum,\n' +
+      '            SUM(c.rawWeight) AS rawWeight,\n' +
+      '            SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n' +
+      '            SUM(c.meltOutWeight) AS meltOutWeight,\n' +
+      '            SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n' +
+      '            SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n' +
+      '            (\n' +
+      '                SELECT COUNT(*)\n' +
+      '                FROM cast\n' +
+      '                WHERE (rawWeight <= 50 AND castId = 7) OR (rawWeight <= 80 AND castId IN (6,8,9))\n' +
+      '            ) AS lowHeatNum,\n' +
+      '            (\n' +
+      '                SELECT COUNT(*)\n' +
+      '                FROM cast\n' +
+      '                WHERE rawWeight = 0\n' +
+      '            ) AS zeroHeatNum\n' +
+      '            FROM cast AS c\n' +
+      '            JOIN melt AS t\n' +
+      '            ON c.furnace = t.furnace\n' +
+      '            GROUP BY c.caster\n' +
+      '          ) AS j\n' +
+      '          ON m.caster = j.caster;',
+    parameters: undefined
+  },
+  sql: 'SELECT\n' +
+    '          j.caster,\n' +
+    '          m.totalHeatNum,\n' +
+    '          j.nozzleNum,\n' +
+    '          j.lowHeatNum,\n' +
+    '          j.zeroHeatNum,\n' +
+    '          j.alloyTotalWeight,\n' +
+    '          j.rawWeight,\n' +
+    '          m.coilNetWeight,\n' +
+    '          m.inPlanStoredWeight,\n' +
+    '          m.outPlanStoredWeight,\n' +
+    '          m.totalStoredWeight,\n' +
+    '          (m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n' +
+    '          j.uselessRibbonWeight,\n' +
+    '          j.meltOutWeight,\n' +
+    '          (j.rawWeight+j.uselessRibbonWeight)/j.alloyTotalWeight AS effectiveMeltRatio,\n' +
+    '          j.rawWeight/(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n' +
+    '          m.totalStoredWeight/j.rawWeight AS qualifiedRatio,\n' +
+    '          m.qualityOfA,\n' +
+    '          m.qualityOfB,\n' +
+    '          m.qualityOfC,\n' +
+    '          m.qualityOfD,\n' +
+    '          m.qualityOfE,\n' +
+    '          m.qualityOfGood,\n' +
+    '          m.qualityOfFine,\n' +
+    '          m.qualityOfNormal\n' +
+    '        FROM\n' +
+    '          (\n' +
+    '            SELECT\n' +
+    '            caster,\n' +
+    '            COUNT(DISTINCT furnace) AS totalHeatNum,\n' +
+    '            SUM(coilNetWeight) AS coilNetWeight,\n' +
+    '            SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
+    '            SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
+    '            SUM(totalStoredWeight) AS totalStoredWeight,\n' +
+    '            SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n' +
+    '            SUM(qualityOfA) AS qualityOfA,\n' +
+    '            SUM(qualityOfB) AS qualityOfB,\n' +
+    '            SUM(qualityOfC) AS qualityOfC,\n' +
+    '            SUM(qualityOfD) AS qualityOfD,\n' +
+    '            SUM(qualityOfE) AS qualityOfE,\n' +
+    '            SUM(qualityOfGood) AS qualityOfGood,\n' +
+    '            SUM(qualityOfFine) AS qualityOfFine,\n' +
+    '            SUM(qualityOfNormal) AS qualityOfNormal\n' +
+    '            FROM measure\n' +
+    '            GROUP BY caster\n' +
+    '          ) AS m\n' +
+    '          LEFT JOIN\n' +
+    '          (\n' +
+    '            SELECT\n' +
+    '            c.caster,\n' +
+    '            SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n' +
+    '            SUM(c.nozzleNum) AS nozzleNum,\n' +
+    '            SUM(c.rawWeight) AS rawWeight,\n' +
+    '            SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n' +
+    '            SUM(c.meltOutWeight) AS meltOutWeight,\n' +
+    '            SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n' +
+    '            SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n' +
+    '            (\n' +
+    '                SELECT COUNT(*)\n' +
+    '                FROM cast\n' +
+    '                WHERE (rawWeight <= 50 AND castId = 7) OR (rawWeight <= 80 AND castId IN (6,8,9))\n' +
+    '            ) AS lowHeatNum,\n' +
+    '            (\n' +
+    '                SELECT COUNT(*)\n' +
+    '                FROM cast\n' +
+    '                WHERE rawWeight = 0\n' +
+    '            ) AS zeroHeatNum\n' +
+    '            FROM cast AS c\n' +
+    '            JOIN melt AS t\n' +
+    '            ON c.furnace = t.furnace\n' +
+    '            GROUP BY c.caster\n' +
+    '          ) AS j\n' +
+    '          ON m.caster = j.caster;',
+  parameters: undefined
+}
+[2020-10-17T14:24:05.445] [ERROR] statistics - 查询带材质量统计失败 DatabaseError [SequelizeDatabaseError]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '='' AND caster=''WHERE furnace='' AND caster=''  GROUP BY furnace) AS m LEFT JOI' at line 17
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:244:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:51:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+    at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+    at Socket.emit (events.js:315:20)
+    at addChunk (_stream_readable.js:295:12)
+    at readableAddChunk (_stream_readable.js:271:9)
+    at Socket.Readable.push (_stream_readable.js:212:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:186:23)
 From previous event:
-    at Function.findAll (E:\amorphous_node\node_modules\sequelize\lib\model.js:1746:8)
-    at queryData (E:\amorphous_node\controller\ribbonToughnessLevel.js:12:52)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
-    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
-    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at E:\amorphous_node\node_modules\express-session\index.js:489:7
-  name: 'SequelizeDatabaseError',
-  parent:
-   { Error: Unknown column 'ribbonToughnessLevelCode' in 'field list'
-       at Packet.asError (E:\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
-       at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
-       at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
-       at PacketParser.Connection.packetParser.p [as onPacket] (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
-       at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
-       at Socket.Connection.stream.on.data (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
-       at Socket.emit (events.js:189:13)
-       at addChunk (_stream_readable.js:284:12)
-       at readableAddChunk (_stream_readable.js:265:11)
-       at Socket.Readable.push (_stream_readable.js:220:10)
-       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
-     code: 'ER_BAD_FIELD_ERROR',
-     errno: 1054,
-     sqlState: '42S22',
-     sqlMessage:
-      'Unknown column \'ribbonToughnessLevelCode\' in \'field list\'',
-     sql:
-      'SELECT `ribbonToughnessLevelId`, `ribbonToughnessLevel`, `ribbonToughness`, `ribbonToughnessLevelCode`, `createdAt`, `updatedAt` FROM `ribbonToughnessLevel` AS `ribbonToughnessLevel` ORDER BY `ribbonToughnessLevel`.`ribbonToughnessLevel` ASC;' },
-  original:
-   { Error: Unknown column 'ribbonToughnessLevelCode' in 'field list'
-       at Packet.asError (E:\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
-       at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
-       at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
-       at PacketParser.Connection.packetParser.p [as onPacket] (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
-       at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
-       at Socket.Connection.stream.on.data (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
-       at Socket.emit (events.js:189:13)
-       at addChunk (_stream_readable.js:284:12)
-       at readableAddChunk (_stream_readable.js:265:11)
-       at Socket.Readable.push (_stream_readable.js:220:10)
-       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
-     code: 'ER_BAD_FIELD_ERROR',
-     errno: 1054,
-     sqlState: '42S22',
-     sqlMessage:
-      'Unknown column \'ribbonToughnessLevelCode\' in \'field list\'',
-     sql:
-      'SELECT `ribbonToughnessLevelId`, `ribbonToughnessLevel`, `ribbonToughness`, `ribbonToughnessLevelCode`, `createdAt`, `updatedAt` FROM `ribbonToughnessLevel` AS `ribbonToughnessLevel` ORDER BY `ribbonToughnessLevel`.`ribbonToughnessLevel` ASC;' },
-  sql:
-   'SELECT `ribbonToughnessLevelId`, `ribbonToughnessLevel`, `ribbonToughness`, `ribbonToughnessLevelCode`, `createdAt`, `updatedAt` FROM `ribbonToughnessLevel` AS `ribbonToughnessLevel` ORDER BY `ribbonToughnessLevel`.`ribbonToughnessLevel` ASC;' }
-[2020-10-15T00:42:08.013] [ERROR] ribbonToughnessLevel - 查询带材韧性失败 { SequelizeDatabaseError: Unknown column 'ribbonToughnessLevelCode' in 'field list'
-    at Query.formatError (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
-    at Query.handler [as onResult] (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
-    at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
-    at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
-    at PacketParser.Connection.packetParser.p [as onPacket] (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
-    at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
-    at Socket.Connection.stream.on.data (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
-    at Socket.emit (events.js:189:13)
-    at addChunk (_stream_readable.js:284:12)
-    at readableAddChunk (_stream_readable.js:265:11)
-    at Socket.Readable.push (_stream_readable.js:220:10)
-    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:29
 From previous event:
-    at Query.run (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
-    at runHooks.then (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:12
+    at processImmediate (internal/timers.js:456:21)
 From previous event:
-    at Promise.try.then.connection (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
-From previous event:
-    at Promise.resolve.retry (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
-    at E:\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:651:10
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
     at new Promise (<anonymous>)
-    at retryAsPromised (E:\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
-    at Promise.try (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:641:30
 From previous event:
-    at Sequelize.query (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
-    at QueryInterface.select (E:\amorphous_node\node_modules\sequelize\lib\query-interface.js:1120:27)
-    at Promise.try.then.then.then (E:\amorphous_node\node_modules\sequelize\lib\model.js:1749:34)
-    at runCallback (timers.js:705:18)
-    at tryOnImmediate (timers.js:676:5)
-    at processImmediate (timers.js:658:5)
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:590:23)
+    at queryDataOfQuality (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:136:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:502:7 {
+  parent: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '='' AND caster=''WHERE furnace='' AND caster=''  GROUP BY furnace) AS m LEFT JOI' at line 17
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:315:20)
+      at addChunk (_stream_readable.js:295:12)
+      at readableAddChunk (_stream_readable.js:271:9)
+      at Socket.Readable.push (_stream_readable.js:212:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:186:23) {
+    code: 'ER_PARSE_ERROR',
+    errno: 1064,
+    sqlState: '42000',
+    sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '='' AND caster=''WHERE furnace='' AND caster=''  GROUP BY furnace) AS m LEFT JOI' at line 17",
+    sql: 'select j.*, m.* from\n' +
+      '      (SELECT\n' +
+      '          furnace,\n' +
+      '          SUM(coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(qualityOfA) AS qualityOfA,\n' +
+      '          SUM(qualityOfB) AS qualityOfB,\n' +
+      '          SUM(qualityOfC) AS qualityOfC,\n' +
+      '          SUM(qualityOfD) AS qualityOfD,\n' +
+      '          SUM(qualityOfE) AS qualityOfE,\n' +
+      '          SUM(thinRibbonWeight) AS thinRibbonWeight,\n' +
+      '          SUM(highFactorThinRibbonWeight) AS highFactorThinRibbonWeight,\n' +
+      '          SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
+      '          SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
+      '          SUM(inPlanThickRibbonWeight) AS inPlanThickRibbonWeight,\n' +
+      '          SUM(qualityOfGood) AS qualityOfGood,\n' +
+      '          SUM(qualityOfFine) AS qualityOfFine,\n' +
+      '          SUM(qualityOfNormal) AS qualityOfNormal\n' +
+      "      FROM measure furnace='' AND caster=''WHERE furnace='' AND caster=''  GROUP BY furnace) AS m LEFT JOIN (\n" +
+      '          SELECT c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '      FROM cast c JOIN melt t\n' +
+      '          ON c.furnace = t.furnace\n' +
+      '      ) j ON m.furnace = j.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  original: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '='' AND caster=''WHERE furnace='' AND caster=''  GROUP BY furnace) AS m LEFT JOI' at line 17
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:315:20)
+      at addChunk (_stream_readable.js:295:12)
+      at readableAddChunk (_stream_readable.js:271:9)
+      at Socket.Readable.push (_stream_readable.js:212:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:186:23) {
+    code: 'ER_PARSE_ERROR',
+    errno: 1064,
+    sqlState: '42000',
+    sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '='' AND caster=''WHERE furnace='' AND caster=''  GROUP BY furnace) AS m LEFT JOI' at line 17",
+    sql: 'select j.*, m.* from\n' +
+      '      (SELECT\n' +
+      '          furnace,\n' +
+      '          SUM(coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(qualityOfA) AS qualityOfA,\n' +
+      '          SUM(qualityOfB) AS qualityOfB,\n' +
+      '          SUM(qualityOfC) AS qualityOfC,\n' +
+      '          SUM(qualityOfD) AS qualityOfD,\n' +
+      '          SUM(qualityOfE) AS qualityOfE,\n' +
+      '          SUM(thinRibbonWeight) AS thinRibbonWeight,\n' +
+      '          SUM(highFactorThinRibbonWeight) AS highFactorThinRibbonWeight,\n' +
+      '          SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
+      '          SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
+      '          SUM(inPlanThickRibbonWeight) AS inPlanThickRibbonWeight,\n' +
+      '          SUM(qualityOfGood) AS qualityOfGood,\n' +
+      '          SUM(qualityOfFine) AS qualityOfFine,\n' +
+      '          SUM(qualityOfNormal) AS qualityOfNormal\n' +
+      "      FROM measure furnace='' AND caster=''WHERE furnace='' AND caster=''  GROUP BY furnace) AS m LEFT JOIN (\n" +
+      '          SELECT c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '      FROM cast c JOIN melt t\n' +
+      '          ON c.furnace = t.furnace\n' +
+      '      ) j ON m.furnace = j.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  sql: 'select j.*, m.* from\n' +
+    '      (SELECT\n' +
+    '          furnace,\n' +
+    '          SUM(coilNetWeight) AS coilNetWeight,\n' +
+    '          SUM(totalStoredWeight) AS totalStoredWeight,\n' +
+    '          SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n' +
+    '          SUM(qualityOfA) AS qualityOfA,\n' +
+    '          SUM(qualityOfB) AS qualityOfB,\n' +
+    '          SUM(qualityOfC) AS qualityOfC,\n' +
+    '          SUM(qualityOfD) AS qualityOfD,\n' +
+    '          SUM(qualityOfE) AS qualityOfE,\n' +
+    '          SUM(thinRibbonWeight) AS thinRibbonWeight,\n' +
+    '          SUM(highFactorThinRibbonWeight) AS highFactorThinRibbonWeight,\n' +
+    '          SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
+    '          SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
+    '          SUM(inPlanThickRibbonWeight) AS inPlanThickRibbonWeight,\n' +
+    '          SUM(qualityOfGood) AS qualityOfGood,\n' +
+    '          SUM(qualityOfFine) AS qualityOfFine,\n' +
+    '          SUM(qualityOfNormal) AS qualityOfNormal\n' +
+    "      FROM measure furnace='' AND caster=''WHERE furnace='' AND caster=''  GROUP BY furnace) AS m LEFT JOIN (\n" +
+    '          SELECT c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+    '      FROM cast c JOIN melt t\n' +
+    '          ON c.furnace = t.furnace\n' +
+    '      ) j ON m.furnace = j.furnace\n' +
+    '      LIMIT 20 OFFSET 0',
+  parameters: undefined
+}
+[2020-10-17T14:24:08.849] [ERROR] statistics - 查询直通率统计失败 DatabaseError [SequelizeDatabaseError]: Unknown column 'caster' in 'field list'
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:244:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:51:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+    at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+    at Socket.emit (events.js:315:20)
+    at addChunk (_stream_readable.js:295:12)
+    at readableAddChunk (_stream_readable.js:271:9)
+    at Socket.Readable.push (_stream_readable.js:212:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:186:23)
 From previous event:
-    at Function.findAll (E:\amorphous_node\node_modules\sequelize\lib\model.js:1746:8)
-    at queryData (E:\amorphous_node\controller\ribbonToughnessLevel.js:12:52)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
-    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
-    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at E:\amorphous_node\node_modules\express-session\index.js:489:7
-  name: 'SequelizeDatabaseError',
-  parent:
-   { Error: Unknown column 'ribbonToughnessLevelCode' in 'field list'
-       at Packet.asError (E:\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
-       at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
-       at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
-       at PacketParser.Connection.packetParser.p [as onPacket] (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
-       at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
-       at Socket.Connection.stream.on.data (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
-       at Socket.emit (events.js:189:13)
-       at addChunk (_stream_readable.js:284:12)
-       at readableAddChunk (_stream_readable.js:265:11)
-       at Socket.Readable.push (_stream_readable.js:220:10)
-       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
-     code: 'ER_BAD_FIELD_ERROR',
-     errno: 1054,
-     sqlState: '42S22',
-     sqlMessage:
-      'Unknown column \'ribbonToughnessLevelCode\' in \'field list\'',
-     sql:
-      'SELECT `ribbonToughnessLevelId`, `ribbonToughnessLevel`, `ribbonToughness`, `ribbonToughnessLevelCode`, `createdAt`, `updatedAt` FROM `ribbonToughnessLevel` AS `ribbonToughnessLevel` ORDER BY `ribbonToughnessLevel`.`ribbonToughnessLevel` ASC;' },
-  original:
-   { Error: Unknown column 'ribbonToughnessLevelCode' in 'field list'
-       at Packet.asError (E:\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
-       at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
-       at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
-       at PacketParser.Connection.packetParser.p [as onPacket] (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
-       at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
-       at Socket.Connection.stream.on.data (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
-       at Socket.emit (events.js:189:13)
-       at addChunk (_stream_readable.js:284:12)
-       at readableAddChunk (_stream_readable.js:265:11)
-       at Socket.Readable.push (_stream_readable.js:220:10)
-       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
-     code: 'ER_BAD_FIELD_ERROR',
-     errno: 1054,
-     sqlState: '42S22',
-     sqlMessage:
-      'Unknown column \'ribbonToughnessLevelCode\' in \'field list\'',
-     sql:
-      'SELECT `ribbonToughnessLevelId`, `ribbonToughnessLevel`, `ribbonToughness`, `ribbonToughnessLevelCode`, `createdAt`, `updatedAt` FROM `ribbonToughnessLevel` AS `ribbonToughnessLevel` ORDER BY `ribbonToughnessLevel`.`ribbonToughnessLevel` ASC;' },
-  sql:
-   'SELECT `ribbonToughnessLevelId`, `ribbonToughnessLevel`, `ribbonToughness`, `ribbonToughnessLevelCode`, `createdAt`, `updatedAt` FROM `ribbonToughnessLevel` AS `ribbonToughnessLevel` ORDER BY `ribbonToughnessLevel`.`ribbonToughnessLevel` ASC;' }
-[2020-10-15T23:12:36.821] [ERROR] appearenceLevel - 查询带材外观级别列表失败 { SequelizeDatabaseError: Unknown column 'appearenceLevelCode' in 'field list'
-    at Query.formatError (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
-    at Query.handler [as onResult] (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
-    at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
-    at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
-    at PacketParser.Connection.packetParser.p [as onPacket] (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
-    at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
-    at Socket.Connection.stream.on.data (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
-    at Socket.emit (events.js:189:13)
-    at addChunk (_stream_readable.js:284:12)
-    at readableAddChunk (_stream_readable.js:265:11)
-    at Socket.Readable.push (_stream_readable.js:220:10)
-    at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:29
 From previous event:
-    at Query.run (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
-    at runHooks.then (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:12
+    at processImmediate (internal/timers.js:456:21)
 From previous event:
-    at Promise.try.then.connection (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12)
-From previous event:
-    at Promise.resolve.retry (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10)
-    at E:\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:651:10
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
     at new Promise (<anonymous>)
-    at retryAsPromised (E:\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
-    at Promise.try (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:641:30
 From previous event:
-    at Sequelize.query (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
-    at QueryInterface.select (E:\amorphous_node\node_modules\sequelize\lib\query-interface.js:1120:27)
-    at Promise.try.then.then.then (E:\amorphous_node\node_modules\sequelize\lib\model.js:1749:34)
-    at runCallback (timers.js:705:18)
-    at tryOnImmediate (timers.js:676:5)
-    at processImmediate (timers.js:658:5)
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:590:23)
+    at queryDataOfRatio (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:263:32)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:502:7 {
+  parent: Error: Unknown column 'caster' in 'field list'
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:315:20)
+      at addChunk (_stream_readable.js:295:12)
+      at readableAddChunk (_stream_readable.js:271:9)
+      at Socket.Readable.push (_stream_readable.js:212:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:186:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'caster' in 'field list'",
+    sql: 'SELECT\n' +
+      '          j.caster,\n' +
+      '          m.totalHeatNum,\n' +
+      '          j.nozzleNum,\n' +
+      '          j.lowHeatNum,\n' +
+      '          j.zeroHeatNum,\n' +
+      '          j.alloyTotalWeight,\n' +
+      '          j.rawWeight,\n' +
+      '          m.coilNetWeight,\n' +
+      '          m.inPlanStoredWeight,\n' +
+      '          m.outPlanStoredWeight,\n' +
+      '          m.totalStoredWeight,\n' +
+      '          (m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          j.uselessRibbonWeight,\n' +
+      '          j.meltOutWeight,\n' +
+      '          (j.rawWeight+j.uselessRibbonWeight)/j.alloyTotalWeight AS effectiveMeltRatio,\n' +
+      '          j.rawWeight/(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n' +
+      '          m.totalStoredWeight/j.rawWeight AS qualifiedRatio,\n' +
+      '          m.qualityOfA,\n' +
+      '          m.qualityOfB,\n' +
+      '          m.qualityOfC,\n' +
+      '          m.qualityOfD,\n' +
+      '          m.qualityOfE,\n' +
+      '          m.qualityOfGood,\n' +
+      '          m.qualityOfFine,\n' +
+      '          m.qualityOfNormal\n' +
+      '        FROM\n' +
+      '          (\n' +
+      '            SELECT\n' +
+      '            caster,\n' +
+      '            COUNT(DISTINCT furnace) AS totalHeatNum,\n' +
+      '            SUM(coilNetWeight) AS coilNetWeight,\n' +
+      '            SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
+      '            SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
+      '            SUM(totalStoredWeight) AS totalStoredWeight,\n' +
+      '            SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n' +
+      '            SUM(qualityOfA) AS qualityOfA,\n' +
+      '            SUM(qualityOfB) AS qualityOfB,\n' +
+      '            SUM(qualityOfC) AS qualityOfC,\n' +
+      '            SUM(qualityOfD) AS qualityOfD,\n' +
+      '            SUM(qualityOfE) AS qualityOfE,\n' +
+      '            SUM(qualityOfGood) AS qualityOfGood,\n' +
+      '            SUM(qualityOfFine) AS qualityOfFine,\n' +
+      '            SUM(qualityOfNormal) AS qualityOfNormal\n' +
+      '            FROM measure\n' +
+      '            GROUP BY caster\n' +
+      '          ) AS m\n' +
+      '          LEFT JOIN\n' +
+      '          (\n' +
+      '            SELECT\n' +
+      '            c.caster,\n' +
+      '            SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n' +
+      '            SUM(c.nozzleNum) AS nozzleNum,\n' +
+      '            SUM(c.rawWeight) AS rawWeight,\n' +
+      '            SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n' +
+      '            SUM(c.meltOutWeight) AS meltOutWeight,\n' +
+      '            SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n' +
+      '            SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n' +
+      '            (\n' +
+      '                SELECT COUNT(*)\n' +
+      '                FROM cast\n' +
+      '                WHERE (rawWeight <= 50 AND castId = 7) OR (rawWeight <= 80 AND castId IN (6,8,9))\n' +
+      '            ) AS lowHeatNum,\n' +
+      '            (\n' +
+      '                SELECT COUNT(*)\n' +
+      '                FROM cast\n' +
+      '                WHERE rawWeight = 0\n' +
+      '            ) AS zeroHeatNum\n' +
+      '            FROM cast AS c\n' +
+      '            JOIN melt AS t\n' +
+      '            ON c.furnace = t.furnace\n' +
+      '            GROUP BY c.caster\n' +
+      '          ) AS j\n' +
+      '          ON m.caster = j.caster;',
+    parameters: undefined
+  },
+  original: Error: Unknown column 'caster' in 'field list'
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:315:20)
+      at addChunk (_stream_readable.js:295:12)
+      at readableAddChunk (_stream_readable.js:271:9)
+      at Socket.Readable.push (_stream_readable.js:212:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:186:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'caster' in 'field list'",
+    sql: 'SELECT\n' +
+      '          j.caster,\n' +
+      '          m.totalHeatNum,\n' +
+      '          j.nozzleNum,\n' +
+      '          j.lowHeatNum,\n' +
+      '          j.zeroHeatNum,\n' +
+      '          j.alloyTotalWeight,\n' +
+      '          j.rawWeight,\n' +
+      '          m.coilNetWeight,\n' +
+      '          m.inPlanStoredWeight,\n' +
+      '          m.outPlanStoredWeight,\n' +
+      '          m.totalStoredWeight,\n' +
+      '          (m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          j.uselessRibbonWeight,\n' +
+      '          j.meltOutWeight,\n' +
+      '          (j.rawWeight+j.uselessRibbonWeight)/j.alloyTotalWeight AS effectiveMeltRatio,\n' +
+      '          j.rawWeight/(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n' +
+      '          m.totalStoredWeight/j.rawWeight AS qualifiedRatio,\n' +
+      '          m.qualityOfA,\n' +
+      '          m.qualityOfB,\n' +
+      '          m.qualityOfC,\n' +
+      '          m.qualityOfD,\n' +
+      '          m.qualityOfE,\n' +
+      '          m.qualityOfGood,\n' +
+      '          m.qualityOfFine,\n' +
+      '          m.qualityOfNormal\n' +
+      '        FROM\n' +
+      '          (\n' +
+      '            SELECT\n' +
+      '            caster,\n' +
+      '            COUNT(DISTINCT furnace) AS totalHeatNum,\n' +
+      '            SUM(coilNetWeight) AS coilNetWeight,\n' +
+      '            SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
+      '            SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
+      '            SUM(totalStoredWeight) AS totalStoredWeight,\n' +
+      '            SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n' +
+      '            SUM(qualityOfA) AS qualityOfA,\n' +
+      '            SUM(qualityOfB) AS qualityOfB,\n' +
+      '            SUM(qualityOfC) AS qualityOfC,\n' +
+      '            SUM(qualityOfD) AS qualityOfD,\n' +
+      '            SUM(qualityOfE) AS qualityOfE,\n' +
+      '            SUM(qualityOfGood) AS qualityOfGood,\n' +
+      '            SUM(qualityOfFine) AS qualityOfFine,\n' +
+      '            SUM(qualityOfNormal) AS qualityOfNormal\n' +
+      '            FROM measure\n' +
+      '            GROUP BY caster\n' +
+      '          ) AS m\n' +
+      '          LEFT JOIN\n' +
+      '          (\n' +
+      '            SELECT\n' +
+      '            c.caster,\n' +
+      '            SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n' +
+      '            SUM(c.nozzleNum) AS nozzleNum,\n' +
+      '            SUM(c.rawWeight) AS rawWeight,\n' +
+      '            SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n' +
+      '            SUM(c.meltOutWeight) AS meltOutWeight,\n' +
+      '            SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n' +
+      '            SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n' +
+      '            (\n' +
+      '                SELECT COUNT(*)\n' +
+      '                FROM cast\n' +
+      '                WHERE (rawWeight <= 50 AND castId = 7) OR (rawWeight <= 80 AND castId IN (6,8,9))\n' +
+      '            ) AS lowHeatNum,\n' +
+      '            (\n' +
+      '                SELECT COUNT(*)\n' +
+      '                FROM cast\n' +
+      '                WHERE rawWeight = 0\n' +
+      '            ) AS zeroHeatNum\n' +
+      '            FROM cast AS c\n' +
+      '            JOIN melt AS t\n' +
+      '            ON c.furnace = t.furnace\n' +
+      '            GROUP BY c.caster\n' +
+      '          ) AS j\n' +
+      '          ON m.caster = j.caster;',
+    parameters: undefined
+  },
+  sql: 'SELECT\n' +
+    '          j.caster,\n' +
+    '          m.totalHeatNum,\n' +
+    '          j.nozzleNum,\n' +
+    '          j.lowHeatNum,\n' +
+    '          j.zeroHeatNum,\n' +
+    '          j.alloyTotalWeight,\n' +
+    '          j.rawWeight,\n' +
+    '          m.coilNetWeight,\n' +
+    '          m.inPlanStoredWeight,\n' +
+    '          m.outPlanStoredWeight,\n' +
+    '          m.totalStoredWeight,\n' +
+    '          (m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n' +
+    '          j.uselessRibbonWeight,\n' +
+    '          j.meltOutWeight,\n' +
+    '          (j.rawWeight+j.uselessRibbonWeight)/j.alloyTotalWeight AS effectiveMeltRatio,\n' +
+    '          j.rawWeight/(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n' +
+    '          m.totalStoredWeight/j.rawWeight AS qualifiedRatio,\n' +
+    '          m.qualityOfA,\n' +
+    '          m.qualityOfB,\n' +
+    '          m.qualityOfC,\n' +
+    '          m.qualityOfD,\n' +
+    '          m.qualityOfE,\n' +
+    '          m.qualityOfGood,\n' +
+    '          m.qualityOfFine,\n' +
+    '          m.qualityOfNormal\n' +
+    '        FROM\n' +
+    '          (\n' +
+    '            SELECT\n' +
+    '            caster,\n' +
+    '            COUNT(DISTINCT furnace) AS totalHeatNum,\n' +
+    '            SUM(coilNetWeight) AS coilNetWeight,\n' +
+    '            SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
+    '            SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
+    '            SUM(totalStoredWeight) AS totalStoredWeight,\n' +
+    '            SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n' +
+    '            SUM(qualityOfA) AS qualityOfA,\n' +
+    '            SUM(qualityOfB) AS qualityOfB,\n' +
+    '            SUM(qualityOfC) AS qualityOfC,\n' +
+    '            SUM(qualityOfD) AS qualityOfD,\n' +
+    '            SUM(qualityOfE) AS qualityOfE,\n' +
+    '            SUM(qualityOfGood) AS qualityOfGood,\n' +
+    '            SUM(qualityOfFine) AS qualityOfFine,\n' +
+    '            SUM(qualityOfNormal) AS qualityOfNormal\n' +
+    '            FROM measure\n' +
+    '            GROUP BY caster\n' +
+    '          ) AS m\n' +
+    '          LEFT JOIN\n' +
+    '          (\n' +
+    '            SELECT\n' +
+    '            c.caster,\n' +
+    '            SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n' +
+    '            SUM(c.nozzleNum) AS nozzleNum,\n' +
+    '            SUM(c.rawWeight) AS rawWeight,\n' +
+    '            SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n' +
+    '            SUM(c.meltOutWeight) AS meltOutWeight,\n' +
+    '            SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n' +
+    '            SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n' +
+    '            (\n' +
+    '                SELECT COUNT(*)\n' +
+    '                FROM cast\n' +
+    '                WHERE (rawWeight <= 50 AND castId = 7) OR (rawWeight <= 80 AND castId IN (6,8,9))\n' +
+    '            ) AS lowHeatNum,\n' +
+    '            (\n' +
+    '                SELECT COUNT(*)\n' +
+    '                FROM cast\n' +
+    '                WHERE rawWeight = 0\n' +
+    '            ) AS zeroHeatNum\n' +
+    '            FROM cast AS c\n' +
+    '            JOIN melt AS t\n' +
+    '            ON c.furnace = t.furnace\n' +
+    '            GROUP BY c.caster\n' +
+    '          ) AS j\n' +
+    '          ON m.caster = j.caster;',
+  parameters: undefined
+}
+[2020-10-17T14:24:12.049] [ERROR] statistics - 查询直通率统计失败 DatabaseError [SequelizeDatabaseError]: Unknown column 'caster' in 'field list'
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:244:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:51:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+    at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+    at Socket.emit (events.js:315:20)
+    at addChunk (_stream_readable.js:295:12)
+    at readableAddChunk (_stream_readable.js:271:9)
+    at Socket.Readable.push (_stream_readable.js:212:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:186:23)
 From previous event:
-    at Function.findAll (E:\amorphous_node\node_modules\sequelize\lib\model.js:1746:8)
-    at queryData (E:\amorphous_node\controller\appearenceLevel.js:11:47)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
-    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
-    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at E:\amorphous_node\node_modules\express-session\index.js:489:7
-  name: 'SequelizeDatabaseError',
-  parent:
-   { Error: Unknown column 'appearenceLevelCode' in 'field list'
-       at Packet.asError (E:\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
-       at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
-       at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
-       at PacketParser.Connection.packetParser.p [as onPacket] (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
-       at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
-       at Socket.Connection.stream.on.data (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
-       at Socket.emit (events.js:189:13)
-       at addChunk (_stream_readable.js:284:12)
-       at readableAddChunk (_stream_readable.js:265:11)
-       at Socket.Readable.push (_stream_readable.js:220:10)
-       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
-     code: 'ER_BAD_FIELD_ERROR',
-     errno: 1054,
-     sqlState: '42S22',
-     sqlMessage: 'Unknown column \'appearenceLevelCode\' in \'field list\'',
-     sql:
-      'SELECT `appearenceLevelId`, `appearence`, `appearenceLevel`, `appearenceLevelCode`, `createdAt`, `updatedAt` FROM `appearenceLevel` AS `appearenceLevel`;' },
-  original:
-   { Error: Unknown column 'appearenceLevelCode' in 'field list'
-       at Packet.asError (E:\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
-       at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
-       at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
-       at PacketParser.Connection.packetParser.p [as onPacket] (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
-       at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
-       at Socket.Connection.stream.on.data (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
-       at Socket.emit (events.js:189:13)
-       at addChunk (_stream_readable.js:284:12)
-       at readableAddChunk (_stream_readable.js:265:11)
-       at Socket.Readable.push (_stream_readable.js:220:10)
-       at TCP.onStreamRead [as onread] (internal/stream_base_commons.js:94:17)
-     code: 'ER_BAD_FIELD_ERROR',
-     errno: 1054,
-     sqlState: '42S22',
-     sqlMessage: 'Unknown column \'appearenceLevelCode\' in \'field list\'',
-     sql:
-      'SELECT `appearenceLevelId`, `appearence`, `appearenceLevel`, `appearenceLevelCode`, `createdAt`, `updatedAt` FROM `appearenceLevel` AS `appearenceLevel`;' },
-  sql:
-   'SELECT `appearenceLevelId`, `appearence`, `appearenceLevel`, `appearenceLevelCode`, `createdAt`, `updatedAt` FROM `appearenceLevel` AS `appearenceLevel`;' }
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:29
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:12
+    at processImmediate (internal/timers.js:456:21)
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:651:10
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:641:30
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:590:23)
+    at queryDataOfRatio (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:263:32)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:502:7 {
+  parent: Error: Unknown column 'caster' in 'field list'
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:315:20)
+      at addChunk (_stream_readable.js:295:12)
+      at readableAddChunk (_stream_readable.js:271:9)
+      at Socket.Readable.push (_stream_readable.js:212:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:186:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'caster' in 'field list'",
+    sql: 'SELECT\n' +
+      '          j.caster,\n' +
+      '          m.totalHeatNum,\n' +
+      '          j.nozzleNum,\n' +
+      '          j.lowHeatNum,\n' +
+      '          j.zeroHeatNum,\n' +
+      '          j.alloyTotalWeight,\n' +
+      '          j.rawWeight,\n' +
+      '          m.coilNetWeight,\n' +
+      '          m.inPlanStoredWeight,\n' +
+      '          m.outPlanStoredWeight,\n' +
+      '          m.totalStoredWeight,\n' +
+      '          (m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          j.uselessRibbonWeight,\n' +
+      '          j.meltOutWeight,\n' +
+      '          (j.rawWeight+j.uselessRibbonWeight)/j.alloyTotalWeight AS effectiveMeltRatio,\n' +
+      '          j.rawWeight/(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n' +
+      '          m.totalStoredWeight/j.rawWeight AS qualifiedRatio,\n' +
+      '          m.qualityOfA,\n' +
+      '          m.qualityOfB,\n' +
+      '          m.qualityOfC,\n' +
+      '          m.qualityOfD,\n' +
+      '          m.qualityOfE,\n' +
+      '          m.qualityOfGood,\n' +
+      '          m.qualityOfFine,\n' +
+      '          m.qualityOfNormal\n' +
+      '        FROM\n' +
+      '          (\n' +
+      '            SELECT\n' +
+      '            caster,\n' +
+      '            COUNT(DISTINCT furnace) AS totalHeatNum,\n' +
+      '            SUM(coilNetWeight) AS coilNetWeight,\n' +
+      '            SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
+      '            SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
+      '            SUM(totalStoredWeight) AS totalStoredWeight,\n' +
+      '            SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n' +
+      '            SUM(qualityOfA) AS qualityOfA,\n' +
+      '            SUM(qualityOfB) AS qualityOfB,\n' +
+      '            SUM(qualityOfC) AS qualityOfC,\n' +
+      '            SUM(qualityOfD) AS qualityOfD,\n' +
+      '            SUM(qualityOfE) AS qualityOfE,\n' +
+      '            SUM(qualityOfGood) AS qualityOfGood,\n' +
+      '            SUM(qualityOfFine) AS qualityOfFine,\n' +
+      '            SUM(qualityOfNormal) AS qualityOfNormal\n' +
+      '            FROM measure\n' +
+      '            GROUP BY caster\n' +
+      '          ) AS m\n' +
+      '          LEFT JOIN\n' +
+      '          (\n' +
+      '            SELECT\n' +
+      '            c.caster,\n' +
+      '            SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n' +
+      '            SUM(c.nozzleNum) AS nozzleNum,\n' +
+      '            SUM(c.rawWeight) AS rawWeight,\n' +
+      '            SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n' +
+      '            SUM(c.meltOutWeight) AS meltOutWeight,\n' +
+      '            SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n' +
+      '            SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n' +
+      '            (\n' +
+      '                SELECT COUNT(*)\n' +
+      '                FROM cast\n' +
+      '                WHERE (rawWeight <= 50 AND castId = 7) OR (rawWeight <= 80 AND castId IN (6,8,9))\n' +
+      '            ) AS lowHeatNum,\n' +
+      '            (\n' +
+      '                SELECT COUNT(*)\n' +
+      '                FROM cast\n' +
+      '                WHERE rawWeight = 0\n' +
+      '            ) AS zeroHeatNum\n' +
+      '            FROM cast AS c\n' +
+      '            JOIN melt AS t\n' +
+      '            ON c.furnace = t.furnace\n' +
+      '            GROUP BY c.caster\n' +
+      '          ) AS j\n' +
+      '          ON m.caster = j.caster;',
+    parameters: undefined
+  },
+  original: Error: Unknown column 'caster' in 'field list'
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:315:20)
+      at addChunk (_stream_readable.js:295:12)
+      at readableAddChunk (_stream_readable.js:271:9)
+      at Socket.Readable.push (_stream_readable.js:212:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:186:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'caster' in 'field list'",
+    sql: 'SELECT\n' +
+      '          j.caster,\n' +
+      '          m.totalHeatNum,\n' +
+      '          j.nozzleNum,\n' +
+      '          j.lowHeatNum,\n' +
+      '          j.zeroHeatNum,\n' +
+      '          j.alloyTotalWeight,\n' +
+      '          j.rawWeight,\n' +
+      '          m.coilNetWeight,\n' +
+      '          m.inPlanStoredWeight,\n' +
+      '          m.outPlanStoredWeight,\n' +
+      '          m.totalStoredWeight,\n' +
+      '          (m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          j.uselessRibbonWeight,\n' +
+      '          j.meltOutWeight,\n' +
+      '          (j.rawWeight+j.uselessRibbonWeight)/j.alloyTotalWeight AS effectiveMeltRatio,\n' +
+      '          j.rawWeight/(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n' +
+      '          m.totalStoredWeight/j.rawWeight AS qualifiedRatio,\n' +
+      '          m.qualityOfA,\n' +
+      '          m.qualityOfB,\n' +
+      '          m.qualityOfC,\n' +
+      '          m.qualityOfD,\n' +
+      '          m.qualityOfE,\n' +
+      '          m.qualityOfGood,\n' +
+      '          m.qualityOfFine,\n' +
+      '          m.qualityOfNormal\n' +
+      '        FROM\n' +
+      '          (\n' +
+      '            SELECT\n' +
+      '            caster,\n' +
+      '            COUNT(DISTINCT furnace) AS totalHeatNum,\n' +
+      '            SUM(coilNetWeight) AS coilNetWeight,\n' +
+      '            SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
+      '            SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
+      '            SUM(totalStoredWeight) AS totalStoredWeight,\n' +
+      '            SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n' +
+      '            SUM(qualityOfA) AS qualityOfA,\n' +
+      '            SUM(qualityOfB) AS qualityOfB,\n' +
+      '            SUM(qualityOfC) AS qualityOfC,\n' +
+      '            SUM(qualityOfD) AS qualityOfD,\n' +
+      '            SUM(qualityOfE) AS qualityOfE,\n' +
+      '            SUM(qualityOfGood) AS qualityOfGood,\n' +
+      '            SUM(qualityOfFine) AS qualityOfFine,\n' +
+      '            SUM(qualityOfNormal) AS qualityOfNormal\n' +
+      '            FROM measure\n' +
+      '            GROUP BY caster\n' +
+      '          ) AS m\n' +
+      '          LEFT JOIN\n' +
+      '          (\n' +
+      '            SELECT\n' +
+      '            c.caster,\n' +
+      '            SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n' +
+      '            SUM(c.nozzleNum) AS nozzleNum,\n' +
+      '            SUM(c.rawWeight) AS rawWeight,\n' +
+      '            SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n' +
+      '            SUM(c.meltOutWeight) AS meltOutWeight,\n' +
+      '            SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n' +
+      '            SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n' +
+      '            (\n' +
+      '                SELECT COUNT(*)\n' +
+      '                FROM cast\n' +
+      '                WHERE (rawWeight <= 50 AND castId = 7) OR (rawWeight <= 80 AND castId IN (6,8,9))\n' +
+      '            ) AS lowHeatNum,\n' +
+      '            (\n' +
+      '                SELECT COUNT(*)\n' +
+      '                FROM cast\n' +
+      '                WHERE rawWeight = 0\n' +
+      '            ) AS zeroHeatNum\n' +
+      '            FROM cast AS c\n' +
+      '            JOIN melt AS t\n' +
+      '            ON c.furnace = t.furnace\n' +
+      '            GROUP BY c.caster\n' +
+      '          ) AS j\n' +
+      '          ON m.caster = j.caster;',
+    parameters: undefined
+  },
+  sql: 'SELECT\n' +
+    '          j.caster,\n' +
+    '          m.totalHeatNum,\n' +
+    '          j.nozzleNum,\n' +
+    '          j.lowHeatNum,\n' +
+    '          j.zeroHeatNum,\n' +
+    '          j.alloyTotalWeight,\n' +
+    '          j.rawWeight,\n' +
+    '          m.coilNetWeight,\n' +
+    '          m.inPlanStoredWeight,\n' +
+    '          m.outPlanStoredWeight,\n' +
+    '          m.totalStoredWeight,\n' +
+    '          (m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n' +
+    '          j.uselessRibbonWeight,\n' +
+    '          j.meltOutWeight,\n' +
+    '          (j.rawWeight+j.uselessRibbonWeight)/j.alloyTotalWeight AS effectiveMeltRatio,\n' +
+    '          j.rawWeight/(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n' +
+    '          m.totalStoredWeight/j.rawWeight AS qualifiedRatio,\n' +
+    '          m.qualityOfA,\n' +
+    '          m.qualityOfB,\n' +
+    '          m.qualityOfC,\n' +
+    '          m.qualityOfD,\n' +
+    '          m.qualityOfE,\n' +
+    '          m.qualityOfGood,\n' +
+    '          m.qualityOfFine,\n' +
+    '          m.qualityOfNormal\n' +
+    '        FROM\n' +
+    '          (\n' +
+    '            SELECT\n' +
+    '            caster,\n' +
+    '            COUNT(DISTINCT furnace) AS totalHeatNum,\n' +
+    '            SUM(coilNetWeight) AS coilNetWeight,\n' +
+    '            SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
+    '            SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
+    '            SUM(totalStoredWeight) AS totalStoredWeight,\n' +
+    '            SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n' +
+    '            SUM(qualityOfA) AS qualityOfA,\n' +
+    '            SUM(qualityOfB) AS qualityOfB,\n' +
+    '            SUM(qualityOfC) AS qualityOfC,\n' +
+    '            SUM(qualityOfD) AS qualityOfD,\n' +
+    '            SUM(qualityOfE) AS qualityOfE,\n' +
+    '            SUM(qualityOfGood) AS qualityOfGood,\n' +
+    '            SUM(qualityOfFine) AS qualityOfFine,\n' +
+    '            SUM(qualityOfNormal) AS qualityOfNormal\n' +
+    '            FROM measure\n' +
+    '            GROUP BY caster\n' +
+    '          ) AS m\n' +
+    '          LEFT JOIN\n' +
+    '          (\n' +
+    '            SELECT\n' +
+    '            c.caster,\n' +
+    '            SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n' +
+    '            SUM(c.nozzleNum) AS nozzleNum,\n' +
+    '            SUM(c.rawWeight) AS rawWeight,\n' +
+    '            SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n' +
+    '            SUM(c.meltOutWeight) AS meltOutWeight,\n' +
+    '            SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n' +
+    '            SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n' +
+    '            (\n' +
+    '                SELECT COUNT(*)\n' +
+    '                FROM cast\n' +
+    '                WHERE (rawWeight <= 50 AND castId = 7) OR (rawWeight <= 80 AND castId IN (6,8,9))\n' +
+    '            ) AS lowHeatNum,\n' +
+    '            (\n' +
+    '                SELECT COUNT(*)\n' +
+    '                FROM cast\n' +
+    '                WHERE rawWeight = 0\n' +
+    '            ) AS zeroHeatNum\n' +
+    '            FROM cast AS c\n' +
+    '            JOIN melt AS t\n' +
+    '            ON c.furnace = t.furnace\n' +
+    '            GROUP BY c.caster\n' +
+    '          ) AS j\n' +
+    '          ON m.caster = j.caster;',
+  parameters: undefined
+}
+[2020-10-17T15:27:03.939] [ERROR] measure - 保存重卷记录失败 Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:518:11)
+    at ServerResponse.header (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/response.js:767:10)
+    at ServerResponse.send (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/response.js:170:12)
+    at ServerResponse.json (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/response.js:267:15)
+    at ServerResponse.send (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/response.js:158:21)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/controller/measure.js:573:17 {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-10-17T15:27:03.942] [ERROR] measure - 保存重卷记录失败 Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:518:11)
+    at ServerResponse.header (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/response.js:767:10)
+    at ServerResponse.send (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/response.js:170:12)
+    at ServerResponse.json (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/response.js:267:15)
+    at ServerResponse.send (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/response.js:158:21)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/controller/measure.js:573:17
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-10-17T15:27:03.943] [ERROR] measure - 保存重卷记录失败 Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:518:11)
+    at ServerResponse.header (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/response.js:767:10)
+    at ServerResponse.send (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/response.js:170:12)
+    at ServerResponse.json (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/response.js:267:15)
+    at ServerResponse.send (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/response.js:158:21)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/controller/measure.js:573:17 {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-10-17T15:27:03.947] [ERROR] measure - 保存重卷记录失败 Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:518:11)
+    at ServerResponse.header (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/response.js:767:10)
+    at ServerResponse.send (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/response.js:170:12)
+    at ServerResponse.json (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/response.js:267:15)
+    at ServerResponse.send (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/response.js:158:21)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/controller/measure.js:573:17 {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-10-17T16:20:47.529] [ERROR] measure - Incorrect datetime value: 'Invalid date' for column 'measureDate' at row 1 DatabaseError [SequelizeDatabaseError]: Incorrect datetime value: 'Invalid date' for column 'measureDate' at row 1
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:244:16)
+    at Execute.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:51:23)
+    at Execute.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+    at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+    at Socket.emit (events.js:315:20)
+    at addChunk (_stream_readable.js:295:12)
+    at readableAddChunk (_stream_readable.js:271:9)
+    at Socket.Readable.push (_stream_readable.js:212:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:186:23)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:29
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:12
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:651:10
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:641:30
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:590:23)
+    at QueryInterface.bulkUpdate (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/query-interface.js:1049:27)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/model.js:3226:34
+    at processImmediate (internal/timers.js:456:21)
+From previous event:
+    at Function.update (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/model.js:3207:8)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/controller/measure.js:957:42
+    at Array.forEach (<anonymous>)
+    at updateMeasureByBatch (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/measure.js:934:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:502:7 {
+  parent: Error: Incorrect datetime value: 'Invalid date' for column 'measureDate' at row 1
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Execute.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:315:20)
+      at addChunk (_stream_readable.js:295:12)
+      at readableAddChunk (_stream_readable.js:271:9)
+      at Socket.Readable.push (_stream_readable.js:212:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:186:23) {
+    code: 'ER_TRUNCATED_WRONG_VALUE',
+    errno: 1292,
+    sqlState: '22007',
+    sqlMessage: "Incorrect datetime value: 'Invalid date' for column 'measureDate' at row 1",
+    sql: 'UPDATE `measure` SET `qrCode`=?,`castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`laminationFactor`=?,`laminationLevel`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`isRollConfirmed`=?,`rollMeasureMachine`=?,`dropNum`=?,`orderThickness`=?,`orderLaminationFactor`=?,`orderRibbonToughnessLevels`=?,`orderAppearenceLevels`=?,`qualifiedDemands`=?,`measureMachine`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`measureDate`=?,`inStoreDate`=?,`outStoreDate`=?,`remainWeight`=?,`takeBy`=?,`place`=?,`shipRemark`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`thinRibbonWeight`=?,`highFactorThinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`createdAt`=?,`updatedAt`=? WHERE `measureId` = ?',
+    parameters: [
+      '',
+      '6',
+      '06-20201018-01/01',
+      '1',
+      '340',
+      '16',
+      '15.92',
+      '0.82',
+      '3',
+      '1',
+      '1',
+      '0',
+      '1',
+      '1',
+      '0',
+      '20-23',
+      '≥0.78',
+      'A,B,C',
+      'A,B,C',
+      '[{"qualifiedThickness":"≤26","qualifiedLaminationFactor":"≥0.72","qualifiedRibbonToughnessLevels":["A","B","C"],"qualifiedAppearenceLevels":["A","B","C"]}]',
+      '1',
+      '32.1',
+      '22',
+      '22',
+      '22',
+      '22',
+      '22',
+      '22',
+      '22',
+      '22',
+      '22',
+      '0',
+      '22.00',
+      '3',
+      '',
+      'A',
+      '轻微麻点,轻微划痕',
+      'A',
+      '33AAS',
+      '0',
+      '1',
+      '',
+      '',
+      'Invalid date',
+      'Invalid date',
+      'Invalid date',
+      '15.92',
+      '',
+      '',
+      '',
+      '15.92',
+      '15.92',
+      '0',
+      '0',
+      '0',
+      '0',
+      '0',
+      '0',
+      '0',
+      '15.92',
+      '0',
+      '15.92',
+      '0',
+      '0',
+      'Invalid date',
+      '2020-10-17 16:20:47',
+      '1'
+    ]
+  },
+  original: Error: Incorrect datetime value: 'Invalid date' for column 'measureDate' at row 1
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Execute.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:315:20)
+      at addChunk (_stream_readable.js:295:12)
+      at readableAddChunk (_stream_readable.js:271:9)
+      at Socket.Readable.push (_stream_readable.js:212:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:186:23) {
+    code: 'ER_TRUNCATED_WRONG_VALUE',
+    errno: 1292,
+    sqlState: '22007',
+    sqlMessage: "Incorrect datetime value: 'Invalid date' for column 'measureDate' at row 1",
+    sql: 'UPDATE `measure` SET `qrCode`=?,`castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`laminationFactor`=?,`laminationLevel`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`isRollConfirmed`=?,`rollMeasureMachine`=?,`dropNum`=?,`orderThickness`=?,`orderLaminationFactor`=?,`orderRibbonToughnessLevels`=?,`orderAppearenceLevels`=?,`qualifiedDemands`=?,`measureMachine`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`measureDate`=?,`inStoreDate`=?,`outStoreDate`=?,`remainWeight`=?,`takeBy`=?,`place`=?,`shipRemark`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`thinRibbonWeight`=?,`highFactorThinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`createdAt`=?,`updatedAt`=? WHERE `measureId` = ?',
+    parameters: [
+      '',
+      '6',
+      '06-20201018-01/01',
+      '1',
+      '340',
+      '16',
+      '15.92',
+      '0.82',
+      '3',
+      '1',
+      '1',
+      '0',
+      '1',
+      '1',
+      '0',
+      '20-23',
+      '≥0.78',
+      'A,B,C',
+      'A,B,C',
+      '[{"qualifiedThickness":"≤26","qualifiedLaminationFactor":"≥0.72","qualifiedRibbonToughnessLevels":["A","B","C"],"qualifiedAppearenceLevels":["A","B","C"]}]',
+      '1',
+      '32.1',
+      '22',
+      '22',
+      '22',
+      '22',
+      '22',
+      '22',
+      '22',
+      '22',
+      '22',
+      '0',
+      '22.00',
+      '3',
+      '',
+      'A',
+      '轻微麻点,轻微划痕',
+      'A',
+      '33AAS',
+      '0',
+      '1',
+      '',
+      '',
+      'Invalid date',
+      'Invalid date',
+      'Invalid date',
+      '15.92',
+      '',
+      '',
+      '',
+      '15.92',
+      '15.92',
+      '0',
+      '0',
+      '0',
+      '0',
+      '0',
+      '0',
+      '0',
+      '15.92',
+      '0',
+      '15.92',
+      '0',
+      '0',
+      'Invalid date',
+      '2020-10-17 16:20:47',
+      '1'
+    ]
+  },
+  sql: 'UPDATE `measure` SET `qrCode`=?,`castId`=?,`furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`laminationFactor`=?,`laminationLevel`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`isRollConfirmed`=?,`rollMeasureMachine`=?,`dropNum`=?,`orderThickness`=?,`orderLaminationFactor`=?,`orderRibbonToughnessLevels`=?,`orderAppearenceLevels`=?,`qualifiedDemands`=?,`measureMachine`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`measureDate`=?,`inStoreDate`=?,`outStoreDate`=?,`remainWeight`=?,`takeBy`=?,`place`=?,`shipRemark`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`thinRibbonWeight`=?,`highFactorThinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`createdAt`=?,`updatedAt`=? WHERE `measureId` = ?',
+  parameters: [
+    '',
+    '6',
+    '06-20201018-01/01',
+    '1',
+    '340',
+    '16',
+    '15.92',
+    '0.82',
+    '3',
+    '1',
+    '1',
+    '0',
+    '1',
+    '1',
+    '0',
+    '20-23',
+    '≥0.78',
+    'A,B,C',
+    'A,B,C',
+    '[{"qualifiedThickness":"≤26","qualifiedLaminationFactor":"≥0.72","qualifiedRibbonToughnessLevels":["A","B","C"],"qualifiedAppearenceLevels":["A","B","C"]}]',
+    '1',
+    '32.1',
+    '22',
+    '22',
+    '22',
+    '22',
+    '22',
+    '22',
+    '22',
+    '22',
+    '22',
+    '0',
+    '22.00',
+    '3',
+    '',
+    'A',
+    '轻微麻点,轻微划痕',
+    'A',
+    '33AAS',
+    '0',
+    '1',
+    '',
+    '',
+    'Invalid date',
+    'Invalid date',
+    'Invalid date',
+    '15.92',
+    '',
+    '',
+    '',
+    '15.92',
+    '15.92',
+    '0',
+    '0',
+    '0',
+    '0',
+    '0',
+    '0',
+    '0',
+    '15.92',
+    '0',
+    '15.92',
+    '0',
+    '0',
+    'Invalid date',
+    '2020-10-17 16:20:47',
+    '1'
+  ]
+}

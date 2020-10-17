@@ -929,7 +929,18 @@ class Measure {
 
   // 批量更新操作，由检测人员使用
   async updateMeasureByBatch(req, res, next) {
-    const { list } = req.body;
+    const { listJson } = req.body;
+    let list = [];
+    try {
+      list = JSON.parse(listJson) || [];
+    } catch (err) {
+      console.log(err.message, err);
+      log.error(err.message, err);
+      return res.send({
+        status: -1,
+        message: err.message || "数据有错误",
+      });
+    }
     Array.isArray(list) &&
       list.forEach(async (item) => {
         let clone = cloneDeep(item);
