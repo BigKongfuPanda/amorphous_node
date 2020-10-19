@@ -357,6 +357,7 @@ class Measure {
   // 新增操作，由重卷人员使用
   async createData(req, res, next) {
     let {
+      castId,
       furnace,
       coilNumber,
       diameter,
@@ -454,6 +455,7 @@ class Measure {
         where: { furnace },
       });
       const newData = {
+        castId,
         furnace,
         castDate: createTime,
         coilNumber,
