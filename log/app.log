@@ -1823,3 +1823,5 @@ From previous event:
     '1'
   ]
 }
+[2020-10-27T17:04:58.678] [ERROR] user - 用户不存在 Error: 用户不存在
+    at login (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/user.js:242:15)
