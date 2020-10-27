@@ -275,12 +275,16 @@ class Measure {
       for (const furnace of uniqueFurnaceList) {
         let planFurnace = furnace.substr(0, 14);
         const date = furnace.split("-")[1]; // 06-20190111-02/08 ---> 2019-01-11
+        const _castId = furnace.split('-')[0]; // 06-20190111-02/08 ---> 06
         const fomatDate = moment(date).format("YYYY-MM-DD");
         const planListByDate = await planModel.findAll({
           where: { date: fomatDate },
           raw: true,
         });
         const _len = planListByDate.length;
+        if(_len == 0) {
+          throw new Error(`机组：${_castId}，日期：${fomatDate}， 缺少生产计划，请联系生产计划管理员添加计划`)
+        }
         if (Number(planFurnace.split("-")[2]) > _len) {
           planFurnace = planListByDate[_len - 1].furnace;
         }

@@ -28,7 +28,7 @@ router.put("/updateMeasure", Measure.updateMeasure);
 // 批量更新检测记录
 router.put("/updateMeasureByBatch", Measure.updateMeasureByBatch);
 
-// 删除检测记录
+// 删除重卷记录
 router.delete("/delRoll", Measure.delData);
 
 // 导出检测excel
