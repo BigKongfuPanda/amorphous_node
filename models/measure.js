@@ -123,7 +123,9 @@ const Measure = sequelize.define("measure", {
   qualityOfFine: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为良的带材质量：B
   qualityOfNormal: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为中的带材质量：30**、40**+ 计划外入库
   createdAt: {
-    type: Sequelize.DATE,
+    type: "TIMESTAMP",
+    defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+    allowNull: false,
     get() {
       return moment(this.getDataValue("createdAt")).format(
         "YYYY-MM-DD HH:mm:ss"
@@ -131,7 +133,9 @@ const Measure = sequelize.define("measure", {
     },
   },
   updatedAt: {
-    type: Sequelize.DATE,
+    type: "TIMESTAMP",
+    defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
+    allowNull: false,
     get() {
       return moment(this.getDataValue("updatedAt")).format(
         "YYYY-MM-DD HH:mm:ss"
