@@ -37,7 +37,7 @@ const Measure = sequelize.define("measure", {
   isRollConfirmed: {
     // 是否确认
     type: Sequelize.INTEGER,
-    defaultValue: 0,
+    defaultValue: 0, // 1-已确认；0-待确认
   },
   // 检测录入信息
   orderThickness: Sequelize.STRING, // 订单要求：厚度 20-23, ≤23

@@ -1651,3 +1651,14 @@ From previous event:
     '                      ORDER BY m.createTime DESC, m.furnace DESC, m.coilNumber ASC\n' +
     '                      LIMIT 30 OFFSET 0'
 }
+[2020-10-29T22:54:24.361] [ERROR] measure - 保存重卷记录失败 Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at E:\amorphous_node\controller\measure.js:587:17 {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-10-29T23:00:15.450] [ERROR] user - 密码错误 Error: 密码错误
+    at login (E:\amorphous_node\controller\user.js:244:15)

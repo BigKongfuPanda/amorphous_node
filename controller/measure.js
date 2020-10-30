@@ -57,7 +57,7 @@ class Measure {
       }
 
       const sqlStr = `SELECT 
-                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster
+                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
                       FROM measure m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
@@ -65,7 +65,7 @@ class Measure {
                       ORDER BY m.createdAt DESC, m.furnace DESC, m.coilNumber ASC
                       LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
       const sqlStr2 = `SELECT 
-                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster
+                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
                       FROM measure m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
@@ -239,8 +239,14 @@ class Measure {
             : ` m.ribbonThicknessDeviation<=${thicknessDivation}`;
       }
 
+      // 检测只能看到重卷确认后的带材
+      queryCondition +=
+        queryCondition !== ""
+          ? ` AND m.isRollConfirmed=1`
+          : ` m.isRollConfirmed=1`;
+
       const sqlStr = `SELECT 
-                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster
+                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
                       FROM measure m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
@@ -248,7 +254,7 @@ class Measure {
                       ORDER BY m.createdAt DESC, m.furnace DESC, m.coilNumber ASC
                       LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
       const sqlStr2 = `SELECT 
-                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster
+                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
                       FROM measure m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
@@ -275,15 +281,17 @@ class Measure {
       for (const furnace of uniqueFurnaceList) {
         let planFurnace = furnace.substr(0, 14);
         const date = furnace.split("-")[1]; // 06-20190111-02/08 ---> 2019-01-11
-        const _castId = furnace.split('-')[0]; // 06-20190111-02/08 ---> 06
+        const _castId = furnace.split("-")[0]; // 06-20190111-02/08 ---> 06
         const fomatDate = moment(date).format("YYYY-MM-DD");
         const planListByDate = await planModel.findAll({
           where: { date: fomatDate },
           raw: true,
         });
         const _len = planListByDate.length;
-        if(_len == 0) {
-          throw new Error(`机组：${_castId}，日期：${fomatDate}， 缺少生产计划，请联系生产计划管理员添加计划`)
+        if (_len == 0) {
+          throw new Error(
+            `机组：${_castId}，日期：${fomatDate}， 缺少生产计划，请联系生产计划管理员添加计划`
+          );
         }
         if (Number(planFurnace.split("-")[2]) > _len) {
           planFurnace = planListByDate[_len - 1].furnace;
@@ -483,7 +491,7 @@ class Measure {
     }
   }
 
-  // 重卷数据入库
+  // 重卷数据确认送检
   async rollConfirm(req, res, next) {
     const { rollDataJson } = req.body;
     let list = [];
@@ -615,14 +623,14 @@ class Measure {
 
     try {
       data.forEach(async (item) => {
-        // 当带材检测后入库的时候，设置入库日期和检测日期，检测人员操作
+        // 当带材检测后入库的时候，设置入库日期，检测人员操作
         item.inStoreDate = Date.now();
-        item.measureDate = Date.now();
+        // item.measureDate = Date.now();
         item.isMeasureConfirmed = 1; // 1-检测确认入库，0-没有入库
         await measureModel.update(
           {
             inStoreDate: item.inStoreDate,
-            measureDate: item.measureDate,
+            // measureDate: item.measureDate,
             isMeasureConfirmed: 1,
           },
           { where: { measureId: item.measureId } }
@@ -970,6 +978,7 @@ class Measure {
           delete clone.measureId;
           const newData = {
             ...clone,
+            measureDate: Date.now() // 检测日期
           };
           const [n] = await measureModel.update(newData, {
             where: { measureId },
