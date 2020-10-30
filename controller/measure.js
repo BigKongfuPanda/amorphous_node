@@ -251,7 +251,7 @@ class Measure {
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
                       ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
-                      ORDER BY m.createdAt DESC, m.furnace DESC, m.coilNumber ASC
+                      ORDER BY m.updatedAt DESC, m.furnace DESC, m.coilNumber ASC
                       LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
       const sqlStr2 = `SELECT 
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
