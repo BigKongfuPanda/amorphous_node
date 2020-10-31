@@ -10,6 +10,8 @@ const nodeExcel = require("excel-export");
 const moment = require("moment");
 const { valueToString } = require("../util");
 const { cloneDeep } = require("lodash");
+const config = require("config-lite")(__dirname);
+const TABLE_NAME = config.tableName;
 
 class Measure {
   constructor() {}
@@ -58,15 +60,15 @@ class Measure {
 
       const sqlStr = `SELECT 
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
-                      FROM measure m 
+                      FROM ${TABLE_NAME} m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
                       ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
-                      ORDER BY m.createdAt DESC, m.furnace DESC, m.coilNumber ASC
+                      ORDER BY m.furnace DESC, m.coilNumber ASC
                       LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
       const sqlStr2 = `SELECT 
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
-                      FROM measure m 
+                      FROM ${TABLE_NAME} m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
                       ${
@@ -247,7 +249,7 @@ class Measure {
 
       const sqlStr = `SELECT 
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
-                      FROM measure m 
+                      FROM ${TABLE_NAME} m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
                       ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
@@ -255,7 +257,7 @@ class Measure {
                       LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
       const sqlStr2 = `SELECT 
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
-                      FROM measure m 
+                      FROM ${TABLE_NAME} m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
                       ${
@@ -437,7 +439,7 @@ class Measure {
     try {
       // 获取合计盘重的重量
       const rawRetCoil = await sequelize.query(
-        `SELECT SUM(coilWeight) AS weight FROM measure WHERE  furnace = '${furnace}'`,
+        `SELECT SUM(coilWeight) AS weight FROM ${TABLE_NAME} WHERE  furnace = '${furnace}'`,
         {
           type: sequelize.QueryTypes.SELECT,
         }
@@ -530,7 +532,9 @@ class Measure {
         try {
           const data = await castModel.findOne({ where: { furnace } });
           if (!data) {
-            throw new Error(`炉号 ${furnace} 不存在，请检查炉号是否正确`);
+            throw new Error(
+              `喷带记录中，炉号 ${furnace} 不存在，请检查炉号是否正确`
+            );
           }
         } catch (err) {
           log.error(err.message, err);
@@ -545,7 +549,7 @@ class Measure {
         try {
           // 获取合计盘重的重量
           const rawRetCoil = await sequelize.query(
-            `SELECT SUM(coilWeight) AS weight FROM measure WHERE  furnace = '${furnace}'`,
+            `SELECT SUM(coilWeight) AS weight FROM ${TABLE_NAME} WHERE  furnace = '${furnace}'`,
             {
               type: sequelize.QueryTypes.SELECT,
             }
@@ -573,11 +577,12 @@ class Measure {
         }
 
         try {
-          const { createTime } = await castModel.findOne({
-            where: { furnace },
-          });
+          // const { createTime } = await castModel.findOne({
+          //   where: { furnace },
+          // });
           const newData = {
-            castDate: createTime,
+            // castDate: createTime,
+            rollerName: item.rollerName, // 将此刻重卷人名固定死，不能使用roller,因为roller 和 rollerName 的映射关系会变化
             isRollConfirmed: 1, // 确认成功
           };
           const [n] = await measureModel.update(newData, {
@@ -728,7 +733,7 @@ class Measure {
     try {
       // 获取合计盘重的重量
       const rawRetCoil = await sequelize.query(
-        `SELECT SUM(coilWeight) AS weight FROM measure WHERE  furnace = '${furnace}'`,
+        `SELECT SUM(coilWeight) AS weight FROM ${TABLE_NAME} WHERE  furnace = '${furnace}'`,
         {
           type: sequelize.QueryTypes.SELECT,
         }
@@ -941,7 +946,7 @@ class Measure {
     }
   }
 
-  // 批量更新操作，由检测人员使用
+  // 批量计算综合级别，由检测人员使用
   async updateMeasureByBatch(req, res, next) {
     const { listJson } = req.body;
     let list = [];
@@ -975,10 +980,41 @@ class Measure {
         }
 
         try {
-          delete clone.measureId;
           const newData = {
-            ...clone,
-            measureDate: Date.now() // 检测日期
+            coilNetWeight: item.coilNetWeight,
+            remainWeight: item.remainWeight,
+            laminationFactor: item.laminationFactor,
+            laminationLevel: item.laminationLevel,
+            ribbonToughness: item.ribbonToughness,
+            ribbonThicknessDeviation: item.ribbonThicknessDeviation,
+            ribbonThickness: item.ribbonThickness,
+            ribbonThicknessLevel: item.ribbonThicknessLevel,
+            // ribbonToughnessLevel,
+            // appearence,
+            // appearenceLevel,
+            ribbonTotalLevel: item.ribbonTotalLevel,
+            // isMeasureConfirmed,
+            isStored: item.isStored,
+            // unStoreReason,
+            // clients,
+            // takeBy,
+            // shipRemark,
+            // place,
+            totalStoredWeight: item.totalStoredWeight || 0,
+            inPlanStoredWeight: item.inPlanStoredWeight || 0,
+            outPlanStoredWeight: item.outPlanStoredWeight || 0,
+            qualityOfA: item.qualityOfA || 0,
+            qualityOfB: item.qualityOfB || 0,
+            qualityOfC: item.qualityOfC || 0,
+            qualityOfD: item.qualityOfD || 0,
+            qualityOfE: item.qualityOfE || 0,
+            highFactorThinRibbonWeight: item.highFactorThinRibbonWeight || 0,
+            thinRibbonWeight: item.thinRibbonWeight || 0,
+            inPlanThickRibbonWeight: item.inPlanThickRibbonWeight || 0,
+            qualityOfGood: item.qualityOfGood || 0,
+            qualityOfFine: item.qualityOfFine || 0,
+            qualityOfNormal: item.qualityOfNormal || 0,
+            measureDate: Date.now(), // 检测日期
           };
           const [n] = await measureModel.update(newData, {
             where: { measureId },
@@ -1041,84 +1077,98 @@ class Measure {
   async exportMeasure(req, res, next) {
     const {
       castId,
-      furnace,
+      // furnace,
       startTime,
       endTime,
-      caster,
-      roller,
-      ribbonTypeNameJson,
-      ribbonWidthJson,
-      ribbonThicknessLevelJson,
-      laminationLevelJson,
-      ribbonToughnessLevelJson,
-      appearenceLevelJson,
-      place,
-      ribbonTotalLevels,
+      // caster,
+      // roller,
+      // ribbonTypeNameJson,
+      // ribbonWidthJson,
+      // ribbonThicknessLevelJson,
+      // laminationLevelJson,
+      // ribbonToughnessLevelJson,
+      // appearenceLevelJson,
+      // place,
+      // ribbonTotalLevels,
     } = req.query;
     try {
-      let queryCondition = {};
+      let queryCondition = "";
+      // 检测只能看到重卷确认后的带材
+      queryCondition +=
+        queryCondition !== ""
+          ? ` AND m.isRollConfirmed=1`
+          : ` m.isRollConfirmed=1`;
       if (castId) {
-        queryCondition.castId = castId;
-      }
-      if (caster) {
-        queryCondition.caster = caster;
-      }
-      if (roller) {
-        queryCondition.roller = roller;
-      }
-      if (furnace) {
-        queryCondition.furnace = furnace;
+        queryCondition +=
+          queryCondition !== ""
+            ? ` AND m.castId=${castId}`
+            : ` m.castId=${castId}`;
       }
       if (startTime && endTime) {
-        queryCondition.inStoreDate = { $gt: startTime, $lt: endTime };
+        queryCondition +=
+          queryCondition !== ""
+            ? ` AND c.createTime BETWEEN '${startTime}' AND '${endTime}'`
+            : ` c.createTime BETWEEN '${startTime}' AND '${endTime}'`;
       }
-      if (ribbonTypeNameJson) {
-        const ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
-        if (ribbonTypeNameList.length > 0) {
-          queryCondition.ribbonTypeName = { $in: ribbonTypeNameList };
-        }
-      }
-      if (ribbonWidthJson) {
-        const ribbonWidthList = JSON.parse(ribbonWidthJson);
-        if (ribbonWidthList.length > 0) {
-          queryCondition.ribbonWidth = { $in: ribbonWidthList };
-        }
-      }
-      if (ribbonThicknessLevelJson) {
-        const ribbonThicknessLevelList = JSON.parse(ribbonThicknessLevelJson);
-        if (ribbonThicknessLevelList.length > 0) {
-          queryCondition.ribbonThicknessLevel = {
-            $in: ribbonThicknessLevelList,
-          };
-        }
-      }
-      if (laminationLevelJson) {
-        const laminationLevelList = JSON.parse(laminationLevelJson);
-        if (laminationLevelList.length > 0) {
-          queryCondition.laminationLevel = { $in: laminationLevelList };
-        }
-      }
-      if (ribbonToughnessLevelJson) {
-        const ribbonToughnessLevelList = JSON.parse(ribbonToughnessLevelJson);
-        if (ribbonToughnessLevelList.length > 0) {
-          queryCondition.ribbonToughnessLevel = {
-            $in: ribbonToughnessLevelList,
-          };
-        }
-      }
-      if (appearenceLevelJson) {
-        const appearenceLevelList = JSON.parse(appearenceLevelJson);
-        if (appearenceLevelList.length > 0) {
-          queryCondition.appearenceLevel = { $in: appearenceLevelList };
-        }
-      }
-      if (place) {
-        queryCondition.place = place;
-      }
-      if (ribbonTotalLevels) {
-        const ribbonTotalLevelList = ribbonTotalLevels.split(",");
-        queryCondition.ribbonTotalLevel = { $in: ribbonTotalLevelList };
-      }
+      // if (caster) {
+      //   queryCondition.caster = caster;
+      // }
+      // if (roller) {
+      //   queryCondition.roller = roller;
+      // }
+      // if (furnace) {
+      //   queryCondition.furnace = furnace;
+      // }
+      // if (startTime && endTime) {
+      //   queryCondition.inStoreDate = { $gt: startTime, $lt: endTime };
+      // }
+      // if (ribbonTypeNameJson) {
+      //   const ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
+      //   if (ribbonTypeNameList.length > 0) {
+      //     queryCondition.ribbonTypeName = { $in: ribbonTypeNameList };
+      //   }
+      // }
+      // if (ribbonWidthJson) {
+      //   const ribbonWidthList = JSON.parse(ribbonWidthJson);
+      //   if (ribbonWidthList.length > 0) {
+      //     queryCondition.ribbonWidth = { $in: ribbonWidthList };
+      //   }
+      // }
+      // if (ribbonThicknessLevelJson) {
+      //   const ribbonThicknessLevelList = JSON.parse(ribbonThicknessLevelJson);
+      //   if (ribbonThicknessLevelList.length > 0) {
+      //     queryCondition.ribbonThicknessLevel = {
+      //       $in: ribbonThicknessLevelList,
+      //     };
+      //   }
+      // }
+      // if (laminationLevelJson) {
+      //   const laminationLevelList = JSON.parse(laminationLevelJson);
+      //   if (laminationLevelList.length > 0) {
+      //     queryCondition.laminationLevel = { $in: laminationLevelList };
+      //   }
+      // }
+      // if (ribbonToughnessLevelJson) {
+      //   const ribbonToughnessLevelList = JSON.parse(ribbonToughnessLevelJson);
+      //   if (ribbonToughnessLevelList.length > 0) {
+      //     queryCondition.ribbonToughnessLevel = {
+      //       $in: ribbonToughnessLevelList,
+      //     };
+      //   }
+      // }
+      // if (appearenceLevelJson) {
+      //   const appearenceLevelList = JSON.parse(appearenceLevelJson);
+      //   if (appearenceLevelList.length > 0) {
+      //     queryCondition.appearenceLevel = { $in: appearenceLevelList };
+      //   }
+      // }
+      // if (place) {
+      //   queryCondition.place = place;
+      // }
+      // if (ribbonTotalLevels) {
+      //   const ribbonTotalLevelList = ribbonTotalLevels.split(",");
+      //   queryCondition.ribbonTotalLevel = { $in: ribbonTotalLevelList };
+      // }
 
       const conf = {};
       conf.name = "mysheet";
@@ -1156,62 +1206,52 @@ class Measure {
         { caption: "判定去向", type: "string" },
       ];
       conf.rows = [];
-      // const list = await measureModel.find(queryCondition).sort({'furnace': 'asc', 'coilNumber': 'asc'});
-      const list = await measureModel.findAll({
-        where: queryCondition,
-        roder: [
-          ["furnace", "asc"],
-          ["coilNumber", "asc"],
-        ],
-        raw: true,
+      const sqlStr = `SELECT 
+                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
+                      FROM ${TABLE_NAME} m 
+                      LEFT JOIN cast c 
+                      ON m.furnace=c.furnace
+                      ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
+                      ORDER BY m.furnace DESC, m.coilNumber ASC`;
+
+      const list = await sequelize.query(sqlStr, {
+        type: sequelize.QueryTypes.SELECT,
       });
 
-      conf.rows = await Promise.all(
-        list.map(async (item) => {
-          const {
-            ribbonTypeName,
-            ribbonWidth,
-            createTime,
-            caster,
-          } = await castModel.findOne({
-            where: { furnace: item.furnace },
-            raw: true,
-          });
-
-          return [
-            item.furnace,
-            item.coilNumber,
-            ribbonTypeName,
-            ribbonWidth,
-            moment(createTime).format("YYYY-MM-DD"),
-            caster,
-            item.diameter,
-            item.coilWeight,
-            item.laminationFactor,
-            item.laminationLevel,
-            item.realRibbonWidth,
-            item.ribbonThickness1,
-            item.ribbonThickness2,
-            item.ribbonThickness3,
-            item.ribbonThickness4,
-            item.ribbonThickness5,
-            item.ribbonThickness6,
-            item.ribbonThickness7,
-            item.ribbonThickness8,
-            item.ribbonThickness9,
-            item.ribbonThicknessDeviation,
-            item.ribbonThickness,
-            item.ribbonThicknessLevel,
-            item.ribbonToughness,
-            item.ribbonToughnessLevel,
-            item.appearence,
-            item.appearenceLevel,
-            item.ribbonTotalLevel,
-            isStoredDesc(item.isStored),
-            item.unStoreReason,
-            item.clients,
-          ].map((val) => (val == undefined ? null : val));
-        })
+      conf.rows = list.map((item) =>
+        [
+          item.furnace,
+          item.coilNumber,
+          item.ribbonTypeName,
+          item.ribbonWidth,
+          moment(item.castDate).format("YYYY-MM-DD"),
+          item.caster,
+          item.diameter,
+          item.coilWeight,
+          item.laminationFactor,
+          item.laminationLevel,
+          item.realRibbonWidth,
+          item.ribbonThickness1,
+          item.ribbonThickness2,
+          item.ribbonThickness3,
+          item.ribbonThickness4,
+          item.ribbonThickness5,
+          item.ribbonThickness6,
+          item.ribbonThickness7,
+          item.ribbonThickness8,
+          item.ribbonThickness9,
+          item.ribbonThicknessDeviation,
+          item.ribbonThickness,
+          item.ribbonThicknessLevel,
+          item.ribbonToughness,
+          item.ribbonToughnessLevel,
+          item.appearence,
+          item.appearenceLevel,
+          item.ribbonTotalLevel,
+          isStoredDesc(item.isStored),
+          item.unStoreReason,
+          item.clients,
+        ].map((val) => (val == undefined ? null : val))
       );
 
       function isStoredDesc(status) {
@@ -1284,7 +1324,7 @@ class Measure {
 
       const sqlStr = `SELECT 
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime, c.caster
-                      FROM mytable m 
+                      FROM ${TABLE_NAME} m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
                       ${queryCondition !== "" ? "WHERE " + queryCondition : ""}

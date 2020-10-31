@@ -4,8 +4,10 @@ const Sequelize = require("sequelize");
 const sequelize = require("../mysql/db");
 const Cast = require("./cast");
 const moment = require("moment");
+const config = require("config-lite")(__dirname);
+const TABLE_NAME = config.tableName;
 
-const Measure = sequelize.define("measure", {
+const Measure = sequelize.define(TABLE_NAME, {
   measureId: {
     type: Sequelize.INTEGER,
     primaryKey: true,
@@ -30,6 +32,7 @@ const Measure = sequelize.define("measure", {
   diameter: Sequelize.FLOAT, // 外径
   coilWeight: Sequelize.FLOAT, // 单盘重量,kg
   roller: Sequelize.INTEGER, // 重卷人编号，PLC数据
+  rollerName: Sequelize.STRING, // 重卷人姓名
   rollMachine: Sequelize.INTEGER, // 重卷机器编号
   rollMeasureMachine: Sequelize.INTEGER, // 重卷测试设备编号
   isFlat: Sequelize.INTEGER, // 端面是否平整, 1-不平整，0-平整
@@ -40,15 +43,11 @@ const Measure = sequelize.define("measure", {
     defaultValue: 0, // 1-已确认；0-待确认
   },
   // 检测录入信息
-  orderThickness: Sequelize.STRING, // 订单要求：厚度 20-23, ≤23
-  orderLaminationFactor: Sequelize.STRING, // 订单要求：叠片系数 ≥0.78
-  orderRibbonToughnessLevels: Sequelize.STRING, // 订单要求：韧性 [A,B,C]
-  orderAppearenceLevels: Sequelize.STRING, // 订单要求：外观 [A,B,C]
-  // qualifiedThickness: Sequelize.STRING, // 入库要求：厚度 20-23, ≤23
-  // qualifiedLaminationFactor: Sequelize.STRING, // 入库要求：叠片系数 ≥0.78
-  // qualifiedRibbonToughnessLevels: Sequelize.STRING, // 入库要求：韧性 [A,B,C]
-  // qualifiedAppearenceLevels: Sequelize.STRING, // 入库要求：外观 [A,B,C]
-  qualifiedDemands: Sequelize.TEXT, //入库要求
+  // orderThickness: Sequelize.STRING, // 订单要求：厚度 20-23, ≤23
+  // orderLaminationFactor: Sequelize.STRING, // 订单要求：叠片系数 ≥0.78
+  // orderRibbonToughnessLevels: Sequelize.STRING, // 订单要求：韧性 [A,B,C]
+  // orderAppearenceLevels: Sequelize.STRING, // 订单要求：外观 [A,B,C]
+  // qualifiedDemands: Sequelize.TEXT, //入库要求
   measureMachine: Sequelize.INTEGER, //检测设备编号
   realRibbonWidth: Sequelize.FLOAT, //实际带宽
   coilNetWeight: Sequelize.FLOAT, //单盘净重,kg
@@ -65,7 +64,7 @@ const Measure = sequelize.define("measure", {
   ribbonThickness9: Sequelize.INTEGER, //带材厚度点9, μm
   ribbonThicknessDeviation: Sequelize.INTEGER, // 带材横向偏差, μm
   ribbonThickness: Sequelize.FLOAT, // 带材平均厚度, μm
-  ribbonThicknessLevel: Sequelize.FLOAT, // 带材厚度级别
+  ribbonThicknessLevel: Sequelize.INTEGER, // 带材厚度级别
   ribbonToughness: Sequelize.STRING, //带材韧性
   ribbonToughnessLevel: Sequelize.STRING, //带材韧性等级
   // ribbonToughnessLevelCode: Sequelize.INTEGER, //带材韧性等级符号，PLC的传值
@@ -84,29 +83,17 @@ const Measure = sequelize.define("measure", {
   measureDate: {
     type: Sequelize.DATE,
     defaultValue: null,
-    // get() {
-    //   return moment(this.getDataValue('measureDate')).format('YYYY-MM-DD HH:mm:ss');
-    // }
   }, //检测日期
   // 库房信息
   inStoreDate: {
     type: Sequelize.DATE,
     defaultValue: null,
-    // get() {
-    // 	return moment(this.getDataValue('inStoreDate')).format('YYYY-MM-DD HH:mm:ss');
-    // }
   }, //入库日期
   outStoreDate: {
     type: Sequelize.DATE,
     defaultValue: null,
-    // get() {
-    // 	return moment(this.getDataValue('outStoreDate')).format('YYYY-MM-DD HH:mm:ss');
-    // }
   }, //出库日期
   remainWeight: Sequelize.FLOAT, //结余
-  takeBy: Sequelize.STRING, //领走的部门 辊剪，顺义，固安，回炉/置换，粉末厂
-  place: Sequelize.STRING, //储存的仓位 1-15-2
-  shipRemark: Sequelize.STRING, //发货备注
   // 质量信息
   totalStoredWeight: { type: Sequelize.FLOAT, defaultValue: 0 }, //总入库重量
   inPlanStoredWeight: { type: Sequelize.FLOAT, defaultValue: 0 }, //计划内入库重量

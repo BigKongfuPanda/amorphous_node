@@ -11,4 +11,5 @@ module.exports = {
     password: "root",
     database: "daicai",
   },
+  tableName: "measure",
 };
