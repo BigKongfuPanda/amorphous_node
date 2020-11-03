@@ -159,7 +159,12 @@ class Storage {
       });
     }
   }
-
+  /**
+   * 请求库房表中所有的炉号
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
   async queryFurnace(req, res, next) {
     const { query } = req.query;
     try {
@@ -178,7 +183,6 @@ class Storage {
       });
 
       furnaceList = Array.from(new Set(furnaceList));
-      console.log(furnaceList);
 
       res.send({
         status: 0,
