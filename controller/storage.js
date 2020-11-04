@@ -1,5 +1,6 @@
 "use strict";
 
+const sequelize = require("../mysql/db");
 const storageModel = require("../models/storage");
 const measureModel = require("../models/measure");
 const log = require("log4js").getLogger("storage");
@@ -10,6 +11,8 @@ const formidable = require("formidable");
 const xlsx = require("node-xlsx");
 const path = require("path");
 const fs = require("fs");
+const config = require("config-lite")(__dirname);
+const TABLE_NAME = config.tableName;
 
 class Storage {
   constructor() {}
@@ -156,6 +159,80 @@ class Storage {
       res.send({
         status: -1,
         message: "查询库房记录失败",
+      });
+    }
+  }
+
+  // 查询申请入库实时记录
+  async queryApplyStorage(req, res, next) {
+    const { castIds, furnaceJson } = req.query;
+    try {
+      let queryCondition = "";
+      // if (furnace) {
+      //   queryCondition +=
+      //     queryCondition !== ""
+      //       ? ` AND m.furnace='${furnace}'`
+      //       : ` m.furnace='${furnace}'`;
+      // }
+
+      if (castIds) {
+        let castIdList = JSON.parse(castIds);
+        if (castIdList.length > 0) {
+          const ids = castIdList.join();
+          queryCondition +=
+            queryCondition !== ""
+              ? ` AND m.castId IN (${ids})`
+              : ` m.castId IN (${ids})`;
+        }
+      }
+
+      if (furnaceJson) {
+        let furnanceList = JSON.parse(furnaceJson);
+        if (furnanceList.length > 0) {
+          const furnaces = furnanceList.map((item) => `'${item}'`).join();
+          queryCondition +=
+            queryCondition !== ""
+              ? ` AND m.furnace IN (${furnaces})`
+              : ` m.furnace IN (${furnaces})`;
+        }
+      }
+
+      // 只查找检测确认，并且库房没有确认的，可以入库的带材
+      queryCondition +=
+        queryCondition !== ""
+          ? ` AND m.isMeasureConfirmed=1`
+          : ` m.isMeasureConfirmed=1`;
+      queryCondition +=
+        queryCondition !== ""
+          ? ` AND m.isStorageConfirmed=0`
+          : ` m.isStorageConfirmed=0`;
+
+      const sqlStr = `SELECT 
+                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
+                      FROM ${TABLE_NAME} m 
+                      LEFT JOIN cast c 
+                      ON m.furnace=c.furnace
+                      ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
+                      ORDER BY m.furnace DESC, m.coilNumber ASC`;
+
+      const list = await sequelize.query(sqlStr, {
+        type: sequelize.QueryTypes.SELECT,
+      });
+
+      // 要考虑分页
+      res.send({
+        status: 0,
+        message: "操作成功",
+        data: {
+          list,
+        },
+      });
+    } catch (err) {
+      console.log("查询申请入库记录失败", err);
+      log.error("查询申请入库记录失败", err);
+      res.send({
+        status: -1,
+        message: "查询申请入库记录失败",
       });
     }
   }

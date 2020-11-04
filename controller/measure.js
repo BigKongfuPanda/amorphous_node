@@ -628,24 +628,24 @@ class Measure {
 
     try {
       data.forEach(async (item) => {
-        // 当带材检测后入库的时候，设置入库日期，检测人员操作
-        item.inStoreDate = Date.now();
+        // 检测确认时间，也就是申请入库时间
+        // item.measureConfirmDate = Date.now();
         // item.measureDate = Date.now();
-        item.isMeasureConfirmed = 1; // 1-检测确认入库，0-没有入库
+        // item.isMeasureConfirmed = 1; // 1-已确认，0-未确认
         await measureModel.update(
           {
-            inStoreDate: item.inStoreDate,
+            measureConfirmDate: Date.now(),
             // measureDate: item.measureDate,
-            isMeasureConfirmed: 1,
+            isMeasureConfirmed: 1, // 1-已确认，0-未确认
           },
           { where: { measureId: item.measureId } }
         );
         // 将入库数据
-        let clone = cloneDeep(item);
-        delete clone.measureId;
-        delete clone.createdAt;
-        delete clone.updatedAt;
-        await storageModel.create(clone);
+        // let clone = cloneDeep(item);
+        // delete clone.measureId;
+        // delete clone.createdAt;
+        // delete clone.updatedAt;
+        // await storageModel.create(clone);
       });
       res.send({
         status: 0,
