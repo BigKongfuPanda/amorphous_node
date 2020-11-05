@@ -13,6 +13,9 @@ router.get("/queryApplyStorage", Storage.queryApplyStorage);
 // 获取库房记录表中所有的炉号
 router.get("/furnace", Storage.queryFurnace);
 
+// 确认入库
+router.get("/addStorage", Storage.addStorage);
+
 // 更新库房记录表
 router.put("/", Storage.updateData);
 

@@ -22,6 +22,9 @@ const Storage = sequelize.define("storage", {
   ribbonToughnessLevel: Sequelize.STRING, //带材韧性等级
   appearence: Sequelize.STRING, //带材外观描述
   appearenceLevel: Sequelize.STRING, //带材外观等级
+  laminationFactor: Sequelize.FLOAT, //叠片系数 0.80
+  laminationLevel: Sequelize.STRING, //叠片等级 不合格, 0, 1, 2, 3, 4
+  ribbonTotalLevel: Sequelize.STRING, //带材综合级别
   castDate: {
     type: Sequelize.DATE,
     get() {
@@ -31,17 +34,16 @@ const Storage = sequelize.define("storage", {
     },
   }, //生产日期
   caster: Sequelize.STRING, //喷带手
-  // diameter: Sequelize.FLOAT, // 外径
+  diameter: Sequelize.FLOAT, // 外径
   coilWeight: Sequelize.FLOAT, // 单盘重量,kg
   coilNetWeight: Sequelize.FLOAT, //单盘净重,kg
-  laminationFactor: Sequelize.FLOAT, //叠片系数 0.80
-  laminationLevel: Sequelize.STRING, //叠片等级 不合格, 0, 1, 2, 3, 4
+  remainWeight: Sequelize.FLOAT, //结余
+
   orderThickness: Sequelize.STRING, // 订单要求：厚度 20-23, ≤23
   orderLaminationFactor: Sequelize.STRING, // 订单要求：叠片系数 ≥0.78
   orderRibbonToughnessLevels: Sequelize.STRING, // 订单要求：韧性 [A,B,C]
   orderAppearenceLevels: Sequelize.STRING, // 订单要求：外观 [A,B,C]
   qualifiedDemands: Sequelize.TEXT, //入库要求
-  ribbonTotalLevel: Sequelize.STRING, //带材综合级别
   // storageRule: Object, //入库规则
   isStored: { type: Sequelize.INTEGER, defaultValue: 3 }, // 是否入库：1-计划内入库，2-计划外入库，3-否
   // 库房信息
@@ -59,7 +61,7 @@ const Storage = sequelize.define("storage", {
     // 	return moment(this.getDataValue('outStoreDate')).format('YYYY-MM-DD HH:mm:ss');
     // }
   }, //出库日期
-  remainWeight: Sequelize.FLOAT, //结余
+
   clients: Sequelize.STRING, //检测判定去向 [德国，法国] ---> '德国,法国'
   takeBy: Sequelize.STRING, //领走的部门 辊剪，顺义，固安，回炉/置换，粉末厂
   place: Sequelize.STRING, //储存的仓位 1-15-2

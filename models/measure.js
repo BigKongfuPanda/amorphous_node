@@ -43,11 +43,11 @@ const Measure = sequelize.define(TABLE_NAME, {
     defaultValue: 0, // 1-已确认；0-待确认
   },
   // 检测录入信息
-  // orderThickness: Sequelize.STRING, // 订单要求：厚度 20-23, ≤23
-  // orderLaminationFactor: Sequelize.STRING, // 订单要求：叠片系数 ≥0.78
-  // orderRibbonToughnessLevels: Sequelize.STRING, // 订单要求：韧性 [A,B,C]
-  // orderAppearenceLevels: Sequelize.STRING, // 订单要求：外观 [A,B,C]
-  // qualifiedDemands: Sequelize.TEXT, //入库要求
+  orderThickness: Sequelize.STRING, // 订单要求：厚度 20-23, ≤23
+  orderLaminationFactor: Sequelize.STRING, // 订单要求：叠片系数 ≥0.78
+  orderRibbonToughnessLevels: Sequelize.STRING, // 订单要求：韧性 [A,B,C]
+  orderAppearenceLevels: Sequelize.STRING, // 订单要求：外观 [A,B,C]
+  qualifiedDemands: Sequelize.TEXT, //入库要求
   measureMachine: Sequelize.INTEGER, //检测设备编号
   realRibbonWidth: Sequelize.FLOAT, //实际带宽
   coilNetWeight: Sequelize.FLOAT, //单盘净重,kg

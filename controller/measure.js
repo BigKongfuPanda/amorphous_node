@@ -363,7 +363,7 @@ class Measure {
       log.error("查询检测记录失败", err);
       res.send({
         status: -1,
-        message: "查询检测记录失败",
+        message: err.message || "查询检测记录失败",
       });
     }
   }
@@ -637,6 +637,11 @@ class Measure {
             measureConfirmDate: Date.now(),
             // measureDate: item.measureDate,
             isMeasureConfirmed: 1, // 1-已确认，0-未确认
+            orderThickness: item.orderThickness,
+            orderLaminationFactor: item.orderLaminationFactor,
+            orderRibbonToughnessLevels: item.orderRibbonToughnessLevels,
+            orderAppearenceLevels: item.orderAppearenceLevels,
+            qualifiedDemands: item.qualifiedDemands,
           },
           { where: { measureId: item.measureId } }
         );
@@ -649,13 +654,13 @@ class Measure {
       });
       res.send({
         status: 0,
-        message: "入库成功",
+        message: "申请入库成功",
       });
     } catch (err) {
       log.error(err.message, err);
       res.send({
         status: -1,
-        message: "入库失败",
+        message: "申请入库失败",
       });
     }
   }
