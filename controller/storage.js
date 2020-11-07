@@ -19,14 +19,13 @@ class Storage {
 
   async queryData(req, res, next) {
     const {
-      castId,
+      castIdJson,
       furnaceJson,
       startTime,
       endTime,
       outStartTime,
       outEndTime,
       caster,
-      roller,
       ribbonTypeNameJson,
       ribbonWidthJson,
       ribbonThicknessLevelJson,
@@ -40,14 +39,14 @@ class Storage {
     } = req.query;
     try {
       let queryCondition = {};
-      if (castId) {
-        queryCondition.castId = castId;
-      }
       if (caster) {
         queryCondition.caster = caster;
       }
-      if (roller) {
-        queryCondition.roller = roller;
+      if (castIdJson) {
+        const castIdList = JSON.parse(castIdJson);
+        if (castIdList.length > 0) {
+          queryCondition.castId = { $in: castIdList };
+        }
       }
       if (furnaceJson) {
         const furnaceList = JSON.parse(furnaceJson);
@@ -59,7 +58,10 @@ class Storage {
         queryCondition.inStoreDate = { $gt: startTime, $lt: endTime };
       }
       if (outStartTime && outEndTime) {
-        queryCondition.outStoreDate = { $gt: outStartTime, $lt: outEndTime };
+        queryCondition.outStoreDate = {
+          $gt: outStartTime,
+          $lt: outEndTime,
+        };
       }
       if (ribbonTypeNameJson) {
         const ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
@@ -84,7 +86,9 @@ class Storage {
       if (laminationLevelJson) {
         const laminationLevelList = JSON.parse(laminationLevelJson);
         if (laminationLevelList.length > 0) {
-          queryCondition.laminationLevel = { $in: laminationLevelList };
+          queryCondition.laminationLevel = {
+            $in: laminationLevelList,
+          };
         }
       }
       if (takebyJson) {
@@ -521,7 +525,9 @@ class Storage {
         qualityOfFine,
         qualityOfNormal,
       };
-      const [n] = await storageModel.update(newData, { where: { storageId } });
+      const [n] = await storageModel.update(newData, {
+        where: { storageId },
+      });
       if (n !== 0) {
         res.send({
           status: 0,
@@ -622,14 +628,12 @@ class Storage {
 
   async exportStorage(req, res, next) {
     const {
-      castId,
-      furnace,
+      castIdJson,
+      furnaceJson,
       startTime,
       endTime,
       outStartTime,
       outEndTime,
-      caster,
-      roller,
       ribbonTypeNameJson,
       ribbonWidthJson,
       ribbonThicknessLevelJson,
@@ -640,26 +644,28 @@ class Storage {
       isRemain = 1,
     } = req.query;
 
-    console.log(req.query);
     try {
       let queryCondition = {};
-      if (castId) {
-        queryCondition.castId = castId;
+      if (castIdJson) {
+        const castIdList = JSON.parse(castIdJson);
+        if (castIdList.length > 0) {
+          queryCondition.castId = { $in: castIdList };
+        }
       }
-      if (caster) {
-        queryCondition.caster = caster;
-      }
-      if (roller) {
-        queryCondition.roller = roller;
-      }
-      if (furnace) {
-        queryCondition.furnace = furnace;
+      if (furnaceJson) {
+        const furnaceList = JSON.parse(furnaceJson);
+        if (furnaceList.length > 0) {
+          queryCondition.furnace = { $in: furnaceList };
+        }
       }
       if (startTime && endTime) {
         queryCondition.inStoreDate = { $gt: startTime, $lt: endTime };
       }
       if (outStartTime && outEndTime) {
-        queryCondition.outStoreDate = { $gt: outStartTime, $lt: outEndTime };
+        queryCondition.outStoreDate = {
+          $gt: outStartTime,
+          $lt: outEndTime,
+        };
       }
       if (ribbonTypeNameJson) {
         const ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
@@ -684,7 +690,9 @@ class Storage {
       if (laminationLevelJson) {
         const laminationLevelList = JSON.parse(laminationLevelJson);
         if (laminationLevelList.length > 0) {
-          queryCondition.laminationLevel = { $in: laminationLevelList };
+          queryCondition.laminationLevel = {
+            $in: laminationLevelList,
+          };
         }
       }
       if (takebyJson) {
@@ -709,6 +717,7 @@ class Storage {
       const conf = {};
       conf.name = "mysheet";
       conf.cols = [
+        { caption: "机组", type: "number" },
         { caption: "炉号", type: "string" },
         { caption: "盘号", type: "number" },
         { caption: "材质", type: "string" },
@@ -740,6 +749,7 @@ class Storage {
 
       conf.rows = list.map((item) => {
         return [
+          item.castId,
           item.furnace,
           item.coilNumber,
           item.ribbonTypeName,
@@ -795,6 +805,12 @@ class Storage {
     }
   }
 
+  /**
+   * 通过excel来批量更新仓位
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
   async uploadStorage(req, res, next) {
     let list = [];
     const form = new formidable.IncomingForm();
@@ -837,7 +853,12 @@ class Storage {
           // const { n } = await storageModel.updateOne({ furnace: item.furnace, coilNumber: item.coilNumber }, { place: item.place });
           const [n] = await storageModel.update(
             { place: item.place },
-            { where: { furnace: item.furnace, coilNumber: item.coilNumber } }
+            {
+              where: {
+                furnace: item.furnace,
+                coilNumber: item.coilNumber,
+              },
+            }
           );
           if (n == 0) {
             errList.push({

@@ -2358,3 +2358,13 @@ From previous event:
     at Promise._settlePromise0 (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
     at Promise._settlePromises (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
     at Async._drainQueue (E:\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
+[2020-11-07T14:57:16.457] [ERROR] user - 用户不存在 Error: 用户不存在
+    at login (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/user.js:242:15)
+[2020-11-07T15:32:30.032] [ERROR] user - 密码错误 Error: 密码错误
+    at login (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/user.js:244:15)
+[2020-11-07T15:34:18.307] [ERROR] user - 用户不存在 Error: 用户不存在
+    at login (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/user.js:242:15)
+[2020-11-07T15:37:36.835] [ERROR] user - 用户不存在 Error: 用户不存在
+    at login (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/user.js:242:15)
+[2020-11-07T15:43:36.836] [ERROR] user - 用户不存在 Error: 用户不存在
+    at login (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/user.js:242:15)
