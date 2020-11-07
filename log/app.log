@@ -2242,3 +2242,119 @@ From previous event:
   },
   sql: 'UPDATE `measure` SET `furnace`=?,`coilNumber`=?,`diameter`=?,`coilWeight`=?,`coilNetWeight`=?,`laminationFactor`=?,`laminationLevel`=?,`roller`=?,`rollMachine`=?,`isFlat`=?,`orderThickness`=?,`orderLaminationFactor`=?,`orderRibbonToughnessLevels`=?,`orderAppearenceLevels`=?,`realRibbonWidth`=?,`ribbonThickness1`=?,`ribbonThickness2`=?,`ribbonThickness3`=?,`ribbonThickness4`=?,`ribbonThickness5`=?,`ribbonThickness6`=?,`ribbonThickness7`=?,`ribbonThickness8`=?,`ribbonThickness9`=?,`ribbonThicknessDeviation`=?,`ribbonThickness`=?,`ribbonThicknessLevel`=?,`ribbonToughness`=?,`ribbonToughnessLevel`=?,`appearence`=?,`appearenceLevel`=?,`ribbonTotalLevel`=?,`isMeasureConfirmed`=?,`isStored`=?,`unStoreReason`=?,`clients`=?,`measureDate`=?,`inStoreDate`=?,`outStoreDate`=?,`remainWeight`=?,`takeBy`=?,`place`=?,`shipRemark`=?,`totalStoredWeight`=?,`inPlanStoredWeight`=?,`outPlanStoredWeight`=?,`qualityOfA`=?,`qualityOfB`=?,`qualityOfC`=?,`qualityOfD`=?,`qualityOfE`=?,`thinRibbonWeight`=?,`highFactorThinRibbonWeight`=?,`inPlanThickRibbonWeight`=?,`qualityOfGood`=?,`qualityOfFine`=?,`qualityOfNormal`=?,`qualifiedDemands`=?,`isRollConfirmed`=?,`qrCode`=?,`rollMeasureMachine`=?,`dropNum`=?,`castId`=?,`measureMachine`=?,`createdAt`=?,`updatedAt`=CURRENT_TIMESTAMP,`rollerName`=? WHERE `measureId` = ?'
 }
+[2020-11-05T00:40:46.634] [ERROR] storage - 查询申请入库记录失败 ReferenceError: sequelize is not defined
+    at queryApplyStorage (E:\amorphous_node\controller\storage.js:205:20)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at tryCatcher (E:\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
+    at Promise.successAdapter [as _fulfillmentHandler0] (E:\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
+    at Promise._settlePromise (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
+    at Promise._settlePromise0 (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
+    at Promise._settlePromises (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
+    at Async._drainQueue (E:\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
+[2020-11-05T00:48:23.842] [ERROR] storage - 查询申请入库记录失败 ReferenceError: sequelize is not defined
+    at queryApplyStorage (E:\amorphous_node\controller\storage.js:217:20)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at tryCatcher (E:\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
+    at Promise.successAdapter [as _fulfillmentHandler0] (E:\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
+    at Promise._settlePromise (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
+    at Promise._settlePromise0 (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
+    at Promise._settlePromises (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
+    at Async._drainQueue (E:\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
+[2020-11-05T00:51:09.400] [ERROR] storage - 查询申请入库记录失败 ReferenceError: sequelize is not defined
+    at queryApplyStorage (E:\amorphous_node\controller\storage.js:217:20)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at tryCatcher (E:\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
+    at Promise.successAdapter [as _fulfillmentHandler0] (E:\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
+    at Promise._settlePromise (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
+    at Promise._settlePromise0 (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
+    at Promise._settlePromises (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
+    at Async._drainQueue (E:\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
+[2020-11-05T00:52:54.741] [ERROR] storage - 查询申请入库记录失败 ReferenceError: sequelize is not defined
+    at queryApplyStorage (E:\amorphous_node\controller\storage.js:217:20)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at tryCatcher (E:\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
+    at Promise.successAdapter [as _fulfillmentHandler0] (E:\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
+    at Promise._settlePromise (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
+    at Promise._settlePromise0 (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
+    at Promise._settlePromises (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
+    at Async._drainQueue (E:\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)

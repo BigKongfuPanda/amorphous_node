@@ -1,91 +1,68 @@
-'use strict';
+"use strict";
 
-const Sequelize =  require('sequelize');
-const sequelize = require('../mysql/db');
-const moment = require('moment');
+const Sequelize = require("sequelize");
+const sequelize = require("../mysql/db");
+const moment = require("moment");
 
-const Storage = sequelize.define('storage', {
+const Storage = sequelize.define("storage", {
   storageId: {
     type: Sequelize.INTEGER,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
   },
-  castId: Sequelize.INTEGER,// 机组编号
+  castId: Sequelize.INTEGER, // 机组编号
   // 重卷录入信息
-  furnace: Sequelize.STRING,// 制带炉号 06-20181120-01/01
-  ribbonTypeName: Sequelize.STRING,//材质名称
-  ribbonWidth: Sequelize.INTEGER,//带宽
-  castDate: {
-    type: Sequelize.DATE, 
-    get() {
-			return moment(this.getDataValue('castDate')).format('YYYY-MM-DD HH:mm:ss');
-		}
-  }, //生产日期
-  caster: Sequelize.STRING, //喷带手
+  furnace: Sequelize.STRING, // 制带炉号 06-20181120-01/01
   coilNumber: Sequelize.INTEGER, // 盘号 1, 2, 3
-  diameter: Sequelize.FLOAT, // 外径
-  coilWeight: Sequelize.FLOAT, // 单盘重量,kg
-  coilNetWeight: Sequelize.FLOAT, //单盘净重,kg
-  laminationFactor: Sequelize.FLOAT, //叠片系数 0.80
-  laminationLevel: Sequelize.STRING, //叠片等级 不合格, 0, 1, 2, 3, 4
-  roller: Sequelize.STRING, // 重卷人
-  rollMachine: Sequelize.INTEGER, // 重卷机器编号
-  orderThickness: Sequelize.STRING, // 订单要求：厚度 20-23, ≤23
-  orderLaminationFactor: Sequelize.STRING, // 订单要求：叠片系数 ≥0.78
-  orderRibbonToughnessLevels: Sequelize.STRING, // 订单要求：韧性 [A,B,C]
-  orderAppearenceLevels: Sequelize.STRING, // 订单要求：外观 [A,B,C]
-  // qualifiedThickness: Sequelize.STRING, // 入库要求：厚度 20-23, ≤23
-  // qualifiedLaminationFactor: Sequelize.STRING, // 入库要求：叠片系数 ≥0.78
-  // qualifiedRibbonToughnessLevels: Sequelize.STRING, // 入库要求：韧性 [A,B,C]
-  // qualifiedAppearenceLevels: Sequelize.STRING, // 入库要求：外观 [A,B,C]
-  qualifiedDemands: Sequelize.TEXT, //入库要求
-  // 检测录入信息
-  realRibbonWidth: Sequelize.FLOAT,//实际带宽
-  ribbonThickness1: Sequelize.FLOAT, //带材厚度点1, μm
-  ribbonThickness2: Sequelize.FLOAT, //带材厚度点2, μm
-  ribbonThickness3: Sequelize.FLOAT, //带材厚度点3, μm
-  ribbonThickness4: Sequelize.FLOAT, //带材厚度点4, μm
-  ribbonThickness5: Sequelize.FLOAT, //带材厚度点5, μm
-  ribbonThickness6: Sequelize.FLOAT, //带材厚度点6, μm
-  ribbonThickness7: Sequelize.FLOAT, //带材厚度点7, μm
-  ribbonThickness8: Sequelize.FLOAT, //带材厚度点8, μm
-  ribbonThickness9: Sequelize.FLOAT, //带材厚度点9, μm
-  ribbonThicknessDeviation: Sequelize.FLOAT, // 带材横向偏差, μm
+  ribbonTypeName: Sequelize.STRING, //材质名称
+  ribbonWidth: Sequelize.INTEGER, //带宽
   ribbonThickness: Sequelize.FLOAT, // 带材平均厚度, μm
   ribbonThicknessLevel: Sequelize.INTEGER, // 带材厚度级别
   ribbonToughness: Sequelize.STRING, //带材韧性
   ribbonToughnessLevel: Sequelize.STRING, //带材韧性等级
-  appearence: Sequelize.STRING, //带材外观
+  appearence: Sequelize.STRING, //带材外观描述
   appearenceLevel: Sequelize.STRING, //带材外观等级
+  laminationFactor: Sequelize.FLOAT, //叠片系数 0.80
+  laminationLevel: Sequelize.STRING, //叠片等级 不合格, 0, 1, 2, 3, 4
   ribbonTotalLevel: Sequelize.STRING, //带材综合级别
-  // isMeasureConfirmed: { type: Number, default: 0 }, // 检测是否确认可入库：1-是，0-否
+  castDate: {
+    type: Sequelize.DATE,
+    get() {
+      return moment(this.getDataValue("castDate")).format(
+        "YYYY-MM-DD HH:mm:ss"
+      );
+    },
+  }, //生产日期
+  caster: Sequelize.STRING, //喷带手
+  diameter: Sequelize.FLOAT, // 外径
+  coilWeight: Sequelize.FLOAT, // 单盘重量,kg
+  coilNetWeight: Sequelize.FLOAT, //单盘净重,kg
+  remainWeight: Sequelize.FLOAT, //结余
+
+  orderThickness: Sequelize.STRING, // 订单要求：厚度 20-23, ≤23
+  orderLaminationFactor: Sequelize.STRING, // 订单要求：叠片系数 ≥0.78
+  orderRibbonToughnessLevels: Sequelize.STRING, // 订单要求：韧性 [A,B,C]
+  orderAppearenceLevels: Sequelize.STRING, // 订单要求：外观 [A,B,C]
+  qualifiedDemands: Sequelize.TEXT, //入库要求
   // storageRule: Object, //入库规则
   isStored: { type: Sequelize.INTEGER, defaultValue: 3 }, // 是否入库：1-计划内入库，2-计划外入库，3-否
-  unStoreReason: Sequelize.STRING, //不入库原因
-  clients: Sequelize.STRING, //去向 [德国，法国] ---> '德国,法国'
-  measureDate: {
-    type: Sequelize.DATE, 
-    defaultValue: null,
-    // get() {
-		// 	return moment(this.getDataValue('measureDate')).format('YYYY-MM-DD HH:mm:ss');
-		// }
-  }, //检测日期
   // 库房信息
   inStoreDate: {
-    type: Sequelize.DATE, 
+    type: Sequelize.DATE,
     defaultValue: null,
     // get() {
-		// 	return moment(this.getDataValue('inStoreDate')).format('YYYY-MM-DD HH:mm:ss');
-		// }
+    // 	return moment(this.getDataValue('inStoreDate')).format('YYYY-MM-DD HH:mm:ss');
+    // }
   }, //入库日期
   outStoreDate: {
-    type: Sequelize.DATE, 
+    type: Sequelize.DATE,
     defaultValue: null,
     // get() {
-		// 	return moment(this.getDataValue('outStoreDate')).format('YYYY-MM-DD HH:mm:ss');
-		// }
+    // 	return moment(this.getDataValue('outStoreDate')).format('YYYY-MM-DD HH:mm:ss');
+    // }
   }, //出库日期
-  remainWeight: Sequelize.FLOAT, //结余
+
+  clients: Sequelize.STRING, //检测判定去向 [德国，法国] ---> '德国,法国'
   takeBy: Sequelize.STRING, //领走的部门 辊剪，顺义，固安，回炉/置换，粉末厂
   place: Sequelize.STRING, //储存的仓位 1-15-2
   shipRemark: Sequelize.STRING, //发货备注
@@ -105,23 +82,29 @@ const Storage = sequelize.define('storage', {
   qualityOfFine: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为良的带材质量：B
   qualityOfNormal: { type: Sequelize.FLOAT, defaultValue: 0 }, // 质量等级为中的带材质量：30**、40**+ 计划外入库
   createdAt: {
-		type: Sequelize.DATE,
-		get() {
-			return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
-		}
-	},
-	updatedAt: {
-		type: Sequelize.DATE,
-		get() {
-			return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
-		}
-	}
+    type: Sequelize.DATE,
+    get() {
+      return moment(this.getDataValue("createdAt")).format(
+        "YYYY-MM-DD HH:mm:ss"
+      );
+    },
+  },
+  updatedAt: {
+    type: Sequelize.DATE,
+    get() {
+      return moment(this.getDataValue("updatedAt")).format(
+        "YYYY-MM-DD HH:mm:ss"
+      );
+    },
+  },
 });
 
-// Storage.sync({alter: true}).then((result) => {
-
-// }).catch((err) => {
-//   console.log('Storage表初始化失败', err.message);
-// });
+Storage.sync({ alter: true })
+  .then((result) => {
+    console.log("Storage表初始化成功");
+  })
+  .catch((err) => {
+    console.log("Storage表初始化失败", err.message);
+  });
 
 module.exports = Storage;

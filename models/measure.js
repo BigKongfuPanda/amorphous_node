@@ -43,11 +43,11 @@ const Measure = sequelize.define(TABLE_NAME, {
     defaultValue: 0, // 1-已确认；0-待确认
   },
   // 检测录入信息
-  // orderThickness: Sequelize.STRING, // 订单要求：厚度 20-23, ≤23
-  // orderLaminationFactor: Sequelize.STRING, // 订单要求：叠片系数 ≥0.78
-  // orderRibbonToughnessLevels: Sequelize.STRING, // 订单要求：韧性 [A,B,C]
-  // orderAppearenceLevels: Sequelize.STRING, // 订单要求：外观 [A,B,C]
-  // qualifiedDemands: Sequelize.TEXT, //入库要求
+  orderThickness: Sequelize.STRING, // 订单要求：厚度 20-23, ≤23
+  orderLaminationFactor: Sequelize.STRING, // 订单要求：叠片系数 ≥0.78
+  orderRibbonToughnessLevels: Sequelize.STRING, // 订单要求：韧性 [A,B,C]
+  orderAppearenceLevels: Sequelize.STRING, // 订单要求：外观 [A,B,C]
+  qualifiedDemands: Sequelize.TEXT, //入库要求
   measureMachine: Sequelize.INTEGER, //检测设备编号
   realRibbonWidth: Sequelize.FLOAT, //实际带宽
   coilNetWeight: Sequelize.FLOAT, //单盘净重,kg
@@ -77,7 +77,9 @@ const Measure = sequelize.define(TABLE_NAME, {
   ribbonTotalLevel: Sequelize.STRING, //带材综合级别
   isMeasureConfirmed: { type: Sequelize.INTEGER, defaultValue: 0 }, // 检测是否确认可入库：1-是，0-否
   // storageRule: Object, //入库规则
-  isStored: { type: Sequelize.INTEGER, defaultValue: 3 }, // 是否入库：1-计划内入库，2-计划外入库，3-否
+  isStored: { type: Sequelize.INTEGER, defaultValue: 3 }, // 预计入库情况：1-计划内入库，2-计划外入库，3-否
+  isStorageConfirmed: { type: Sequelize.INTEGER, defaultValue: 0 }, // 1-是，0-否
+  measureConfirmDate: { type: Sequelize.DATE, defaultValue: null }, // 检测申请入库时间
   unStoreReason: Sequelize.STRING, //不入库原因
   clients: Sequelize.STRING, //去向 '德国,法国'
   measureDate: {
@@ -85,14 +87,10 @@ const Measure = sequelize.define(TABLE_NAME, {
     defaultValue: null,
   }, //检测日期
   // 库房信息
-  inStoreDate: {
-    type: Sequelize.DATE,
-    defaultValue: null,
-  }, //入库日期
-  outStoreDate: {
-    type: Sequelize.DATE,
-    defaultValue: null,
-  }, //出库日期
+  // inStoreDate: {
+  //   type: Sequelize.DATE,
+  //   defaultValue: null,
+  // }, //入库日期
   remainWeight: Sequelize.FLOAT, //结余
   // 质量信息
   totalStoredWeight: { type: Sequelize.FLOAT, defaultValue: 0 }, //总入库重量

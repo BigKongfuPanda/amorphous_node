@@ -1,5 +1,6 @@
 "use strict";
 
+const sequelize = require("../mysql/db");
 const storageModel = require("../models/storage");
 const measureModel = require("../models/measure");
 const log = require("log4js").getLogger("storage");
@@ -10,6 +11,8 @@ const formidable = require("formidable");
 const xlsx = require("node-xlsx");
 const path = require("path");
 const fs = require("fs");
+const config = require("config-lite")(__dirname);
+const TABLE_NAME = config.tableName;
 
 class Storage {
   constructor() {}
@@ -156,6 +159,169 @@ class Storage {
       res.send({
         status: -1,
         message: "查询库房记录失败",
+      });
+    }
+  }
+
+  // 查询申请入库实时记录
+  async queryApplyStorage(req, res, next) {
+    const { castIds, furnaceJson } = req.query;
+    try {
+      let queryCondition = "";
+      // if (furnace) {
+      //   queryCondition +=
+      //     queryCondition !== ""
+      //       ? ` AND m.furnace='${furnace}'`
+      //       : ` m.furnace='${furnace}'`;
+      // }
+
+      if (castIds) {
+        let castIdList = JSON.parse(castIds);
+        if (castIdList.length > 0) {
+          const ids = castIdList.join();
+          queryCondition +=
+            queryCondition !== ""
+              ? ` AND m.castId IN (${ids})`
+              : ` m.castId IN (${ids})`;
+        }
+      }
+
+      if (furnaceJson) {
+        let furnanceList = JSON.parse(furnaceJson);
+        if (furnanceList.length > 0) {
+          const furnaces = furnanceList.map((item) => `'${item}'`).join();
+          queryCondition +=
+            queryCondition !== ""
+              ? ` AND m.furnace IN (${furnaces})`
+              : ` m.furnace IN (${furnaces})`;
+        }
+      }
+
+      // 只查找检测确认，并且库房没有确认的，可以入库的带材
+      queryCondition +=
+        queryCondition !== ""
+          ? ` AND m.isMeasureConfirmed=1`
+          : ` m.isMeasureConfirmed=1`;
+      queryCondition +=
+        queryCondition !== ""
+          ? ` AND m.isStorageConfirmed=0`
+          : ` m.isStorageConfirmed=0`;
+
+      const sqlStr = `SELECT 
+                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
+                      FROM ${TABLE_NAME} m 
+                      LEFT JOIN cast c 
+                      ON m.furnace=c.furnace
+                      ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
+                      ORDER BY m.furnace DESC, m.coilNumber ASC`;
+
+      const list = await sequelize.query(sqlStr, {
+        type: sequelize.QueryTypes.SELECT,
+      });
+
+      // 要考虑分页
+      res.send({
+        status: 0,
+        message: "操作成功",
+        data: {
+          list,
+        },
+      });
+    } catch (err) {
+      console.log("查询申请入库记录失败", err);
+      log.error("查询申请入库记录失败", err);
+      res.send({
+        status: -1,
+        message: "查询申请入库记录失败",
+      });
+    }
+  }
+
+  /**
+   * 确认入库
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
+  async addStorage(req, res, next) {
+    const { dataJson } = req.body;
+    let list = [];
+    try {
+      if (!dataJson) {
+        throw new Error("参数错误");
+      }
+      list = JSON.parse(dataJson);
+    } catch (err) {
+      console.log(err.message, err);
+      log.error(err.message, err);
+      res.send({
+        status: -1,
+        message: err.message,
+      });
+      return;
+    }
+
+    try {
+      list.forEach(async (item) => {
+        const data = {
+          inStoreDate: Date.now(), // 入库时间
+          castId: item.castId,
+          furnace: item.furnace,
+          castDate: item.castDate,
+          caster: item.caster,
+          coilNumber: item.coilNumber,
+          diameter: item.diameter,
+          coilWeight: item.coilWeight,
+          coilNetWeight: item.coilNetWeight,
+          remainWeight: item.remainWeight,
+          ribbonTypeName: item.ribbonTypeName,
+          ribbonWidth: item.ribbonWidth,
+          realRibbonWidth: item.realRibbonWidth,
+          ribbonThickness: item.ribbonThickness,
+          ribbonThicknessLevel: item.ribbonThicknessLevel,
+          ribbonToughness: item.ribbonToughness,
+          ribbonToughnessLevel: item.ribbonToughnessLevel,
+          appearence: item.appearence,
+          appearenceLevel: item.appearenceLevel,
+          laminationFactor: item.laminationFactor,
+          laminationLevel: item.laminationLevel,
+          ribbonTotalLevel: item.ribbonTotalLevel,
+
+          orderThickness: item.orderThickness,
+          orderLaminationFactor: item.orderLaminationFactor,
+          orderRibbonToughnessLevels: item.orderRibbonToughnessLevels,
+          orderAppearenceLevels: item.orderAppearenceLevels,
+          qualifiedDemands: item.qualifiedDemands,
+
+          isStored: item.isStored,
+          clients: item.clients,
+          totalStoredWeight: item.totalStoredWeight,
+          inPlanStoredWeight: item.inPlanStoredWeight,
+          outPlanStoredWeight: item.outPlanStoredWeight,
+          qualityOfA: item.qualityOfA,
+          qualityOfB: item.qualityOfB,
+          qualityOfC: item.qualityOfC,
+          qualityOfD: item.qualityOfD,
+          qualityOfE: item.qualityOfE,
+          thinRibbonWeight: item.thinRibbonWeight,
+          highFactorThinRibbonWeight: item.highFactorThinRibbonWeight,
+          inPlanThickRibbonWeight: item.inPlanThickRibbonWeight,
+          qualityOfGood: item.qualityOfGood,
+          qualityOfFine: item.qualityOfFine,
+          qualityOfNormal: item.qualityOfNormal,
+        };
+        await storageModel.create(data);
+      });
+      res.send({
+        status: 0,
+        message: "确认入库成功",
+      });
+    } catch (err) {
+      const message = err.message || "确认入库失败";
+      log.error(message, err);
+      res.send({
+        status: -1,
+        message,
       });
     }
   }
