@@ -172,12 +172,6 @@ class Storage {
     const { castIds, furnaceJson } = req.query;
     try {
       let queryCondition = "";
-      // if (furnace) {
-      //   queryCondition +=
-      //     queryCondition !== ""
-      //       ? ` AND m.furnace='${furnace}'`
-      //       : ` m.furnace='${furnace}'`;
-      // }
 
       if (castIds) {
         let castIdList = JSON.parse(castIds);
@@ -314,7 +308,44 @@ class Storage {
           qualityOfFine: item.qualityOfFine,
           qualityOfNormal: item.qualityOfNormal,
         };
+        // 检测是否重复入库
+        try {
+          const data = await storageModel.findOne({
+            where: { furnace: item.furnace, coilNumber: item.coilNumber },
+          });
+          // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
+          if (data) {
+            throw new Error(
+              `炉号 ${item.furnace} 和盘号 ${item.coilNumber} 重复`
+            );
+          }
+        } catch (err) {
+          log.error(err.message, err);
+          res.send({
+            status: -1,
+            message: err.message,
+          });
+          return;
+        }
+
         await storageModel.create(data);
+        // 同步更新检测记录表，将isStorageConfirmed设为1，表示入库确认
+        const [n] = await measureModel.update(
+          {
+            isStorageConfirmed: 1,
+          },
+          {
+            where: { measureId: item.measureId },
+          }
+        );
+        if (n !== 0) {
+          res.send({
+            status: 0,
+            message: "更新数据成功",
+          });
+        } else {
+          throw new Error("更新库房记录表失败");
+        }
       });
       res.send({
         status: 0,
@@ -562,39 +593,39 @@ class Storage {
       return;
     }
 
-    try {
-      // 此处应该使用事务，二者要么都成功，要么都失败
-      // const { n } = await storageModel.deleteOne({ storageId });
-      // const { m } = await measureModel.updateOne({ furnace, coilNumber: coilNumber }, { $set: { isStored: 3, isMeasureConfirmed: 0 } });
+    // try {
+    //   // 此处应该使用事务，二者要么都成功，要么都失败
+    //   // const { n } = await storageModel.deleteOne({ storageId });
+    //   // const { m } = await measureModel.updateOne({ furnace, coilNumber: coilNumber }, { $set: { isStored: 3, isMeasureConfirmed: 0 } });
 
-      const n = await storageModel.destroy({ where: { storageId } });
-      const [m] = await measureModel.update(
-        { isStored: 3, isMeasureConfirmed: 0 },
-        { where: { furnace, coilNumber } }
-      );
+    //   const n = await storageModel.destroy({ where: { storageId } });
+    //   const [m] = await measureModel.update(
+    //     { isStored: 3, isMeasureConfirmed: 0, isStorageConfirmed: 0 },
+    //     { where: { furnace, coilNumber } }
+    //   );
 
-      if (n != 0 && m != 0) {
-        res.send({
-          status: 0,
-          message: "退库成功",
-        });
-      } else {
-        throw new Error("退库失败");
-      }
-    } catch (err) {
-      console.log(err.message, err);
-      log.error(err.message, err);
-      res.send({
-        status: -1,
-        message: "退库失败",
-      });
-    }
+    //   if (n != 0 && m != 0) {
+    //     res.send({
+    //       status: 0,
+    //       message: "退库成功",
+    //     });
+    //   } else {
+    //     throw new Error("退库失败");
+    //   }
+    // } catch (err) {
+    //   console.log(err.message, err);
+    //   log.error(err.message, err);
+    //   res.send({
+    //     status: -1,
+    //     message: "退库失败",
+    //   });
+    // }
 
     // 事务：promise的写法
     // sequelize.transaction((t) => {
     //   // 事务操作
-    //   return storageModel.destroy({ where: { storageId } }, { transaction: t }).then(storage => {
-    //     return measureModel.update({ isStored: 3, isMeasureConfirmed: 0 }, { where: { furnace, coilNumber } }, { transaction: t })
+    //   return storageModel.destroy({ where: { storageId } ,{ transaction: t } } ).then(storage => {
+    //     return measureModel.update({ isStored: 3, isMeasureConfirmed: 0 }, { where: { furnace, coilNumber }, transaction: t })
     //   });
     // }).then((result) => {
 
@@ -603,27 +634,48 @@ class Storage {
     // });
 
     // 事务：ES6 语法
-    // let transaction;
-    // try {
-    //   transaction = await sequelize.transaction();
-    //   await storageModel.destroy({ where: { storageId } }, transaction);
-    //   await measureModel.update({ isStored: 3, isMeasureConfirmed: 0 }, { where: { furnace, coilNumber } }, transaction);
-    //   await transaction.commit();
-    //   res.send({
-    //     status: 0,
-    //     message: '退库成功'
-    //   });
-    //   return true;
-    // } catch (err) {
-    //   await transaction.rollBack();
-    //   console.log(err.message, err);
-    //   log.error(err.message, err);
-    //   res.send({
-    //     status: -1,
-    //     message: '退库失败'
-    //   });
-    //   return false;
-    // }
+    let transaction;
+    try {
+      transaction = await sequelize.transaction();
+      const n = await storageModel.destroy({
+        where: { storageId },
+        transaction,
+      });
+      const [m] = await measureModel.update(
+        {
+          isMeasureConfirmed: 0,
+          isStorageConfirmed: 0,
+        },
+        {
+          where: { furnace, coilNumber },
+          transaction,
+        }
+      );
+      if (n != 0 && m != 0) {
+        await transaction.commit();
+        res.send({
+          status: 0,
+          message: "退库成功",
+        });
+        return true;
+      } else {
+        await transaction.rollBack();
+        res.send({
+          status: -1,
+          message: "退库失败",
+        });
+        return false;
+      }
+    } catch (err) {
+      await transaction.rollBack();
+      console.log(err.message, err);
+      log.error(err.message, err);
+      res.send({
+        status: -1,
+        message: "退库失败",
+      });
+      return false;
+    }
   }
 
   async exportStorage(req, res, next) {

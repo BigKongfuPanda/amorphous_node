@@ -2368,3 +2368,123 @@ From previous event:
     at login (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/user.js:242:15)
 [2020-11-07T15:43:36.836] [ERROR] user - 用户不存在 Error: 用户不存在
     at login (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/user.js:242:15)
+[2020-11-07T23:46:29.241] [ERROR] storage - furnace is not defined ReferenceError: furnace is not defined
+    at E:\amorphous_node\controller\storage.js:314:22
+    at Array.forEach (<anonymous>)
+    at addStorage (E:\amorphous_node\controller\storage.js:263:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at tryCatcher (E:\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
+    at Promise.successAdapter [as _fulfillmentHandler0] (E:\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
+    at Promise._settlePromise (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
+    at Promise._settlePromise0 (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
+[2020-11-07T23:46:29.251] [ERROR] storage - Cannot set headers after they are sent to the client Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at addStorage (E:\amorphous_node\controller\storage.js:348:11)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at tryCatcher (E:\amorphous_node\node_modules\bluebird\js\release\util.js:16:23) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-11-07T23:47:55.372] [ERROR] storage - furnace is not defined ReferenceError: furnace is not defined
+    at E:\amorphous_node\controller\storage.js:314:22
+    at Array.forEach (<anonymous>)
+    at addStorage (E:\amorphous_node\controller\storage.js:263:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at tryCatcher (E:\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
+    at Promise.successAdapter [as _fulfillmentHandler0] (E:\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
+    at Promise._settlePromise (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
+    at Promise._settlePromise0 (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
+[2020-11-07T23:47:55.376] [ERROR] storage - Cannot set headers after they are sent to the client Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at addStorage (E:\amorphous_node\controller\storage.js:348:11)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at tryCatcher (E:\amorphous_node\node_modules\bluebird\js\release\util.js:16:23) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}

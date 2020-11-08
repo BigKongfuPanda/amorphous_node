@@ -14,7 +14,7 @@ router.get("/queryApplyStorage", Storage.queryApplyStorage);
 router.get("/furnace", Storage.queryFurnace);
 
 // 确认入库
-router.get("/addStorage", Storage.addStorage);
+router.post("/addStorage", Storage.addStorage);
 
 // 更新库房记录表
 router.put("/", Storage.updateData);

@@ -636,6 +636,8 @@ class Measure {
           {
             measureConfirmDate: Date.now(),
             // measureDate: item.measureDate,
+            clients: item.clients,
+            unStoreReason: item.unStoreReason,
             isMeasureConfirmed: 1, // 1-已确认，0-未确认
             orderThickness: item.orderThickness,
             orderLaminationFactor: item.orderLaminationFactor,
@@ -839,9 +841,6 @@ class Measure {
       unStoreReason,
       clients = "",
       remainWeight,
-      takeBy,
-      shipRemark,
-      place,
       totalStoredWeight = 0,
       inPlanStoredWeight = 0,
       outPlanStoredWeight = 0,
@@ -914,9 +913,6 @@ class Measure {
         unStoreReason,
         clients,
         remainWeight,
-        takeBy,
-        shipRemark,
-        place,
         totalStoredWeight,
         inPlanStoredWeight,
         outPlanStoredWeight,
@@ -1115,6 +1111,7 @@ class Measure {
             ? ` AND c.createTime BETWEEN '${startTime}' AND '${endTime}'`
             : ` c.createTime BETWEEN '${startTime}' AND '${endTime}'`;
       }
+
       // if (caster) {
       //   queryCondition.caster = caster;
       // }
@@ -1207,6 +1204,7 @@ class Measure {
         { caption: "外观等级", type: "string" },
         { caption: "综合级别", type: "string" },
         { caption: "是否入库", type: "string" },
+        { caption: "入库类别", type: "string" },
         { caption: "不入库原因", type: "string" },
         { caption: "判定去向", type: "string" },
       ];
@@ -1223,41 +1221,45 @@ class Measure {
         type: sequelize.QueryTypes.SELECT,
       });
 
-      conf.rows = list.map((item) =>
-        [
-          item.furnace,
-          item.coilNumber,
-          item.ribbonTypeName,
-          item.ribbonWidth,
-          moment(item.castDate).format("YYYY-MM-DD"),
-          item.caster,
-          item.diameter,
-          item.coilWeight,
-          item.laminationFactor,
-          item.laminationLevel,
-          item.realRibbonWidth,
-          item.ribbonThickness1,
-          item.ribbonThickness2,
-          item.ribbonThickness3,
-          item.ribbonThickness4,
-          item.ribbonThickness5,
-          item.ribbonThickness6,
-          item.ribbonThickness7,
-          item.ribbonThickness8,
-          item.ribbonThickness9,
-          item.ribbonThicknessDeviation,
-          item.ribbonThickness,
-          item.ribbonThicknessLevel,
-          item.ribbonToughness,
-          item.ribbonToughnessLevel,
-          item.appearence,
-          item.appearenceLevel,
-          item.ribbonTotalLevel,
-          isStoredDesc(item.isStored),
-          item.unStoreReason,
-          item.clients,
-        ].map((val) => (val == undefined ? null : val))
-      );
+      // 导出已经计算出综合级别的带材记录
+      conf.rows = list
+        .filter((item) => item.ribbonTotalLevel)
+        .map((item) =>
+          [
+            item.furnace,
+            item.coilNumber,
+            item.ribbonTypeName,
+            item.ribbonWidth,
+            moment(item.castDate).format("YYYY-MM-DD"),
+            item.caster,
+            item.diameter,
+            item.coilWeight,
+            item.laminationFactor,
+            item.laminationLevel,
+            item.realRibbonWidth,
+            item.ribbonThickness1,
+            item.ribbonThickness2,
+            item.ribbonThickness3,
+            item.ribbonThickness4,
+            item.ribbonThickness5,
+            item.ribbonThickness6,
+            item.ribbonThickness7,
+            item.ribbonThickness8,
+            item.ribbonThickness9,
+            item.ribbonThicknessDeviation,
+            item.ribbonThickness,
+            item.ribbonThicknessLevel,
+            item.ribbonToughness,
+            item.ribbonToughnessLevel,
+            item.appearence,
+            item.appearenceLevel,
+            item.ribbonTotalLevel,
+            item.isStorageConfirmed === 1 ? "是" : "否",
+            isStoredDesc(item.isStored),
+            item.unStoreReason,
+            item.clients,
+          ].map((val) => (val == undefined ? null : val))
+        );
 
       function isStoredDesc(status) {
         switch (status) {
