@@ -141,8 +141,8 @@ class Measure {
       if (roller) {
         queryCondition +=
           queryCondition !== ""
-            ? ` AND roller='${roller}'`
-            : ` roller='${roller}'`;
+            ? ` AND m.roller='${roller}'`
+            : ` m.roller='${roller}'`;
       }
       if (furnace) {
         queryCondition +=
@@ -364,6 +364,54 @@ class Measure {
       res.send({
         status: -1,
         message: err.message || "查询检测记录失败",
+      });
+    }
+  }
+
+  /**
+   * 获取单条带材信息
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
+  async queryRibbonInfo(req, res, next) {
+    const { furnace, coilNumber } = req.query;
+    try {
+      let queryCondition = "";
+      if (coilNumber) {
+        queryCondition += `m.coilNumber='${coilNumber}'`;
+      }
+      if (furnace) {
+        queryCondition +=
+          queryCondition !== ""
+            ? ` AND m.furnace='${furnace}'`
+            : ` m.furnace='${furnace}'`;
+      }
+      const sqlStr = `SELECT 
+                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
+                      FROM ${TABLE_NAME} m 
+                      LEFT JOIN cast c 
+                      ON m.furnace=c.furnace
+                      ${
+                        queryCondition !== "" ? "WHERE " + queryCondition : ""
+                      }`;
+
+      let list = await sequelize.query(sqlStr, {
+        type: sequelize.QueryTypes.SELECT,
+      });
+      res.send({
+        status: 0,
+        message: "操作成功",
+        data: {
+          list,
+        },
+      });
+    } catch (err) {
+      console.log("查询单条带材信息记录失败", err);
+      log.error("查询单条带材信息记录失败", err);
+      res.send({
+        status: -1,
+        message: err.message || "查询单条带材信息记录失败",
       });
     }
   }

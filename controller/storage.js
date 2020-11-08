@@ -32,6 +32,7 @@ class Storage {
       laminationLevelJson,
       takebyJson,
       place,
+      ribbonTotalLevelJson,
       ribbonTotalLevels,
       isRemain = 1,
       current = 1,
@@ -109,6 +110,14 @@ class Storage {
       if (ribbonTotalLevels) {
         const ribbonTotalLevelList = ribbonTotalLevels.split(",");
         queryCondition.ribbonTotalLevel = { $in: ribbonTotalLevelList };
+      }
+      if (ribbonTotalLevelJson) {
+        const ribbonTotalLevelList = JSON.parse(ribbonTotalLevelJson);
+        if (ribbonTotalLevelList.length > 0) {
+          queryCondition.ribbonTotalLevel = {
+            $in: ribbonTotalLevelList,
+          };
+        }
       }
 
       // const totalList = await storageModel.findAll(queryCondition);
@@ -242,9 +251,13 @@ class Storage {
    * @param {*} next
    */
   async addStorage(req, res, next) {
-    const { dataJson } = req.body;
     let list = [];
     try {
+      const { roleId } = req.session;
+      if (roleId != 6) {
+        throw new Error("无操作权限");
+      }
+      const { dataJson } = req.body;
       if (!dataJson) {
         throw new Error("参数错误");
       }
@@ -398,6 +411,48 @@ class Storage {
       res.send({
         status: -1,
         message: "查询库房炉号记录失败",
+      });
+    }
+  }
+
+  /**
+   * 请求库房表中所有的级别
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
+  async queryRibbonTotalLevelList(req, res, next) {
+    const { query } = req.query;
+    try {
+      let rawList = await storageModel.findAll({
+        attributes: ["ribbonTotalLevel"],
+        where: {
+          ribbonTotalLevel: {
+            $like: `%${query}%`,
+          },
+        },
+        raw: true,
+      });
+
+      let list = rawList.map((item) => {
+        return item.ribbonTotalLevel;
+      });
+
+      list = Array.from(new Set(list));
+
+      res.send({
+        status: 0,
+        message: "查询成功",
+        data: {
+          list,
+        },
+      });
+    } catch (error) {
+      console.log("查询库房带材综合级别记录失败", err);
+      log.error("查询库房带材综合级别记录失败", err);
+      res.send({
+        status: -1,
+        message: "查询库房带材综合级别记录失败",
       });
     }
   }
@@ -692,7 +747,7 @@ class Storage {
       laminationLevelJson,
       takebyJson,
       place,
-      ribbonTotalLevels,
+      ribbonTotalLevelJson,
       isRemain = 1,
     } = req.query;
 
@@ -761,9 +816,11 @@ class Storage {
       } else if (isRemain === "1") {
         queryCondition.remainWeight = { $gt: 0 };
       }
-      if (ribbonTotalLevels) {
-        const ribbonTotalLevelList = ribbonTotalLevels.split(",");
-        queryCondition.ribbonTotalLevel = { $in: ribbonTotalLevelList };
+      if (ribbonTotalLevelJson) {
+        const ribbonTotalLevelList = ribbonTotalLevelJson.split(",");
+        if (ribbonTotalLevelList.length > 0) {
+          queryCondition.ribbonTotalLevel = { $in: ribbonTotalLevelList };
+        }
       }
 
       const conf = {};
@@ -937,6 +994,53 @@ class Storage {
         message: "添加仓位成功",
       });
     });
+  }
+
+  async scanConfirm(req, res, next) {
+    const { furnace, coilNumber } = req.body;
+    const { roleId } = req.session;
+    try {
+      if (roleId != 6) {
+        throw new Error("无操作权限");
+      }
+      if (!furnace || !coilNumber) {
+        throw new Error("参数缺失");
+      }
+
+      const data = await storageModel.findOne({
+        where: { furnace, coilNumber, isScanConfirmed: 1 },
+      });
+      // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
+      if (data) {
+        throw new Error(
+          `炉号 ${furnace} 和盘号 ${coilNumber} 已经提交过了，请勿重复提交`
+        );
+      }
+
+      const [n] = await storageModel.update(
+        { isScanConfirmed: 1 },
+        {
+          where: {
+            furnace,
+            coilNumber,
+          },
+        }
+      );
+      if (!n) {
+        throw new Error("保存数据失败，请重试");
+      }
+      res.send({
+        status: 0,
+        message: "提交成功, 请继续下一盘",
+      });
+    } catch (err) {
+      log.error(err.message);
+      console.log(err.message);
+      res.send({
+        status: -1,
+        message: err.message || "提交失败",
+      });
+    }
   }
 }
 

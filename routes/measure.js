@@ -37,4 +37,7 @@ router.get("/exportmeasure", Measure.exportMeasure);
 // 导出重卷excel
 router.get("/exportroll", Measure.exportRoll);
 
+// 获取单条带材信息
+router.get("/queryRibbonInfo", Measure.queryRibbonInfo);
+
 module.exports = router;

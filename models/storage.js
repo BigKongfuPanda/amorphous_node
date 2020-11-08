@@ -97,6 +97,10 @@ const Storage = sequelize.define("storage", {
       );
     },
   },
+  isScanConfirmed: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0, // 1-确认，0-未确认
+  },
 });
 
 Storage.sync({ alter: true })

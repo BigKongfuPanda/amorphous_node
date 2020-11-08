@@ -13,8 +13,14 @@ router.get("/queryApplyStorage", Storage.queryApplyStorage);
 // 获取库房记录表中所有的炉号
 router.get("/furnace", Storage.queryFurnace);
 
+// 获取库房记录表中所有的炉号
+router.get("/ribbonTotalLevel", Storage.queryRibbonTotalLevelList);
+
 // 确认入库
 router.post("/addStorage", Storage.addStorage);
+
+// 扫码后，确认
+router.post("/scanConfirm", Storage.scanConfirm);
 
 // 更新库房记录表
 router.put("/", Storage.updateData);
