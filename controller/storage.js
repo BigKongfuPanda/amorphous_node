@@ -176,6 +176,43 @@ class Storage {
     }
   }
 
+  /**
+   * 获取扫码确认后的数据
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
+  async queryScanList(req, res, next) {
+    try {
+      const totalList = await storageModel.findAll({
+        where: { isScanConfirmed: 1 },
+      });
+      const totalCoilNum = totalList.length;
+      let totalWeight = 0;
+      totalList.forEach((item) => {
+        totalWeight += item.remainWeight;
+      });
+
+      // 要考虑分页
+      res.send({
+        status: 0,
+        message: "操作成功",
+        data: {
+          totalCoilNum,
+          totalWeight: totalWeight.toFixed(2),
+          list: totalList,
+        },
+      });
+    } catch (err) {
+      console.log("查询库房记录失败", err);
+      log.error("查询库房记录失败", err);
+      res.send({
+        status: -1,
+        message: err.message || "查询库房记录失败",
+      });
+    }
+  }
+
   // 查询申请入库实时记录
   async queryApplyStorage(req, res, next) {
     const { castIds, furnaceJson } = req.query;
@@ -996,6 +1033,12 @@ class Storage {
     });
   }
 
+  /**
+   * 扫码后确认
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
   async scanConfirm(req, res, next) {
     const { furnace, coilNumber } = req.body;
     const { roleId } = req.session;

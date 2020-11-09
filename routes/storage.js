@@ -22,6 +22,9 @@ router.post("/addStorage", Storage.addStorage);
 // 扫码后，确认
 router.post("/scanConfirm", Storage.scanConfirm);
 
+// 获取扫码确认的数据
+router.get("/queryScanList", Storage.queryScanList);
+
 // 更新库房记录表
 router.put("/", Storage.updateData);
 
