@@ -800,6 +800,9 @@ class Measure {
       const rawRetFurnace = await castModel.findOne({
         where: { furnace },
       });
+      if (!rawRetFurnace) {
+        throw new Error(`喷带记录中没有这一炉 ${furnace}，请检查。`);
+      }
       const rawWeight = rawRetFurnace.rawWeight;
 
       console.log(coilTotalWeight, rawWeight); // 224, 200
