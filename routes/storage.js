@@ -22,8 +22,17 @@ router.post("/addStorage", Storage.addStorage);
 // 扫码后，确认
 router.post("/scanConfirm", Storage.scanConfirm);
 
+// 删除扫码确认的数据
+router.post("/delScanConfirm", Storage.delScanConfirm);
+
 // 获取扫码确认的数据
 router.get("/queryScanList", Storage.queryScanList);
+
+// 批量更新仓位--扫码方式
+router.post("/batchUpdateRibbonWithPlace", Storage.batchUpdateRibbonWithPlace);
+
+// 批量出库--扫码方式
+router.post("/batchOutStoreByScan", Storage.batchOutStoreByScan);
 
 // 更新库房记录表
 router.put("/", Storage.updateData);

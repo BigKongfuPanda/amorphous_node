@@ -507,63 +507,10 @@ class Storage {
 
     let {
       storageId,
-      roleId,
-      adminname,
-      castId,
-      furnace,
-      coilNumber,
-      diameter,
-      coilWeight,
-      coilNetWeight,
-      ribbonTypeName,
-      ribbonWidth,
-      roller,
-      rollMachine,
-      castDate,
-      caster,
-      laminationFactor,
-      laminationLevel,
-      realRibbonWidth,
-      ribbonThickness1,
-      ribbonThickness2,
-      ribbonThickness3,
-      ribbonThickness4,
-      ribbonThickness5,
-      ribbonThickness6,
-      ribbonThickness7,
-      ribbonThickness8,
-      ribbonThickness9,
-      ribbonThicknessDeviation,
-      ribbonThickness,
-      ribbonThicknessLevel,
-      ribbonToughness,
-      ribbonToughnessLevel,
-      appearence,
-      appearenceLevel,
-      ribbonTotalLevel,
-      isMeasureConfirmed,
-      isStored,
-      unStoreReason,
-      clients = "",
       remainWeight,
-      takeBy,
-      shipRemark,
-      place,
-      createdAt,
-      totalStoredWeight = 0,
-      inPlanStoredWeight = 0,
-      outPlanStoredWeight = 0,
-      qualityOfA = 0,
-      qualityOfB = 0,
-      qualityOfC = 0,
-      qualityOfD = 0,
-      qualityOfE = 0,
-      highFactorThinRibbonWeight = 0,
-      thinRibbonWeight = 0,
-      inPlanThickRibbonWeight = 0,
-      qualityOfGood = 0,
-      qualityOfFine = 0,
-      qualityOfNormal = 0,
+      takeBy = "",
+      shipRemark = "",
+      place = "",
     } = req.body;
     try {
       if (!storageId) {
@@ -580,73 +527,17 @@ class Storage {
     }
 
     try {
-      // let inStoreDate = null;
-      // // 当带材检测后入库的时候，设置入库日期，检测人员操作
-      // if (isStored == 1 || isStored == 2) {
-      //   inStoreDate = Date.now();
-      // }
-
       let outStoreDate = null;
       // 当带材被领用的时候，设置出库日期，库房操作
       if (takeBy) {
         outStoreDate = Date.now();
       }
       const newData = {
-        castId,
-        furnace,
-        coilNumber,
-        diameter,
-        coilWeight,
-        coilNetWeight,
-        ribbonTypeName,
-        ribbonWidth,
-        castDate,
-        caster,
-        roller,
-        rollMachine,
-        laminationFactor,
-        laminationLevel,
-        realRibbonWidth,
-        ribbonThickness1,
-        ribbonThickness2,
-        ribbonThickness3,
-        ribbonThickness4,
-        ribbonThickness5,
-        ribbonThickness6,
-        ribbonThickness7,
-        ribbonThickness8,
-        ribbonThickness9,
-        ribbonThicknessDeviation,
-        ribbonThickness,
-        ribbonThicknessLevel,
-        ribbonToughness,
-        ribbonToughnessLevel,
-        appearence,
-        appearenceLevel,
-        ribbonTotalLevel,
-        isMeasureConfirmed,
-        isStored,
-        unStoreReason,
-        clients,
+        outStoreDate,
         remainWeight,
         takeBy,
         shipRemark,
         place,
-        outStoreDate,
-        totalStoredWeight,
-        inPlanStoredWeight,
-        outPlanStoredWeight,
-        qualityOfA,
-        qualityOfB,
-        qualityOfC,
-        qualityOfD,
-        qualityOfE,
-        highFactorThinRibbonWeight,
-        thinRibbonWeight,
-        inPlanThickRibbonWeight,
-        qualityOfGood,
-        qualityOfFine,
-        qualityOfNormal,
       };
       const [n] = await storageModel.update(newData, {
         where: { storageId },
@@ -1082,6 +973,141 @@ class Storage {
       res.send({
         status: -1,
         message: err.message || "提交失败",
+      });
+    }
+  }
+
+  /**
+   * 删除扫码确认的带材
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
+  async delScanConfirm(req, res, next) {
+    const { furnace, coilNumber } = req.body;
+    const { roleId } = req.session;
+    try {
+      if (roleId != 6) {
+        throw new Error("无操作权限");
+      }
+      if (!furnace || !coilNumber) {
+        throw new Error("参数缺失");
+      }
+
+      const [n] = await storageModel.update(
+        { isScanConfirmed: 0 },
+        {
+          where: {
+            furnace,
+            coilNumber,
+          },
+        }
+      );
+      if (!n) {
+        throw new Error("操作失败，请重试");
+      }
+      res.send({
+        status: 0,
+        message: "操作成功",
+      });
+    } catch (err) {
+      log.error(err.message);
+      console.log(err.message);
+      res.send({
+        status: -1,
+        message: err.message || "提交失败",
+      });
+    }
+  }
+
+  // 批量入仓位，扫码方式
+  async batchUpdateRibbonWithPlace(req, res, next) {
+    const { ids, place } = req.body;
+    try {
+      if (!ids || !place) {
+        throw new Error("参数错误");
+      }
+    } catch (err) {
+      console.log(err.message, err);
+      log.error(err.message, err);
+      res.send({
+        status: -1,
+        message: err.message,
+      });
+      return;
+    }
+
+    try {
+      await storageModel.update(
+        {
+          place,
+          isScanConfirmed: 0,
+        },
+        {
+          where: {
+            storageId: {
+              $in: ids,
+            },
+          },
+        }
+      );
+
+      res.send({
+        status: 0,
+        message: "操作成功",
+      });
+    } catch (err) {
+      log.error(err.message, err);
+      res.send({
+        status: -1,
+        message: `操作失败：${err.message}`,
+      });
+    }
+  }
+
+  // 批量出库，扫码方式
+  async batchOutStoreByScan(req, res, next) {
+    const { ids, takeBy } = req.body;
+    try {
+      if (!ids || !takeBy) {
+        throw new Error("参数错误");
+      }
+    } catch (err) {
+      console.log(err.message, err);
+      log.error(err.message, err);
+      res.send({
+        status: -1,
+        message: err.message,
+      });
+      return;
+    }
+
+    try {
+      await storageModel.update(
+        {
+          outStoreDate: Date.now(),
+          remainWeight: 0,
+          takeBy,
+          isScanConfirmed: 0,
+        },
+        {
+          where: {
+            storageId: {
+              $in: ids,
+            },
+          },
+        }
+      );
+
+      res.send({
+        status: 0,
+        message: "出库成功",
+      });
+    } catch (err) {
+      log.error(err.message, err);
+      res.send({
+        status: -1,
+        message: `出库失败：${err.message}`,
       });
     }
   }
