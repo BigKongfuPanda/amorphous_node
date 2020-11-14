@@ -410,6 +410,7 @@ class Storage {
       });
     }
   }
+
   /**
    * 请求库房表中所有的炉号
    * @param {*} req
@@ -1089,6 +1090,7 @@ class Storage {
           remainWeight: 0,
           takeBy,
           isScanConfirmed: 0,
+          place: "", // 出库后，仓位设置为空
         },
         {
           where: {

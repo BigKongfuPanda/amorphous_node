@@ -2527,3 +2527,157 @@ From previous event:
 [2020-11-08T23:15:17.121] [ERROR] storage - 炉号 06-20201028-01/01 和盘号 1 已经提交过了，请勿重复提交
 [2020-11-08T23:15:21.402] [ERROR] storage - 炉号 06-20201028-01/01 和盘号 1 已经提交过了，请勿重复提交
 [2020-11-08T23:28:03.086] [ERROR] storage - 炉号 06-20201028-01/01 和盘号 1 已经提交过了，请勿重复提交
+[2020-11-14T13:52:12.628] [ERROR] measure - 保存重卷记录失败 Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at E:\amorphous_node\controller\measure.js:640:17
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-11-14T13:52:12.637] [ERROR] measure - 保存重卷记录失败 Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at E:\amorphous_node\controller\measure.js:640:17
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-11-14T13:52:12.642] [ERROR] measure - 保存重卷记录失败 Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at E:\amorphous_node\controller\measure.js:640:17
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-11-14T13:52:12.642] [ERROR] measure - 保存重卷记录失败 Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at E:\amorphous_node\controller\measure.js:640:17
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-11-14T13:52:12.643] [ERROR] measure - 保存重卷记录失败 Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at E:\amorphous_node\controller\measure.js:640:17
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-11-14T13:52:12.643] [ERROR] measure - 保存重卷记录失败 Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at E:\amorphous_node\controller\measure.js:640:17
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-11-14T13:52:12.646] [ERROR] measure - 保存重卷记录失败 Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at E:\amorphous_node\controller\measure.js:640:17 {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-11-14T14:22:06.740] [ERROR] measure - Cannot set headers after they are sent to the client Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at E:\amorphous_node\controller\measure.js:1075:17
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-11-14T14:22:06.755] [ERROR] measure - Cannot set headers after they are sent to the client Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at E:\amorphous_node\controller\measure.js:1075:17
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-11-14T14:22:06.756] [ERROR] measure - Cannot set headers after they are sent to the client Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at E:\amorphous_node\controller\measure.js:1075:17
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-11-14T14:22:06.757] [ERROR] measure - Cannot set headers after they are sent to the client Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at E:\amorphous_node\controller\measure.js:1075:17
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-11-14T14:22:06.758] [ERROR] measure - Cannot set headers after they are sent to the client Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at E:\amorphous_node\controller\measure.js:1075:17
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:97:5) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-11-14T14:22:06.763] [ERROR] measure - Cannot set headers after they are sent to the client Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at E:\amorphous_node\controller\measure.js:1075:17 {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-11-14T14:22:06.774] [ERROR] measure - Cannot set headers after they are sent to the client Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at E:\amorphous_node\controller\measure.js:1075:17 {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
+[2020-11-14T15:34:34.291] [ERROR] storage - 炉号 06-20201028-01/01 和盘号 3 已经提交过了，请勿重复提交
+[2020-11-14T15:36:47.155] [ERROR] storage - 炉号 06-20201028-01/01 和盘号 3 已经提交过了，请勿重复提交
+[2020-11-14T17:15:27.251] [ERROR] storage - 炉号 06-20201028-01/01 和盘号 3 已经提交过了，请勿重复提交
+[2020-11-14T17:15:33.334] [ERROR] storage - 炉号 06-20201028-01/01 和盘号 3 已经提交过了，请勿重复提交
+[2020-11-14T17:21:07.538] [ERROR] storage - 炉号 06-20201028-01/01 和盘号 5 已经提交过了，请勿重复提交
+[2020-11-14T17:21:12.510] [ERROR] storage - 炉号 06-20201028-01/01 和盘号 5 已经提交过了，请勿重复提交
