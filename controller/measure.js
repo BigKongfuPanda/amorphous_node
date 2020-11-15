@@ -1145,22 +1145,7 @@ class Measure {
 
     // 导出检测记录的excel
     async exportMeasure(req, res, next) {
-        const {
-            castId,
-            // furnace,
-            startTime,
-            endTime,
-            // caster,
-            // roller,
-            // ribbonTypeNameJson,
-            // ribbonWidthJson,
-            // ribbonThicknessLevelJson,
-            // laminationLevelJson,
-            // ribbonToughnessLevelJson,
-            // appearenceLevelJson,
-            // place,
-            // ribbonTotalLevels,
-        } = req.query;
+        const { castId, startTime, endTime } = req.query;
         try {
             let queryCondition = "";
             // 检测只能看到重卷确认后的带材
@@ -1180,66 +1165,6 @@ class Measure {
                         ? ` AND c.createTime BETWEEN '${startTime}' AND '${endTime}'`
                         : ` c.createTime BETWEEN '${startTime}' AND '${endTime}'`;
             }
-
-            // if (caster) {
-            //   queryCondition.caster = caster;
-            // }
-            // if (roller) {
-            //   queryCondition.roller = roller;
-            // }
-            // if (furnace) {
-            //   queryCondition.furnace = furnace;
-            // }
-            // if (startTime && endTime) {
-            //   queryCondition.inStoreDate = { $gt: startTime, $lt: endTime };
-            // }
-            // if (ribbonTypeNameJson) {
-            //   const ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
-            //   if (ribbonTypeNameList.length > 0) {
-            //     queryCondition.ribbonTypeName = { $in: ribbonTypeNameList };
-            //   }
-            // }
-            // if (ribbonWidthJson) {
-            //   const ribbonWidthList = JSON.parse(ribbonWidthJson);
-            //   if (ribbonWidthList.length > 0) {
-            //     queryCondition.ribbonWidth = { $in: ribbonWidthList };
-            //   }
-            // }
-            // if (ribbonThicknessLevelJson) {
-            //   const ribbonThicknessLevelList = JSON.parse(ribbonThicknessLevelJson);
-            //   if (ribbonThicknessLevelList.length > 0) {
-            //     queryCondition.ribbonThicknessLevel = {
-            //       $in: ribbonThicknessLevelList,
-            //     };
-            //   }
-            // }
-            // if (laminationLevelJson) {
-            //   const laminationLevelList = JSON.parse(laminationLevelJson);
-            //   if (laminationLevelList.length > 0) {
-            //     queryCondition.laminationLevel = { $in: laminationLevelList };
-            //   }
-            // }
-            // if (ribbonToughnessLevelJson) {
-            //   const ribbonToughnessLevelList = JSON.parse(ribbonToughnessLevelJson);
-            //   if (ribbonToughnessLevelList.length > 0) {
-            //     queryCondition.ribbonToughnessLevel = {
-            //       $in: ribbonToughnessLevelList,
-            //     };
-            //   }
-            // }
-            // if (appearenceLevelJson) {
-            //   const appearenceLevelList = JSON.parse(appearenceLevelJson);
-            //   if (appearenceLevelList.length > 0) {
-            //     queryCondition.appearenceLevel = { $in: appearenceLevelList };
-            //   }
-            // }
-            // if (place) {
-            //   queryCondition.place = place;
-            // }
-            // if (ribbonTotalLevels) {
-            //   const ribbonTotalLevelList = ribbonTotalLevels.split(",");
-            //   queryCondition.ribbonTotalLevel = { $in: ribbonTotalLevelList };
-            // }
 
             const conf = {};
             conf.name = "mysheet";
