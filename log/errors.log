@@ -2287,3 +2287,32 @@ From previous event:
 [2020-11-14T17:15:33.334] [ERROR] storage - 炉号 06-20201028-01/01 和盘号 3 已经提交过了，请勿重复提交
 [2020-11-14T17:21:07.538] [ERROR] storage - 炉号 06-20201028-01/01 和盘号 5 已经提交过了，请勿重复提交
 [2020-11-14T17:21:12.510] [ERROR] storage - 炉号 06-20201028-01/01 和盘号 5 已经提交过了，请勿重复提交
+[2020-11-15T20:15:01.272] [ERROR] storage - measureId is not defined ReferenceError: measureId is not defined
+    at rejectApplyStorage (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/storage.js:453:30)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:489:7
+    at tryCatcher (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/bluebird/js/release/util.js:16:23)
+    at Promise.successAdapter [as _fulfillmentHandler0] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/bluebird/js/release/nodeify.js:23:30)
+    at Promise._settlePromise (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/bluebird/js/release/promise.js:566:21)
+    at Promise._settlePromise0 (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/bluebird/js/release/promise.js:614:10)
+    at Promise._settlePromises (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/bluebird/js/release/promise.js:693:18)
+    at Async._drainQueue (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/bluebird/js/release/async.js:133:16)
