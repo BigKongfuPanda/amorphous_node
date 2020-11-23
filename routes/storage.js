@@ -10,6 +10,9 @@ router.get("/", Storage.queryData);
 // 查询申请入库实时记录
 router.get("/queryApplyStorage", Storage.queryApplyStorage);
 
+// 驳回入库申请
+router.post("/rejectApplyStorage", Storage.rejectApplyStorage);
+
 // 获取库房记录表中所有的炉号
 router.get("/furnace", Storage.queryFurnace);
 
