@@ -121,6 +121,7 @@ const Measure = sequelize.define(TABLE_NAME, {
     type: "TIMESTAMP",
     defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
     allowNull: false,
+    onUpdate: Sequelize.literal("CURRENT_TIMESTAMP"),
     get() {
       return moment(this.getDataValue("updatedAt")).format(
         "YYYY-MM-DD HH:mm:ss"
