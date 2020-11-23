@@ -53,15 +53,15 @@ const Measure = sequelize.define(TABLE_NAME, {
   coilNetWeight: Sequelize.FLOAT, //单盘净重,kg
   laminationFactor: Sequelize.FLOAT, //叠片系数 0.80
   laminationLevel: Sequelize.STRING, //叠片等级 不合格, 0, 1, 2, 3, 4
-  ribbonThickness1: Sequelize.INTEGER, //带材厚度点1, μm
-  ribbonThickness2: Sequelize.INTEGER, //带材厚度点2, μm
-  ribbonThickness3: Sequelize.INTEGER, //带材厚度点3, μm
-  ribbonThickness4: Sequelize.INTEGER, //带材厚度点4, μm
-  ribbonThickness5: Sequelize.INTEGER, //带材厚度点5, μm
-  ribbonThickness6: Sequelize.INTEGER, //带材厚度点6, μm
-  ribbonThickness7: Sequelize.INTEGER, //带材厚度点7, μm
-  ribbonThickness8: Sequelize.INTEGER, //带材厚度点8, μm
-  ribbonThickness9: Sequelize.INTEGER, //带材厚度点9, μm
+  ribbonThickness1: Sequelize.FLOAT, //带材厚度点1, μm
+  ribbonThickness2: Sequelize.FLOAT, //带材厚度点2, μm
+  ribbonThickness3: Sequelize.FLOAT, //带材厚度点3, μm
+  ribbonThickness4: Sequelize.FLOAT, //带材厚度点4, μm
+  ribbonThickness5: Sequelize.FLOAT, //带材厚度点5, μm
+  ribbonThickness6: Sequelize.FLOAT, //带材厚度点6, μm
+  ribbonThickness7: Sequelize.FLOAT, //带材厚度点7, μm
+  ribbonThickness8: Sequelize.FLOAT, //带材厚度点8, μm
+  ribbonThickness9: Sequelize.FLOAT, //带材厚度点9, μm
   ribbonThicknessDeviation: Sequelize.INTEGER, // 带材横向偏差, μm
   ribbonThickness: Sequelize.FLOAT, // 带材平均厚度, μm
   ribbonThicknessLevel: Sequelize.INTEGER, // 带材厚度级别
