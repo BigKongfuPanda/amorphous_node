@@ -62,7 +62,7 @@ const Measure = sequelize.define(TABLE_NAME, {
   ribbonThickness7: Sequelize.FLOAT, //带材厚度点7, μm
   ribbonThickness8: Sequelize.FLOAT, //带材厚度点8, μm
   ribbonThickness9: Sequelize.FLOAT, //带材厚度点9, μm
-  ribbonThicknessDeviation: Sequelize.INTEGER, // 带材横向偏差, μm
+  ribbonThicknessDeviation: Sequelize.FLOAT, // 带材横向偏差, μm
   ribbonThickness: Sequelize.FLOAT, // 带材平均厚度, μm
   ribbonThicknessLevel: Sequelize.INTEGER, // 带材厚度级别
   ribbonToughness: Sequelize.STRING, //带材韧性
