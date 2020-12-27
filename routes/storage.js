@@ -19,6 +19,9 @@ router.get("/furnace", Storage.queryFurnace);
 // 获取库房记录表中所有的炉号
 router.get("/ribbonTotalLevel", Storage.queryRibbonTotalLevelList);
 
+// 批量确认入库
+router.post("/batchAddStorage", Storage.batchAddStorage);
+
 // 确认入库
 router.post("/addStorage", Storage.addStorage);
 
