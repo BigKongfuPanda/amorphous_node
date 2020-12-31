@@ -1,0 +1,9 @@
+[2020-12-28T08:28:37.448] [ERROR] storage - Cannot set headers after they are sent to the client Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+    at ServerResponse.setHeader (_http_outgoing.js:526:11)
+    at ServerResponse.header (E:\amorphous_node\node_modules\express\lib\response.js:767:10)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:170:12)
+    at ServerResponse.json (E:\amorphous_node\node_modules\express\lib\response.js:267:15)
+    at ServerResponse.send (E:\amorphous_node\node_modules\express\lib\response.js:158:21)
+    at addStorage (E:\amorphous_node\controller\storage.js:533:11) {
+  code: 'ERR_HTTP_HEADERS_SENT'
+}
