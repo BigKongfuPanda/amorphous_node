@@ -40,4 +40,10 @@ router.get("/exportroll", Measure.exportRoll);
 // 获取单条带材信息
 router.get("/queryRibbonInfo", Measure.queryRibbonInfo);
 
+// 获取申请入库的带材信息
+router.get("/queryApplyStorageByFurnace", Measure.queryApplyStorageByFurnace);
+
+// 获取检测带材合格率数据
+router.get("/queryMeasureStatics", Measure.queryMeasureStatics);
+
 module.exports = router;

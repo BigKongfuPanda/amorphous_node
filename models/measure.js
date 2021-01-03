@@ -75,6 +75,7 @@ const Measure = sequelize.define(TABLE_NAME, {
   appearenceLevel: Sequelize.STRING, //带材外观等级
   // appearenceLevelCode: Sequelize.INTEGER, //带材外观等级符号，PLC传值
   ribbonTotalLevel: Sequelize.STRING, //带材综合级别
+  unQualifiedReason: Sequelize.STRING, // 不合格原因
   isMeasureConfirmed: { type: Sequelize.INTEGER, defaultValue: 0 }, // 检测是否确认可入库：1-是，0-否
   // storageRule: Object, //入库规则
   isStored: { type: Sequelize.INTEGER, defaultValue: 3 }, // 预计入库情况：1-计划内入库，2-计划外入库，3-否

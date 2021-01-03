@@ -7,3 +7,636 @@
     at addStorage (E:\amorphous_node\controller\storage.js:533:11) {
   code: 'ERR_HTTP_HEADERS_SENT'
 }
+[2021-01-02T17:08:32.423] [ERROR] measure - string violation: ribbonTotalLevel cannot be an array or an object ValidationError [SequelizeValidationError]: string violation: ribbonTotalLevel cannot be an array or an object
+    at E:\amorphous_node\node_modules\sequelize\lib\instance-validator.js:74:15
+From previous event:
+    at InstanceValidator._validate (E:\amorphous_node\node_modules\sequelize\lib\instance-validator.js:72:8)
+    at E:\amorphous_node\node_modules\sequelize\lib\instance-validator.js:107:14
+    at processImmediate (internal/timers.js:461:21)
+From previous event:
+    at InstanceValidator._validateAndRunHooks (E:\amorphous_node\node_modules\sequelize\lib\instance-validator.js:106:8)
+    at InstanceValidator.validate (E:\amorphous_node\node_modules\sequelize\lib\instance-validator.js:90:38)
+    at model.validate (E:\amorphous_node\node_modules\sequelize\lib\model.js:3963:49)
+    at E:\amorphous_node\node_modules\sequelize\lib\model.js:2936:22
+From previous event:
+    at Function.update (E:\amorphous_node\node_modules\sequelize\lib\model.js:2923:23)
+    at updateMeasure (E:\amorphous_node\controller\measure.js:996:44)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at processImmediate (internal/timers.js:461:21) {
+  errors: [
+    ValidationErrorItem {
+      message: 'ribbonTotalLevel cannot be an array or an object',
+      type: 'string violation',
+      path: 'ribbonTotalLevel',
+      value: [Array],
+      origin: 'CORE',
+      instance: [measure],
+      validatorKey: 'not_a_string',
+      validatorName: null,
+      validatorArgs: []
+    }
+  ]
+}
+[2021-01-02T20:59:35.843] [ERROR] user - 用户不存在 Error: 用户不存在
+    at login (E:\amorphous_node\controller\user.js:242:15)
+[2021-01-03T10:00:10.136] [ERROR] measure - 查询检测记录失败 DatabaseError [SequelizeDatabaseError]: Unknown column 'statics' in 'where clause'
+    at Query.formatError (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Query.handler [as onResult] (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.onPacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.<anonymous> (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:314:20)
+    at addChunk (_stream_readable.js:298:12)
+    at readableAddChunk (_stream_readable.js:273:9)
+    at Socket.Readable.push (_stream_readable.js:214:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+From previous event:
+    at Query.run (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29
+From previous event:
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12
+    at processImmediate (internal/timers.js:461:21)
+From previous event:
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10
+    at E:\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30
+From previous event:
+    at Sequelize.query (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at queryMeasureData (E:\amorphous_node\controller\measure.js:266:34)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at processImmediate (internal/timers.js:461:21) {
+  parent: Error: Unknown column 'statics' in 'where clause'
+      at Packet.asError (E:\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+      at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+      at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+      at PacketParser.onPacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+      at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+      at Socket.<anonymous> (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:298:12)
+      at readableAddChunk (_stream_readable.js:273:9)
+      at Socket.Readable.push (_stream_readable.js:214:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'statics' in 'where clause'",
+    sql: 'SELECT \n' +
+      '                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster\n' +
+      '                      FROM measure m \n' +
+      '                      LEFT JOIN cast c \n' +
+      '                      ON m.furnace=c.furnace\n' +
+      '                      WHERE  m.castId=statics AND m.isRollConfirmed=1\n' +
+      '                      ORDER BY m.updatedAt DESC\n' +
+      '                      LIMIT 30 OFFSET 0'
+  },
+  original: Error: Unknown column 'statics' in 'where clause'
+      at Packet.asError (E:\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+      at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+      at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+      at PacketParser.onPacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+      at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+      at Socket.<anonymous> (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:298:12)
+      at readableAddChunk (_stream_readable.js:273:9)
+      at Socket.Readable.push (_stream_readable.js:214:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'statics' in 'where clause'",
+    sql: 'SELECT \n' +
+      '                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster\n' +
+      '                      FROM measure m \n' +
+      '                      LEFT JOIN cast c \n' +
+      '                      ON m.furnace=c.furnace\n' +
+      '                      WHERE  m.castId=statics AND m.isRollConfirmed=1\n' +
+      '                      ORDER BY m.updatedAt DESC\n' +
+      '                      LIMIT 30 OFFSET 0'
+  },
+  sql: 'SELECT \n' +
+    '                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster\n' +
+    '                      FROM measure m \n' +
+    '                      LEFT JOIN cast c \n' +
+    '                      ON m.furnace=c.furnace\n' +
+    '                      WHERE  m.castId=statics AND m.isRollConfirmed=1\n' +
+    '                      ORDER BY m.updatedAt DESC\n' +
+    '                      LIMIT 30 OFFSET 0'
+}
+[2021-01-03T10:00:24.431] [ERROR] measure - 查询检测记录失败 DatabaseError [SequelizeDatabaseError]: Unknown column 'statics' in 'where clause'
+    at Query.formatError (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Query.handler [as onResult] (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.onPacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.<anonymous> (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:314:20)
+    at addChunk (_stream_readable.js:298:12)
+    at readableAddChunk (_stream_readable.js:273:9)
+    at Socket.Readable.push (_stream_readable.js:214:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+From previous event:
+    at Query.run (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29
+From previous event:
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12
+    at processImmediate (internal/timers.js:461:21)
+From previous event:
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10
+    at E:\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30
+From previous event:
+    at Sequelize.query (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at queryMeasureData (E:\amorphous_node\controller\measure.js:266:34)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at processImmediate (internal/timers.js:461:21) {
+  parent: Error: Unknown column 'statics' in 'where clause'
+      at Packet.asError (E:\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+      at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+      at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+      at PacketParser.onPacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+      at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+      at Socket.<anonymous> (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:298:12)
+      at readableAddChunk (_stream_readable.js:273:9)
+      at Socket.Readable.push (_stream_readable.js:214:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'statics' in 'where clause'",
+    sql: 'SELECT \n' +
+      '                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster\n' +
+      '                      FROM measure m \n' +
+      '                      LEFT JOIN cast c \n' +
+      '                      ON m.furnace=c.furnace\n' +
+      '                      WHERE  m.castId=statics AND m.isRollConfirmed=1\n' +
+      '                      ORDER BY m.updatedAt DESC\n' +
+      '                      LIMIT 30 OFFSET 0'
+  },
+  original: Error: Unknown column 'statics' in 'where clause'
+      at Packet.asError (E:\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+      at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+      at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+      at PacketParser.onPacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+      at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+      at Socket.<anonymous> (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:298:12)
+      at readableAddChunk (_stream_readable.js:273:9)
+      at Socket.Readable.push (_stream_readable.js:214:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'statics' in 'where clause'",
+    sql: 'SELECT \n' +
+      '                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster\n' +
+      '                      FROM measure m \n' +
+      '                      LEFT JOIN cast c \n' +
+      '                      ON m.furnace=c.furnace\n' +
+      '                      WHERE  m.castId=statics AND m.isRollConfirmed=1\n' +
+      '                      ORDER BY m.updatedAt DESC\n' +
+      '                      LIMIT 30 OFFSET 0'
+  },
+  sql: 'SELECT \n' +
+    '                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster\n' +
+    '                      FROM measure m \n' +
+    '                      LEFT JOIN cast c \n' +
+    '                      ON m.furnace=c.furnace\n' +
+    '                      WHERE  m.castId=statics AND m.isRollConfirmed=1\n' +
+    '                      ORDER BY m.updatedAt DESC\n' +
+    '                      LIMIT 30 OFFSET 0'
+}
+[2021-01-03T10:00:59.377] [ERROR] measure - 查询检测记录失败 DatabaseError [SequelizeDatabaseError]: Unknown column 'statics' in 'where clause'
+    at Query.formatError (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Query.handler [as onResult] (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.onPacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.<anonymous> (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:314:20)
+    at addChunk (_stream_readable.js:298:12)
+    at readableAddChunk (_stream_readable.js:273:9)
+    at Socket.Readable.push (_stream_readable.js:214:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+From previous event:
+    at Query.run (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29
+From previous event:
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12
+    at processImmediate (internal/timers.js:461:21)
+From previous event:
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10
+    at E:\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30
+From previous event:
+    at Sequelize.query (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at queryMeasureData (E:\amorphous_node\controller\measure.js:266:34)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at processImmediate (internal/timers.js:461:21) {
+  parent: Error: Unknown column 'statics' in 'where clause'
+      at Packet.asError (E:\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+      at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+      at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+      at PacketParser.onPacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+      at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+      at Socket.<anonymous> (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:298:12)
+      at readableAddChunk (_stream_readable.js:273:9)
+      at Socket.Readable.push (_stream_readable.js:214:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'statics' in 'where clause'",
+    sql: 'SELECT \n' +
+      '                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster\n' +
+      '                      FROM measure m \n' +
+      '                      LEFT JOIN cast c \n' +
+      '                      ON m.furnace=c.furnace\n' +
+      '                      WHERE  m.castId=statics AND m.isRollConfirmed=1\n' +
+      '                      ORDER BY m.updatedAt DESC\n' +
+      '                      LIMIT 30 OFFSET 0'
+  },
+  original: Error: Unknown column 'statics' in 'where clause'
+      at Packet.asError (E:\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+      at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+      at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+      at PacketParser.onPacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+      at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+      at Socket.<anonymous> (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:298:12)
+      at readableAddChunk (_stream_readable.js:273:9)
+      at Socket.Readable.push (_stream_readable.js:214:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'statics' in 'where clause'",
+    sql: 'SELECT \n' +
+      '                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster\n' +
+      '                      FROM measure m \n' +
+      '                      LEFT JOIN cast c \n' +
+      '                      ON m.furnace=c.furnace\n' +
+      '                      WHERE  m.castId=statics AND m.isRollConfirmed=1\n' +
+      '                      ORDER BY m.updatedAt DESC\n' +
+      '                      LIMIT 30 OFFSET 0'
+  },
+  sql: 'SELECT \n' +
+    '                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster\n' +
+    '                      FROM measure m \n' +
+    '                      LEFT JOIN cast c \n' +
+    '                      ON m.furnace=c.furnace\n' +
+    '                      WHERE  m.castId=statics AND m.isRollConfirmed=1\n' +
+    '                      ORDER BY m.updatedAt DESC\n' +
+    '                      LIMIT 30 OFFSET 0'
+}
+[2021-01-03T10:02:24.388] [ERROR] measure - 查询检测记录失败 DatabaseError [SequelizeDatabaseError]: Unknown column 'statics' in 'where clause'
+    at Query.formatError (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:239:16)
+    at Query.handler [as onResult] (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:46:23)
+    at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+    at PacketParser.onPacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+    at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.<anonymous> (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+    at Socket.emit (events.js:314:20)
+    at addChunk (_stream_readable.js:298:12)
+    at readableAddChunk (_stream_readable.js:273:9)
+    at Socket.Readable.push (_stream_readable.js:214:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+From previous event:
+    at Query.run (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:29
+From previous event:
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:635:12
+    at processImmediate (internal/timers.js:461:21)
+From previous event:
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:632:10
+    at E:\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:619:30
+From previous event:
+    at Sequelize.query (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:576:23)
+    at queryMeasureData (E:\amorphous_node\controller\measure.js:266:34)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at processImmediate (internal/timers.js:461:21) {
+  parent: Error: Unknown column 'statics' in 'where clause'
+      at Packet.asError (E:\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+      at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+      at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+      at PacketParser.onPacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+      at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+      at Socket.<anonymous> (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:298:12)
+      at readableAddChunk (_stream_readable.js:273:9)
+      at Socket.Readable.push (_stream_readable.js:214:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'statics' in 'where clause'",
+    sql: 'SELECT \n' +
+      '                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster\n' +
+      '                      FROM measure m \n' +
+      '                      LEFT JOIN cast c \n' +
+      '                      ON m.furnace=c.furnace\n' +
+      '                      WHERE  m.castId=statics AND m.isRollConfirmed=1\n' +
+      '                      ORDER BY m.updatedAt DESC\n' +
+      '                      LIMIT 30 OFFSET 0'
+  },
+  original: Error: Unknown column 'statics' in 'where clause'
+      at Packet.asError (E:\amorphous_node\node_modules\mysql2\lib\packets\packet.js:684:17)
+      at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+      at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:449:32)
+      at PacketParser.onPacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:72:12)
+      at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+      at Socket.<anonymous> (E:\amorphous_node\node_modules\mysql2\lib\connection.js:79:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:298:12)
+      at readableAddChunk (_stream_readable.js:273:9)
+      at Socket.Readable.push (_stream_readable.js:214:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'statics' in 'where clause'",
+    sql: 'SELECT \n' +
+      '                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster\n' +
+      '                      FROM measure m \n' +
+      '                      LEFT JOIN cast c \n' +
+      '                      ON m.furnace=c.furnace\n' +
+      '                      WHERE  m.castId=statics AND m.isRollConfirmed=1\n' +
+      '                      ORDER BY m.updatedAt DESC\n' +
+      '                      LIMIT 30 OFFSET 0'
+  },
+  sql: 'SELECT \n' +
+    '                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster\n' +
+    '                      FROM measure m \n' +
+    '                      LEFT JOIN cast c \n' +
+    '                      ON m.furnace=c.furnace\n' +
+    '                      WHERE  m.castId=statics AND m.isRollConfirmed=1\n' +
+    '                      ORDER BY m.updatedAt DESC\n' +
+    '                      LIMIT 30 OFFSET 0'
+}
+[2021-01-03T11:17:49.021] [ERROR] measure - 查询单条带材信息记录失败 Error: 机组编号castId不能为空
+    at queryMeasureStatics (E:\amorphous_node\controller\measure.js:467:15)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at tryCatcher (E:\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
+    at Promise.successAdapter [as _fulfillmentHandler0] (E:\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
+    at Promise._settlePromise (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
+    at Promise._settlePromise0 (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
+    at Promise._settlePromises (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
+    at Async._drainQueue (E:\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
+[2021-01-03T11:22:09.965] [ERROR] measure - 查询单条带材信息记录失败 Error: 机组编号castId不能为空
+    at queryMeasureStatics (E:\amorphous_node\controller\measure.js:467:15)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at tryCatcher (E:\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
+    at Promise.successAdapter [as _fulfillmentHandler0] (E:\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
+    at Promise._settlePromise (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
+    at Promise._settlePromise0 (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
+    at Promise._settlePromises (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
+    at Async._drainQueue (E:\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
+[2021-01-03T11:22:34.404] [ERROR] measure - 查询单条带材信息记录失败 Error: 机组编号castId不能为空
+    at queryMeasureStatics (E:\amorphous_node\controller\measure.js:467:15)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at tryCatcher (E:\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
+    at Promise.successAdapter [as _fulfillmentHandler0] (E:\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
+    at Promise._settlePromise (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
+    at Promise._settlePromise0 (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
+    at Promise._settlePromises (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
+    at Async._drainQueue (E:\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
+[2021-01-03T11:22:49.720] [ERROR] measure - 查询单条带材信息记录失败 Error: 机组编号castId不能为空
+    at queryMeasureStatics (E:\amorphous_node\controller\measure.js:467:15)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at tryCatcher (E:\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
+    at Promise.successAdapter [as _fulfillmentHandler0] (E:\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
+    at Promise._settlePromise (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
+    at Promise._settlePromise0 (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
+    at Promise._settlePromises (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
+    at Async._drainQueue (E:\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
+[2021-01-03T11:23:04.110] [ERROR] measure - 查询单条带材信息记录失败 Error: 机组编号castId不能为空
+    at queryMeasureStatics (E:\amorphous_node\controller\measure.js:467:15)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:489:7
+    at tryCatcher (E:\amorphous_node\node_modules\bluebird\js\release\util.js:16:23)
+    at Promise.successAdapter [as _fulfillmentHandler0] (E:\amorphous_node\node_modules\bluebird\js\release\nodeify.js:23:30)
+    at Promise._settlePromise (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:566:21)
+    at Promise._settlePromise0 (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:614:10)
+    at Promise._settlePromises (E:\amorphous_node\node_modules\bluebird\js\release\promise.js:693:18)
+    at Async._drainQueue (E:\amorphous_node\node_modules\bluebird\js\release\async.js:133:16)
