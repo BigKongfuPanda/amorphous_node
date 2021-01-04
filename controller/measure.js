@@ -112,6 +112,8 @@ class Measure {
       furnace,
       startTime,
       endTime,
+      startMeasureTime,
+      endMeasureTime,
       caster,
       roller,
       ribbonTypeNameJson,
@@ -160,6 +162,12 @@ class Measure {
           queryCondition !== ""
             ? ` AND c.createTime BETWEEN '${startTime}' AND '${endTime}'`
             : ` c.createTime BETWEEN '${startTime}' AND '${endTime}'`;
+      }
+      if (startMeasureTime && endMeasureTime) {
+        queryCondition +=
+          queryCondition !== ""
+            ? ` AND m.measureDate BETWEEN '${startMeasureTime}' AND '${endMeasureTime}'`
+            : ` m.measureDate BETWEEN '${startMeasureTime}' AND '${endMeasureTime}'`;
       }
       if (ribbonTypeNameJson) {
         let ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
@@ -1267,7 +1275,7 @@ class Measure {
 
   // 导出检测记录的excel
   async exportMeasure(req, res, next) {
-    const { castId, startTime, endTime } = req.query;
+    const { castId, startTime, endTime,startMeasureTime, endMeasureTime } = req.query;
     try {
       let queryCondition = "";
       // 检测只能看到重卷确认后的带材
@@ -1288,6 +1296,13 @@ class Measure {
             : ` c.createTime BETWEEN '${startTime}' AND '${endTime}'`;
       }
 
+      if (startMeasureTime && endMeasureTime) {
+        queryCondition +=
+          queryCondition !== ""
+            ? ` AND m.measureDate BETWEEN '${startMeasureTime}' AND '${endMeasureTime}'`
+            : ` m.measureDate BETWEEN '${startMeasureTime}' AND '${endMeasureTime}'`;
+      }
+
       const conf = {};
       conf.name = "mysheet";
       conf.cols = [
@@ -1296,6 +1311,7 @@ class Measure {
         { caption: "材质", type: "string" },
         { caption: "规格", type: "number" },
         { caption: "生产日期", type: "string" },
+        { caption: "检测日期", type: "string" },
         { caption: "喷带手", type: "string" },
         { caption: "外径", type: "number" },
         { caption: "重量", type: "number" },
@@ -1348,6 +1364,7 @@ class Measure {
             item.ribbonTypeName,
             item.ribbonWidth,
             moment(item.castDate).format("YYYY-MM-DD"),
+            moment(item.measureDate).format("YYYY-MM-DD"),
             item.caster,
             item.diameter,
             item.coilWeight,
