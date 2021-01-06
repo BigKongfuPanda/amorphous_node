@@ -473,10 +473,10 @@ class Measure {
       castId,
       startTime,
       endTime,
+      startMeasureTime,
+      endMeasureTime,
       furnace,
       ribbonTypeNameJson,
-      current = 1,
-      limit = 30,
     } = req.query;
     try {
       if (!castId) {
@@ -514,6 +514,13 @@ class Measure {
             : ` c.createTime BETWEEN '${startTime}' AND '${endTime}'`;
       }
 
+      if (startMeasureTime && endMeasureTime) {
+        queryCondition +=
+          queryCondition !== ""
+            ? ` AND m.measureDate BETWEEN '${startMeasureTime}' AND '${endMeasureTime}'`
+            : ` m.measureDate BETWEEN '${startMeasureTime}' AND '${endMeasureTime}'`;
+      }
+
       // 检测只能看到重卷确认后的带材
       queryCondition +=
         queryCondition !== ""
@@ -531,6 +538,8 @@ class Measure {
       let list = await sequelize.query(sqlStr, {
         type: sequelize.QueryTypes.SELECT,
       });
+      console.log("~~~~~~~~~~~~~~~~~~~~~~合格率数据~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      console.log(list);
       res.send({
         status: 0,
         message: "操作成功",
@@ -1275,7 +1284,13 @@ class Measure {
 
   // 导出检测记录的excel
   async exportMeasure(req, res, next) {
-    const { castId, startTime, endTime,startMeasureTime, endMeasureTime } = req.query;
+    const {
+      castId,
+      startTime,
+      endTime,
+      startMeasureTime,
+      endMeasureTime,
+    } = req.query;
     try {
       let queryCondition = "";
       // 检测只能看到重卷确认后的带材
@@ -1315,6 +1330,7 @@ class Measure {
         { caption: "喷带手", type: "string" },
         { caption: "外径", type: "number" },
         { caption: "重量", type: "number" },
+        { caption: "净量", type: "number" },
         { caption: "叠片系数", type: "number" },
         { caption: "叠片等级", type: "string" },
         { caption: "实际带宽", type: "number" },
@@ -1368,6 +1384,7 @@ class Measure {
             item.caster,
             item.diameter,
             item.coilWeight,
+            item.coilNetWeight,
             item.laminationFactor,
             item.laminationLevel,
             item.realRibbonWidth,
