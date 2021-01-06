@@ -1,25 +1,28 @@
-'use strict';
+"use strict";
 
-const express = require('express');
-const router= express.Router();
-const User = require('../controller/user');
+const express = require("express");
+const router = express.Router();
+const User = require("../controller/user");
 
 // 查询用户列表
-router.get('/', User.queryUser);
+router.get("/", User.queryUser);
+
+// 获取用户信息
+router.get("/info", User.queryUserInfo);
 
 // 新增用户
-router.post('/', User.createUser);
+router.post("/", User.createUser);
 
 // 删除用户
-router.delete('/', User.delUser);
+router.delete("/", User.delUser);
 
 // 修改密码
-router.put('/', User.updatePassword);
+router.put("/", User.updatePassword);
 
 // 登录
-router.post('/login', User.login);
+router.post("/login", User.login);
 
 // 退出登录
-router.post('/signout', User.signout);
+router.post("/signout", User.signout);
 
 module.exports = router;

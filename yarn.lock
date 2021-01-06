@@ -1061,6 +1061,11 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+express-favicon@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npm.taobao.org/express-favicon/download/express-favicon-2.0.1.tgz#6d852a1bc576ac72db006d3550cc09b23a96eef7"
+  integrity sha1-bYUqG8V2rHLbAG01UMwJsjqW7vc=
+
 express-session@^1.15.6:
   version "1.17.1"
   resolved "https://registry.npm.taobao.org/express-session/download/express-session-1.17.1.tgz#36ecbc7034566d38c8509885c044d461c11bf357"

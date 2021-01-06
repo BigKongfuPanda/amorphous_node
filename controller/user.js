@@ -290,6 +290,34 @@ class User {
       });
     }
   }
+
+  // 获取用户信息
+  async queryUserInfo(req, res, next) {
+    const { userId } = req.session;
+    try {
+      const data = await userModel.findOne({
+        where: { userId },
+      });
+      // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
+      if (!data) {
+        throw new Error("用户不存在");
+      }
+      console.log("-------------------------");
+      console.log(data);
+      res.send({
+        status: 0,
+        message: "查询成功",
+        data,
+      });
+    } catch (err) {
+      console.log(err.message, err);
+      log.error(err.message, err);
+      res.send({
+        status: -1,
+        message: err.message,
+      });
+    }
+  }
 }
 
 module.exports = new User();
