@@ -1204,7 +1204,7 @@ class Measure {
             // isMeasureConfirmed,
             isStored: item.isStored,
             // unStoreReason,
-            // clients,
+            clients: item.clients,
             // takeBy,
             // shipRemark,
             // place,
