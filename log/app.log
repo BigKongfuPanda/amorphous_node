@@ -27,3 +27,7 @@
     at E:\amorphous_node\controller\measure.js:790:17 {
   code: 'ERR_HTTP_HEADERS_SENT'
 }
+[2021-02-02T14:51:39.060] [ERROR] ribbonType - 删除材质失败 Error: 删除材质失败
+    at delData (E:\amorphous_node\controller\ribbonType.js:157:15)
+[2021-02-02T14:52:03.041] [ERROR] ribbonType - 删除材质失败 Error: 删除材质失败
+    at delData (E:\amorphous_node\controller\ribbonType.js:157:15)

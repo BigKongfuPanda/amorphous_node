@@ -28,9 +28,9 @@ class AppearenceLevel {
   }
 
   async createData(req, res, next) {
-    const { appearenceLevel, appearence, appearenceLevelCode } = req.body;
+    const { appearenceLevel, appearence } = req.body;
     try {
-      if (!appearence || !appearenceLevel || !appearenceLevelCode) {
+      if (!appearence || !appearenceLevel) {
         throw new Error("参数错误");
       }
     } catch (err) {
@@ -47,12 +47,12 @@ class AppearenceLevel {
       // const data = await appearenceLevelModel.findOne({$or: [{ appearenceLevel }, { laminationFactorRange }]});
       const data = await appearenceLevelModel.findOne({
         where: {
-          $or: [{ appearence }, { appearenceLevelCode }],
+          appearence,
         },
       });
       // 如果没有查到则返回值为 null， 如果查询到则返回值为一个对象
       if (data) {
-        throw new Error("带材外观或PLC映射值重复");
+        throw new Error("带材外观描述重复");
       }
     } catch (err) {
       console.log(err.message, err);
@@ -68,7 +68,6 @@ class AppearenceLevel {
       const newData = {
         appearenceLevel,
         appearence,
-        appearenceLevelCode,
       };
       await appearenceLevelModel.create(newData);
       res.send({
@@ -86,19 +85,9 @@ class AppearenceLevel {
   }
 
   async updateData(req, res, next) {
-    const {
-      appearenceLevelId,
-      appearenceLevel,
-      appearence,
-      appearenceLevelCode,
-    } = req.body;
+    const { appearenceLevelId, appearenceLevel, appearence } = req.body;
     try {
-      if (
-        !appearenceLevelId ||
-        !appearenceLevel ||
-        !appearence ||
-        !appearenceLevelCode
-      ) {
+      if (!appearenceLevelId || !appearenceLevel || !appearence) {
         throw new Error("参数错误");
       }
     } catch (err) {
@@ -114,7 +103,6 @@ class AppearenceLevel {
       const newData = {
         appearenceLevel,
         appearence,
-        appearenceLevelCode,
       };
       // const { n } = await appearenceLevelModel.updateOne({ _id: appearenceLevelId }, { $set: newData });
       const [n] = await appearenceLevelModel.update(newData, {

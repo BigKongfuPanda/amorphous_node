@@ -128,6 +128,7 @@ class Measure {
       current = 1,
       limit = 30,
     } = req.query;
+
     try {
       let queryCondition = "";
       if (caster) {
@@ -538,8 +539,6 @@ class Measure {
       let list = await sequelize.query(sqlStr, {
         type: sequelize.QueryTypes.SELECT,
       });
-      console.log("~~~~~~~~~~~~~~~~~~~~~~合格率数据~~~~~~~~~~~~~~~~~~~~~~~~~~");
-      console.log(list);
       res.send({
         status: 0,
         message: "操作成功",
@@ -775,11 +774,7 @@ class Measure {
         }
 
         try {
-          // const { createTime } = await castModel.findOne({
-          //   where: { furnace },
-          // });
           const newData = {
-            // castDate: createTime,
             rollerName: item.rollerName, // 将此刻重卷人名固定死，不能使用roller,因为roller 和 rollerName 的映射关系会变化
             isRollConfirmed: 1, // 确认成功
           };
@@ -826,14 +821,9 @@ class Measure {
 
     try {
       data.forEach(async (item) => {
-        // 检测确认时间，也就是申请入库时间
-        // item.measureConfirmDate = Date.now();
-        // item.measureDate = Date.now();
-        // item.isMeasureConfirmed = 1; // 1-已确认，0-未确认
         await measureModel.update(
           {
             measureConfirmDate: Date.now(),
-            // measureDate: item.measureDate,
             clients: item.clients,
             unStoreReason: item.unStoreReason,
             isMeasureConfirmed: 1, // 1-已确认，0-未确认
@@ -845,12 +835,6 @@ class Measure {
           },
           { where: { measureId: item.measureId } }
         );
-        // 将入库数据
-        // let clone = cloneDeep(item);
-        // delete clone.measureId;
-        // delete clone.createdAt;
-        // delete clone.updatedAt;
-        // await storageModel.create(clone);
       });
       res.send({
         status: 0,
@@ -1422,7 +1406,7 @@ class Measure {
             return "计划外入库";
             break;
           case 3:
-            return "不合格";
+            return "未入库";
             break;
           default:
             return "";
