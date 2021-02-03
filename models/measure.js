@@ -43,6 +43,7 @@ const Measure = sequelize.define(TABLE_NAME, {
     defaultValue: 0, // 1-已确认；0-待确认
   },
   // 检测录入信息
+  measurerCode: Sequelize.INTEGER, // 检测人员编号，PLC数据
   orderThickness: Sequelize.STRING, // 订单要求：厚度 20-23, ≤23
   orderLaminationFactor: Sequelize.STRING, // 订单要求：叠片系数 ≥0.78
   orderRibbonToughnessLevels: Sequelize.STRING, // 订单要求：韧性 [A,B,C]

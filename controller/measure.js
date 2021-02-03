@@ -255,7 +255,7 @@ class Measure {
           ? ` AND m.isRollConfirmed=1`
           : ` m.isRollConfirmed=1`;
 
-      const sqlStr = `SELECT 
+      const sqlStr = `SELECT SQL_CALC_FOUND_ROWS
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
                       FROM ${TABLE_NAME} m 
                       LEFT JOIN cast c 
@@ -263,22 +263,24 @@ class Measure {
                       ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
                       ORDER BY m.updatedAt DESC
                       LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
-      const sqlStr2 = `SELECT 
-                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
-                      FROM ${TABLE_NAME} m 
-                      LEFT JOIN cast c 
-                      ON m.furnace=c.furnace
-                      ${
-                        queryCondition !== "" ? "WHERE " + queryCondition : ""
-                      }`;
-
+      // const sqlStr2 = `SELECT
+      //                   m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
+      //                 FROM ${TABLE_NAME} m
+      //                 LEFT JOIN cast c
+      //                 ON m.furnace=c.furnace
+      //                 ${
+      //                   queryCondition !== "" ? "WHERE " + queryCondition : ""
+      //                 }`;
+      const sqlStr2 = `SELECT FOUND_ROWS() AS totalCount`;
       let list = await sequelize.query(sqlStr, {
         type: sequelize.QueryTypes.SELECT,
       });
       const totalList = await sequelize.query(sqlStr2, {
         type: sequelize.QueryTypes.SELECT,
       });
-      const count = totalList.length;
+      console.log(totalList, 999);
+      // const count = totalList.length;
+      const count = Array.isArray(totalList) ? totalList[0].totalCount : 0;
       const totalPage = Math.ceil(count / limit);
 
       // 如果排产12炉，喷带13或以上，则从第13炉开始，需要取第12炉的材质，规格，订单要求和排产要求
@@ -523,10 +525,10 @@ class Measure {
       }
 
       // 检测计算综合级别之后
-      // queryCondition +=
-      //   queryCondition !== ""
-      //     ? ` AND m.ribbonTotalLevel IS NOT NULL`
-      //     : ` m.ribbonTotalLevel IS NOT NULL`;
+      queryCondition +=
+        queryCondition !== ""
+          ? ` AND m.ribbonTotalLevel IS NOT NULL`
+          : ` m.ribbonTotalLevel IS NOT NULL`;
 
       // 检测只能看到重卷确认后的带材
       queryCondition +=
@@ -553,7 +555,9 @@ class Measure {
             ...item,
             netWeight: Number(item.netWeight.toFixed(2)),
             unQualifiedWeight: Number(item.unQualifiedWeight.toFixed(2)),
-            qualifiedWeight: Number((item.netWeight - item.unQualifiedWeight).toFixed(2)),
+            qualifiedWeight: Number(
+              (item.netWeight - item.unQualifiedWeight).toFixed(2)
+            ),
             qualifyOfRatio: Number(
               (100 * (item.netWeight - item.unQualifiedWeight)) / item.netWeight
             ).toFixed(2),
