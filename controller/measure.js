@@ -522,13 +522,19 @@ class Measure {
             : ` m.measureDate BETWEEN '${startMeasureTime}' AND '${endMeasureTime}'`;
       }
 
+      // 检测计算综合级别之后
+      // queryCondition +=
+      //   queryCondition !== ""
+      //     ? ` AND m.ribbonTotalLevel IS NOT NULL`
+      //     : ` m.ribbonTotalLevel IS NOT NULL`;
+
       // 检测只能看到重卷确认后的带材
       queryCondition +=
         queryCondition !== ""
           ? ` AND m.isRollConfirmed=1`
           : ` m.isRollConfirmed=1`;
 
-      const sqlStr = `SELECT m.furnace, SUM(IF(m.isStored IN (1,2), m.coilNetWeight, 0)) AS qualifiedWeight, SUM(m.coilNetWeight) AS netWeight 
+      const sqlStr = `SELECT m.furnace, SUM(IF(m.ribbonTotalLevel='不合格', m.coilNetWeight, 0)) AS unQualifiedWeight, SUM(m.coilNetWeight) AS netWeight 
       FROM ${TABLE_NAME} m
       LEFT JOIN cast c 
       ON m.furnace=c.furnace
@@ -546,9 +552,10 @@ class Measure {
           list: list.map((item) => ({
             ...item,
             netWeight: Number(item.netWeight.toFixed(2)),
-            qualifiedWeight: Number(item.qualifiedWeight.toFixed(2)),
+            unQualifiedWeight: Number(item.unQualifiedWeight.toFixed(2)),
+            qualifiedWeight: Number((item.netWeight - item.unQualifiedWeight).toFixed(2)),
             qualifyOfRatio: Number(
-              (100 * item.qualifiedWeight) / item.netWeight
+              (100 * (item.netWeight - item.unQualifiedWeight)) / item.netWeight
             ).toFixed(2),
           })),
         },
