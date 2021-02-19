@@ -1,23 +1,2 @@
-[2021-02-03T16:09:23.804] [ERROR] measure - 查询单条带材信息记录失败 Error: 机组编号castId不能为空
-    at queryMeasureStatics (E:\amorphous_node\controller\measure.js:484:15)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
-    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
-    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
-    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
-    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
-    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
-    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
-    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
-    at E:\amorphous_node\node_modules\express-session\index.js:502:7
+[2021-02-03T18:16:10.223] [ERROR] user - 密码错误 Error: 密码错误
+    at login (E:\amorphous_node\controller\user.js:244:15)
