@@ -31,10 +31,10 @@ const AppearenceLevel = sequelize.define("appearenceLevel", {
   },
 });
 
-AppearenceLevel.sync({ alter: true })
-  .then((result) => {})
-  .catch((err) => {
-    console.log("AppearenceLevel表初始化失败", err.message);
-  });
+// AppearenceLevel.sync({ alter: true })
+//   .then((result) => {})
+//   .catch((err) => {
+//     console.log("AppearenceLevel表初始化失败", err.message);
+//   });
 
 module.exports = AppearenceLevel;

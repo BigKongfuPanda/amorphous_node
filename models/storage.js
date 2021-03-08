@@ -103,12 +103,12 @@ const Storage = sequelize.define("storage", {
   },
 });
 
-Storage.sync({ alter: true })
-  .then((result) => {
-    console.log("Storage表初始化成功");
-  })
-  .catch((err) => {
-    console.log("Storage表初始化失败", err.message);
-  });
+// Storage.sync({ alter: true })
+//   .then((result) => {
+//     console.log("Storage表初始化成功");
+//   })
+//   .catch((err) => {
+//     console.log("Storage表初始化失败", err.message);
+//   });
 
 module.exports = Storage;

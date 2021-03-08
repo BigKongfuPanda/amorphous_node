@@ -31,12 +31,12 @@ const LinerWeight = sequelize.define("linerWeight", {
   },
 });
 
-LinerWeight.sync({ alter: true })
-  .then((result) => {
-    console.log(chalk.green("LinerWeight表初始化成功"));
-  })
-  .catch((err) => {
-    console.log(chalk.red("LinerWeight表初始化失败", err.message));
-  });
+// LinerWeight.sync({ alter: true })
+//   .then((result) => {
+//     console.log(chalk.green("LinerWeight表初始化成功"));
+//   })
+//   .catch((err) => {
+//     console.log(chalk.red("LinerWeight表初始化失败", err.message));
+//   });
 
 module.exports = LinerWeight;

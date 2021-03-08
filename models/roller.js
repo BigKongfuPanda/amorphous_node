@@ -31,12 +31,12 @@ const Roller = sequelize.define("roller", {
   },
 });
 
-Roller.sync({ alter: true })
-  .then((result) => {
-    console.log(chalk.green("roller表初始化成功"));
-  })
-  .catch((err) => {
-    console.log(chalk.red("roller表初始化失败", err.message));
-  });
+// Roller.sync({ alter: true })
+//   .then((result) => {
+//     console.log(chalk.green("roller表初始化成功"));
+//   })
+//   .catch((err) => {
+//     console.log(chalk.red("roller表初始化失败", err.message));
+//   });
 
 module.exports = Roller;

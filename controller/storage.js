@@ -251,6 +251,8 @@ class Storage {
           ? ` AND m.isStorageConfirmed=0`
           : ` m.isStorageConfirmed=0`;
 
+      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+      console.time("test");
       const sqlStr = `SELECT 
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
                       FROM ${TABLE_NAME} m 
@@ -262,6 +264,8 @@ class Storage {
       const list = await sequelize.query(sqlStr, {
         type: sequelize.QueryTypes.SELECT,
       });
+      console.timeEnd("test");
+      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
       // 要考虑分页
       res.send({

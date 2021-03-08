@@ -31,10 +31,10 @@ const RibbonToughnessLevel = sequelize.define("ribbonToughnessLevel", {
   },
 });
 
-RibbonToughnessLevel.sync({ alter: true })
-  .then((result) => {})
-  .catch((err) => {
-    console.log("ribbonToughnessLevel表初始化失败", err.message);
-  });
+// RibbonToughnessLevel.sync({ alter: true })
+//   .then((result) => {})
+//   .catch((err) => {
+//     console.log("ribbonToughnessLevel表初始化失败", err.message);
+//   });
 
 module.exports = RibbonToughnessLevel;
