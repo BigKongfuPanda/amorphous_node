@@ -255,22 +255,23 @@ class Measure {
           ? ` AND m.isRollConfirmed=1`
           : ` m.isRollConfirmed=1`;
 
-      const sqlStr = `SELECT SQL_CALC_FOUND_ROWS
-                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
-                      FROM ${TABLE_NAME} m 
-                      LEFT JOIN cast c 
-                      ON m.furnace=c.furnace
-                      ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
-                      ORDER BY m.updatedAt DESC
-                      LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
-      // const sqlStr2 = `SELECT
+      // 获取总行数的方法一：SQL_CALC_FOUND_ROWS 和 FOUND_ROWS() 这种查询速度比COUNT(*)要稍快一些
+      // const sqlStr = `SELECT SQL_CALC_FOUND_ROWS
       //                   m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
       //                 FROM ${TABLE_NAME} m
       //                 LEFT JOIN cast c
       //                 ON m.furnace=c.furnace
-      //                 ${
-      //                   queryCondition !== "" ? "WHERE " + queryCondition : ""
-      //                 }`;
+      //                 ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
+      //                 ORDER BY m.updatedAt DESC
+      //                 LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
+      const sqlStr = `SELECT SQL_CALC_FOUND_ROWS
+                      m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
+                    FROM ${TABLE_NAME} m
+                    LEFT JOIN cast c
+                    ON m.furnace=c.furnace
+                    ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
+                    ORDER BY m.updatedAt DESC
+                    LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
       const sqlStr2 = `SELECT FOUND_ROWS() AS totalCount`;
       let list = await sequelize.query(sqlStr, {
         type: sequelize.QueryTypes.SELECT,
@@ -279,8 +280,34 @@ class Measure {
         type: sequelize.QueryTypes.SELECT,
       });
       console.log(totalList, 999);
-      // const count = totalList.length;
       const count = Array.isArray(totalList) ? totalList[0].totalCount : 0;
+
+      // 获取总行数的方法二：使用 SELECT COUNT(*)
+      // const sqlStr = `SELECT
+      //                 m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
+      //               FROM ${TABLE_NAME} m
+      //               LEFT JOIN cast c
+      //               ON m.furnace=c.furnace
+      //               ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
+      //               ORDER BY m.updatedAt DESC
+      //               LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
+      // const sqlStr2 = `SELECT
+      //                 COUNT(*)
+      //                 FROM ${TABLE_NAME} m
+      //                 LEFT JOIN cast c
+      //                 ON m.furnace=c.furnace
+      //                 ${
+      //                   queryCondition !== "" ? "WHERE " + queryCondition : ""
+      //                 }`;
+      // let list = await sequelize.query(sqlStr, {
+      //   type: sequelize.QueryTypes.SELECT,
+      // });
+      // const totalList = await sequelize.query(sqlStr2, {
+      //   type: sequelize.QueryTypes.SELECT,
+      // });
+      // console.log(totalList, 999);
+      // const count = Array.isArray(totalList) ? totalList[0]['COUNT(*)'] : 0;
+
       const totalPage = Math.ceil(count / limit);
 
       // 如果排产12炉，喷带13或以上，则从第13炉开始，需要取第12炉的材质，规格，订单要求和排产要求
@@ -1279,13 +1306,8 @@ class Measure {
 
   // 导出检测记录的excel
   async exportMeasure(req, res, next) {
-    const {
-      castId,
-      startTime,
-      endTime,
-      startMeasureTime,
-      endMeasureTime,
-    } = req.query;
+    const { castId, startTime, endTime, startMeasureTime, endMeasureTime } =
+      req.query;
     try {
       let queryCondition = "";
       // 检测只能看到重卷确认后的带材

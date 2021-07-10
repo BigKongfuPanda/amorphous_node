@@ -1089,5 +1089,3 @@ From previous event:
     '          ON m.caster = j.caster;',
   parameters: undefined
 }
-[2021-07-10T10:23:11.129] [ERROR] user - 用户不存在 Error: 用户不存在
-    at login (E:\amorphous_node\controller\user.js:242:15)

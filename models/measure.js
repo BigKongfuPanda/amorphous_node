@@ -38,7 +38,7 @@ const Measure = sequelize.define(TABLE_NAME, {
   isFlat: Sequelize.INTEGER, // 端面是否平整, 1-不平整，0-平整
   dropNum: Sequelize.INTEGER, // 断头数目
   isRollConfirmed: {
-    // 是否确认
+    // 重卷是否确认
     type: Sequelize.INTEGER,
     defaultValue: 0, // 1-已确认；0-待确认
   },
