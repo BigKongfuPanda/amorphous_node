@@ -1,2 +1,116 @@
-[2021-07-10T10:23:11.129] [ERROR] user - 用户不存在 Error: 用户不存在
-    at login (E:\amorphous_node\controller\user.js:242:15)
+[2021-07-11T22:35:37.590] [ERROR] measure - 查询检测记录失败 DatabaseError [SequelizeDatabaseError]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND m.coilNumber ASC
+                    LIMIT 30 OFFSET 0' at line 4
+    at Query.formatError (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:244:16)
+    at Query.handler [as onResult] (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:51:23)
+    at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:30:14)
+    at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:408:32)
+    at PacketParser.onPacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:70:12)
+    at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+    at Socket.<anonymous> (E:\amorphous_node\node_modules\mysql2\lib\connection.js:77:25)
+    at Socket.emit (events.js:314:20)
+    at addChunk (_stream_readable.js:298:12)
+    at readableAddChunk (_stream_readable.js:273:9)
+    at Socket.Readable.push (_stream_readable.js:214:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+From previous event:
+    at Query.run (E:\amorphous_node\node_modules\sequelize\lib\dialects\mysql\query.js:39:12)
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:655:29
+From previous event:
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:655:12
+    at processImmediate (internal/timers.js:461:21)
+From previous event:
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:651:10
+    at E:\amorphous_node\node_modules\retry-as-promised\index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (E:\amorphous_node\node_modules\retry-as-promised\index.js:60:10)
+    at E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:641:30
+From previous event:
+    at Sequelize.query (E:\amorphous_node\node_modules\sequelize\lib\sequelize.js:590:23)
+    at queryMeasureData (E:\amorphous_node\controller\measure.js:277:34)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\amorphous_node\node_modules\express\lib\router\route.js:137:13)
+    at Route.dispatch (E:\amorphous_node\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:281:22
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at Function.handle (E:\amorphous_node\node_modules\express\lib\router\index.js:174:3)
+    at router (E:\amorphous_node\node_modules\express\lib\router\index.js:47:12)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at checkLogin (E:\amorphous_node\middleware\checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (E:\amorphous_node\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\amorphous_node\node_modules\express\lib\router\index.js:317:13)
+    at E:\amorphous_node\node_modules\express\lib\router\index.js:284:7
+    at Function.process_params (E:\amorphous_node\node_modules\express\lib\router\index.js:335:12)
+    at next (E:\amorphous_node\node_modules\express\lib\router\index.js:275:10)
+    at E:\amorphous_node\node_modules\express-session\index.js:502:7 {
+  parent: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND m.coilNumber ASC
+                      LIMIT 30 OFFSET 0' at line 4
+      at Packet.asError (E:\amorphous_node\node_modules\mysql2\lib\packets\packet.js:708:17)
+      at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+      at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:408:32)
+      at PacketParser.onPacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:70:12)
+      at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+      at Socket.<anonymous> (E:\amorphous_node\node_modules\mysql2\lib\connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:298:12)
+      at readableAddChunk (_stream_readable.js:273:9)
+      at Socket.Readable.push (_stream_readable.js:214:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_PARSE_ERROR',
+    errno: 1064,
+    sqlState: '42000',
+    sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND m.coilNumber ASC\n" +
+      "                    LIMIT 30 OFFSET 0' at line 4",
+    sql: 'SELECT SQL_CALC_FOUND_ROWS\n' +
+      '                      m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster\n' +
+      '                    FROM measure m\n' +
+      '                    LEFT JOIN cast c\n' +
+      '                    ON m.furnace=c.furnace\n' +
+      "                    WHERE  m.castId=6 AND c.createTime BETWEEN '2021-07-05' AND '2021-07-11' AND m.isRollConfirmed=1\n" +
+      '                    ORDER BY m.furnace DESC AND m.coilNumber ASC\n' +
+      '                    LIMIT 30 OFFSET 0',
+    parameters: undefined
+  },
+  original: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND m.coilNumber ASC
+                      LIMIT 30 OFFSET 0' at line 4
+      at Packet.asError (E:\amorphous_node\node_modules\mysql2\lib\packets\packet.js:708:17)
+      at Query.execute (E:\amorphous_node\node_modules\mysql2\lib\commands\command.js:28:26)
+      at Connection.handlePacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:408:32)
+      at PacketParser.onPacket (E:\amorphous_node\node_modules\mysql2\lib\connection.js:70:12)
+      at PacketParser.executeStart (E:\amorphous_node\node_modules\mysql2\lib\packet_parser.js:75:16)
+      at Socket.<anonymous> (E:\amorphous_node\node_modules\mysql2\lib\connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:298:12)
+      at readableAddChunk (_stream_readable.js:273:9)
+      at Socket.Readable.push (_stream_readable.js:214:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_PARSE_ERROR',
+    errno: 1064,
+    sqlState: '42000',
+    sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AND m.coilNumber ASC\n" +
+      "                    LIMIT 30 OFFSET 0' at line 4",
+    sql: 'SELECT SQL_CALC_FOUND_ROWS\n' +
+      '                      m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster\n' +
+      '                    FROM measure m\n' +
+      '                    LEFT JOIN cast c\n' +
+      '                    ON m.furnace=c.furnace\n' +
+      "                    WHERE  m.castId=6 AND c.createTime BETWEEN '2021-07-05' AND '2021-07-11' AND m.isRollConfirmed=1\n" +
+      '                    ORDER BY m.furnace DESC AND m.coilNumber ASC\n' +
+      '                    LIMIT 30 OFFSET 0',
+    parameters: undefined
+  },
+  sql: 'SELECT SQL_CALC_FOUND_ROWS\n' +
+    '                      m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster\n' +
+    '                    FROM measure m\n' +
+    '                    LEFT JOIN cast c\n' +
+    '                    ON m.furnace=c.furnace\n' +
+    "                    WHERE  m.castId=6 AND c.createTime BETWEEN '2021-07-05' AND '2021-07-11' AND m.isRollConfirmed=1\n" +
+    '                    ORDER BY m.furnace DESC AND m.coilNumber ASC\n' +
+    '                    LIMIT 30 OFFSET 0',
+  parameters: undefined
+}

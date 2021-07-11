@@ -41,8 +41,8 @@ class Measure {
       if (roller) {
         queryCondition +=
           queryCondition !== ""
-            ? ` AND roller='${roller}'`
-            : ` roller='${roller}'`;
+            ? ` AND m.roller='${roller}'`
+            : ` m.roller='${roller}'`;
       }
       if (furnace) {
         queryCondition +=
@@ -57,7 +57,7 @@ class Measure {
             : ` c.createTime BETWEEN '${startTime}' AND '${endTime}'`;
       }
 
-      const sqlStr = `SELECT 
+      const sqlStr = `SELECT SQL_CALC_FOUND_ROWS
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
                       FROM ${TABLE_NAME} m 
                       LEFT JOIN cast c 
@@ -65,22 +65,23 @@ class Measure {
                       ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
                       ORDER BY m.furnace DESC, m.coilNumber ASC
                       LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
-      const sqlStr2 = `SELECT 
-                        m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
-                      FROM ${TABLE_NAME} m 
-                      LEFT JOIN cast c 
-                      ON m.furnace=c.furnace
-                      ${
-                        queryCondition !== "" ? "WHERE " + queryCondition : ""
-                      }`;
-
+      // const sqlStr2 = `SELECT 
+      //                   m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
+      //                 FROM ${TABLE_NAME} m 
+      //                 LEFT JOIN cast c 
+      //                 ON m.furnace=c.furnace
+      //                 ${
+      //                   queryCondition !== "" ? "WHERE " + queryCondition : ""
+      //                 }`;
+      const sqlStr2 = `SELECT FOUND_ROWS() AS totalCount`;
       const list = await sequelize.query(sqlStr, {
         type: sequelize.QueryTypes.SELECT,
       });
       const totalList = await sequelize.query(sqlStr2, {
         type: sequelize.QueryTypes.SELECT,
       });
-      const count = totalList.length;
+      // const count = totalList.length;
+      const count = Array.isArray(totalList) ? totalList[0].totalCount : 0;
       const totalPage = Math.ceil(count / limit);
 
       // 要考虑分页
@@ -125,6 +126,7 @@ class Measure {
       place,
       ribbonTotalLevels,
       thicknessDivation,
+      orderBy,
       current = 1,
       limit = 30,
     } = req.query;
@@ -255,22 +257,21 @@ class Measure {
           ? ` AND m.isRollConfirmed=1`
           : ` m.isRollConfirmed=1`;
 
-      // 获取总行数的方法一：SQL_CALC_FOUND_ROWS 和 FOUND_ROWS() 这种查询速度比COUNT(*)要稍快一些
-      // const sqlStr = `SELECT SQL_CALC_FOUND_ROWS
-      //                   m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
-      //                 FROM ${TABLE_NAME} m
-      //                 LEFT JOIN cast c
-      //                 ON m.furnace=c.furnace
-      //                 ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
-      //                 ORDER BY m.updatedAt DESC
-      //                 LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
+      let orderQuery = ''
+      if(Number(orderBy) === 1) {
+        orderQuery = 'ORDER BY m.updatedAt DESC'
+      } else if(Number(orderBy) === 2) {
+        orderQuery = 'ORDER BY m.furnace DESC, m.coilNumber ASC'
+      }
+
+      console.time('query1')
       const sqlStr = `SELECT SQL_CALC_FOUND_ROWS
                       m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
                     FROM ${TABLE_NAME} m
                     LEFT JOIN cast c
                     ON m.furnace=c.furnace
                     ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
-                    ORDER BY m.updatedAt DESC
+                    ${orderQuery}
                     LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
       const sqlStr2 = `SELECT FOUND_ROWS() AS totalCount`;
       let list = await sequelize.query(sqlStr, {
@@ -280,6 +281,7 @@ class Measure {
         type: sequelize.QueryTypes.SELECT,
       });
       console.log(totalList, 999);
+      console.timeEnd('query1');
       const count = Array.isArray(totalList) ? totalList[0].totalCount : 0;
 
       // 获取总行数的方法二：使用 SELECT COUNT(*)
@@ -317,6 +319,8 @@ class Measure {
       );
       let furnaceMapToOrderAndqualifiedDemands = {};
       let furnaceMapToCastInfo = {};
+
+      console.time('query2');
       for (const furnace of uniqueFurnaceList) {
         let planFurnace = furnace.substr(0, 14);
         const date = furnace.split("-")[1]; // 06-20190111-02/08 ---> 2019-01-11
@@ -356,6 +360,7 @@ class Measure {
         // });
         // furnaceMapToCastInfo[furnace] = { ribbonTypeName, ribbonWidth, createTime, caster };
       }
+      console.timeEnd('query2');
       list.forEach((item) => {
         item.orderThickness =
           furnaceMapToOrderAndqualifiedDemands[item.furnace][

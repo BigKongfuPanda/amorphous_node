@@ -10,7 +10,7 @@ const RibbonWidth = sequelize.define('ribbonWidth', {
     autoIncrement: true,
     primaryKey: true
   },
-  ribbonWidth: Sequelize.INTEGER,
+  ribbonWidth: Sequelize.FLOAT,
   createdAt: {
 		type: Sequelize.DATE,
 		get() {
@@ -24,5 +24,11 @@ const RibbonWidth = sequelize.define('ribbonWidth', {
 		}
 	}
 });
+
+RibbonWidth.sync({ alter: true })
+  .then((result) => {})
+  .catch((err) => {
+    console.log("ribbonWidth表初始化失败", err.message);
+  });
 
 module.exports = RibbonWidth;
