@@ -284,7 +284,6 @@ class Measure {
       const totalList = await sequelize.query(sqlStr2, {
         type: sequelize.QueryTypes.SELECT,
       });
-      console.log(totalList, 999);
       console.timeEnd("query1");
       const count = Array.isArray(totalList) ? totalList[0].totalCount : 0;
 
@@ -1731,7 +1730,6 @@ class Measure {
         let filePath = files.file.path;
         let data = xlsx.parse(filePath);
         fs.unlinkSync(filePath);
-        console.log("uploadMeasure", data[0].data);
         // 过滤掉标题和空行的数据
         list = data[0].data
           .filter((item, i) => i > 0 && item.length > 0)
@@ -1764,8 +1762,6 @@ class Measure {
           message: err.message,
         });
       }
-
-      console.log(list);
 
       let errList = [];
       try {
