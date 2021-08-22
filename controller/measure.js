@@ -7,6 +7,10 @@ const rollerModel = require("../models/roller");
 const log = require("log4js").getLogger("measure");
 const nodeExcel = require("excel-export");
 const moment = require("moment");
+const path = require("path");
+const formidable = require("formidable");
+const xlsx = require("node-xlsx");
+const fs = require("fs");
 const { valueToString } = require("../util");
 const { cloneDeep } = require("lodash");
 const config = require("config-lite")(__dirname);
@@ -65,10 +69,10 @@ class Measure {
                       ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
                       ORDER BY m.furnace DESC, m.coilNumber ASC
                       LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
-      // const sqlStr2 = `SELECT 
+      // const sqlStr2 = `SELECT
       //                   m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
-      //                 FROM ${TABLE_NAME} m 
-      //                 LEFT JOIN cast c 
+      //                 FROM ${TABLE_NAME} m
+      //                 LEFT JOIN cast c
       //                 ON m.furnace=c.furnace
       //                 ${
       //                   queryCondition !== "" ? "WHERE " + queryCondition : ""
@@ -257,14 +261,14 @@ class Measure {
           ? ` AND m.isRollConfirmed=1`
           : ` m.isRollConfirmed=1`;
 
-      let orderQuery = ''
-      if(Number(orderBy) === 1) {
-        orderQuery = 'ORDER BY m.updatedAt DESC'
-      } else if(Number(orderBy) === 2) {
-        orderQuery = 'ORDER BY m.furnace DESC, m.coilNumber ASC'
+      let orderQuery = "";
+      if (Number(orderBy) === 1) {
+        orderQuery = "ORDER BY m.updatedAt DESC";
+      } else if (Number(orderBy) === 2) {
+        orderQuery = "ORDER BY m.furnace DESC, m.coilNumber ASC";
       }
 
-      console.time('query1')
+      console.time("query1");
       const sqlStr = `SELECT SQL_CALC_FOUND_ROWS
                       m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
                     FROM ${TABLE_NAME} m
@@ -281,7 +285,7 @@ class Measure {
         type: sequelize.QueryTypes.SELECT,
       });
       console.log(totalList, 999);
-      console.timeEnd('query1');
+      console.timeEnd("query1");
       const count = Array.isArray(totalList) ? totalList[0].totalCount : 0;
 
       // 获取总行数的方法二：使用 SELECT COUNT(*)
@@ -320,7 +324,7 @@ class Measure {
       let furnaceMapToOrderAndqualifiedDemands = {};
       let furnaceMapToCastInfo = {};
 
-      console.time('query2');
+      console.time("query2");
       for (const furnace of uniqueFurnaceList) {
         let planFurnace = furnace.substr(0, 14);
         const date = furnace.split("-")[1]; // 06-20190111-02/08 ---> 2019-01-11
@@ -360,7 +364,7 @@ class Measure {
         // });
         // furnaceMapToCastInfo[furnace] = { ribbonTypeName, ribbonWidth, createTime, caster };
       }
-      console.timeEnd('query2');
+      console.timeEnd("query2");
       list.forEach((item) => {
         item.orderThickness =
           furnaceMapToOrderAndqualifiedDemands[item.furnace][
@@ -599,6 +603,138 @@ class Measure {
     } catch (err) {
       console.log("查询单条带材信息记录失败", err);
       log.error("查询单条带材信息记录失败", err);
+      res.send({
+        status: -1,
+        message: err.message,
+      });
+    }
+  }
+
+  /**
+   * 获取带材重卷后的重量数据
+   * @param {*} req
+   * @param {*} res
+   * @param {*} next
+   */
+  async queryRollStatics(req, res, next) {
+    const {
+      castId,
+      startTime,
+      endTime,
+      furnace,
+      ribbonTypeNameJson,
+      current = 1,
+      limit = 30,
+    } = req.query;
+    try {
+      if (!castId) {
+        throw new Error("机组编号castId不能为空");
+      }
+
+      let queryCondition = "";
+      if (castId) {
+        queryCondition += `c.castId='${castId}'`;
+      }
+      if (furnace) {
+        queryCondition +=
+          queryCondition !== ""
+            ? ` AND m.furnace='${furnace}'`
+            : ` m.furnace='${furnace}'`;
+      }
+
+      if (ribbonTypeNameJson) {
+        let ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
+        if (ribbonTypeNameList.length > 0) {
+          const ribbonTypeNames = ribbonTypeNameList
+            .map((item) => `'${item}'`)
+            .join();
+          queryCondition +=
+            queryCondition !== ""
+              ? ` AND c.ribbonTypeName IN (${ribbonTypeNames})`
+              : ` c.ribbonTypeName IN (${ribbonTypeNames})`;
+        }
+      }
+
+      if (startTime && endTime) {
+        queryCondition +=
+          queryCondition !== ""
+            ? ` AND c.createTime BETWEEN '${startTime}' AND '${endTime}'`
+            : ` c.createTime BETWEEN '${startTime}' AND '${endTime}'`;
+      }
+
+      // const sqlStr = `SELECT SQL_CALC_FOUND_ROWS m.furnace, c.ribbonTypeName, c.caster, c.castId, c.ribbonWidth, c.createTime, c.rawWeight, SUM(m.coilWeight) AS totalCoilWeight, COUNT(m.coilNumber) AS coilCount
+      // FROM ${TABLE_NAME} m
+      // LEFT JOIN cast c
+      // ON m.furnace=c.furnace
+      // ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
+      // GROUP BY m.furnace
+      // ORDER BY m.furnace ASC
+      // LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
+
+      const sqlStr = `SELECT 
+        SQL_CALC_FOUND_ROWS 
+        m.furnace,
+        c.ribbonTypeName, 
+        c.caster, 
+        c.castId, 
+        c.ribbonWidth, 
+        c.createTime, 
+        c.rawWeight,
+        c.alloyTotalWeight,
+        m.totalCoilWeight, 
+        m.coilCount
+      FROM 
+      (
+        SELECT  
+          furnace,
+          SUM(coilWeight) AS totalCoilWeight,
+          COUNT(coilNumber) AS coilCount
+        FROM ${TABLE_NAME} GROUP BY furnace
+      ) AS m
+      LEFT JOIN
+      (
+        SELECT 
+          cast.furnace,
+          cast.ribbonTypeName, 
+          cast.caster, 
+          cast.castId, 
+          cast.ribbonWidth, 
+          cast.createTime, 
+          cast.rawWeight,
+          melt.alloyTotalWeight
+        FROM cast JOIN melt
+        ON cast.furnace = melt.furnace
+      ) AS c
+      ON m.furnace = c.furnace
+      ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
+      ORDER BY m.furnace ASC
+      LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
+
+      const sqlStr2 = `SELECT FOUND_ROWS() AS totalCount`;
+
+      let list = await sequelize.query(sqlStr, {
+        type: sequelize.QueryTypes.SELECT,
+      });
+
+      const totalList = await sequelize.query(sqlStr2, {
+        type: sequelize.QueryTypes.SELECT,
+      });
+      const count = Array.isArray(totalList) ? totalList[0].totalCount : 0;
+      const totalPage = Math.ceil(count / limit);
+      res.send({
+        status: 0,
+        message: "操作成功",
+        data: {
+          list,
+          count,
+          current,
+          totalPage,
+          limit,
+        },
+      });
+    } catch (err) {
+      console.log("查询重卷总重失败", err);
+      log.error("查询重卷总重失败", err);
       res.send({
         status: -1,
         message: err.message,
@@ -1576,6 +1712,116 @@ class Measure {
         message: "导出重卷记录失败",
       });
     }
+  }
+
+  // 导入检测数据
+  async uploadMeasure(req, res, next) {
+    let list = [];
+    const form = new formidable.IncomingForm();
+    form.encoding = "utf-8";
+    form.uploadDir = path.join(__dirname, "../upload/");
+    form.keepExtensions = true; //保留后缀
+    form.maxFieldsSize = 2 * 1024 * 1024;
+
+    form.parse(req, async (error, fields, files) => {
+      try {
+        if (error) {
+          throw new Error("文件上传出错");
+        }
+        let filePath = files.file.path;
+        let data = xlsx.parse(filePath);
+        fs.unlinkSync(filePath);
+        console.log("uploadMeasure", data[0].data);
+        // 过滤掉标题和空行的数据
+        list = data[0].data
+          .filter((item, i) => i > 0 && item.length > 0)
+          .map((item) => {
+            return {
+              furnace: item[0],
+              coilNumber: Number(item[1]),
+              castId: Number(item[2]),
+              realRibbonWidth: Number(item[3]),
+              ribbonThickness1: Number(item[4]),
+              ribbonThickness2: Number(item[5]),
+              ribbonThickness3: Number(item[6]),
+              ribbonThickness4: Number(item[7]),
+              ribbonThickness5: Number(item[8]),
+              ribbonThickness6: Number(item[9]),
+              ribbonThickness7: Number(item[10]),
+              ribbonThickness8: Number(item[11]),
+              ribbonThickness9: Number(item[12]),
+              ribbonToughness: item[13],
+              ribbonToughnessLevel: item[14],
+              appearence: item[15],
+              appearenceLevel: item[16],
+            };
+          });
+      } catch (err) {
+        log.error(err.message);
+        console.log(err.message);
+        res.send({
+          status: -1,
+          message: err.message,
+        });
+      }
+
+      console.log(list);
+
+      let errList = [];
+      try {
+        for (let i = 0, len = list.length; i < len; i++) {
+          const item = list[i];
+          const [n] = await measureModel.update(
+            {
+              castId: item.castId,
+              realRibbonWidth: item.realRibbonWidth,
+              ribbonThickness1: item.ribbonThickness1,
+              ribbonThickness2: item.ribbonThickness2,
+              ribbonThickness3: item.ribbonThickness3,
+              ribbonThickness4: item.ribbonThickness4,
+              ribbonThickness5: item.ribbonThickness5,
+              ribbonThickness6: item.ribbonThickness6,
+              ribbonThickness7: item.ribbonThickness7,
+              ribbonThickness8: item.ribbonThickness8,
+              ribbonThickness9: item.ribbonThickness9,
+              ribbonToughness: item.ribbonToughness,
+              ribbonToughnessLevel: item.ribbonToughnessLevel,
+              appearence: item.appearence,
+              appearenceLevel: item.appearenceLevel,
+              ribbonTotalLevel: null, // 重新清空带材综合级别
+            },
+            {
+              where: {
+                furnace: item.furnace,
+                coilNumber: item.coilNumber,
+              },
+            }
+          );
+          if (n == 0) {
+            errList.push({
+              furnace: item.furnace,
+              coilNumber: item.coilNumber,
+            });
+          }
+        }
+        if (errList.length > 0) {
+          throw new Error("添加检测数据失败");
+        }
+      } catch (err) {
+        log.error(err.message);
+        console.log(err.message);
+        res.send({
+          status: -1,
+          message: err.message,
+          data: errList,
+        });
+      }
+
+      res.send({
+        status: 0,
+        message: "添加检测数据成功",
+      });
+    });
   }
 }
 

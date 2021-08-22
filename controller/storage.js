@@ -215,7 +215,7 @@ class Storage {
 
   // 查询申请入库实时记录
   async queryApplyStorage(req, res, next) {
-    const { castIds, furnaceJson } = req.query;
+    const { castIds, furnaceJson, current = 1, limit = 30 } = req.query;
     try {
       let queryCondition = "";
 
@@ -253,17 +253,24 @@ class Storage {
 
       console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
       console.time("test");
-      const sqlStr = `SELECT 
+      const sqlStr = `SELECT SQL_CALC_FOUND_ROWS
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
                       FROM ${TABLE_NAME} m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
                       ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
-                      ORDER BY m.furnace DESC, m.coilNumber ASC`;
+                      ORDER BY m.furnace DESC, m.coilNumber ASC
+                      LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
 
+      const sqlStr2 = `SELECT FOUND_ROWS() AS totalCount`;
       const list = await sequelize.query(sqlStr, {
         type: sequelize.QueryTypes.SELECT,
       });
+      const totalList = await sequelize.query(sqlStr2, {
+        type: sequelize.QueryTypes.SELECT,
+      });
+      const count = Array.isArray(totalList) ? totalList[0].totalCount : 0;
+      const totalPage = Math.ceil(count / limit);
       console.timeEnd("test");
       console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
@@ -273,6 +280,10 @@ class Storage {
         message: "操作成功",
         data: {
           list,
+          count,
+          current,
+          totalPage,
+          limit,
         },
       });
     } catch (err) {

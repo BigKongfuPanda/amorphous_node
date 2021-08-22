@@ -46,4 +46,10 @@ router.get("/queryApplyStorageByFurnace", Measure.queryApplyStorageByFurnace);
 // 获取检测带材合格率数据
 router.get("/queryMeasureStatics", Measure.queryMeasureStatics);
 
+// 获取重卷小盘总重
+router.get("/queryRollStatics", Measure.queryRollStatics);
+
+// 导入excel，批量添加仓位
+router.post("/uploadMeasure", Measure.uploadMeasure);
+
 module.exports = router;
