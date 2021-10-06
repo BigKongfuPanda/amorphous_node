@@ -25,6 +25,7 @@ const Storage = sequelize.define("storage", {
   laminationFactor: Sequelize.FLOAT, //叠片系数 0.80
   laminationLevel: Sequelize.STRING, //叠片等级 不合格, 0, 1, 2, 3, 4
   ribbonTotalLevel: Sequelize.STRING, //带材综合级别
+  isLowQualified: { type: Sequelize.INTEGER, defaultValue: 0 }, // 是否为低端带材 1-是，0-否
   castDate: {
     type: Sequelize.DATE,
     get() {

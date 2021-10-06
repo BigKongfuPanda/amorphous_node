@@ -35,6 +35,7 @@ class Storage {
       ribbonTotalLevelJson,
       ribbonTotalLevels,
       isRemain = 1,
+      isLowQualified = "",
       current = 1,
       limit = 20,
     } = req.query;
@@ -106,6 +107,11 @@ class Storage {
         queryCondition.remainWeight = 0;
       } else if (isRemain === "1") {
         queryCondition.remainWeight = { $gt: 0 };
+      }
+      if (isLowQualified === "0") {
+        queryCondition.isLowQualified = 0;
+      } else if (isLowQualified === "1") {
+        queryCondition.isLowQualified = 1;
       }
       if (ribbonTotalLevels) {
         const ribbonTotalLevelList = ribbonTotalLevels.split(",");
@@ -714,6 +720,7 @@ class Storage {
       takeBy = "",
       shipRemark = "",
       place = "",
+      isLowQualified = 0,
     } = req.body;
     try {
       if (!storageId) {
@@ -741,6 +748,7 @@ class Storage {
         takeBy,
         shipRemark,
         place,
+        isLowQualified,
       };
       const [n] = await storageModel.update(newData, {
         where: { storageId },
@@ -880,6 +888,7 @@ class Storage {
       place,
       ribbonTotalLevelJson,
       isRemain = 1,
+      isLowQualified = "",
     } = req.query;
 
     try {
@@ -947,6 +956,11 @@ class Storage {
       } else if (isRemain === "1") {
         queryCondition.remainWeight = { $gt: 0 };
       }
+      if (isLowQualified === "0") {
+        queryCondition.isLowQualified = 0;
+      } else if (isLowQualified === "1") {
+        queryCondition.isLowQualified = 1;
+      }
       if (ribbonTotalLevelJson) {
         const ribbonTotalLevelList = ribbonTotalLevelJson.split(",");
         if (ribbonTotalLevelList.length > 0) {
@@ -969,6 +983,7 @@ class Storage {
         { caption: "毛重", type: "number" },
         { caption: "净重", type: "number" },
         { caption: "入库情况", type: "string" },
+        { caption: "低端带材", type: "string" },
         { caption: "入库日期", type: "string" },
         { caption: "出库日期", type: "string" },
         { caption: "判定去向", type: "string" },
@@ -1001,6 +1016,7 @@ class Storage {
           item.coilWeight,
           item.coilNetWeight,
           isStoredDesc(item.isStored),
+          isLowQualifiedDesc(item.isLowQualified),
           moment(item.inStoreDate).format("YYYY-MM-DD"),
           item.outStoreDate
             ? moment(item.outStoreDate).format("YYYY-MM-DD")
@@ -1023,6 +1039,20 @@ class Storage {
             break;
           case 3:
             return "不合格";
+            break;
+          default:
+            return "";
+            break;
+        }
+      }
+
+      function isLowQualifiedDesc(status) {
+        switch (status) {
+          case 1:
+            return "是";
+            break;
+          case 0:
+            return "否";
             break;
           default:
             return "";
