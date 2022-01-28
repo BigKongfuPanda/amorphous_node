@@ -86,9 +86,9 @@ class Melt {
     }
   }
   async createData(req, res, next) {
-    const { castId, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, highNbNumber = '', highNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '', adminname, addMeltNumber1 = '', addMeltNumber2 = '', addMeltNumber3 = '', addMeltWeight1 = 0, addMeltWeight2 = 0, addMeltWeight3 = 0 } = req.body;
+    const { castId, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, highNbNumber = '', highNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '', adminname, addMeltNumber1 = '', addMeltNumber2 = '', addMeltNumber3 = '', addMeltWeight1 = 0, addMeltWeight2 = 0, addMeltWeight3 = 0, startMeltingTime = '', endMeltingTime = '' } = req.body;
     try{
-      if (!castId || !furnace || !ribbonTypeName || !bucket || !melter || !meltFurnace) {
+      if (!castId || !furnace || !ribbonTypeName || !bucket || !melter || !meltFurnace || !startMeltingTime || !endMeltingTime) {
         throw new Error('参数错误')
       }
     }catch(err){
@@ -135,7 +135,8 @@ class Melt {
         createPerson: adminname,
         remark, 
         createTime,
-        addMeltNumber1, addMeltNumber2, addMeltNumber3, addMeltWeight1, addMeltWeight2, addMeltWeight3
+        addMeltNumber1, addMeltNumber2, addMeltNumber3, addMeltWeight1, addMeltWeight2, addMeltWeight3,
+        startMeltingTime, endMeltingTime
       };
       await meltModel.create(newData);
       res.send({
@@ -152,7 +153,7 @@ class Melt {
     }
   }
   async updateData(req, res, next) {
-    const { castId, meltId, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, highNbNumber = '', highNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '', createdAt, roleId, adminname, addMeltNumber1 = '', addMeltNumber2 = '', addMeltNumber3 = '', addMeltWeight1 = 0, addMeltWeight2 = 0, addMeltWeight3 = 0 } = req.body;
+    const { castId, meltId, furnace, ribbonTypeName, bucket, melter, meltFurnace, newAlloyNumber = '', newAlloyWeight = 0, oldAlloyNumber = '', oldAlloyWeight = 0, mixAlloyNumber = '', mixAlloyWeight = 0, highNbNumber = '', highNbWeight = 0, Si = 0, Ni = 0, Cu = 0, BFe = 0, NbFe = 0, alloyTotalWeight = 0, alloyOutWeight = 0, alloyFixWeight = 0, remark = '', createdAt, roleId, adminname, addMeltNumber1 = '', addMeltNumber2 = '', addMeltNumber3 = '', addMeltWeight1 = 0, addMeltWeight2 = 0, addMeltWeight3 = 0, startMeltingTime = '', endMeltingTime = '' } = req.body;
     try{
       if (!castId || !meltId || !furnace || !ribbonTypeName || !bucket || !melter || !meltFurnace) {
         throw new Error('参数错误')
@@ -212,7 +213,8 @@ class Melt {
         alloyTotalWeight, alloyOutWeight, alloyFixWeight,
         remark, 
         updatePerson: adminname,
-        addMeltNumber1, addMeltNumber2, addMeltNumber3, addMeltWeight1, addMeltWeight2, addMeltWeight3
+        addMeltNumber1, addMeltNumber2, addMeltNumber3, addMeltWeight1, addMeltWeight2, addMeltWeight3,
+        startMeltingTime, endMeltingTime
       };
       // await meltModel.updateOne({ meltId }, { $set: newData });
       const [ n ] = await meltModel.update(newData, {
@@ -324,7 +326,9 @@ class Melt {
         { caption: '修正重量(kg)', type: 'number' },
         { caption: '更新时间', type: 'string' },
         { caption: '更新者', type: 'string' },
-        { caption: '备注', type: 'string' }
+        { caption: '备注', type: 'string' },
+        { caption: '加料时间', type: 'string' },
+        { caption: '浇钢时间', type: 'string' },
       ];
       conf.rows = [];
       // const list = await meltModel.find(queryCondition).sort({'furnace': 'asc'});
@@ -345,7 +349,9 @@ class Melt {
           item.highNbNumber, item.highNbWeight, 
           item.Si, item.Ni, item.Cu, item.BFe, item.NbFe, 
           item.alloyTotalWeight, item.alloyOutWeight, item.alloyFixWeight,
-          moment(item.updatedAt).format('YYYY-MM-DD HH:mm:ss'), item.updatePerson, item.remark
+          moment(item.updatedAt).format('YYYY-MM-DD HH:mm:ss'), item.updatePerson, item.remark,
+          moment(item.startMeltingTime).format('YYYY-MM-DD HH:mm:ss'),
+          moment(item.endMeltingTime).format('YYYY-MM-DD HH:mm:ss'),
         ].map(val => val == undefined ? null : val);
       });
       

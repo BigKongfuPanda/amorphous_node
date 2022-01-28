@@ -74,7 +74,6 @@ class Cast {
       const list = pageData.rows;
       const count = pageData.count;
       const totalPage = Math.ceil(count / limit);
-      console.log(list);
       res.send({
         status: 0,
         message: "操作成功",

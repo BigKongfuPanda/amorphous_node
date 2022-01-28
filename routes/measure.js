@@ -7,6 +7,9 @@ const Measure = require("../controller/measure");
 // 获取重卷记录表
 router.get("/queryRollData", Measure.queryRollData);
 
+// 获取检测的炉号
+router.get("/queryMeasureFurnaceList", Measure.queryMeasureFurnaceList);
+
 // 获取检测记录表
 router.get("/queryMeasureData", Measure.queryMeasureData);
 

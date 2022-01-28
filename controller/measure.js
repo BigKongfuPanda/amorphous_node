@@ -110,11 +110,58 @@ class Measure {
     }
   }
 
+  // 查询检测的炉号
+  async queryMeasureFurnaceList(req, res, next) {
+    const { query, castId, startTime, endTime } = req.query;
+    try {
+      let queryCondition = {};
+      if (castId) {
+        queryCondition.castId = castId;
+      }
+      if (startTime && endTime) {
+        queryCondition.createTime = { $between: [startTime, endTime] };
+      }
+
+      let list = await castModel.findAll({
+        attributes: ["furnace"],
+        where: {
+          furnace: {
+            $like: `%${query}%`,
+          },
+          ...queryCondition,
+        },
+        raw: true,
+      });
+
+      let furnaceList = list.map((item) => {
+        return item.furnace;
+      });
+
+      furnaceList = Array.from(new Set(furnaceList));
+
+      res.send({
+        status: 0,
+        message: "查询成功",
+        data: {
+          list: furnaceList,
+        },
+      });
+    } catch (err) {
+      console.log("查询检测炉号记录失败", err);
+      log.error("查询检测炉号记录失败", err);
+      res.send({
+        status: -1,
+        message: "查询检测炉号记录失败",
+      });
+    }
+  }
+
   // 查询检测数据
   async queryMeasureData(req, res, next) {
     const {
       castId,
-      furnace,
+      // furnace,
+      furnaceJson,
       startTime,
       endTime,
       startMeasureTime,
@@ -152,11 +199,21 @@ class Measure {
             ? ` AND m.roller='${roller}'`
             : ` m.roller='${roller}'`;
       }
-      if (furnace) {
-        queryCondition +=
-          queryCondition !== ""
-            ? ` AND m.furnace='${furnace}'`
-            : ` m.furnace='${furnace}'`;
+      // if (furnace) {
+      //   queryCondition +=
+      //     queryCondition !== ""
+      //       ? ` AND m.furnace='${furnace}'`
+      //       : ` m.furnace='${furnace}'`;
+      // }
+      if (furnaceJson) {
+        let furnanceList = JSON.parse(furnaceJson);
+        if (furnanceList.length > 0) {
+          const furnaces = furnanceList.map((item) => `'${item}'`).join();
+          queryCondition +=
+            queryCondition !== ""
+              ? ` AND m.furnace IN (${furnaces})`
+              : ` m.furnace IN (${furnaces})`;
+        }
       }
       if (place) {
         queryCondition +=
@@ -342,15 +399,22 @@ class Measure {
         if (Number(planFurnace.split("-")[2]) > _len) {
           planFurnace = planListByDate[_len - 1].furnace;
         }
+        const planData = await planModel.findOne({
+          where: { furnace: planFurnace },
+        });
+
+        if (!planData || Object.keys(planData).length === 0) {
+          throw new Error(
+            `生产炉号${furnace}对应的生产计划${planFurnace}不存在，请检查炉号是否正确`
+          );
+        }
         const {
           orderThickness,
           orderLaminationFactor,
           orderRibbonToughnessLevels,
           orderAppearenceLevels,
           qualifiedDemands,
-        } = await planModel.findOne({
-          where: { furnace: planFurnace },
-        });
+        } = planData;
         furnaceMapToOrderAndqualifiedDemands[furnace] = {
           orderThickness,
           orderLaminationFactor,
@@ -1446,8 +1510,14 @@ class Measure {
 
   // 导出检测记录的excel
   async exportMeasure(req, res, next) {
-    const { castId, startTime, endTime, startMeasureTime, endMeasureTime } =
-      req.query;
+    const {
+      castId,
+      startTime,
+      endTime,
+      startMeasureTime,
+      endMeasureTime,
+      furnaceJson,
+    } = req.query;
     try {
       let queryCondition = "";
       // 检测只能看到重卷确认后的带材
@@ -1473,6 +1543,17 @@ class Measure {
           queryCondition !== ""
             ? ` AND m.measureDate BETWEEN '${startMeasureTime}' AND '${endMeasureTime}'`
             : ` m.measureDate BETWEEN '${startMeasureTime}' AND '${endMeasureTime}'`;
+      }
+
+      if (furnaceJson) {
+        let furnanceList = JSON.parse(furnaceJson);
+        if (furnanceList.length > 0) {
+          const furnaces = furnanceList.map((item) => `'${item}'`).join();
+          queryCondition +=
+            queryCondition !== ""
+              ? ` AND m.furnace IN (${furnaces})`
+              : ` m.furnace IN (${furnaces})`;
+        }
       }
 
       const conf = {};

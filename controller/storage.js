@@ -651,7 +651,7 @@ class Storage {
           list: furnaceList,
         },
       });
-    } catch (error) {
+    } catch (err) {
       console.log("查询库房炉号记录失败", err);
       log.error("查询库房炉号记录失败", err);
       res.send({
