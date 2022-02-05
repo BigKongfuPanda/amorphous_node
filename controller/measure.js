@@ -28,6 +28,7 @@ class Measure {
       endTime,
       caster,
       roller,
+      orderBy,
       current = 1,
       limit = 30,
     } = req.query;
@@ -61,13 +62,20 @@ class Measure {
             : ` c.createTime BETWEEN '${startTime}' AND '${endTime}'`;
       }
 
+      let orderQuery = "";
+      if (Number(orderBy) === 1) {
+        orderQuery = "ORDER BY m.updatedAt DESC";
+      } else if (Number(orderBy) === 2) {
+        orderQuery = "ORDER BY m.furnace DESC, m.coilNumber ASC";
+      }
+
       const sqlStr = `SELECT SQL_CALC_FOUND_ROWS
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
                       FROM ${TABLE_NAME} m 
                       LEFT JOIN cast c 
                       ON m.furnace=c.furnace
                       ${queryCondition !== "" ? "WHERE " + queryCondition : ""}
-                      ORDER BY m.furnace DESC, m.coilNumber ASC
+                      ${orderQuery}
                       LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
       // const sqlStr2 = `SELECT
       //                   m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
