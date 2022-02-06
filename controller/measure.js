@@ -1077,6 +1077,7 @@ class Measure {
             clients: item.clients,
             unStoreReason: item.unStoreReason,
             isMeasureConfirmed: 1, // 1-已确认，0-未确认
+            isRejected: 0, // 1-驳回；0-未驳回
             orderThickness: item.orderThickness,
             orderLaminationFactor: item.orderLaminationFactor,
             orderRibbonToughnessLevels: item.orderRibbonToughnessLevels,

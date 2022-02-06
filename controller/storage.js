@@ -573,13 +573,13 @@ class Storage {
    */
   async rejectApplyStorage(req, res, next) {
     const { roleId } = req.session;
-    const { measureId } = req.body;
+    const { measureId, rejectReason } = req.body;
     try {
       if (roleId != 6) {
         throw new Error("无操作权限");
       }
 
-      if (!measureId) {
+      if (!measureId || !rejectReason) {
         throw new Error("参数错误");
       }
     } catch (err) {
@@ -596,6 +596,8 @@ class Storage {
       const [n] = await measureModel.update(
         {
           isMeasureConfirmed: 0,
+          rejectReason,
+          isRejected: 1,
         },
         {
           where: { measureId },
