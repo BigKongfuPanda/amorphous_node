@@ -1804,113 +1804,6 @@ class Measure {
   }
 
   // 导入检测数据
-  // async uploadMeasure(req, res, next) {
-  //   let list = [];
-  //   const form = new formidable.IncomingForm();
-  //   form.encoding = "utf-8";
-  //   form.uploadDir = path.join(__dirname, "../upload/");
-  //   form.keepExtensions = true; //保留后缀
-  //   form.maxFieldsSize = 2 * 1024 * 1024;
-
-  //   form.parse(req, async (error, fields, files) => {
-  //     try {
-  //       if (error) {
-  //         throw new Error("文件上传出错");
-  //       }
-  //       let filePath = files.file.path;
-  //       let data = xlsx.parse(filePath);
-  //       fs.unlinkSync(filePath);
-  //       // 过滤掉标题和空行的数据
-  //       list = data[0].data
-  //         .filter((item, i) => i > 0 && item.length > 0)
-  //         .map((item) => {
-  //           return {
-  //             furnace: item[0],
-  //             coilNumber: Number(item[1]),
-  //             castId: Number(item[2]),
-  //             realRibbonWidth: Number(item[3]),
-  //             ribbonThickness1: Number(item[4]),
-  //             ribbonThickness2: Number(item[5]),
-  //             ribbonThickness3: Number(item[6]),
-  //             ribbonThickness4: Number(item[7]),
-  //             ribbonThickness5: Number(item[8]),
-  //             ribbonThickness6: Number(item[9]),
-  //             ribbonThickness7: Number(item[10]),
-  //             ribbonThickness8: Number(item[11]),
-  //             ribbonThickness9: Number(item[12]),
-  //             ribbonToughness: item[13],
-  //             ribbonToughnessLevel: item[14],
-  //             appearence: item[15],
-  //             appearenceLevel: item[16],
-  //           };
-  //         });
-  //     } catch (err) {
-  //       log.error(err.message);
-  //       console.log(err.message);
-  //       res.send({
-  //         status: -1,
-  //         message: err.message,
-  //       });
-  //     }
-
-  //     let errList = [];
-  //     try {
-  //       for (let i = 0, len = list.length; i < len; i++) {
-  //         const item = list[i];
-  //         const [n] = await measureModel.update(
-  //           {
-  //             castId: item.castId,
-  //             realRibbonWidth: item.realRibbonWidth,
-  //             ribbonThickness1: item.ribbonThickness1,
-  //             ribbonThickness2: item.ribbonThickness2,
-  //             ribbonThickness3: item.ribbonThickness3,
-  //             ribbonThickness4: item.ribbonThickness4,
-  //             ribbonThickness5: item.ribbonThickness5,
-  //             ribbonThickness6: item.ribbonThickness6,
-  //             ribbonThickness7: item.ribbonThickness7,
-  //             ribbonThickness8: item.ribbonThickness8,
-  //             ribbonThickness9: item.ribbonThickness9,
-  //             ribbonToughness: item.ribbonToughness,
-  //             ribbonToughnessLevel: item.ribbonToughnessLevel,
-  //             appearence: item.appearence,
-  //             appearenceLevel: item.appearenceLevel,
-  //             ribbonTotalLevel: null, // 重新清空带材综合级别
-  //           },
-  //           {
-  //             where: {
-  //               furnace: item.furnace,
-  //               coilNumber: item.coilNumber,
-  //             },
-  //           }
-  //         );
-  //         if (n == 0) {
-  //           errList.push({
-  //             furnace: item.furnace,
-  //             coilNumber: item.coilNumber,
-  //           });
-  //         }
-  //       }
-  //       if (errList.length > 0) {
-  //         throw new Error("添加检测数据失败");
-  //       }
-  //     } catch (err) {
-  //       log.error(err.message);
-  //       console.log(err.message);
-  //       res.send({
-  //         status: -1,
-  //         message: err.message,
-  //         data: errList,
-  //       });
-  //     }
-
-  //     res.send({
-  //       status: 0,
-  //       message: "添加检测数据成功",
-  //     });
-  //   });
-  // }
-
-  // 导入检测数据
   async uploadMeasure(req, res, next) {
     let list = [];
     const form = new formidable.IncomingForm();
@@ -2013,6 +1906,99 @@ class Measure {
       res.send({
         status: 0,
         message: "添加检测数据成功",
+      });
+    });
+  }
+
+  // 导入重卷数据
+  async uploadRoll(req, res, next) {
+    let list = [];
+    const form = new formidable.IncomingForm();
+    form.encoding = "utf-8";
+    form.uploadDir = path.join(__dirname, "../upload/");
+    form.keepExtensions = true; //保留后缀
+    form.maxFieldsSize = 2 * 1024 * 1024;
+
+    form.parse(req, async (error, fields, files) => {
+      try {
+        if (error) {
+          throw new Error("文件上传出错");
+        }
+        let filePath = files.file.path;
+        let data = xlsx.parse(filePath);
+        fs.unlinkSync(filePath);
+        // 过滤掉标题和空行的数据
+        list = data[0].data
+          .filter((item, i) => i > 0 && item.length > 0)
+          .map((item) => {
+            const furnace = item[1];
+            const castId = parseInt(furnace.substring(0, 2));
+            return {
+              castId,
+              furnace,
+              coilNumber: Number(item[2]),
+              rollerName: item[7],
+              diameter: Number(item[9]),
+              coilWeight: Number(item[10]),
+            };
+          });
+      } catch (err) {
+        log.error(err.message);
+        console.log(err.message);
+        res.send({
+          status: -1,
+          message: err.message,
+        });
+      }
+
+      let errList = [];
+      try {
+        for (let i = 0, len = list.length; i < len; i++) {
+          const item = list[i];
+          // 首先查询喷带表中是否存在这个炉号，如果存在则在重卷记录中创建，如果不存在则不创建，加入到错误提示中
+          const castData = await castModel.findOne({
+            where: {
+              furnace: item.furnace,
+            },
+          });
+          if (castData) {
+            await measureModel.findOrCreate({
+              where: {
+                furnace: item.furnace,
+                coilNumber: item.coilNumber,
+              },
+              defaults: {
+                castId: item.castId,
+                furnace: item.furnace,
+                coilNumber: item.coilNumber,
+                rollerName: item.rollerName,
+                diameter: item.diameter,
+                coilWeight: item.coilWeight,
+              },
+            });
+          } else {
+            errList.push({
+              furnace: item.furnace,
+              coilNumber: item.coilNumber,
+            });
+          }
+        }
+        if (errList.length > 0) {
+          throw new Error("添加重卷数据失败");
+        }
+      } catch (err) {
+        log.error(err.message);
+        console.log(err.message);
+        res.send({
+          status: -1,
+          message: err.message,
+          data: errList,
+        });
+      }
+
+      res.send({
+        status: 0,
+        message: "添加重卷数据成功",
       });
     });
   }

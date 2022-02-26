@@ -52,7 +52,10 @@ router.get("/queryMeasureStatics", Measure.queryMeasureStatics);
 // 获取重卷小盘总重
 router.get("/queryRollStatics", Measure.queryRollStatics);
 
-// 导入excel，批量添加仓位
+// 导入excel，更新检测数据
 router.post("/uploadMeasure", Measure.uploadMeasure);
+
+// 导入excel，更新重卷数据
+router.post("/uploadRoll", Measure.uploadRoll);
 
 module.exports = router;
