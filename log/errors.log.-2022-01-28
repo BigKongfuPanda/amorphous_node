@@ -1,1 +1,0 @@
-[2022-02-26T22:24:46.309] [ERROR] measure - Missing where attribute in the options parameter passed to findOrCreate. Please note that the API has changed, and is now options only (an object with where, defaults keys, transaction etc.)
