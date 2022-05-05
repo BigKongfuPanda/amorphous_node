@@ -792,6 +792,29 @@ class Measure {
       });
       const count = Array.isArray(totalList) ? totalList[0].totalCount : 0;
       const totalPage = Math.ceil(count / limit);
+      // 判断该炉每一盘是否都被送检了
+      for (let i = 0; i < list.length; i++) {
+        const item = list[i];
+        const coilList = await measureModel.findAll({
+          where: {
+            furnace: item.furnace,
+          },
+          raw: true,
+        });
+        let isAllRollConfirmed = 0;
+        if ((coilList || []).every((c) => c.isRollConfirmed === 1)) {
+          // 该炉全部都送检了
+          isAllRollConfirmed = 1;
+        } else {
+          // 该炉没有送检或者部分送检
+          isAllRollConfirmed = 0;
+        }
+
+        item.isAllRollConfirmed = isAllRollConfirmed;
+        // 将该炉号下所有的盘号都放到数组中，等到申请送检的时候，进行盘号重复的校验
+        item.coilNumberList = coilList.map((c) => c.coilNumber);
+      }
+
       res.send({
         status: 0,
         message: "操作成功",

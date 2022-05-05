@@ -1,0 +1,2 @@
+[2022-05-04T23:25:38.728] [ERROR] measure - 查询重卷总重失败 ReferenceError: i is not defined
+    at queryRollStatics (E:\amorphous_node\controller\measure.js:821:14)

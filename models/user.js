@@ -1,34 +1,38 @@
-'use strict';
+"use strict";
 
-const Sequelize =  require('sequelize');
-const sequelize = require('../mysql/db');
-const moment = require('moment');
-const chalk = require('chalk');
+const Sequelize = require("sequelize");
+const sequelize = require("../mysql/db");
+const moment = require("moment");
+const chalk = require("chalk");
 
-const User = sequelize.define('user', {
+const User = sequelize.define("user", {
   userId: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
-    primaryKey: true
+    primaryKey: true,
   },
-  roleId: Sequelize.INTEGER,// 1- 厂长 super, 2-生产计划 admin, 3-普通管理员 admin, 4-重卷 chongjuan，5-检测 jiance，6-库房 kufang，7-六号机组-喷带, 8-六号机组-化钢， 9-七个号机组-喷带, 10-七号机组-化钢，11-八号机组-喷带, 12-八号机组-化钢，13-九号机组-喷带, 14-九号机组-化钢, 15-重卷组长
+  roleId: Sequelize.INTEGER, // 1- 厂长 super, 2-生产计划 admin, 3-普通管理员 admin, 4-重卷 chongjuan，5-检测 jiance，6-库房 kufang，7-六号机组-喷带, 8-六号机组-化钢， 9-七个号机组-喷带, 10-七号机组-化钢，11-八号机组-喷带, 12-八号机组-化钢，13-九号机组-喷带, 14-九号机组-化钢, 15-重卷组长, 16-喷带组长，17-化钢组长
   username: { type: Sequelize.STRING, unique: true }, // 登录名
   adminname: Sequelize.STRING, // 真实姓名
-  password: { type: Sequelize.STRING, defaultValue: '123456' },
+  password: { type: Sequelize.STRING, defaultValue: "123456" },
   loginTime: Sequelize.STRING, //登陆时间
   createTime: Sequelize.STRING, // 创建时间
   createdAt: {
-		type: Sequelize.DATE,
-		get() {
-			return moment(this.getDataValue('createdAt')).format('YYYY-MM-DD HH:mm:ss');
-		}
-	},
-	updatedAt: {
-		type: Sequelize.DATE,
-		get() {
-			return moment(this.getDataValue('updatedAt')).format('YYYY-MM-DD HH:mm:ss');
-		}
-	}
+    type: Sequelize.DATE,
+    get() {
+      return moment(this.getDataValue("createdAt")).format(
+        "YYYY-MM-DD HH:mm:ss"
+      );
+    },
+  },
+  updatedAt: {
+    type: Sequelize.DATE,
+    get() {
+      return moment(this.getDataValue("updatedAt")).format(
+        "YYYY-MM-DD HH:mm:ss"
+      );
+    },
+  },
 });
 
 // User.sync({alter: true}).then((result) => {
