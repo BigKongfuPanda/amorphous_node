@@ -21,8 +21,6 @@ class Cast {
       limit = 20,
     } = req.query;
 
-    console.log("startTime", startTime);
-    console.log("endTime", endTime);
     try {
       if (!castId) {
         throw new Error("参数错误");

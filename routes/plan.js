@@ -1,22 +1,25 @@
-'use strict';
+"use strict";
 
-const express = require('express');
-const router= express.Router();
-const Plan = require('../controller/plan');
+const express = require("express");
+const router = express.Router();
+const Plan = require("../controller/plan");
 
 // 获取生产计划
-router.get('/', Plan.queryData);
+router.get("/", Plan.queryData);
+
+// 化钢工序查询生产计划数据
+router.get("/queryDataByMelt", Plan.queryDataByMelt);
 
 // 新增生产计划
-router.post('/', Plan.createData);
+router.post("/", Plan.createData);
 
 // 更新生产计划
-router.put('/', Plan.updateData);
+router.put("/", Plan.updateData);
 
 // 删除生产计划
-router.delete('/', Plan.delData);
+router.delete("/", Plan.delData);
 
 // 导出生产计划
-router.get('/export', Plan.export);
+router.get("/export", Plan.export);
 
 module.exports = router;
