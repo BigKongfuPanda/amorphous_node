@@ -142,10 +142,10 @@ const Measure = sequelize.define(TABLE_NAME, {
 //   foreignKey: '_id', targetKey: '_id'
 // });
 
-Measure.sync({ alter: true })
-  .then((result) => {})
-  .catch((err) => {
-    console.log("measure表初始化失败", err.message);
-  });
+// Measure.sync({ alter: true })
+//   .then((result) => {})
+//   .catch((err) => {
+//     console.log("measure表初始化失败", err.message);
+//   });
 
 module.exports = Measure;
