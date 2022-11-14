@@ -1,0 +1,2 @@
+[2022-10-30T23:41:23.905] [ERROR] measure - 查询检测记录失败 Error: 机组：06，日期：2020-10-09， 缺少生产计划，请联系生产计划管理员添加计划
+    at queryMeasureData (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/measure.js:403:17)

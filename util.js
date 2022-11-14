@@ -25,11 +25,10 @@ function filter(obj = {}) {
   return newObj;
 }
 
-function handleSqlQuery({ equal = {}, json = {} }) {
+function handleSqlQuery({ equal = {}, json = {}, between = {} }) {
   let arr = [];
   Object.keys(filter(equal)).forEach((key) => {
     const value = isNumber(equal[key]) ? equal[key] : `'${equal[key]}'`;
-    // const value = `'${equal[key]}'`;
     arr.push(`${key}=${value}`);
   });
   Object.keys(filter(json)).forEach((key) => {
@@ -37,15 +36,20 @@ function handleSqlQuery({ equal = {}, json = {} }) {
       isNumber(item) ? item : `'${item}'`
     );
     const str = list.join();
-    const idx = key.indexOf("Json");
-    const k = key.substring(0, idx);
     if (list.length > 0) {
-      arr.push(`${k} in (${str})`);
+      arr.push(`${key} in (${str})`);
     }
+  });
+  Object.keys(filter(between)).forEach((key) => {
+    const isNumberValue = isNumber(between[key][0]);
+    const str = isNumberValue
+      ? `${key} BETWEEN ${between[key][0]} AND ${between[key][1]}`
+      : `${key} BETWEEN '${between[key][0]}' AND '${between[key][1]}'`;
+    arr.push(str);
   });
   let query = arr.join(" AND ");
   if (query !== "") {
-    query += `WHERE ${query}`;
+    query = `WHERE ${query}`;
   }
   return query;
 }

@@ -18,52 +18,20 @@ class Statistics {
       ribbonTypeNameJson,
       ribbonWidthJson,
       current = 1,
-      limit = 20
+      limit = 20,
     } = req.query;
 
     try {
-      // let queryCondition = {};
-      // if (caster) {
-      //   queryCondition.caster = caster;
-      // }
-      // if (furnace) {
-      //   queryCondition.furnace = furnace;
-      // }
-      // if (castIdJson) {
-      //   let castIdList = JSON.parse(castIdJson);
-      //   if (castIdList.length > 0) {
-      //     castIdList = castIdList.map(item => {
-      //       return Number(item);
-      //     });
-      //     queryCondition.castId = { $in: castIdList };
-      //   }
-      // }
-      // if (ribbonTypeNameJson) {
-      //   let ribbonTypeNameList = JSON.parse(ribbonTypeNameJson);
-      //   if (ribbonTypeNameList.length > 0) {
-      //     queryCondition.ribbonTypeName = { $in: ribbonTypeNameList };
-      //   }
-      // }
-      // if (ribbonWidthJson) {
-      //   let ribbonWidthList = JSON.parse(ribbonWidthJson);
-      //   if (ribbonWidthList.length > 0) {
-      //     ribbonWidthList = ribbonWidthList.map(item => {
-      //       return Number(item);
-      //     });
-      //     queryCondition.ribbonWidth = { $in: ribbonWidthList };
-      //   }
-      // }
-
       const queryCondition = handleSqlQuery({
         equal: {
           furnace,
-          caster
+          caster,
         },
         json: {
-          castIdJson,
-          ribbonTypeNameJson,
-          ribbonWidthJson
-        }
+          castId: castIdJson,
+          ribbonTypeName: ribbonTypeNameJson,
+          ribbonWidth: ribbonWidthJson,
+        },
       });
 
       // let queryCondition = "";
@@ -134,13 +102,13 @@ class Statistics {
       LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
 
       let list = await sequelize.query(sqlStr, {
-        type: sequelize.QueryTypes.SELECT
+        type: sequelize.QueryTypes.SELECT,
       });
       const count = list.length;
       const totalPage = Math.ceil(count / limit);
 
-      list = list.map(item => {
-        Object.keys(item).forEach(key => {
+      list = list.map((item) => {
+        Object.keys(item).forEach((key) => {
           if (
             typeof item[key] === "number" &&
             key !== "castId" &&
@@ -161,15 +129,15 @@ class Statistics {
           current,
           totalPage,
           limit,
-          list
-        }
+          list,
+        },
       });
     } catch (err) {
       console.log("查询带材质量统计失败", err);
       log.error("查询带材质量统计失败", err);
       res.send({
         status: -1,
-        message: "查询带材质量统计失败"
+        message: "查询带材质量统计失败",
       });
     }
   }
@@ -261,7 +229,7 @@ class Statistics {
           ) AS j
           ON m.caster = j.caster;`;
         list = await sequelize.query(sqlStr, {
-          type: sequelize.QueryTypes.SELECT
+          type: sequelize.QueryTypes.SELECT,
         });
       } else if (ratioType === "byTeam") {
         const sqlStr = `
@@ -328,7 +296,7 @@ class Statistics {
           ON m.furnace = j.furnace
         GROUP BY j.team;`;
         list = await sequelize.query(sqlStr, {
-          type: sequelize.QueryTypes.SELECT
+          type: sequelize.QueryTypes.SELECT,
         });
       } else if (ratioType === "byCastId") {
         const sqlStr = `
@@ -395,12 +363,12 @@ class Statistics {
           ON m.furnace = j.furnace
         GROUP BY j.castId;`;
         list = await sequelize.query(sqlStr, {
-          type: sequelize.QueryTypes.SELECT
+          type: sequelize.QueryTypes.SELECT,
         });
       }
 
       // 对数据进行格式化处理
-      list.forEach(item => {
+      list.forEach((item) => {
         item.alloyTotalWeight = toFixed(item.alloyTotalWeight);
         item.rawWeight = toFixed(item.rawWeight);
         item.coilNetWeight = toFixed(item.coilNetWeight);
@@ -434,15 +402,110 @@ class Statistics {
         status: 0,
         message: "操作成功",
         data: {
-          list
-        }
+          list,
+        },
       });
     } catch (err) {
       console.log("查询直通率统计失败", err);
       log.error("查询直通率统计失败", err);
       res.send({
         status: -1,
-        message: "查询直通率统计失败"
+        message: "查询直通率统计失败",
+      });
+    }
+  }
+
+  async queryDataOfInputOuput(req, res, next) {
+    const {
+      startTime,
+      endTime,
+      caster,
+      furnace,
+      ribbonTypeNameJson,
+      ribbonWidthJson,
+      castIdJson,
+      current = 1,
+      limit = 20,
+    } = req.query;
+    try {
+      const queryCondition = handleSqlQuery({
+        equal: {
+          furnace,
+          caster,
+        },
+        json: {
+          castId: castIdJson,
+          ribbonTypeName: ribbonTypeNameJson,
+          ribbonWidth: ribbonWidthJson,
+        },
+        between: {
+          createTime: [startTime, endTime],
+        },
+      });
+
+      const sqlStr = `select j.*, m.* from
+        (SELECT
+            furnace,
+            SUM(coilNetWeight) AS coilNetWeight,
+            SUM(totalStoredWeight) AS totalStoredWeight,
+            SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,
+            SUM(qualityOfA) AS qualityOfA,
+            SUM(qualityOfB) AS qualityOfB,
+            SUM(qualityOfC) AS qualityOfC,
+            SUM(qualityOfD) AS qualityOfD,
+            SUM(qualityOfE) AS qualityOfE,
+            SUM(thinRibbonWeight) AS thinRibbonWeight,
+            SUM(highFactorThinRibbonWeight) AS highFactorThinRibbonWeight,
+            SUM(inPlanStoredWeight) AS inPlanStoredWeight,
+            SUM(outPlanStoredWeight) AS outPlanStoredWeight,
+            SUM(inPlanThickRibbonWeight) AS inPlanThickRibbonWeight,
+            SUM(qualityOfGood) AS qualityOfGood,
+            SUM(qualityOfFine) AS qualityOfFine,
+            SUM(qualityOfNormal) AS qualityOfNormal
+        FROM measure ${queryCondition}  GROUP BY furnace) AS m LEFT JOIN (
+            SELECT c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight
+        FROM cast c JOIN melt t
+            ON c.furnace = t.furnace
+        ) j ON m.furnace = j.furnace
+        LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
+
+      let list = await sequelize.query(sqlStr, {
+        type: sequelize.QueryTypes.SELECT,
+      });
+      const count = list.length;
+      const totalPage = Math.ceil(count / limit);
+
+      list = list.map((item) => {
+        Object.keys(item).forEach((key) => {
+          if (
+            typeof item[key] === "number" &&
+            key !== "castId" &&
+            key !== "ribbonWidth"
+          ) {
+            item[key] = item[key].toFixed(2);
+          }
+        });
+        return item;
+      });
+
+      // 要考虑分页
+      res.send({
+        status: 0,
+        message: "操作成功",
+        data: {
+          count,
+          current,
+          totalPage,
+          limit,
+          list,
+        },
+      });
+    } catch (err) {
+      console.log("查询带材质量统计失败", err);
+      log.error("查询带材质量统计失败", err);
+      res.send({
+        status: -1,
+        message: "查询带材质量统计失败",
       });
     }
   }
