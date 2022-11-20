@@ -1,4 +1,4 @@
-[2022-10-06T00:13:06.430] [ERROR] statistics - 查询直通率统计失败 DatabaseError [SequelizeDatabaseError]: Unknown column 'caster' in 'field list'
+[2022-11-14T21:58:24.528] [ERROR] statistics - 查询带材质量统计失败 DatabaseError [SequelizeDatabaseError]: Unknown column 'caster' in 'where clause'
     at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:244:16)
     at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:51:23)
     at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
@@ -25,7 +25,7 @@ From previous event:
     at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:641:30
 From previous event:
     at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:590:23)
-    at queryDataOfRatio (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:263:32)
+    at queryDataOfInputOuput (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:472:34)
     at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
     at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
     at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
@@ -47,7 +47,7 @@ From previous event:
     at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
     at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
     at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:502:7 {
-  parent: Error: Unknown column 'caster' in 'field list'
+  parent: Error: Unknown column 'caster' in 'where clause'
       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
@@ -62,41 +62,11 @@ From previous event:
     code: 'ER_BAD_FIELD_ERROR',
     errno: 1054,
     sqlState: '42S22',
-    sqlMessage: "Unknown column 'caster' in 'field list'",
-    sql: 'SELECT\n' +
-      '          j.caster,\n' +
-      '          m.totalHeatNum,\n' +
-      '          j.nozzleNum,\n' +
-      '          j.lowHeatNum,\n' +
-      '          j.zeroHeatNum,\n' +
-      '          j.alloyTotalWeight,\n' +
-      '          j.rawWeight,\n' +
-      '          m.coilNetWeight,\n' +
-      '          m.inPlanStoredWeight,\n' +
-      '          m.outPlanStoredWeight,\n' +
-      '          m.totalStoredWeight,\n' +
-      '          (m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n' +
-      '          j.uselessRibbonWeight,\n' +
-      '          j.meltOutWeight,\n' +
-      '          (j.rawWeight+j.uselessRibbonWeight)/j.alloyTotalWeight AS effectiveMeltRatio,\n' +
-      '          j.rawWeight/(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n' +
-      '          m.totalStoredWeight/j.rawWeight AS qualifiedRatio,\n' +
-      '          m.qualityOfA,\n' +
-      '          m.qualityOfB,\n' +
-      '          m.qualityOfC,\n' +
-      '          m.qualityOfD,\n' +
-      '          m.qualityOfE,\n' +
-      '          m.qualityOfGood,\n' +
-      '          m.qualityOfFine,\n' +
-      '          m.qualityOfNormal\n' +
-      '        FROM\n' +
-      '          (\n' +
-      '            SELECT\n' +
-      '            caster,\n' +
-      '            COUNT(DISTINCT furnace) AS totalHeatNum,\n' +
+    sqlMessage: "Unknown column 'caster' in 'where clause'",
+    sql: 'select j.*, m.* from\n' +
+      '        (SELECT\n' +
+      '            furnace,\n' +
       '            SUM(coilNetWeight) AS coilNetWeight,\n' +
-      '            SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
-      '            SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
       '            SUM(totalStoredWeight) AS totalStoredWeight,\n' +
       '            SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n' +
       '            SUM(qualityOfA) AS qualityOfA,\n' +
@@ -104,42 +74,23 @@ From previous event:
       '            SUM(qualityOfC) AS qualityOfC,\n' +
       '            SUM(qualityOfD) AS qualityOfD,\n' +
       '            SUM(qualityOfE) AS qualityOfE,\n' +
+      '            SUM(thinRibbonWeight) AS thinRibbonWeight,\n' +
+      '            SUM(highFactorThinRibbonWeight) AS highFactorThinRibbonWeight,\n' +
+      '            SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
+      '            SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
+      '            SUM(inPlanThickRibbonWeight) AS inPlanThickRibbonWeight,\n' +
       '            SUM(qualityOfGood) AS qualityOfGood,\n' +
       '            SUM(qualityOfFine) AS qualityOfFine,\n' +
       '            SUM(qualityOfNormal) AS qualityOfNormal\n' +
-      '            FROM measure\n' +
-      '            GROUP BY caster\n' +
-      '          ) AS m\n' +
-      '          LEFT JOIN\n' +
-      '          (\n' +
-      '            SELECT\n' +
-      '            c.caster,\n' +
-      '            SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n' +
-      '            SUM(c.nozzleNum) AS nozzleNum,\n' +
-      '            SUM(c.rawWeight) AS rawWeight,\n' +
-      '            SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n' +
-      '            SUM(c.meltOutWeight) AS meltOutWeight,\n' +
-      '            SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n' +
-      '            SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n' +
-      '            (\n' +
-      '                SELECT COUNT(*)\n' +
-      '                FROM cast\n' +
-      '                WHERE (rawWeight <= 50 AND castId = 7) OR (rawWeight <= 80 AND castId IN (6,8,9))\n' +
-      '            ) AS lowHeatNum,\n' +
-      '            (\n' +
-      '                SELECT COUNT(*)\n' +
-      '                FROM cast\n' +
-      '                WHERE rawWeight = 0\n' +
-      '            ) AS zeroHeatNum\n' +
-      '            FROM cast AS c\n' +
-      '            JOIN melt AS t\n' +
+      "        FROM measure WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-08 00:00:00' AND '2022-11-14 23:59:59'  GROUP BY furnace) AS m LEFT JOIN (\n" +
+      '            SELECT c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
       '            ON c.furnace = t.furnace\n' +
-      '            GROUP BY c.caster\n' +
-      '          ) AS j\n' +
-      '          ON m.caster = j.caster;',
+      '        ) j ON m.furnace = j.furnace\n' +
+      '        LIMIT 20 OFFSET 0',
     parameters: undefined
   },
-  original: Error: Unknown column 'caster' in 'field list'
+  original: Error: Unknown column 'caster' in 'where clause'
       at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
       at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
       at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
@@ -154,41 +105,11 @@ From previous event:
     code: 'ER_BAD_FIELD_ERROR',
     errno: 1054,
     sqlState: '42S22',
-    sqlMessage: "Unknown column 'caster' in 'field list'",
-    sql: 'SELECT\n' +
-      '          j.caster,\n' +
-      '          m.totalHeatNum,\n' +
-      '          j.nozzleNum,\n' +
-      '          j.lowHeatNum,\n' +
-      '          j.zeroHeatNum,\n' +
-      '          j.alloyTotalWeight,\n' +
-      '          j.rawWeight,\n' +
-      '          m.coilNetWeight,\n' +
-      '          m.inPlanStoredWeight,\n' +
-      '          m.outPlanStoredWeight,\n' +
-      '          m.totalStoredWeight,\n' +
-      '          (m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n' +
-      '          j.uselessRibbonWeight,\n' +
-      '          j.meltOutWeight,\n' +
-      '          (j.rawWeight+j.uselessRibbonWeight)/j.alloyTotalWeight AS effectiveMeltRatio,\n' +
-      '          j.rawWeight/(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n' +
-      '          m.totalStoredWeight/j.rawWeight AS qualifiedRatio,\n' +
-      '          m.qualityOfA,\n' +
-      '          m.qualityOfB,\n' +
-      '          m.qualityOfC,\n' +
-      '          m.qualityOfD,\n' +
-      '          m.qualityOfE,\n' +
-      '          m.qualityOfGood,\n' +
-      '          m.qualityOfFine,\n' +
-      '          m.qualityOfNormal\n' +
-      '        FROM\n' +
-      '          (\n' +
-      '            SELECT\n' +
-      '            caster,\n' +
-      '            COUNT(DISTINCT furnace) AS totalHeatNum,\n' +
+    sqlMessage: "Unknown column 'caster' in 'where clause'",
+    sql: 'select j.*, m.* from\n' +
+      '        (SELECT\n' +
+      '            furnace,\n' +
       '            SUM(coilNetWeight) AS coilNetWeight,\n' +
-      '            SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
-      '            SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
       '            SUM(totalStoredWeight) AS totalStoredWeight,\n' +
       '            SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n' +
       '            SUM(qualityOfA) AS qualityOfA,\n' +
@@ -196,75 +117,26 @@ From previous event:
       '            SUM(qualityOfC) AS qualityOfC,\n' +
       '            SUM(qualityOfD) AS qualityOfD,\n' +
       '            SUM(qualityOfE) AS qualityOfE,\n' +
+      '            SUM(thinRibbonWeight) AS thinRibbonWeight,\n' +
+      '            SUM(highFactorThinRibbonWeight) AS highFactorThinRibbonWeight,\n' +
+      '            SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
+      '            SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
+      '            SUM(inPlanThickRibbonWeight) AS inPlanThickRibbonWeight,\n' +
       '            SUM(qualityOfGood) AS qualityOfGood,\n' +
       '            SUM(qualityOfFine) AS qualityOfFine,\n' +
       '            SUM(qualityOfNormal) AS qualityOfNormal\n' +
-      '            FROM measure\n' +
-      '            GROUP BY caster\n' +
-      '          ) AS m\n' +
-      '          LEFT JOIN\n' +
-      '          (\n' +
-      '            SELECT\n' +
-      '            c.caster,\n' +
-      '            SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n' +
-      '            SUM(c.nozzleNum) AS nozzleNum,\n' +
-      '            SUM(c.rawWeight) AS rawWeight,\n' +
-      '            SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n' +
-      '            SUM(c.meltOutWeight) AS meltOutWeight,\n' +
-      '            SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n' +
-      '            SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n' +
-      '            (\n' +
-      '                SELECT COUNT(*)\n' +
-      '                FROM cast\n' +
-      '                WHERE (rawWeight <= 50 AND castId = 7) OR (rawWeight <= 80 AND castId IN (6,8,9))\n' +
-      '            ) AS lowHeatNum,\n' +
-      '            (\n' +
-      '                SELECT COUNT(*)\n' +
-      '                FROM cast\n' +
-      '                WHERE rawWeight = 0\n' +
-      '            ) AS zeroHeatNum\n' +
-      '            FROM cast AS c\n' +
-      '            JOIN melt AS t\n' +
+      "        FROM measure WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-08 00:00:00' AND '2022-11-14 23:59:59'  GROUP BY furnace) AS m LEFT JOIN (\n" +
+      '            SELECT c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
       '            ON c.furnace = t.furnace\n' +
-      '            GROUP BY c.caster\n' +
-      '          ) AS j\n' +
-      '          ON m.caster = j.caster;',
+      '        ) j ON m.furnace = j.furnace\n' +
+      '        LIMIT 20 OFFSET 0',
     parameters: undefined
   },
-  sql: 'SELECT\n' +
-    '          j.caster,\n' +
-    '          m.totalHeatNum,\n' +
-    '          j.nozzleNum,\n' +
-    '          j.lowHeatNum,\n' +
-    '          j.zeroHeatNum,\n' +
-    '          j.alloyTotalWeight,\n' +
-    '          j.rawWeight,\n' +
-    '          m.coilNetWeight,\n' +
-    '          m.inPlanStoredWeight,\n' +
-    '          m.outPlanStoredWeight,\n' +
-    '          m.totalStoredWeight,\n' +
-    '          (m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,\n' +
-    '          j.uselessRibbonWeight,\n' +
-    '          j.meltOutWeight,\n' +
-    '          (j.rawWeight+j.uselessRibbonWeight)/j.alloyTotalWeight AS effectiveMeltRatio,\n' +
-    '          j.rawWeight/(j.rawWeight+j.uselessRibbonWeight) AS rollRatio,\n' +
-    '          m.totalStoredWeight/j.rawWeight AS qualifiedRatio,\n' +
-    '          m.qualityOfA,\n' +
-    '          m.qualityOfB,\n' +
-    '          m.qualityOfC,\n' +
-    '          m.qualityOfD,\n' +
-    '          m.qualityOfE,\n' +
-    '          m.qualityOfGood,\n' +
-    '          m.qualityOfFine,\n' +
-    '          m.qualityOfNormal\n' +
-    '        FROM\n' +
-    '          (\n' +
-    '            SELECT\n' +
-    '            caster,\n' +
-    '            COUNT(DISTINCT furnace) AS totalHeatNum,\n' +
+  sql: 'select j.*, m.* from\n' +
+    '        (SELECT\n' +
+    '            furnace,\n' +
     '            SUM(coilNetWeight) AS coilNetWeight,\n' +
-    '            SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
-    '            SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
     '            SUM(totalStoredWeight) AS totalStoredWeight,\n' +
     '            SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,\n' +
     '            SUM(qualityOfA) AS qualityOfA,\n' +
@@ -272,38 +144,19 @@ From previous event:
     '            SUM(qualityOfC) AS qualityOfC,\n' +
     '            SUM(qualityOfD) AS qualityOfD,\n' +
     '            SUM(qualityOfE) AS qualityOfE,\n' +
+    '            SUM(thinRibbonWeight) AS thinRibbonWeight,\n' +
+    '            SUM(highFactorThinRibbonWeight) AS highFactorThinRibbonWeight,\n' +
+    '            SUM(inPlanStoredWeight) AS inPlanStoredWeight,\n' +
+    '            SUM(outPlanStoredWeight) AS outPlanStoredWeight,\n' +
+    '            SUM(inPlanThickRibbonWeight) AS inPlanThickRibbonWeight,\n' +
     '            SUM(qualityOfGood) AS qualityOfGood,\n' +
     '            SUM(qualityOfFine) AS qualityOfFine,\n' +
     '            SUM(qualityOfNormal) AS qualityOfNormal\n' +
-    '            FROM measure\n' +
-    '            GROUP BY caster\n' +
-    '          ) AS m\n' +
-    '          LEFT JOIN\n' +
-    '          (\n' +
-    '            SELECT\n' +
-    '            c.caster,\n' +
-    '            SUM(t.alloyTotalWeight) AS alloyTotalWeight,\n' +
-    '            SUM(c.nozzleNum) AS nozzleNum,\n' +
-    '            SUM(c.rawWeight) AS rawWeight,\n' +
-    '            SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,\n' +
-    '            SUM(c.meltOutWeight) AS meltOutWeight,\n' +
-    '            SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,\n' +
-    '            SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,\n' +
-    '            (\n' +
-    '                SELECT COUNT(*)\n' +
-    '                FROM cast\n' +
-    '                WHERE (rawWeight <= 50 AND castId = 7) OR (rawWeight <= 80 AND castId IN (6,8,9))\n' +
-    '            ) AS lowHeatNum,\n' +
-    '            (\n' +
-    '                SELECT COUNT(*)\n' +
-    '                FROM cast\n' +
-    '                WHERE rawWeight = 0\n' +
-    '            ) AS zeroHeatNum\n' +
-    '            FROM cast AS c\n' +
-    '            JOIN melt AS t\n' +
+    "        FROM measure WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-08 00:00:00' AND '2022-11-14 23:59:59'  GROUP BY furnace) AS m LEFT JOIN (\n" +
+    '            SELECT c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+    '        FROM cast c JOIN melt t\n' +
     '            ON c.furnace = t.furnace\n' +
-    '            GROUP BY c.caster\n' +
-    '          ) AS j\n' +
-    '          ON m.caster = j.caster;',
+    '        ) j ON m.furnace = j.furnace\n' +
+    '        LIMIT 20 OFFSET 0',
   parameters: undefined
 }

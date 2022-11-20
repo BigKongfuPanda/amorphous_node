@@ -430,44 +430,360 @@ class Statistics {
     try {
       const queryCondition = handleSqlQuery({
         equal: {
-          furnace,
-          caster,
+          "a.furnace": furnace,
+          "b.caster": caster,
         },
         json: {
-          castId: castIdJson,
-          ribbonTypeName: ribbonTypeNameJson,
-          ribbonWidth: ribbonWidthJson,
+          "b.castId": castIdJson,
+          "b.ribbonTypeName": ribbonTypeNameJson,
+          "b.ribbonWidth": ribbonWidthJson,
         },
         between: {
-          createTime: [startTime, endTime],
+          "b.createTime": [startTime, endTime],
         },
       });
 
-      const sqlStr = `select j.*, m.* from
-        (SELECT
-            furnace,
-            SUM(coilNetWeight) AS coilNetWeight,
-            SUM(totalStoredWeight) AS totalStoredWeight,
-            SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,
-            SUM(qualityOfA) AS qualityOfA,
-            SUM(qualityOfB) AS qualityOfB,
-            SUM(qualityOfC) AS qualityOfC,
-            SUM(qualityOfD) AS qualityOfD,
-            SUM(qualityOfE) AS qualityOfE,
-            SUM(thinRibbonWeight) AS thinRibbonWeight,
-            SUM(highFactorThinRibbonWeight) AS highFactorThinRibbonWeight,
-            SUM(inPlanStoredWeight) AS inPlanStoredWeight,
-            SUM(outPlanStoredWeight) AS outPlanStoredWeight,
-            SUM(inPlanThickRibbonWeight) AS inPlanThickRibbonWeight,
-            SUM(qualityOfGood) AS qualityOfGood,
-            SUM(qualityOfFine) AS qualityOfFine,
-            SUM(qualityOfNormal) AS qualityOfNormal
-        FROM measure ${queryCondition}  GROUP BY furnace) AS m LEFT JOIN (
-            SELECT c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight
+      /**
+       * 1. measure LEFT JOIN storage , SUM(若干项) group by furnace
+       * 2. cast join melt
+       * 1 left join 2
+       */
+
+      const sqlStr = `SELECT a.*, b.* 
+      FROM 
+      (
+        SELECT 
+          measure.furnace,
+          SUM(measure.coilNetWeight) AS coilNetWeight,
+          SUM(measure.totalStoredWeight) AS totalStoredWeight,
+          SUM(measure.coilNetWeight-measure.totalStoredWeight) AS unqualifiedWeight,
+          SUM(storage.totalStoredWeight) AS actualTotalStoredWeight,
+          SUM(IF(storage.isLowQualified=1, storage.isLowQualified, 0)) AS lowQualifiedWeight
+        FROM measure
+        LEFT JOIN storage
+        ON measure.furnace=storage.furnace
+        GROUP BY measure.furnace
+      ) AS a
+      LEFT JOIN
+      (
+        SELECT 
+          c.castId, c.createTime, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight
         FROM cast c JOIN melt t
-            ON c.furnace = t.furnace
-        ) j ON m.furnace = j.furnace
-        LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
+        ON c.furnace = t.furnace
+      ) AS b
+      ON a.furnace=b.furnace
+      ${queryCondition}
+      LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
+
+      // const sqlStr = `
+      // select j.*, m.* from
+      //   (
+      //     SELECT
+      //       furnace,
+      //       SUM(coilNetWeight) AS coilNetWeight,
+      //       SUM(totalStoredWeight) AS totalStoredWeight,
+      //       SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,
+      //       SUM(qualityOfA) AS qualityOfA,
+      //       SUM(qualityOfB) AS qualityOfB,
+      //       SUM(qualityOfC) AS qualityOfC,
+      //       SUM(qualityOfD) AS qualityOfD,
+      //       SUM(qualityOfE) AS qualityOfE,
+      //       SUM(thinRibbonWeight) AS thinRibbonWeight,
+      //       SUM(highFactorThinRibbonWeight) AS highFactorThinRibbonWeight,
+      //       SUM(inPlanStoredWeight) AS inPlanStoredWeight,
+      //       SUM(outPlanStoredWeight) AS outPlanStoredWeight,
+      //       SUM(inPlanThickRibbonWeight) AS inPlanThickRibbonWeight,
+      //       SUM(qualityOfGood) AS qualityOfGood,
+      //       SUM(qualityOfFine) AS qualityOfFine,
+      //       SUM(qualityOfNormal) AS qualityOfNormal
+      //     FROM measure ${queryCondition}
+      //     GROUP BY furnace
+      //   )
+      //   AS m
+      //   LEFT JOIN
+      //   (
+      //     SELECT
+      //       c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight
+      //     FROM cast c JOIN melt t
+      //     ON c.furnace = t.furnace
+      //   )
+      //   AS j
+      //   ON m.furnace = j.furnace
+      // LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
+
+      let list = await sequelize.query(sqlStr, {
+        type: sequelize.QueryTypes.SELECT,
+      });
+      const count = list.length;
+      const totalPage = Math.ceil(count / limit);
+
+      list = list.map((item) => {
+        Object.keys(item).forEach((key) => {
+          if (
+            typeof item[key] === "number" &&
+            key !== "castId" &&
+            key !== "ribbonWidth"
+          ) {
+            item[key] = item[key].toFixed(2);
+          }
+        });
+        return item;
+      });
+
+      // 要考虑分页
+      res.send({
+        status: 0,
+        message: "操作成功",
+        data: {
+          count,
+          current,
+          totalPage,
+          limit,
+          list,
+        },
+      });
+    } catch (err) {
+      console.log("查询带材质量统计失败", err);
+      log.error("查询带材质量统计失败", err);
+      res.send({
+        status: -1,
+        message: "查询带材质量统计失败",
+      });
+    }
+  }
+
+  async queryDataOfRollWeightByRoller(req, res, next) {
+    const {
+      startTime,
+      endTime,
+      caster,
+      furnace,
+      ribbonTypeNameJson,
+      ribbonWidthJson,
+      castIdJson,
+      current = 1,
+      limit = 20,
+    } = req.query;
+    try {
+      const queryCondition = handleSqlQuery({
+        equal: {
+          "a.furnace": furnace,
+          "b.caster": caster,
+        },
+        json: {
+          "b.castId": castIdJson,
+          "b.ribbonTypeName": ribbonTypeNameJson,
+          "b.ribbonWidth": ribbonWidthJson,
+        },
+        between: {
+          "b.createTime": [startTime, endTime],
+        },
+      });
+
+      /**
+       * 1. measure LEFT JOIN storage , SUM(若干项) group by furnace
+       * 2. cast join melt
+       * 1 left join 2
+       */
+
+      const sqlStr = `SELECT a.*, b.* 
+      FROM 
+      (
+        SELECT 
+          measure.furnace,
+          SUM(measure.coilNetWeight) AS coilNetWeight,
+          SUM(measure.totalStoredWeight) AS totalStoredWeight,
+          SUM(measure.coilNetWeight-measure.totalStoredWeight) AS unqualifiedWeight,
+          SUM(storage.totalStoredWeight) AS actualTotalStoredWeight,
+          SUM(IF(storage.isLowQualified=1, storage.isLowQualified, 0)) AS lowQualifiedWeight
+        FROM measure
+        LEFT JOIN storage
+        ON measure.furnace=storage.furnace
+        GROUP BY measure.furnace
+      ) AS a
+      LEFT JOIN
+      (
+        SELECT 
+          c.castId, c.createTime, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight
+        FROM cast c JOIN melt t
+        ON c.furnace = t.furnace
+      ) AS b
+      ON a.furnace=b.furnace
+      ${queryCondition}
+      LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
+
+      // const sqlStr = `
+      // select j.*, m.* from
+      //   (
+      //     SELECT
+      //       furnace,
+      //       SUM(coilNetWeight) AS coilNetWeight,
+      //       SUM(totalStoredWeight) AS totalStoredWeight,
+      //       SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,
+      //       SUM(qualityOfA) AS qualityOfA,
+      //       SUM(qualityOfB) AS qualityOfB,
+      //       SUM(qualityOfC) AS qualityOfC,
+      //       SUM(qualityOfD) AS qualityOfD,
+      //       SUM(qualityOfE) AS qualityOfE,
+      //       SUM(thinRibbonWeight) AS thinRibbonWeight,
+      //       SUM(highFactorThinRibbonWeight) AS highFactorThinRibbonWeight,
+      //       SUM(inPlanStoredWeight) AS inPlanStoredWeight,
+      //       SUM(outPlanStoredWeight) AS outPlanStoredWeight,
+      //       SUM(inPlanThickRibbonWeight) AS inPlanThickRibbonWeight,
+      //       SUM(qualityOfGood) AS qualityOfGood,
+      //       SUM(qualityOfFine) AS qualityOfFine,
+      //       SUM(qualityOfNormal) AS qualityOfNormal
+      //     FROM measure ${queryCondition}
+      //     GROUP BY furnace
+      //   )
+      //   AS m
+      //   LEFT JOIN
+      //   (
+      //     SELECT
+      //       c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight
+      //     FROM cast c JOIN melt t
+      //     ON c.furnace = t.furnace
+      //   )
+      //   AS j
+      //   ON m.furnace = j.furnace
+      // LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
+
+      let list = await sequelize.query(sqlStr, {
+        type: sequelize.QueryTypes.SELECT,
+      });
+      const count = list.length;
+      const totalPage = Math.ceil(count / limit);
+
+      list = list.map((item) => {
+        Object.keys(item).forEach((key) => {
+          if (
+            typeof item[key] === "number" &&
+            key !== "castId" &&
+            key !== "ribbonWidth"
+          ) {
+            item[key] = item[key].toFixed(2);
+          }
+        });
+        return item;
+      });
+
+      // 要考虑分页
+      res.send({
+        status: 0,
+        message: "操作成功",
+        data: {
+          count,
+          current,
+          totalPage,
+          limit,
+          list,
+        },
+      });
+    } catch (err) {
+      console.log("查询带材质量统计失败", err);
+      log.error("查询带材质量统计失败", err);
+      res.send({
+        status: -1,
+        message: "查询带材质量统计失败",
+      });
+    }
+  }
+
+  async queryDataOfRollWeightByCastId(req, res, next) {
+    const {
+      startTime,
+      endTime,
+      caster,
+      furnace,
+      ribbonTypeNameJson,
+      ribbonWidthJson,
+      castIdJson,
+      current = 1,
+      limit = 20,
+    } = req.query;
+    try {
+      const queryCondition = handleSqlQuery({
+        equal: {
+          "a.furnace": furnace,
+          "b.caster": caster,
+        },
+        json: {
+          "b.castId": castIdJson,
+          "b.ribbonTypeName": ribbonTypeNameJson,
+          "b.ribbonWidth": ribbonWidthJson,
+        },
+        between: {
+          "b.createTime": [startTime, endTime],
+        },
+      });
+
+      /**
+       * 1. measure LEFT JOIN storage , SUM(若干项) group by furnace
+       * 2. cast join melt
+       * 1 left join 2
+       */
+
+      const sqlStr = `SELECT a.*, b.* 
+      FROM 
+      (
+        SELECT 
+          measure.furnace,
+          SUM(measure.coilNetWeight) AS coilNetWeight,
+          SUM(measure.totalStoredWeight) AS totalStoredWeight,
+          SUM(measure.coilNetWeight-measure.totalStoredWeight) AS unqualifiedWeight,
+          SUM(storage.totalStoredWeight) AS actualTotalStoredWeight,
+          SUM(IF(storage.isLowQualified=1, storage.isLowQualified, 0)) AS lowQualifiedWeight
+        FROM measure
+        LEFT JOIN storage
+        ON measure.furnace=storage.furnace
+        GROUP BY measure.furnace
+      ) AS a
+      LEFT JOIN
+      (
+        SELECT 
+          c.castId, c.createTime, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight
+        FROM cast c JOIN melt t
+        ON c.furnace = t.furnace
+      ) AS b
+      ON a.furnace=b.furnace
+      ${queryCondition}
+      LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
+
+      // const sqlStr = `
+      // select j.*, m.* from
+      //   (
+      //     SELECT
+      //       furnace,
+      //       SUM(coilNetWeight) AS coilNetWeight,
+      //       SUM(totalStoredWeight) AS totalStoredWeight,
+      //       SUM(coilNetWeight-totalStoredWeight) AS unqualifiedWeight,
+      //       SUM(qualityOfA) AS qualityOfA,
+      //       SUM(qualityOfB) AS qualityOfB,
+      //       SUM(qualityOfC) AS qualityOfC,
+      //       SUM(qualityOfD) AS qualityOfD,
+      //       SUM(qualityOfE) AS qualityOfE,
+      //       SUM(thinRibbonWeight) AS thinRibbonWeight,
+      //       SUM(highFactorThinRibbonWeight) AS highFactorThinRibbonWeight,
+      //       SUM(inPlanStoredWeight) AS inPlanStoredWeight,
+      //       SUM(outPlanStoredWeight) AS outPlanStoredWeight,
+      //       SUM(inPlanThickRibbonWeight) AS inPlanThickRibbonWeight,
+      //       SUM(qualityOfGood) AS qualityOfGood,
+      //       SUM(qualityOfFine) AS qualityOfFine,
+      //       SUM(qualityOfNormal) AS qualityOfNormal
+      //     FROM measure ${queryCondition}
+      //     GROUP BY furnace
+      //   )
+      //   AS m
+      //   LEFT JOIN
+      //   (
+      //     SELECT
+      //       c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight
+      //     FROM cast c JOIN melt t
+      //     ON c.furnace = t.furnace
+      //   )
+      //   AS j
+      //   ON m.furnace = j.furnace
+      // LIMIT ${limit} OFFSET ${(current - 1) * limit}`;
 
       let list = await sequelize.query(sqlStr, {
         type: sequelize.QueryTypes.SELECT,
