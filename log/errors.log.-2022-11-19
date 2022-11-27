@@ -1,0 +1,1503 @@
+[2022-11-19T23:06:59.634] [ERROR] statistics - 查询带材质量统计失败 DatabaseError [SequelizeDatabaseError]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,
+          /* 低端带材 */
+          SUM(IF(storag' at line 11
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:244:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:51:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+    at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+    at Socket.emit (events.js:314:20)
+    at addChunk (_stream_readable.js:297:12)
+    at readableAddChunk (_stream_readable.js:272:9)
+    at Socket.Readable.push (_stream_readable.js:213:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:29
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:12
+    at processImmediate (internal/timers.js:461:21)
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:651:10
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:641:30
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:590:23)
+    at queryDataOfInputOuput (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:519:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:502:7 {
+  parent: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,
+            /* 低端带材 */
+            SUM(IF(storag' at line 11
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_PARSE_ERROR',
+    errno: 1064,
+    sqlState: '42000',
+    sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,\n" +
+      '          /* 低端带材 */\n' +
+      "          SUM(IF(storag' at line 11",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          furnace,\n' +
+      '          /* 倒卷净重 */\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          /* 检测的合格重量，理论合格重量 */\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          /* 检测的不合格重量，理论不合格重量 */\n' +
+      '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          /* 库房的入库，实际合格重量 */\n' +
+      '          SUM(storage.totalStoredWeight AS actualTotalStoredWeight,\n' +
+      '          /* 低端带材 */\n' +
+      '          SUM(IF(storage.isLowQualified > 0, storage.coilNetWeight, 0)) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      "        WHERE WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  original: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,
+            /* 低端带材 */
+            SUM(IF(storag' at line 11
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_PARSE_ERROR',
+    errno: 1064,
+    sqlState: '42000',
+    sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,\n" +
+      '          /* 低端带材 */\n' +
+      "          SUM(IF(storag' at line 11",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          furnace,\n' +
+      '          /* 倒卷净重 */\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          /* 检测的合格重量，理论合格重量 */\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          /* 检测的不合格重量，理论不合格重量 */\n' +
+      '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          /* 库房的入库，实际合格重量 */\n' +
+      '          SUM(storage.totalStoredWeight AS actualTotalStoredWeight,\n' +
+      '          /* 低端带材 */\n' +
+      '          SUM(IF(storage.isLowQualified > 0, storage.coilNetWeight, 0)) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      "        WHERE WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  sql: 'SELECT a.*, b.* \n' +
+    '      FROM \n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          furnace,\n' +
+    '          /* 倒卷净重 */\n' +
+    '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+    '          /* 检测的合格重量，理论合格重量 */\n' +
+    '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+    '          /* 检测的不合格重量，理论不合格重量 */\n' +
+    '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+    '          /* 库房的入库，实际合格重量 */\n' +
+    '          SUM(storage.totalStoredWeight AS actualTotalStoredWeight,\n' +
+    '          /* 低端带材 */\n' +
+    '          SUM(IF(storage.isLowQualified > 0, storage.coilNetWeight, 0)) AS lowQualifiedWeight\n' +
+    '        FROM measure\n' +
+    '        LEFT JOIN storage\n' +
+    '        ON measure.furnace=storage.furnace\n' +
+    "        WHERE WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+    '        GROUP BY measure.furnace\n' +
+    '      ) AS a\n' +
+    '      LEFT JOIN\n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+    '        FROM cast c JOIN melt t\n' +
+    '        ON c.furnace = t.furnace\n' +
+    '      ) AS b\n' +
+    '      ON a.furnace=b.furnace\n' +
+    '      LIMIT 20 OFFSET 0',
+  parameters: undefined
+}
+[2022-11-19T23:08:57.190] [ERROR] statistics - 查询带材质量统计失败 DatabaseError [SequelizeDatabaseError]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,
+          SUM(IF(storage.isLowQualified > 0, storage' at line 7
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:244:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:51:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+    at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+    at Socket.emit (events.js:314:20)
+    at addChunk (_stream_readable.js:297:12)
+    at readableAddChunk (_stream_readable.js:272:9)
+    at Socket.Readable.push (_stream_readable.js:213:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:29
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:12
+    at processImmediate (internal/timers.js:461:21)
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:651:10
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:641:30
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:590:23)
+    at queryDataOfInputOuput (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:514:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:502:7 {
+  parent: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,
+            SUM(IF(storage.isLowQualified > 0, storage' at line 7
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_PARSE_ERROR',
+    errno: 1064,
+    sqlState: '42000',
+    sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,\n" +
+      "          SUM(IF(storage.isLowQualified > 0, storage' at line 7",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          furnace,\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(storage.totalStoredWeight AS actualTotalStoredWeight,\n' +
+      '          SUM(IF(storage.isLowQualified > 0, storage.coilNetWeight, 0)) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  original: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,
+            SUM(IF(storage.isLowQualified > 0, storage' at line 7
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_PARSE_ERROR',
+    errno: 1064,
+    sqlState: '42000',
+    sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,\n" +
+      "          SUM(IF(storage.isLowQualified > 0, storage' at line 7",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          furnace,\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(storage.totalStoredWeight AS actualTotalStoredWeight,\n' +
+      '          SUM(IF(storage.isLowQualified > 0, storage.coilNetWeight, 0)) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  sql: 'SELECT a.*, b.* \n' +
+    '      FROM \n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          furnace,\n' +
+    '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+    '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+    '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+    '          SUM(storage.totalStoredWeight AS actualTotalStoredWeight,\n' +
+    '          SUM(IF(storage.isLowQualified > 0, storage.coilNetWeight, 0)) AS lowQualifiedWeight\n' +
+    '        FROM measure\n' +
+    '        LEFT JOIN storage\n' +
+    '        ON measure.furnace=storage.furnace\n' +
+    "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+    '        GROUP BY measure.furnace\n' +
+    '      ) AS a\n' +
+    '      LEFT JOIN\n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+    '        FROM cast c JOIN melt t\n' +
+    '        ON c.furnace = t.furnace\n' +
+    '      ) AS b\n' +
+    '      ON a.furnace=b.furnace\n' +
+    '      LIMIT 20 OFFSET 0',
+  parameters: undefined
+}
+[2022-11-19T23:15:26.968] [ERROR] statistics - 查询带材质量统计失败 DatabaseError [SequelizeDatabaseError]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,
+          SUM(IF(storage.isLowQualified=1, storage.c' at line 7
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:244:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:51:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+    at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+    at Socket.emit (events.js:314:20)
+    at addChunk (_stream_readable.js:297:12)
+    at readableAddChunk (_stream_readable.js:272:9)
+    at Socket.Readable.push (_stream_readable.js:213:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:29
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:12
+    at processImmediate (internal/timers.js:461:21)
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:651:10
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:641:30
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:590:23)
+    at queryDataOfInputOuput (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:514:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:502:7 {
+  parent: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,
+            SUM(IF(storage.isLowQualified=1, storage.c' at line 7
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_PARSE_ERROR',
+    errno: 1064,
+    sqlState: '42000',
+    sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,\n" +
+      "          SUM(IF(storage.isLowQualified=1, storage.c' at line 7",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          furnace,\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(storage.totalStoredWeight AS actualTotalStoredWeight,\n' +
+      '          SUM(IF(storage.isLowQualified=1, storage.coilNetWeight, 0)) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  original: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,
+            SUM(IF(storage.isLowQualified=1, storage.c' at line 7
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_PARSE_ERROR',
+    errno: 1064,
+    sqlState: '42000',
+    sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,\n" +
+      "          SUM(IF(storage.isLowQualified=1, storage.c' at line 7",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          furnace,\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(storage.totalStoredWeight AS actualTotalStoredWeight,\n' +
+      '          SUM(IF(storage.isLowQualified=1, storage.coilNetWeight, 0)) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  sql: 'SELECT a.*, b.* \n' +
+    '      FROM \n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          furnace,\n' +
+    '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+    '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+    '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+    '          SUM(storage.totalStoredWeight AS actualTotalStoredWeight,\n' +
+    '          SUM(IF(storage.isLowQualified=1, storage.coilNetWeight, 0)) AS lowQualifiedWeight\n' +
+    '        FROM measure\n' +
+    '        LEFT JOIN storage\n' +
+    '        ON measure.furnace=storage.furnace\n' +
+    "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+    '        GROUP BY measure.furnace\n' +
+    '      ) AS a\n' +
+    '      LEFT JOIN\n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+    '        FROM cast c JOIN melt t\n' +
+    '        ON c.furnace = t.furnace\n' +
+    '      ) AS b\n' +
+    '      ON a.furnace=b.furnace\n' +
+    '      LIMIT 20 OFFSET 0',
+  parameters: undefined
+}
+[2022-11-19T23:38:36.141] [ERROR] statistics - 查询带材质量统计失败 DatabaseError [SequelizeDatabaseError]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,
+          SUM(CASE WHEN torage.isLowQualified=1 THEN' at line 7
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:244:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:51:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+    at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+    at Socket.emit (events.js:314:20)
+    at addChunk (_stream_readable.js:297:12)
+    at readableAddChunk (_stream_readable.js:272:9)
+    at Socket.Readable.push (_stream_readable.js:213:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:29
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:12
+    at processImmediate (internal/timers.js:461:21)
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:651:10
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:641:30
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:590:23)
+    at queryDataOfInputOuput (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:514:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:502:7 {
+  parent: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,
+            SUM(CASE WHEN torage.isLowQualified=1 THEN' at line 7
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_PARSE_ERROR',
+    errno: 1064,
+    sqlState: '42000',
+    sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,\n" +
+      "          SUM(CASE WHEN torage.isLowQualified=1 THEN' at line 7",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          furnace,\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(storage.totalStoredWeight AS actualTotalStoredWeight,\n' +
+      '          SUM(CASE WHEN torage.isLowQualified=1 THEN orage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  original: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,
+            SUM(CASE WHEN torage.isLowQualified=1 THEN' at line 7
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_PARSE_ERROR',
+    errno: 1064,
+    sqlState: '42000',
+    sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,\n" +
+      "          SUM(CASE WHEN torage.isLowQualified=1 THEN' at line 7",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          furnace,\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(storage.totalStoredWeight AS actualTotalStoredWeight,\n' +
+      '          SUM(CASE WHEN torage.isLowQualified=1 THEN orage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  sql: 'SELECT a.*, b.* \n' +
+    '      FROM \n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          furnace,\n' +
+    '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+    '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+    '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+    '          SUM(storage.totalStoredWeight AS actualTotalStoredWeight,\n' +
+    '          SUM(CASE WHEN torage.isLowQualified=1 THEN orage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+    '        FROM measure\n' +
+    '        LEFT JOIN storage\n' +
+    '        ON measure.furnace=storage.furnace\n' +
+    "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+    '        GROUP BY measure.furnace\n' +
+    '      ) AS a\n' +
+    '      LEFT JOIN\n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+    '        FROM cast c JOIN melt t\n' +
+    '        ON c.furnace = t.furnace\n' +
+    '      ) AS b\n' +
+    '      ON a.furnace=b.furnace\n' +
+    '      LIMIT 20 OFFSET 0',
+  parameters: undefined
+}
+[2022-11-19T23:39:42.550] [ERROR] statistics - 查询带材质量统计失败 DatabaseError [SequelizeDatabaseError]: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,
+          SUM(CASE WHEN storage.isLowQualified=1 THE' at line 7
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:244:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:51:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+    at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+    at Socket.emit (events.js:314:20)
+    at addChunk (_stream_readable.js:297:12)
+    at readableAddChunk (_stream_readable.js:272:9)
+    at Socket.Readable.push (_stream_readable.js:213:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:29
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:12
+    at processImmediate (internal/timers.js:461:21)
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:651:10
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:641:30
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:590:23)
+    at queryDataOfInputOuput (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:514:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:502:7 {
+  parent: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,
+            SUM(CASE WHEN storage.isLowQualified=1 THE' at line 7
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_PARSE_ERROR',
+    errno: 1064,
+    sqlState: '42000',
+    sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,\n" +
+      "          SUM(CASE WHEN storage.isLowQualified=1 THE' at line 7",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          furnace,\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(storage.totalStoredWeight AS actualTotalStoredWeight,\n' +
+      '          SUM(CASE WHEN storage.isLowQualified=1 THEN storage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  original: Error: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,
+            SUM(CASE WHEN storage.isLowQualified=1 THE' at line 7
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_PARSE_ERROR',
+    errno: 1064,
+    sqlState: '42000',
+    sqlMessage: "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'AS actualTotalStoredWeight,\n" +
+      "          SUM(CASE WHEN storage.isLowQualified=1 THE' at line 7",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          furnace,\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(storage.totalStoredWeight AS actualTotalStoredWeight,\n' +
+      '          SUM(CASE WHEN storage.isLowQualified=1 THEN storage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  sql: 'SELECT a.*, b.* \n' +
+    '      FROM \n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          furnace,\n' +
+    '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+    '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+    '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+    '          SUM(storage.totalStoredWeight AS actualTotalStoredWeight,\n' +
+    '          SUM(CASE WHEN storage.isLowQualified=1 THEN storage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+    '        FROM measure\n' +
+    '        LEFT JOIN storage\n' +
+    '        ON measure.furnace=storage.furnace\n' +
+    "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+    '        GROUP BY measure.furnace\n' +
+    '      ) AS a\n' +
+    '      LEFT JOIN\n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+    '        FROM cast c JOIN melt t\n' +
+    '        ON c.furnace = t.furnace\n' +
+    '      ) AS b\n' +
+    '      ON a.furnace=b.furnace\n' +
+    '      LIMIT 20 OFFSET 0',
+  parameters: undefined
+}
+[2022-11-19T23:40:37.100] [ERROR] statistics - 查询带材质量统计失败 DatabaseError [SequelizeDatabaseError]: Column 'furnace' in field list is ambiguous
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:244:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:51:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+    at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+    at Socket.emit (events.js:314:20)
+    at addChunk (_stream_readable.js:297:12)
+    at readableAddChunk (_stream_readable.js:272:9)
+    at Socket.Readable.push (_stream_readable.js:213:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:29
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:12
+    at processImmediate (internal/timers.js:461:21)
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:651:10
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:641:30
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:590:23)
+    at queryDataOfInputOuput (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:514:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:502:7 {
+  parent: Error: Column 'furnace' in field list is ambiguous
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_NON_UNIQ_ERROR',
+    errno: 1052,
+    sqlState: '23000',
+    sqlMessage: "Column 'furnace' in field list is ambiguous",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          furnace,\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(storage.totalStoredWeight) AS actualTotalStoredWeight,\n' +
+      '          SUM(CASE WHEN storage.isLowQualified=1 THEN storage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  original: Error: Column 'furnace' in field list is ambiguous
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_NON_UNIQ_ERROR',
+    errno: 1052,
+    sqlState: '23000',
+    sqlMessage: "Column 'furnace' in field list is ambiguous",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          furnace,\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(storage.totalStoredWeight) AS actualTotalStoredWeight,\n' +
+      '          SUM(CASE WHEN storage.isLowQualified=1 THEN storage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  sql: 'SELECT a.*, b.* \n' +
+    '      FROM \n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          furnace,\n' +
+    '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+    '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+    '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+    '          SUM(storage.totalStoredWeight) AS actualTotalStoredWeight,\n' +
+    '          SUM(CASE WHEN storage.isLowQualified=1 THEN storage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+    '        FROM measure\n' +
+    '        LEFT JOIN storage\n' +
+    '        ON measure.furnace=storage.furnace\n' +
+    "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+    '        GROUP BY measure.furnace\n' +
+    '      ) AS a\n' +
+    '      LEFT JOIN\n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+    '        FROM cast c JOIN melt t\n' +
+    '        ON c.furnace = t.furnace\n' +
+    '      ) AS b\n' +
+    '      ON a.furnace=b.furnace\n' +
+    '      LIMIT 20 OFFSET 0',
+  parameters: undefined
+}
+[2022-11-19T23:42:11.225] [ERROR] statistics - 查询带材质量统计失败 DatabaseError [SequelizeDatabaseError]: Unknown column 'mmeasure.totalStoredWeight' in 'field list'
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:244:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:51:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+    at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+    at Socket.emit (events.js:314:20)
+    at addChunk (_stream_readable.js:297:12)
+    at readableAddChunk (_stream_readable.js:272:9)
+    at Socket.Readable.push (_stream_readable.js:213:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:29
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:12
+    at processImmediate (internal/timers.js:461:21)
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:651:10
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:641:30
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:590:23)
+    at queryDataOfInputOuput (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:514:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:502:7 {
+  parent: Error: Unknown column 'mmeasure.totalStoredWeight' in 'field list'
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'mmeasure.totalStoredWeight' in 'field list'",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          measure.furnace,\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(storage.totalStoredWeight) AS actualTotalStoredWeight,\n' +
+      '          SUM(CASE WHEN storage.isLowQualified=1 THEN storage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  original: Error: Unknown column 'mmeasure.totalStoredWeight' in 'field list'
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'mmeasure.totalStoredWeight' in 'field list'",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          measure.furnace,\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(storage.totalStoredWeight) AS actualTotalStoredWeight,\n' +
+      '          SUM(CASE WHEN storage.isLowQualified=1 THEN storage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  sql: 'SELECT a.*, b.* \n' +
+    '      FROM \n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          measure.furnace,\n' +
+    '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+    '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+    '          SUM(measure.coilNetWeight-mmeasure.totalStoredWeight) AS unqualifiedWeight,\n' +
+    '          SUM(storage.totalStoredWeight) AS actualTotalStoredWeight,\n' +
+    '          SUM(CASE WHEN storage.isLowQualified=1 THEN storage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+    '        FROM measure\n' +
+    '        LEFT JOIN storage\n' +
+    '        ON measure.furnace=storage.furnace\n' +
+    "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+    '        GROUP BY measure.furnace\n' +
+    '      ) AS a\n' +
+    '      LEFT JOIN\n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+    '        FROM cast c JOIN melt t\n' +
+    '        ON c.furnace = t.furnace\n' +
+    '      ) AS b\n' +
+    '      ON a.furnace=b.furnace\n' +
+    '      LIMIT 20 OFFSET 0',
+  parameters: undefined
+}
+[2022-11-19T23:42:44.504] [ERROR] statistics - 查询带材质量统计失败 DatabaseError [SequelizeDatabaseError]: Column 'furnace' in where clause is ambiguous
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:244:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:51:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+    at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+    at Socket.emit (events.js:314:20)
+    at addChunk (_stream_readable.js:297:12)
+    at readableAddChunk (_stream_readable.js:272:9)
+    at Socket.Readable.push (_stream_readable.js:213:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:29
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:12
+    at processImmediate (internal/timers.js:461:21)
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:651:10
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:641:30
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:590:23)
+    at queryDataOfInputOuput (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:514:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:502:7 {
+  parent: Error: Column 'furnace' in where clause is ambiguous
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_NON_UNIQ_ERROR',
+    errno: 1052,
+    sqlState: '23000',
+    sqlMessage: "Column 'furnace' in where clause is ambiguous",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          measure.furnace,\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(measure.coilNetWeight-measure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(storage.totalStoredWeight) AS actualTotalStoredWeight,\n' +
+      '          SUM(CASE WHEN storage.isLowQualified=1 THEN storage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  original: Error: Column 'furnace' in where clause is ambiguous
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_NON_UNIQ_ERROR',
+    errno: 1052,
+    sqlState: '23000',
+    sqlMessage: "Column 'furnace' in where clause is ambiguous",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          measure.furnace,\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(measure.coilNetWeight-measure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(storage.totalStoredWeight) AS actualTotalStoredWeight,\n' +
+      '          SUM(CASE WHEN storage.isLowQualified=1 THEN storage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  sql: 'SELECT a.*, b.* \n' +
+    '      FROM \n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          measure.furnace,\n' +
+    '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+    '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+    '          SUM(measure.coilNetWeight-measure.totalStoredWeight) AS unqualifiedWeight,\n' +
+    '          SUM(storage.totalStoredWeight) AS actualTotalStoredWeight,\n' +
+    '          SUM(CASE WHEN storage.isLowQualified=1 THEN storage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+    '        FROM measure\n' +
+    '        LEFT JOIN storage\n' +
+    '        ON measure.furnace=storage.furnace\n' +
+    "        WHERE furnace='' AND caster='' AND castId in (6) AND createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+    '        GROUP BY measure.furnace\n' +
+    '      ) AS a\n' +
+    '      LEFT JOIN\n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          c.castId, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+    '        FROM cast c JOIN melt t\n' +
+    '        ON c.furnace = t.furnace\n' +
+    '      ) AS b\n' +
+    '      ON a.furnace=b.furnace\n' +
+    '      LIMIT 20 OFFSET 0',
+  parameters: undefined
+}
+[2022-11-19T23:51:54.045] [ERROR] statistics - 查询带材质量统计失败 DatabaseError [SequelizeDatabaseError]: Unknown column 'a.castId' in 'where clause'
+    at Query.formatError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:244:16)
+    at Query.handler [as onResult] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:51:23)
+    at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:30:14)
+    at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+    at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+    at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+    at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+    at Socket.emit (events.js:314:20)
+    at addChunk (_stream_readable.js:297:12)
+    at readableAddChunk (_stream_readable.js:272:9)
+    at Socket.Readable.push (_stream_readable.js:213:10)
+    at TCP.onStreamRead (internal/stream_base_commons.js:188:23)
+From previous event:
+    at Query.run (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/dialects/mysql/query.js:39:12)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:29
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:655:12
+    at processImmediate (internal/timers.js:461:21)
+From previous event:
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:651:10
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:70:21
+    at new Promise (<anonymous>)
+    at retryAsPromised (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/retry-as-promised/index.js:60:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:641:30
+From previous event:
+    at Sequelize.query (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/sequelize/lib/sequelize.js:590:23)
+    at queryDataOfInputOuput (/Users/zhanghaiquan/Documents/my/amorphous_node/controller/statistics.js:514:34)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:137:13)
+    at Route.dispatch (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:281:22
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at Function.handle (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:174:3)
+    at router (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at checkLogin (/Users/zhanghaiquan/Documents/my/amorphous_node/middleware/checkLogin.js:9:5)
+    at Layer.handle [as handle_request] (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:317:13)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:284:7
+    at Function.process_params (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:335:12)
+    at next (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express/lib/router/index.js:275:10)
+    at /Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/express-session/index.js:502:7 {
+  parent: Error: Unknown column 'a.castId' in 'where clause'
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'a.castId' in 'where clause'",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          measure.furnace,\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(measure.coilNetWeight-measure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(storage.totalStoredWeight) AS actualTotalStoredWeight,\n' +
+      '          SUM(CASE WHEN storage.isLowQualified=1 THEN storage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.createTime, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      "      WHERE a.furnace='' AND b.caster='' AND a.castId in (6) AND b.createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  original: Error: Unknown column 'a.castId' in 'where clause'
+      at Packet.asError (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packets/packet.js:708:17)
+      at Query.execute (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/commands/command.js:28:26)
+      at Connection.handlePacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:408:32)
+      at PacketParser.onPacket (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:70:12)
+      at PacketParser.executeStart (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/packet_parser.js:75:16)
+      at Socket.<anonymous> (/Users/zhanghaiquan/Documents/my/amorphous_node/node_modules/mysql2/lib/connection.js:77:25)
+      at Socket.emit (events.js:314:20)
+      at addChunk (_stream_readable.js:297:12)
+      at readableAddChunk (_stream_readable.js:272:9)
+      at Socket.Readable.push (_stream_readable.js:213:10)
+      at TCP.onStreamRead (internal/stream_base_commons.js:188:23) {
+    code: 'ER_BAD_FIELD_ERROR',
+    errno: 1054,
+    sqlState: '42S22',
+    sqlMessage: "Unknown column 'a.castId' in 'where clause'",
+    sql: 'SELECT a.*, b.* \n' +
+      '      FROM \n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          measure.furnace,\n' +
+      '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+      '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+      '          SUM(measure.coilNetWeight-measure.totalStoredWeight) AS unqualifiedWeight,\n' +
+      '          SUM(storage.totalStoredWeight) AS actualTotalStoredWeight,\n' +
+      '          SUM(CASE WHEN storage.isLowQualified=1 THEN storage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+      '        FROM measure\n' +
+      '        LEFT JOIN storage\n' +
+      '        ON measure.furnace=storage.furnace\n' +
+      '        GROUP BY measure.furnace\n' +
+      '      ) AS a\n' +
+      '      LEFT JOIN\n' +
+      '      (\n' +
+      '        SELECT \n' +
+      '          c.castId, c.createTime, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+      '        FROM cast c JOIN melt t\n' +
+      '        ON c.furnace = t.furnace\n' +
+      '      ) AS b\n' +
+      '      ON a.furnace=b.furnace\n' +
+      "      WHERE a.furnace='' AND b.caster='' AND a.castId in (6) AND b.createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+      '      LIMIT 20 OFFSET 0',
+    parameters: undefined
+  },
+  sql: 'SELECT a.*, b.* \n' +
+    '      FROM \n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          measure.furnace,\n' +
+    '          SUM(measure.coilNetWeight) AS coilNetWeight,\n' +
+    '          SUM(measure.totalStoredWeight) AS totalStoredWeight,\n' +
+    '          SUM(measure.coilNetWeight-measure.totalStoredWeight) AS unqualifiedWeight,\n' +
+    '          SUM(storage.totalStoredWeight) AS actualTotalStoredWeight,\n' +
+    '          SUM(CASE WHEN storage.isLowQualified=1 THEN storage.isLowQualified ELSE 0 END) AS lowQualifiedWeight\n' +
+    '        FROM measure\n' +
+    '        LEFT JOIN storage\n' +
+    '        ON measure.furnace=storage.furnace\n' +
+    '        GROUP BY measure.furnace\n' +
+    '      ) AS a\n' +
+    '      LEFT JOIN\n' +
+    '      (\n' +
+    '        SELECT \n' +
+    '          c.castId, c.createTime, c.furnace, c.ribbonTypeName, c.ribbonWidth, c.caster, c.rawWeight, c.meltOutWeight, c.uselessRibbonWeight, t.alloyTotalWeight\n' +
+    '        FROM cast c JOIN melt t\n' +
+    '        ON c.furnace = t.furnace\n' +
+    '      ) AS b\n' +
+    '      ON a.furnace=b.furnace\n' +
+    "      WHERE a.furnace='' AND b.caster='' AND a.castId in (6) AND b.createTime BETWEEN '2022-11-13 00:00:00' AND '2022-11-19 23:59:59'\n" +
+    '      LIMIT 20 OFFSET 0',
+  parameters: undefined
+}
