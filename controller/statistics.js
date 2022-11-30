@@ -636,11 +636,54 @@ class Statistics {
         },
       });
     } catch (err) {
-      console.log("查询重卷重量失败", err);
-      log.error("查询重卷重量失败", err);
+      console.log("查询大盘毛重失败", err);
+      log.error("查询大盘毛重失败", err);
       res.send({
         status: -1,
-        message: "查询重卷重量失败",
+        message: "查询大盘毛重失败",
+      });
+    }
+  }
+  // 查询每个机组所使用的母合金总量
+  async queryDataOfAlloyWeight(req, res, next) {
+    const { startTime, endTime } = req.query;
+    try {
+      const queryCondition = handleSqlQuery({
+        between: {
+          createTime: [startTime, endTime],
+        },
+      });
+
+      const sqlStr = `SELECT castId, SUM(alloyTotalWeight) AS totalAlloyWeight
+      FROM melt
+      ${queryCondition}
+      GROUP BY castId`;
+
+      let list = await sequelize.query(sqlStr, {
+        type: sequelize.QueryTypes.SELECT,
+      });
+
+      list = list.map((item) => {
+        item.totalAlloyWeight =
+          typeof item.totalAlloyWeight === "number"
+            ? item.totalAlloyWeight.toFixed(2)
+            : 0;
+        return item;
+      });
+
+      res.send({
+        status: 0,
+        message: "操作成功",
+        data: {
+          list,
+        },
+      });
+    } catch (err) {
+      console.log("查询母合金重量失败", err);
+      log.error("查询母合金重量失败", err);
+      res.send({
+        status: -1,
+        message: "查询母合金重量失败",
       });
     }
   }

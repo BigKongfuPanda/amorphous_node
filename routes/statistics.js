@@ -14,5 +14,7 @@ router.get("/inputOuput", Statistics.queryDataOfInputOuput);
 router.get("/rollWeightByRoller", Statistics.queryDataOfRollWeightByRoller);
 // 重卷产量-机组
 router.get("/rollWeightByCastId", Statistics.queryDataOfRollWeightByCastId);
+// 母合金总重
+router.get("/alloyWeight", Statistics.queryDataOfAlloyWeight);
 
 module.exports = router;
