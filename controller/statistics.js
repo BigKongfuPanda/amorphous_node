@@ -147,10 +147,12 @@ class Statistics {
     const { startTime, endTime, ratioType } = req.query;
 
     try {
-      let queryCondition = {};
-      if (startTime && endTime) {
-        queryCondition.createdAt = { $gt: startTime, $lt: endTime };
-      }
+      const queryCondition = handleSqlQuery({
+        between: {
+          "j.createTime": [startTime, endTime],
+        },
+      });
+
       let list = [];
       // 低产零产率：6,8,9机组 <= 80kg，7机组 <=50，算低产
       if (ratioType === "byCaster") {
@@ -213,16 +215,8 @@ class Statistics {
             SUM(c.meltOutWeight) AS meltOutWeight,
             SUM(c.rawWeight+c.uselessRibbonWeight)/SUM(t.alloyTotalWeight) AS effectiveMeltRatio,
             SUM(c.rawWeight)/SUM(c.rawWeight+c.uselessRibbonWeight) AS rollRatio,
-            (
-                SELECT COUNT(*)
-                FROM cast
-                WHERE (rawWeight <= 50 AND castId = 7) OR (rawWeight <= 80 AND castId IN (6,8,9))
-            ) AS lowHeatNum,
-            (
-                SELECT COUNT(*)
-                FROM cast
-                WHERE rawWeight = 0
-            ) AS zeroHeatNum
+            SUM(IF((c.rawWeight <= 50 AND c.castId = 7) OR (c.rawWeight <= 80 AND c.castId IN (6,8,9)), 1, 0)) AS lowHeatNum,
+						SUM(IF(c.rawWeight=0, 1, 0)) AS zeroHeatNum
             FROM cast AS c
             JOIN melt AS t
             ON c.furnace = t.furnace
@@ -281,16 +275,8 @@ class Statistics {
           (
             SELECT 
               c.*, t.alloyTotalWeight,
-              (
-                SELECT COUNT(*)
-                FROM cast
-                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)
-              ) AS lowHeatNum,
-              (
-                SELECT COUNT(*)
-                FROM cast
-                WHERE rawWeight = 0
-              ) AS zeroHeatNum
+              SUM(IF((c.rawWeight <= 50 AND c.castId = 7) OR (c.rawWeight <= 80 AND c.castId IN (6,8,9)), 1, 0)) AS lowHeatNum,
+						SUM(IF(c.rawWeight=0, 1, 0)) AS zeroHeatNum
             FROM cast c JOIN melt t
             ON c.furnace = t.furnace
           ) AS j 
@@ -324,7 +310,9 @@ class Statistics {
           SUM(m.qualityOfE) AS qualityOfE,
           SUM(m.qualityOfGood) AS qualityOfGood,
           SUM(m.qualityOfFine) AS qualityOfFine,
-          SUM(m.qualityOfNormal) AS qualityOfNormal
+          SUM(m.qualityOfNormal) AS qualityOfNormal,
+          SUM(IF((j.rawWeight <= 50 AND j.castId = 7) OR (j.rawWeight <= 80 AND j.castId IN (6,8,9)), 1, 0)) AS lowHeatNum,
+					SUM(IF(j.rawWeight=0, 1, 0)) AS zeroHeatNum
         FROM
           (
             SELECT
@@ -344,24 +332,16 @@ class Statistics {
               SUM(qualityOfNormal) AS qualityOfNormal
             FROM measure GROUP BY furnace
           ) AS m 
-          LEFT JOIN
+        LEFT JOIN
           (
             SELECT 
-              c.*, t.alloyTotalWeight,
-              (
-                SELECT COUNT(*)
-                FROM cast
-                WHERE rawWeight <= 50 AND castId = 7 OR rawWeight <= 80 AND castId IN (6,8,9)
-              ) AS lowHeatNum,
-              (
-                SELECT COUNT(*)
-                FROM cast
-                WHERE rawWeight = 0
-              ) AS zeroHeatNum
-            FROM cast c JOIN melt t
+              c.*, t.alloyTotalWeight
+            FROM cast c 
+            JOIN melt t
             ON c.furnace = t.furnace
           ) AS j 
-          ON m.furnace = j.furnace
+        ON m.furnace = j.furnace
+        ${queryCondition}
         GROUP BY j.castId;`;
         list = await sequelize.query(sqlStr, {
           type: sequelize.QueryTypes.SELECT,
@@ -454,7 +434,7 @@ class Statistics {
       FROM 
       (
         SELECT 
-          measure.furnace,
+          m.furnace,
           SUM(m.coilNetWeight) AS coilNetWeight,
           SUM(m.totalStoredWeight) AS totalStoredWeight,
           SUM(m.coilNetWeight-m.totalStoredWeight) AS unqualifiedWeight,
@@ -600,7 +580,7 @@ class Statistics {
     }
   }
 
-  async queryDataOfRollWeightByCastId(req, res, next) {
+  async queryDataOfRawWeightByCastId(req, res, next) {
     const { startTime, endTime } = req.query;
     try {
       const queryCondition = handleSqlQuery({
@@ -609,8 +589,8 @@ class Statistics {
         },
       });
 
-      const sqlStr = `SELECT m.castId, SUM(m.coilNetWeight) AS totalCoilNetWeight
-      FROM ${TABLE_NAME} m
+      const sqlStr = `SELECT m.castId, COUNT(c.furnace) AS furnaceCount, SUM(c.rawWeight) AS totalRawWeight, SUM(m.alloyTotalWeight) AS totalAlloyWeight
+      FROM melt m
       LEFT JOIN cast c
       ON m.furnace=c.furnace
       ${queryCondition}
@@ -621,10 +601,11 @@ class Statistics {
       });
 
       list = list.map((item) => {
-        item.totalCoilNetWeight =
-          typeof item.totalCoilNetWeight === "number"
-            ? item.totalCoilNetWeight.toFixed(2)
-            : 0;
+        const keys = ["totalRawWeight", "totalAlloyWeight"];
+        keys.forEach((key) => {
+          item[key] = typeof item[key] === "number" ? item[key].toFixed(2) : 0;
+        });
+
         return item;
       });
 
@@ -641,49 +622,6 @@ class Statistics {
       res.send({
         status: -1,
         message: "查询大盘毛重失败",
-      });
-    }
-  }
-  // 查询每个机组所使用的母合金总量
-  async queryDataOfAlloyWeight(req, res, next) {
-    const { startTime, endTime } = req.query;
-    try {
-      const queryCondition = handleSqlQuery({
-        between: {
-          createTime: [startTime, endTime],
-        },
-      });
-
-      const sqlStr = `SELECT castId, SUM(alloyTotalWeight) AS totalAlloyWeight
-      FROM melt
-      ${queryCondition}
-      GROUP BY castId`;
-
-      let list = await sequelize.query(sqlStr, {
-        type: sequelize.QueryTypes.SELECT,
-      });
-
-      list = list.map((item) => {
-        item.totalAlloyWeight =
-          typeof item.totalAlloyWeight === "number"
-            ? item.totalAlloyWeight.toFixed(2)
-            : 0;
-        return item;
-      });
-
-      res.send({
-        status: 0,
-        message: "操作成功",
-        data: {
-          list,
-        },
-      });
-    } catch (err) {
-      console.log("查询母合金重量失败", err);
-      log.error("查询母合金重量失败", err);
-      res.send({
-        status: -1,
-        message: "查询母合金重量失败",
       });
     }
   }
