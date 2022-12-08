@@ -144,14 +144,37 @@ class Statistics {
   }
 
   async queryDataOfRatio(req, res, next) {
-    const { startTime, endTime, ratioType } = req.query;
+    const {
+      startTime,
+      endTime,
+      ratioType,
+      ribbonTypeNameJson,
+      ribbonWidthJson,
+      ribbonThicknessLevelJson,
+      laminationLevelJson,
+      ribbonToughnessLevelJson,
+      appearenceLevelJson,
+    } = req.query;
 
     try {
       const queryCondition = handleSqlQuery({
         between: {
           "j.createTime": [startTime, endTime],
         },
+        json: {
+          "j.ribbonTypeName": ribbonTypeNameJson,
+          "j.ribbonWidth": ribbonWidthJson,
+        },
       });
+
+      // const queryCondition2 = handleSqlQuery({
+      //   json: {
+      //     ribbonThicknessLevel: ribbonThicknessLevelJson,
+      //     laminationLevel: laminationLevelJson,
+      //     ribbonToughnessLevel: ribbonToughnessLevelJson,
+      //     appearenceLevel: appearenceLevelJson,
+      //   },
+      // });
 
       let list = [];
       // 低产零产率：6,8,9机组 <= 80kg，7机组 <=50，算低产
