@@ -6,6 +6,7 @@ const measureModel = require("../models/measure");
 const melttModel = require("../models/melt");
 const log = require("log4js").getLogger("statistics");
 const { toFixed, percent, handleSqlQuery } = require("../util");
+const moment = require("moment");
 const config = require("config-lite")(__dirname);
 const TABLE_NAME = config.tableName;
 class Statistics {
@@ -637,6 +638,105 @@ class Statistics {
       res.send({
         status: -1,
         message: "查询大盘毛重失败",
+      });
+    }
+  }
+
+  async queryStatisticsCastYield(req, res, next) {
+    const {
+      startTime,
+      endTime,
+      queryType,
+      ribbonTypeNameJson,
+      ribbonWidthJson,
+    } = req.query;
+
+    try {
+      const queryCondition = handleSqlQuery({
+        between: {
+          "c.createTime": [startTime, endTime],
+        },
+        json: {
+          "c.ribbonTypeName": ribbonTypeNameJson,
+          "c.ribbonWidth": ribbonWidthJson,
+        },
+      });
+
+      let list = [];
+      if (queryType === "byCaster") {
+        const sqlStr = `
+        SELECT
+          c.caster,
+          COUNT(c.furnace) AS totalHeatNum,
+          SUM(c.nozzleNum) AS nozzleNum, 
+          SUM(t.alloyTotalWeight) AS alloyTotalWeight,
+          SUM(c.rawWeight) AS rawWeight, 
+          SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,
+          SUM(c.meltOutWeight) AS meltOutWeight
+        FROM
+          cast AS c
+        LEFT JOIN
+          melt AS t
+        ON c.furnace = t.furnace
+        ${queryCondition}
+        GROUP BY c.caster;`;
+
+        list = await sequelize.query(sqlStr, {
+          type: sequelize.QueryTypes.SELECT,
+        });
+      } else if (queryType === "byCastId") {
+        const sqlStr = `
+        SELECT
+          c.castId,
+          COUNT(c.furnace) AS totalHeatNum,
+          SUM(c.nozzleNum) AS nozzleNum, 
+          SUM(t.alloyTotalWeight) AS alloyTotalWeight,
+          SUM(c.rawWeight) AS rawWeight, 
+          SUM(c.uselessRibbonWeight) AS uselessRibbonWeight,
+          SUM(c.meltOutWeight) AS meltOutWeight
+        FROM
+          cast AS c
+        LEFT JOIN
+          melt AS t
+        ON c.furnace = t.furnace
+        ${queryCondition}
+        GROUP BY c.castId;`;
+        list = await sequelize.query(sqlStr, {
+          type: sequelize.QueryTypes.SELECT,
+        });
+      }
+      const diffDays = moment(endTime).diff(moment(startTime), "days") + 1;
+      // 对数据进行格式化处理
+      list.forEach((item) => {
+        item.alloyTotalWeight = toFixed(item.alloyTotalWeight);
+        item.rawWeight = toFixed(item.rawWeight);
+        item.uselessRibbonWeight = toFixed(item.uselessRibbonWeight);
+        item.meltOutWeight = toFixed(item.meltOutWeight);
+        item.totalOutput =
+          Number(item.rawWeight) +
+          Number(item.uselessRibbonWeight) +
+          Number(item.meltOutWeight);
+        item.perFurnaceLoss = toFixed(
+          (item.alloyTotalWeight - item.totalOutput) / item.totalHeatNum
+        );
+        item.perFurnaceNozzleNum = toFixed(item.nozzleNum / item.totalHeatNum);
+        item.furnaceNumPerDay = toFixed(item.totalHeatNum / diffDays);
+        item.rawWeightPerDay = toFixed(item.rawWeight / diffDays);
+      });
+
+      res.send({
+        status: 0,
+        message: "操作成功",
+        data: {
+          list,
+        },
+      });
+    } catch (err) {
+      console.log("查询机组产量统计失败", err);
+      log.error("查询机组产量统计失败", err);
+      res.send({
+        status: -1,
+        message: "查询机组产量统计失败",
       });
     }
   }

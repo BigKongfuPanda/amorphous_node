@@ -15,4 +15,7 @@ router.get("/rollWeightByRoller", Statistics.queryDataOfRollWeightByRoller);
 // 重卷产量-机组
 router.get("/rawWeightByCastId", Statistics.queryDataOfRawWeightByCastId);
 
+// 机组产量统计表
+router.get("/castYield", Statistics.queryStatisticsCastYield);
+
 module.exports = router;
