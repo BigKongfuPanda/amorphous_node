@@ -2,9 +2,10 @@
 
 近期在把数据库从 mongodb 改成 mysql，正在进行中。
 
-master分支为改造中的 mysql 版本分支，mongodb 为 mongodb 版本的分支。
+master 分支为改造中的 mysql 版本分支，mongodb 为 mongodb 版本的分支。
 
 # About
+
 使用 express + mongodb + mongoose 搭建的生产数据采集管理后台。
 
 配套的前端项目地址为[amorphous_vue](https://github.com/BigKongfuPanda/amorphous_vue)，前端项目使用 vue2.x + elementUI + vuex + vue-router + axios 做的单页面。
@@ -15,25 +16,25 @@ nodejs + express + mongodb + mongoose + es6/7 + log4js + node-xlsx + pm2
 
 具体：
 
-- express：本项目使用的node框架，集成了大量实用的中间件
+- express：本项目使用的 node 框架，集成了大量实用的中间件
 
-- mongodb：使用的是 3.4 版本，由于服务器的系统为 window server 2008 R2，最高支持到mongodb 3.4，同时将服务器上面的 mongodb 设置为 windows service，实现开机自启动
+- mongodb：使用的是 3.4 版本，由于服务器的系统为 window server 2008 R2，最高支持到 mongodb 3.4，同时将服务器上面的 mongodb 设置为 windows service，实现开机自启动
 
-- mongoose：最大的特点是可以定义数据的 schema，并且封装了一套 CRUD 的API
+- mongoose：最大的特点是可以定义数据的 schema，并且封装了一套 CRUD 的 API
 
 - express-session 和 connect-mongo：本项目使用的是 session-cookie 来实现登录态的保持，使用 connect-mongo 来做 session 的持久化，将 session 保存到 mongodb 中
 
-- ES6/7：大量使用了JS语言的新特性，尤其是在操作数据库的时候，使用 `async/await` 实现异步操作
+- ES6/7：大量使用了 JS 语言的新特性，尤其是在操作数据库的时候，使用 `async/await` 实现异步操作
 
-- log4js：用来记录生产环境下的错误日志，方便追踪bug
+- log4js：用来记录生产环境下的错误日志，方便追踪 bug
 
-- node-xlsx： 用来解析上传的excel文件中的数据，存入数据库
+- node-xlsx： 用来解析上传的 excel 文件中的数据，存入数据库
 
 - pm2：用来启动和守护 node 服务进程
 
 - supervior: 开发模式下代码热更新和服务重启
 
-- 角色权限：共有14种角色，每个角色对数据的访问和操作权限通过其 roleId 来区分和控制的
+- 角色权限：共有 14 种角色，每个角色对数据的访问和操作权限通过其 roleId 来区分和控制的
 
 # 项目布局
 
@@ -48,8 +49,8 @@ nodejs + express + mongodb + mongoose + es6/7 + log4js + node-xlsx + pm2
 |----log 日志存储文件夹
 |    |----access.log http请求日志
 |    |----errors.log 错误日志
-|    
-|----mongodb 数据库配置    
+|
+|----mongodb 数据库配置
 |    |----db.js 数据库配置和启动
 |
 |----controller 处理中心，负责路由及数据库的具体操作
@@ -66,8 +67,8 @@ nodejs + express + mongodb + mongoose + es6/7 + log4js + node-xlsx + pm2
 |    |----ribbonWidth.js 带材规格控制中心
 |    |----laminationLevel.js 带材叠片系数控制中心
 |    |----user.js 用户管理控制中心
-|    
-|----models 数据模型（数据库）    
+|
+|----models 数据模型（数据库）
 |    |----plan.js 生产计划疏浚模型
 |    |----melt.js 冶炼数据模型
 |    |----cast.js 喷带数据模型
@@ -99,12 +100,12 @@ nodejs + express + mongodb + mongoose + es6/7 + log4js + node-xlsx + pm2
 |
 |----middleware 中间件
 |    |----checkLogin.js 登录权限中间件
-|    
-|----service 服务    
+|
+|----service 服务
 |    |----measure.js 检测
 |    |----returnGood.js 退货
 |    |----storage.js 入库和库房
-|       
+|
 |----public 前端静态资源和html
 |    |----static
 |    |    |----css 样式表
@@ -113,8 +114,8 @@ nodejs + express + mongodb + mongoose + es6/7 + log4js + node-xlsx + pm2
 |    |    |----js js脚本
 |    |
 |    |----index.html 前端页面入口
-|    
-|----views 视图（express 自动生成，本项目没有使用）    
+|
+|----views 视图（express 自动生成，本项目没有使用）
 ```
 
 # 启动项目
@@ -126,7 +127,7 @@ nodejs + express + mongodb + mongoose + es6/7 + log4js + node-xlsx + pm2
 ```
 
 ```
-git clone https://github.com/BigKongfuPanda/amorphous_node.git  
+git clone https://github.com/BigKongfuPanda/amorphous_node.git
 
 cd amorphous_node
 
@@ -135,6 +136,17 @@ npm install
 npm run dev
 
 访问: http://localhost:8001
+```
+
+# 使用 pm2 来启动项目
+
+```
+npm install pm2@latest -g
+// 启动开发环境
+pm2 start ecosystem.config.js --env development
+
+// 启动生产环境
+pm2 start ecosystem.config.js --env production
 ```
 
 # 下一步
