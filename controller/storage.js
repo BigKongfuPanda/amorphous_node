@@ -257,8 +257,6 @@ class Storage {
           ? ` AND m.isStorageConfirmed=0`
           : ` m.isStorageConfirmed=0`;
 
-      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-      console.time("test");
       const sqlStr = `SELECT SQL_CALC_FOUND_ROWS
                         m.*, c.ribbonTypeName, c.ribbonWidth, c.createTime AS castDate, c.caster
                       FROM ${TABLE_NAME} m 
@@ -277,8 +275,6 @@ class Storage {
       });
       const count = Array.isArray(totalList) ? totalList[0].totalCount : 0;
       const totalPage = Math.ceil(count / limit);
-      console.timeEnd("test");
-      console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
       // 要考虑分页
       res.send({
